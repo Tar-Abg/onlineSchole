@@ -1,0 +1,38 @@
+@import "../../../vars";
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 392px;
+  background-color: $main-brand-color;
+  color: $clr-ntrl-min;
+
+  &-item {
+    padding: 8px 90px;
+
+    &:first-child {
+      border-right: 1px solid $clr-ntrl-min;
+    }
+
+    &__title {
+      margin-bottom: 18px;
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 30px;
+      letter-spacing: 0.03em;
+      text-transform: capitalize;
+    }
+  }
+
+  &-list__item {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing: 0.03em;
+    text-transform: capitalize;
+  }
+}
