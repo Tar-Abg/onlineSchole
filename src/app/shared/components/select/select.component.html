@@ -1,0 +1,17 @@
+<div class="form-control select" [class.hasValue]="matSelect.value">
+
+  <mat-form-field appearance="fill" [class.error]="error">
+    <mat-label>{{label}}</mat-label>
+    <mat-select
+      [value]='matSelect.value'
+      (closed)="onClose.emit()"
+      (selectionChange)='selectionChanged($event)'
+      [disabled]='disable'
+    >
+      <mat-option [value]="null"></mat-option>
+      <mat-option *ngFor="let item of list" [value]="item.id" [title]="item.description">
+        {{item[keyName]}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>

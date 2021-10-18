@@ -1,0 +1,55 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+  <fieldset class="register-form">
+    <legend class="form-legend">Enter your information</legend>
+    <label for="first-name" class="form-label">
+      <input id="first-name" class="form-input" type="text" placeholder="*first name"
+             formControlName="firstName">
+      <span class="error-message" *ngIf="form.get('firstName')?.errors && form.get('firstName')?.touched">Please fill in your first name</span>
+    </label>
+    <label for="last-name" class="form-label">
+      <input id="last-name" class="form-input" type="text" placeholder="*last name"
+             formControlName="lastName">
+      <span class="error-message" *ngIf="form.get('lastName')?.errors && form.get('lastName')?.touched">Please fill in your last name</span>
+    </label>
+    <div class="gender">
+      <app-select [label]="'*gender'" [list]="genderList$ | async" formControlName="gender"></app-select>
+      <span class="error-message" *ngIf="form.get('gender')?.errors && form.get('gender')?.touched">Please specify your gender</span>
+    </div>
+    <div class="flex-container form-label double-select">
+      <div>
+        <app-select [label]="'*month of birth'" [list]="months$ | async" [keyName]="'name'" formControlName="monthOfBirth"></app-select>
+        <span class="error-message" *ngIf="form.get('monthOfBirth')?.errors && form.get('monthOfBirth')?.touched">Please specify month of your  birth</span>
+      </div>
+
+      <div>
+        <app-select [label]="'*year of birth'" [list]="yearList" formControlName="yearOfBirth"></app-select>
+        <span class="error-message" *ngIf="form.get('yearOfBirth')?.errors && form.get('yearOfBirth')?.touched">Please specify year of your birth</span>
+      </div>
+
+    </div>
+    <label for="email" class="form-label">
+      <input id="email" class="form-input" autocomplete="username" type="email"
+             placeholder="*email address"
+             formControlName="email">
+      <span class="error-message" *ngIf="form.get('email')?.errors?.required && form.get('email')?.touched">Please enter your email address</span>
+      <span class="error-message" *ngIf="form.get('email')?.errors?.pattern && form.get('email')?.touched">Please provide a valid email address</span>
+    </label>
+    <label for="password" class="form-label">
+      <input id="password" class="form-input" autocomplete="new-password" type="password"
+             placeholder="*password"
+             formControlName="password">
+      <span class="error-message" *ngIf="form.get('password')?.errors && form.get('password')?.touched">Please create your password</span>
+    </label>
+    <label for="re-enter-password" class="form-label">
+      <input id="re-enter-password" class="form-input" autocomplete="new-password"
+             type="password"
+             placeholder="*re-enter password" formControlName="rePassword">
+      <span class="error-message" *ngIf="form.get('rePassword')?.errors?.required && form.get('rePassword')?.touched">Please create your password</span>
+      <span class="error-message" *ngIf="form?.errors?.notSame  && form.get('rePassword')?.touched">Passwords are not the same</span>
+    </label>
+  </fieldset>
+  <div class="flex-container-center button-wrapper">
+    <button type="submit" class="btn flex-container-center next-btn">NEXT</button>
+  </div>
+
+</form>

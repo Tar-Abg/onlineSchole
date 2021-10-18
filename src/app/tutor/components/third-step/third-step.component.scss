@@ -1,0 +1,14 @@
+::ng-deep .mat-input-element {
+  margin-top: 5px !important;
+}
+
+.btn {
+  color: black !important;
+}
+.form {
+  > * {
+    border-top: 1px solid black;
+    margin-top: 20px;
+    padding-top: 20px;
+  }
+}

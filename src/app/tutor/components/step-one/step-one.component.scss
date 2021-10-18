@@ -1,0 +1,19 @@
+.gender {
+  margin-bottom: 20px;
+  position: relative;
+}
+.double-select {
+  >div {
+    position: relative;
+    width: 100%;
+  }
+}
+
+.button-wrapper {
+  margin-left: 270px;
+
+  .next-btn, .sophist-btn, .previous-btn {
+    color: black;
+  }
+}
+
