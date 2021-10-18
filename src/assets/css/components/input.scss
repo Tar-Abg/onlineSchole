@@ -1,0 +1,146 @@
+.form-label {
+    position: relative;
+    display: flex;
+    margin-bottom: 20px;
+    color: var(--clr-ntrl-max);
+}
+
+.form-label--flex-container {
+    flex-direction: column;
+}
+
+.form-label--flex-container .form-input {
+    width: 418px;
+}
+
+.form-input, .form-text-area {
+    width: 100%;
+    height: 50px;
+    background: var(--clr-ntrl-min);
+    color: var(--clr-ntrl-max);
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.08em;
+    border: 1px solid #e9e9e9;
+    box-sizing: border-box;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
+    border-radius: 10px;
+    padding: 0 20px;
+}
+
+.form-textarea {
+    width: 697px;
+    min-height: 100px;
+    padding: 15px 20px;
+    background: var(--clr-ntrl-min);
+    border: 1px solid #e9e9e9;
+    box-sizing: border-box;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.04);
+    border-radius: 10px;
+    font-family: 'Segoe UI';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 21px;
+    letter-spacing: 0.08em;
+    color: #9A9A9A;
+}
+
+.form-input::placeholder {
+    font-weight: var(--type-light);
+    font-size: var(--type-small);
+    line-height: 21px;
+    letter-spacing: 0.08em;
+    color: var(--placeholder-color);
+}
+
+.error-message {
+    //display: none;
+    position: absolute;
+    left: 0;
+    bottom: -18px;
+    font-weight: var(--type-light);
+    font-size: var(--type-smaller);
+    line-height: 19px;
+    color: var(--danger-color);
+    font-family: Segoe UI;
+    font-style: normal;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+}
+
+
+/* The container */
+.question-list__item .container-for-checkbox {
+    flex: 0 0 26%;
+    max-width: 26%;
+}
+
+.container-for-checkbox {
+    position: relative;
+    display: block;
+    padding-left: 35px;
+    cursor: pointer;
+    user-select: none;
+    font-family: Segoe UI;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 25px;
+    color: var(--clr-ntrl-max);
+}
+
+/* Hide the browser's default checkbox */
+.container-for-checkbox input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background: var(--clr-ntrl-min);
+    border: 1px solid #E9E9E9;
+    box-sizing: border-box;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
+    border-radius: 5px;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container-for-checkbox input:checked ~ .checkmark {
+    background: #00FF19;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container-for-checkbox input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container-for-checkbox .checkmark:after {
+    left: 8px;
+    top: 4px;
+    width: 4px;
+    height: 8px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}

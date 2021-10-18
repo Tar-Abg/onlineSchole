@@ -1,0 +1,12 @@
+<div class="register-form-steps-wrapper">
+  <ul class="step-wrapper flex-container-center">
+    <li class="step-item" [class.step-item__active]="stepNumber === 1" [class.step-item__passed]="stepNumber > 1">
+      <span class="step-item-counter">1</span>
+    </li>
+    <li class="step-item" *ngFor="let step of [2,3,4,5]" [class.step-item__active]="stepNumber === step"
+        [class.step-item__passed]="stepNumber > step">
+      <span class="step-item-line"></span>
+      <span class="step-item-counter">{{step}}</span>
+    </li>
+  </ul>
+</div>
