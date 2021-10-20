@@ -33,5 +33,9 @@ export class RegistrartionService {
     return this.http.post<Observable<any>>(`${this.url}/SaveCertificates`, body);
   }
 
+  savePreferences(body: any): Observable<any> {
+    return this.http.post<Observable<any>>(`${this.url}/SavePreferences`, body);
+  }
+
 
 }
