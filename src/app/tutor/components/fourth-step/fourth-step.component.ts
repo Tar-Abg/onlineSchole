@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {DaysOfWeek, HoursOfDay} from "../../../shared/models/infos.model";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {ValidationService} from "../../../shared/services/validation/validation.service";
 
 @Component({
   selector: 'app-fourth-step',
@@ -25,7 +26,8 @@ export class FourthStepComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private infoService: InfosService,
-    private registrartionService: RegistrartionService
+    private registrartionService: RegistrartionService,
+    private validationService: ValidationService,
   ) {
   }
 
@@ -44,23 +46,18 @@ export class FourthStepComponent implements OnInit {
       onlineTutoringVariant: [null],
       linkTutorAndStudentTypes: [null, [Validators.required]],
       wantToBeInstructor: [null, [Validators.required]],
-      interview: this.fb.array([this.newInterview()],
-      ),
-      workHistory: this.fb.array([this.newWorkHistory()],
-      ),
+      interview: this.fb.array([this.newInterview()]),
+      workHistory: this.fb.array([
+        this.fb.group({
+          schoolOrInstitutionName: [null],
+          startYear: [null],
+          endYear: [null],
+          current: [false]
+        })
+      ]),
       professionalReferencesForInstructor: this.fb.array([
-        this.fb.group({
-          name: [null, [Validators.required]],
-          lastName: [null, [Validators.required]],
-          emailAddress: [null, [Validators.required]],
-          mobilePhone: [null, [Validators.required]],
-        }),
-        this.fb.group({
-          name: [null, [Validators.required]],
-          lastName: [null, [Validators.required]],
-          emailAddress: [null, [Validators.required]],
-          mobilePhone: [null, [Validators.required]],
-        }),
+        this.newProfessionalReferencesForInstructor(),
+        this.newProfessionalReferencesForInstructor(),
       ])
     })
   }
@@ -93,46 +90,41 @@ export class FourthStepComponent implements OnInit {
     return this.fb.group({
       dayOfWeek: [null, [Validators.required]],
       startOfRange: [null, [Validators.required]],
-      endOfRange: [null, [Validators.required]],
-      userId: [52],
-    })
+      endOfRange: [null, [Validators.required]]
+    });
   }
 
   newWorkHistory(): FormGroup {
     return this.fb.group({
-      schoolOrInstitutionName: [null],
-      startYear: [null],
-      endYear: [null],
-      current: [null],
-      userId: [52],
-    })
+      schoolOrInstitutionName: [null, [Validators.required]],
+      startYear: [null, [Validators.required]],
+      endYear: [null, [Validators.required]],
+      current: [false, [Validators.required]]
+    });
   }
 
   newProfessionalReferencesForInstructor(): FormGroup {
     return this.fb.group({
-      name: [null],
-      lastName: [null],
-      emailAddress: [null],
-      mobilePhone: [null],
-      userId: [52],
-    })
+      name: [null, [Validators.required]],
+      lastName: [null, [Validators.required]],
+      emailAddress: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern)]],
+      mobilePhone: [null, [Validators.required]],
+    });
   }
 
   onSubmit(): void {
     if (this.form.valid) {
       let studentsLevel = this.selectedStudentLevels.map(item => {
-        return {userId: 52, studentType: item}
+        return {studentType: item}
       })
       this.registrartionService.savePreferences({
         ...this.form.value,
+        workHistory: this.form.value.wantToBeInstructor ? this.form.value.workHistory : null,
         linkTutorAndStudentTypes: studentsLevel
-      }).subscribe();
+      }).subscribe(()=> this.next.emit());
     } else {
       this.form.markAllAsTouched();
     }
-    console.log(this.form.errors);
-
-
   }
 
   selectStudentType(event: Event, studentType: KeyValuePair) {
@@ -141,7 +133,6 @@ export class FourthStepComponent implements OnInit {
     } else {
       this.selectedStudentLevels.push(studentType.id);
     }
-    console.log(this.selectedStudentLevels);
   }
 
   removeInterview(item: AbstractControl) {
@@ -162,7 +153,13 @@ export class FourthStepComponent implements OnInit {
     this.daysOfWeek$ = this.infoService.getDaysOfWeek();
     this.hoursOfDay$ = this.infoService.getHoursOfDay();
     this.tutorExperiences$ = this.infoService.getTutorExperiences();
+    this.subscribeToEverTutoredValueChange();
+    this.subscribeToEverTutoredOnlineValueChange();
+    this.subscribeToWantToBeInstructorValueChange();
 
+  }
+
+  subscribeToEverTutoredValueChange(): void {
     this.form.get('everTutored')?.valueChanges.subscribe(value => {
       if (value) {
         this.form.get('experienceYears')?.setValidators(Validators.required);
@@ -170,33 +167,39 @@ export class FourthStepComponent implements OnInit {
         this.form.get('experienceYears')?.removeValidators(Validators.required)
       }
     });
+  }
+
+  subscribeToEverTutoredOnlineValueChange(): void {
     this.form.get('everTutoredOnline')?.valueChanges.subscribe(value => {
       if (value) {
         this.form.get('onlineTutoringVariant')?.setValidators(Validators.required);
       } else {
         this.form.get('onlineTutoringVariant')?.removeValidators(Validators.required)
       }
-    }) ;
+    });
+  }
+
+  subscribeToWantToBeInstructorValueChange(): void {
     this.form.get('wantToBeInstructor')?.valueChanges.subscribe(value => {
       if (value) {
-        this.workHistory.setValidators(Validators.required)
         this.workHistory.controls.forEach(item => {
-          item.setValidators(Validators.required);
-          // item.get('userId')?.removeValidators(Validators.required);
-          // item.get('startYear')?.setValidators(Validators.required);
-          // item.get('schoolOrInstitutionName')?.setValidators(Validators.required);
-          // item.get('endYear')?.setValidators(Validators.required);
-          // item.get('current')?.setValidators(Validators.required);
-          // console.log(item);
+          item.get('startYear')?.setValidators(Validators.required);
+          item.get('schoolOrInstitutionName')?.setValidators(Validators.required);
+          item.get('endYear')?.setValidators(Validators.required);
+          item.get('current')?.setValidators(Validators.required);
         })
       } else {
         this.workHistory.controls.forEach(item => {
-          item.removeValidators(Validators.required);
+          item.get('startYear')?.clearValidators();
+          item.get('startYear')?.updateValueAndValidity();
+          item.get('schoolOrInstitutionName')?.clearValidators();
+          item.get('schoolOrInstitutionName')?.updateValueAndValidity();
+          item.get('endYear')?.clearValidators();
+          item.get('endYear')?.updateValueAndValidity();
+          item.get('current')?.clearValidators();
+          item.get('current')?.updateValueAndValidity();
         })
       }
-    })
-
-
-
+    });
   }
 }

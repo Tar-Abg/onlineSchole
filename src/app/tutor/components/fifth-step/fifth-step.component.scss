@@ -1,0 +1,22 @@
+@import "./../../../../assets/css/variables";
+
+.phone-number-label input {
+  padding-left: 20px;
+}
+.confirm {
+  display: flex;
+  gap: 17px;
+  padding-left: 0 !important;
+}
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
+  opacity: 0.03 !important;
+  background-color: #00FF19!important;
+}
+
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+  background-color: #00FF19;
+  transform: scale(1.3);
+}
+::ng-deep .mat-checkbox-label {
+  color: $clr-ntrl-max !important;
+}

@@ -19,7 +19,7 @@ export class StepOneComponent implements OnInit {
   genderList$: Observable<KeyValuePair[]>;
   months$: Observable<Month[]>;
   yearList: KeyValuePair[];
-  readonly emailPattern = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\\])";
+  userId: any
 
   constructor(
     private fb: FormBuilder,
@@ -30,10 +30,15 @@ export class StepOneComponent implements OnInit {
 
   ngOnInit(): void {
    this.formInitialization();
-
     this.genderList$ = this.infosService.getGenders();
     this.months$ = this.infosService.getMonths();
     this.yearList = this.getYears(1930);
+    this.userId = localStorage.getItem('userId');
+    this.userId && this.registrationService.getInformationPage(+this.userId).subscribe((user)=> {
+      this.form.patchValue(user);
+      this.form.get('password')?.setValue(user.userPassword.password);
+      this.form.get('rePassword')?.setValue(user.userPassword.password);
+    })
   }
 
   getYears(startYear: number): KeyValuePair[] {
@@ -54,19 +59,31 @@ export class StepOneComponent implements OnInit {
       gender: [null, [Validators.required]],
       monthOfBirth: [null, [Validators.required]],
       yearOfBirth: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.pattern(this.emailPattern)]],
+      email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern)]],
       password: [null, [Validators.required]],
       rePassword: [null, [Validators.required]],
     }, { validators: this.validationService.checkPasswords })
   }
 
   onSubmit(): void {
-    console.log(222)
-    this.next.emit()
-    // if (this.form.valid) {
-    //   this.registrationService.saveInformation({...this.form.value, userType: 1}).subscribe(()=> this.next.emit())
-    // } else {
-    //   this.form.markAllAsTouched();
-    // }
+    // this.next.emit()
+    if (this.form.valid) {
+      if (this.userId) {
+        this.registrationService.updateInformation({...this.form.value, userType: 1, id: +this.userId}).subscribe(()=> this.next.emit())
+      } else {
+        this.registrationService.saveInformation({...this.form.value, userType: 1}).subscribe((userId: number)=> {
+          this.setUserIdInLocalStorage(userId);
+          this.next.emit();
+        })
+      }
+
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
+
+  setUserIdInLocalStorage(userId: number): void {
+    localStorage.setItem('userId', JSON.stringify(userId))
+  }
+
 }
