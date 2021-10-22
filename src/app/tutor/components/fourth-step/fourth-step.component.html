@@ -37,7 +37,7 @@
             <li class="nested" *ngIf="form.get('everTutoredOnline')?.value">
               <h3 class="main-question">2.1 Please choose all that apply</h3>
               <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
-                <mat-radio-group name="everTutored" class="everTutored" formControlName="onlineTutoringVariant">
+                <mat-radio-group name="onlineTutoringVariant" class="everTutored" formControlName="onlineTutoringVariant">
                   <mat-radio-button [value]="'Online platforms'">Online platforms</mat-radio-button>
                   <mat-radio-button [value]="false">Other</mat-radio-button>
                   <input type="text" placeholder="Enter the option" *ngIf="form.get('onlineTutoringVariant')?.value === false">
@@ -176,7 +176,9 @@
             <input id="email" class="form-input" autocomplete="username" type="email"
                    placeholder="*email address"
                   formControlName="emailAddress">
-            <span class="error-message" *ngIf="professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.errors && professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.touched">This is a required field</span>
+            <span class="error-message" *ngIf="professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.errors?.required && professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.touched">This is a required field</span>
+            <span class="error-message" *ngIf="professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.errors?.pattern && professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.touched">Please provide a valid email address</span>
+
           </label>
 
           <label for="phone-number" class="form-label phone-number-label p-relative">

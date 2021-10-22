@@ -17,7 +17,7 @@
             <app-second-step *ngSwitchCase="2" (back)="changeStepNumber('BACK')" (next)="changeStepNumber('FORWARD')"></app-second-step>
             <app-third-step *ngSwitchCase="3" (back)="changeStepNumber('BACK')" (next)="changeStepNumber('FORWARD')"></app-third-step>
             <app-fourth-step *ngSwitchCase="4" (back)="changeStepNumber('BACK')" (next)="changeStepNumber('FORWARD')"></app-fourth-step>
-            <app-fifth-step *ngSwitchCase="5"></app-fifth-step>
+            <app-fifth-step *ngSwitchCase="5"  (back)="changeStepNumber('BACK')"></app-fifth-step>
           </ng-container>
 
 
