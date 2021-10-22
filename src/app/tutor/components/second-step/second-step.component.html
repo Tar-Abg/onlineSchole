@@ -1,24 +1,32 @@
-<form [formGroup]="form">
-  <fieldset class="register-form">
-    <legend class="form-legend">Educational Institutions</legend>
+<form  [formGroup]="form" >
+  <div formArrayName="formArray" *ngFor="let item of formArray.controls; let i = index">
+
+
+  <fieldset class="register-form" [formGroupName]="i">
+    <legend class="form-legend" *ngIf="i == 0">Educational Institutions</legend>
     <div class="flex-container-start register-step-form row">
       <div class="flex-item col-md-6">
+
         <label for="institution-name" class="form-label">
           <input id="institution-name" class="form-input" type="text"
                  placeholder="*institution name"
                  formControlName="name">
-          <span class="error-message" *ngIf="form.get('name')?.errors && form.get('name')?.touched">This is a required field </span>
+          <span class="error-message" *ngIf="formArray.controls[i]?.get('name')?.errors && formArray.controls[i]?.get('name')?.touched">This is a required field </span>
         </label>
+
         <div class="form-group">
           <app-select [label]="'*education level'" [list]="institutionalLevels$ | async"
                       formControlName="educationalLevel"></app-select>
           <span class="error-message block"
-                *ngIf="form.get('educationalLevel')?.errors && form.get('educationalLevel')?.touched">This is a required field </span>
+                *ngIf="formArray.controls[i]?.get('educationalLevel')?.errors && formArray.controls[i]?.get('educationalLevel')?.touched">This is a required field </span>
+
+
         </div>
+
         <label for="major" class="form-label">
           <input id="major" class="form-input" type="text" placeholder="*major"
                  formControlName="major">
-          <span class="error-message" *ngIf="form.get('major')?.errors && form.get('major')?.touched">This is a required field</span>
+          <span class="error-message" *ngIf="formArray.controls[i]?.get('major')?.errors && formArray.controls[i]?.get('major')?.touched">This is a required field</span>
         </label>
 
         <label class="container-for-checkbox">Degree in progress
@@ -26,7 +34,7 @@
           <span class="checkmark"></span>
         </label>
 
-        <div class="choose-file-wrapper" *ngIf="form.get('degreeInProgress')?.value">
+        <div class="choose-file-wrapper" *ngIf="formArray.controls[i]?.get('degreeInProgress')?.value">
           <div class="file-upload">
             <div class="file-select">
               <div class="file-select-button" id="fileName">
@@ -47,12 +55,12 @@
           <app-select [label]="'*country'" [list]="countries$ | async" [keyName]="'nameLowerCase'"
                       formControlName="countryId"></app-select>
 
-          <span class="error-message block" *ngIf="form.get('countryId')?.errors && form.get('countryId')?.touched">This is a required field </span>
+          <span class="error-message block" *ngIf="formArray.controls[i]?.get('countryId')?.errors && formArray.controls[i]?.get('countryId')?.touched">This is a required field </span>
         </div>
         <label for="city" class="form-label">
           <input id="city" class="form-input" type="text" placeholder="*city"
                  formControlName="city">
-          <span class="error-message" *ngIf="form.get('city')?.errors && form.get('city')?.touched">This is a required field</span>
+          <span class="error-message" *ngIf="formArray.controls[i]?.get('city')?.errors && formArray.controls[i]?.get('city')?.touched">This is a required field</span>
         </label>
         <div class="flex-container-start double-calendar">
           <div class="date-picker-wrapper">
@@ -64,7 +72,7 @@
               <mat-datepicker #picker></mat-datepicker>
               <mat-label>*mm/dd/yyyy</mat-label>
             </mat-form-field>
-            <span class="error-message" *ngIf="form.get('startDate')?.errors && form.get('startDate')?.touched">This is a required field</span>
+            <span class="error-message" *ngIf="formArray.controls[i]?.get('startDate')?.errors && formArray.controls[i]?.get('startDate')?.touched">This is a required field</span>
           </div>
 
           <div class="date-picker-wrapper">
@@ -77,113 +85,21 @@
               <mat-label>*mm/dd/yyyy</mat-label>
             </mat-form-field>
             <span class="error-message"
-                  *ngIf="form.get('graduationDate')?.errors && form.get('graduationDate')?.touched">This is a required field</span>
+                  *ngIf="formArray.controls[i]?.get('graduationDate')?.errors && formArray.controls[i]?.get('graduationDate')?.touched">This is a required field</span>
           </div>
         </div>
       </div>
+
+    </div>
+    <div *ngIf="i > 0">
+      <button type="button" class="remove-icon-wrapper" (click)="removeForm(item)">
+        <img src="assets/images/recycleBin.png" alt="Remove Row">
+      </button>
     </div>
   </fieldset>
-
+  </div>
 </form>
 
-<div *ngFor="let item of dynamicFormList">
-  <form [formGroup]="item" *ngIf="dynamicFormList.length" class="form">
-    <fieldset class="register-form">
-      <div class="flex-container-start register-step-form row">
-        <div class="flex-item col-md-6">
-
-          <label for="institution-name" class="form-label">
-            {{item.get('name')?.value}}
-            <input id="institution-name" class="form-input" type="text"
-                   placeholder="*institution name"
-                   formControlName="name">
-            <span class="error-message" *ngIf="item.get('name')?.errors && item.get('name')?.touched">This is a required field </span>
-          </label>
-
-          <div class="form-group">
-            <app-select [label]="'*education level'" [list]="institutionalLevels$ | async"
-                        formControlName="educationalLevel"></app-select>
-            <span class="error-message block"
-                  *ngIf="item.get('educationalLevel')?.errors && item.get('educationalLevel')?.touched">This is a required field </span>
-
-
-          </div>
-
-          <label for="major" class="form-label">
-            <input id="major" class="form-input" type="text" placeholder="*major"
-                   formControlName="major">
-            <span class="error-message" *ngIf="item.get('major')?.errors && item.get('major')?.touched">This is a required field</span>
-          </label>
-
-          <label class="container-for-checkbox">Degree in progress
-            <input type="checkbox" class="degree" formControlName="degreeInProgress">
-            <span class="checkmark"></span>
-          </label>
-
-          <div class="choose-file-wrapper" *ngIf="item.get('degreeInProgress')?.value">
-            <div class="file-upload">
-              <div class="file-select">
-                <div class="file-select-button" id="fileName">
-                  <img src="assets/images/pdf.png" alt="Pdf" width="36"
-                       height="36">
-                </div>
-                <div class="file-select-name" id="noFile"></div>
-                <input type="file" name="chooseFile" class="chooseFile">
-              </div>
-              <h3 class="upload-message">Please upload an unofficial transcript (the
-                file must be in .pdf
-                format)</h3>
-            </div>
-          </div>
-
-        </div>
-        <div class="flex-item col-md-6">
-          <div class="form-group">
-            <app-select [label]="'*country'" [list]="countries$ | async" [keyName]="'nameLowerCase'"
-                        formControlName="countryId"></app-select>
-
-            <span class="error-message block" *ngIf="item.get('countryId')?.errors && item.get('countryId')?.touched">This is a required field </span>
-          </div>
-          <label for="city" class="form-label">
-            <input id="city" class="form-input" type="text" placeholder="*city"
-                   formControlName="city">
-            <span class="error-message" *ngIf="item.get('city')?.errors && item.get('city')?.touched">This is a required field</span>
-          </label>
-          <div class="flex-container-start double-calendar">
-            <div class="date-picker-wrapper">
-              <h2 class="date-picker-label">From </h2>
-              <mat-form-field appearance="fill">
-                <input matInput [matDatepicker]="picker3" (click)="picker3.open()" formControlName="startDate"
-                       [readonly]="true">
-                <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-                <mat-datepicker #picker3></mat-datepicker>
-                <mat-label>*mm/dd/yyyy</mat-label>
-              </mat-form-field>
-              <span class="error-message" *ngIf="item.get('startDate')?.errors && item.get('startDate')?.touched">This is a required field</span>
-            </div>
-            <div class="date-picker-wrapper">
-              <h2 class="date-picker-label">To </h2>
-              <mat-form-field appearance="fill">
-                <input matInput [matDatepicker]="picker2" (click)="picker2.open()" formControlName="graduationDate"
-                       [readonly]="true">
-                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                <mat-datepicker #picker2></mat-datepicker>
-                <mat-label>*mm/dd/yyyy</mat-label>
-              </mat-form-field>
-              <span class="error-message"
-                    *ngIf="item.get('graduationDate')?.errors && item.get('graduationDate')?.touched">This is a required field</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <button type="button" class="remove-icon-wrapper" (click)="removeForm(item)">
-          <img src="assets/images/recycleBin.png" alt="Remove Row">
-        </button>
-      </div>
-    </fieldset>
-  </form>
-</div>
 <button type="button" class="add" (click)="addNewForm()"> + Add</button>
 
 <div class="flex-container-center button-wrapper">

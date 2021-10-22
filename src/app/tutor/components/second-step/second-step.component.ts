@@ -1,5 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Observable} from "rxjs";
 import {Country} from "../../../shared/models/infos.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
@@ -14,10 +14,10 @@ import {RegistrartionService} from "../../../shared/services/registration/regist
 export class SecondStepComponent implements OnInit {
   @Output() back: EventEmitter<void> = new EventEmitter<void>();
   @Output() next: EventEmitter<void> = new EventEmitter<void>();
-  public form: FormGroup;
+  form: FormGroup
   countries$: Observable<Country[]>;
   institutionalLevels$: Observable<KeyValuePair[]>;
-  public dynamicFormList: FormGroup[] = [];
+  userId: any
 
   constructor(
     private fb: FormBuilder,
@@ -27,57 +27,50 @@ export class SecondStepComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formInitialization();
     this.countries$ = this.infoService.getCountries();
     this.institutionalLevels$ = this.infoService.getInstitutionalLevels();
+    this.userId = localStorage.getItem('userId');
+    this.formInitialization();
+
+    this.userId && this.registrationService.getInstitutionsPage(+this.userId).subscribe((institutions) => {
+      console.log(institutions)
+      this.formArray.controls = [];
+      institutions.forEach(item => {
+        let form = this.createNewForm();
+        form.patchValue(item)
+        this.formArray.controls.push(form)
+      })
+      // this.formArray.patchValue(institutions)
+    })
+    console.log(this.userId);
   }
 
   addNewForm(): void {
     const form = this.createNewForm();
-    this.dynamicFormList.push(form);
+    this.formArray.controls.push(form)
+    // this.dynamicFormList.push(form);
   }
 
   onSubmit(): void {
-    // let formList: any[] = [];
-    // let isValidAllForms = true;
-    //
-    // if (this.form.valid) {
-    //   this.dynamicFormList.forEach((form: FormGroup) => {
-    //       if (form.valid) {
-    //         formList.push(
-    //           {
-    //             ...form.value,
-    //             startDate: form.value.startDate ? form.value.startDate.toISOString() : null,
-    //             graduationDate: form.value.graduationDate ? form.value.graduationDate.toISOString() : null,
-    //             userId: 51
-    //           }
-    //         )
-    //       } else {
-    //         form.markAllAsTouched();
-    //         isValidAllForms = false;
-    //       }
-    //     }
-    //   )
-    // } else {
-    //   this.form.markAllAsTouched();
-    //   isValidAllForms = false;
-    // }
-    //
-    // if (isValidAllForms) {
-    //   formList.push(
-    //     {
-    //       ...this.form.value,
-    //       userId: 51
-    //     });
-    //   this.registrationService.saveInstitutions(formList).subscribe(() => this.next.emit());
-    // }
-    this.next.emit();
+    if (this.formArray.valid) {
+        this.registrationService.saveInstitutions(this.formArray.value).subscribe(() => this.next.emit());
+    } else {
+      this.formArray.markAllAsTouched()
+    }
+    console.log(this.formArray.valid)
+    console.log()
+    // this.next.emit();
   }
 
   formInitialization(): void {
-    this.form = this.createNewForm();
+    // this.form = this.createNewForm();
+    this.form = this.fb.group({
+      formArray:  this.fb.array([this.createNewForm()])
+    })
   }
-
+  get formArray(): FormArray {
+    return this.form.get('formArray') as FormArray
+  }
   createNewForm(): FormGroup {
     return this.fb.group({
       name: [null, [Validators.required]],
@@ -88,11 +81,14 @@ export class SecondStepComponent implements OnInit {
       startDate: [null, [Validators.required]],
       graduationDate: [null, [Validators.required]],
       degreeInProgress: [false, [Validators.required]],
+      userId: [+this.userId],
+
     })
   }
 
-  removeForm(form: FormGroup): void {
-    this.dynamicFormList = this.dynamicFormList.filter(item => item !== form);
+  removeForm(form: any): void {
+      this.formArray.controls = this.formArray.controls.filter(item => item !== form);
+    console.log(this.formArray.controls);
   }
 
 }

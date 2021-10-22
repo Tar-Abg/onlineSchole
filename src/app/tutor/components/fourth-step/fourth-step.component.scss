@@ -1,3 +1,4 @@
+
 ::ng-deep .mat-radio-button.mat-accent.mat-radio-checked ::ng-deep .mat-radio-outer-circle{
   border-color: #00FF19 !important;
 }
@@ -46,3 +47,7 @@ mat-checkbox {
 .selectWrapper, .checkboxes-wrapper-flex, .p-relative {
   position: relative;
 }
+.phone-number-label input {
+  padding-left: 20px;
+}
+
