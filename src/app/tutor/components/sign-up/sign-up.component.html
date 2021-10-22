@@ -11,7 +11,7 @@
         </h2>
         <app-steps [stepNumber]="stepNumber"></app-steps>
         <div class="flex-container-start row">
-          <div class="flex-item col-md-6 col-lg-7 col-xs-12">
+          <div class="flex-item col-md-6 col-xs-12 col-lg-5">
           <ng-container [ngSwitch]="stepNumber">
             <app-step-one *ngSwitchCase="1" (next)="changeStepNumber('FORWARD')"></app-step-one>
             <app-second-step *ngSwitchCase="2" (back)="changeStepNumber('BACK')" (next)="changeStepNumber('FORWARD')"></app-second-step>
@@ -27,7 +27,7 @@
 <!--              <a type="submit" class="btn flex-container-center sophist-btn" *ngIf="stepNumber === 5">REGISTER</a>-->
 <!--            </div>-->
           </div>
-          <div class="flex-item col-md-6col-xs-12 col-lg-4">
+          <div class="flex-item col-md-6 col-xs-12 col-lg-4">
             <img src="assets/images/illustration.png"
                  alt="Register illustration"
                  width="100"

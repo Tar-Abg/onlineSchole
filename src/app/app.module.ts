@@ -14,6 +14,7 @@ import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from '@angular/material/radio';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatRippleModule,
     MatFormFieldModule,
     MatInputModule,
-    MatRadioModule
+    MatRadioModule,
+    NgbModule
 
   ],
   providers: [],

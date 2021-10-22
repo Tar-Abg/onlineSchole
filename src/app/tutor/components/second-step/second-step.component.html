@@ -3,23 +3,18 @@
     <legend class="form-legend">Educational Institutions</legend>
     <div class="flex-container-start register-step-form row">
       <div class="flex-item col-md-6">
-
         <label for="institution-name" class="form-label">
           <input id="institution-name" class="form-input" type="text"
                  placeholder="*institution name"
                  formControlName="name">
           <span class="error-message" *ngIf="form.get('name')?.errors && form.get('name')?.touched">This is a required field </span>
         </label>
-
         <div class="form-group">
           <app-select [label]="'*education level'" [list]="institutionalLevels$ | async"
                       formControlName="educationalLevel"></app-select>
           <span class="error-message block"
                 *ngIf="form.get('educationalLevel')?.errors && form.get('educationalLevel')?.touched">This is a required field </span>
-
-
         </div>
-
         <label for="major" class="form-label">
           <input id="major" class="form-input" type="text" placeholder="*major"
                  formControlName="major">
@@ -106,7 +101,8 @@
           </label>
 
           <div class="form-group">
-            <app-select [label]="'*education level'" [list]="institutionalLevels$ | async" formControlName="educationalLevel"></app-select>
+            <app-select [label]="'*education level'" [list]="institutionalLevels$ | async"
+                        formControlName="educationalLevel"></app-select>
             <span class="error-message block"
                   *ngIf="item.get('educationalLevel')?.errors && item.get('educationalLevel')?.touched">This is a required field </span>
 
@@ -120,7 +116,7 @@
           </label>
 
           <label class="container-for-checkbox">Degree in progress
-            <input type="checkbox"  class="degree" formControlName="degreeInProgress">
+            <input type="checkbox" class="degree" formControlName="degreeInProgress">
             <span class="checkmark"></span>
           </label>
 
@@ -143,7 +139,8 @@
         </div>
         <div class="flex-item col-md-6">
           <div class="form-group">
-            <app-select [label]="'*country'" [list]="countries$ | async" [keyName]="'nameLowerCase'" formControlName="countryId"></app-select>
+            <app-select [label]="'*country'" [list]="countries$ | async" [keyName]="'nameLowerCase'"
+                        formControlName="countryId"></app-select>
 
             <span class="error-message block" *ngIf="item.get('countryId')?.errors && item.get('countryId')?.touched">This is a required field </span>
           </div>
@@ -173,7 +170,8 @@
                 <mat-datepicker #picker2></mat-datepicker>
                 <mat-label>*mm/dd/yyyy</mat-label>
               </mat-form-field>
-              <span class="error-message" *ngIf="item.get('graduationDate')?.errors && item.get('graduationDate')?.touched">This is a required field</span>
+              <span class="error-message"
+                    *ngIf="item.get('graduationDate')?.errors && item.get('graduationDate')?.touched">This is a required field</span>
             </div>
           </div>
         </div>
@@ -183,14 +181,12 @@
           <img src="assets/images/recycleBin.png" alt="Remove Row">
         </button>
       </div>
-
     </fieldset>
-
   </form>
 </div>
 <button type="button" class="add" (click)="addNewForm()"> + Add</button>
 
 <div class="flex-container-center button-wrapper">
-  <a type="submit" class="btn flex-container-center previous-btn" (click)="back.emit()">PREVIOUS</a>
-  <a type="submit" class="btn flex-container-center next-btn" (click)="onSubmit()">NEXT</a>
+  <a type="submit" class="sophist-btn flex-container-center previous-btn" (click)="back.emit()">PREVIOUS</a>
+  <a type="submit" class="sophist-btn flex-container-center next-btn" (click)="onSubmit()">NEXT</a>
 </div>
