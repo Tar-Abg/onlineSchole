@@ -52,14 +52,14 @@ export class SecondStepComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.formArray.valid) {
-        this.registrationService.saveInstitutions(this.formArray.value).subscribe(() => this.next.emit());
-    } else {
-      this.formArray.markAllAsTouched()
-    }
-    console.log(this.formArray.valid)
-    console.log()
-    // this.next.emit();
+    // if (this.formArray.valid) {
+    //     this.registrationService.saveInstitutions(this.formArray.value).subscribe(() => this.next.emit());
+    // } else {
+    //   this.formArray.markAllAsTouched()
+    // }
+    // console.log(this.formArray.valid)
+    // console.log()
+    this.next.emit();
   }
 
   formInitialization(): void {

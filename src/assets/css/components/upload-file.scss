@@ -17,7 +17,7 @@
     box-sizing: border-box;
     border: 1px solid #E9E9E9;
     border-radius: 5px;
-    background: var(--clr-ntrl-min);
+    background: $clr-ntrl-min;
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
     cursor: pointer;
 }
@@ -153,7 +153,7 @@
     margin: 10px 0;
     padding: 10px;
     font-weight: 700;
-    color: var(--clr-ntrl-max);
+    color: $clr-ntrl-max;
     border: none;
     outline: none;
     text-transform: uppercase;

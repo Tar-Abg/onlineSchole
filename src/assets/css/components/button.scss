@@ -1,25 +1,43 @@
-.btn {
-    width: 140px;
-    height: 50px;
-    font-size: var(--type-small);
-    font-weight: var(--type-semi-bold);
-    text-transform: uppercase;
-    background: rgba(255, 193, 7, 0.05);
-    color: black;
-    border: 1px solid #FFE699;
-    box-sizing: border-box;
-    border-radius: var(--border-radius-base);
-    cursor: pointer;
-}
+/* Start Button style */
+.sophist-btn {
+  width: 140px;
+  height: 50px;
+  font-size: $type-small;
+  font-weight: $type-semi-bold;
+  text-transform: uppercase;
+  background: rgba(255, 193, 7, 0.05);
+  color: black !important;
+  border: 1px solid #FFE699;
+  box-sizing: border-box;
+  border-radius: $border-radius-base;
+  cursor: pointer;
 
-.btn:focus, .btn:active, .btn:hover {
+
+  &:focus {
     box-shadow: none;
-    color: var(--clr-ntrl-max);
+    color: $clr-ntrl-max;
     background-color: rgba(255, 193, 7, 0.05);
     border-color: #FFE699;
+  }
+
+  &:active {
+    box-shadow: none;
+    color: $clr-ntrl-max;
+    background-color: rgba(255, 193, 7, 0.05);
+    border-color: #FFE699;
+  }
+
+  &:hover {
+    box-shadow: none;
+    color: $clr-ntrl-max;
+    background-color: rgba(255, 193, 7, 0.05);
+    border-color: #FFE699;
+  }
 }
 
 .button-wrapper {
-    margin-top: 30px;
-    grid-gap: 65px;
+  margin-top: 30px;
+  grid-gap: 65px;
 }
+
+/* End Button style */

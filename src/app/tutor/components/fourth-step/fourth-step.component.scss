@@ -1,9 +1,9 @@
 
-::ng-deep .mat-radio-button.mat-accent.mat-radio-checked ::ng-deep .mat-radio-outer-circle{
+::ng-deep .mat-radio-button.mat-accent.mat-radio-checked ::ng-deep .mat-radio-outer-circle {
   border-color: #00FF19 !important;
 }
 
-::ng-deep .mat-radio-button.mat-accent ::ng-deep .mat-radio-inner-circle{
+::ng-deep .mat-radio-button.mat-accent ::ng-deep .mat-radio-inner-circle {
   color: #00FF19 !important;
   background-color: #00FF19 !important;
 }
@@ -15,20 +15,21 @@
 ::ng-deep .mat-radio-button {
   //margin-right: 20px;
 }
+
 .hoursPerWeekForTutor {
   width: 30%;
 }
 
-
 ::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-ripple .mat-ripple-element {
   opacity: 0.03 !important;
-  background-color: #00FF19!important;
+  background-color: #00FF19 !important;
 }
 
-::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background,.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+::ng-deep .mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
   background-color: #00FF19;
   transform: scale(1.3);
 }
+
 mat-checkbox {
   width: 26%;
 }
@@ -36,9 +37,10 @@ mat-checkbox {
 .everTutored, .everTutoredOnline {
   mat-radio-button {
     margin-right: 20px;
-    margin-bottom: 10px!important;
+    margin-bottom: 10px !important;
   }
 }
+
 .nested {
   padding-left: 20px;
   list-style: none;
@@ -47,7 +49,36 @@ mat-checkbox {
 .selectWrapper, .checkboxes-wrapper-flex, .p-relative {
   position: relative;
 }
+
 .phone-number-label input {
   padding-left: 20px;
 }
 
+.grid-gap-10 {
+  grid-gap: 10px;
+  margin: 0 0 16px 47px;
+}
+
+.fa-plus {
+  color: #FFB519;
+}
+
+.warning-title {
+  color: #3862B0;
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 24px;
+}
+
+.nested-form-item {
+  display: flex;
+  align-items: center;
+}
+
+.form-label-nested-content {
+  position: relative;
+}
+
+.form-label-nested-content input {
+  width: 418px;
+}

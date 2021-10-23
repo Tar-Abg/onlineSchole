@@ -4,11 +4,11 @@ import {LoginComponent} from './components/login/login.component';
 import {TutorRoutingModule} from "./tutor-routing.module";
 import {SignUpComponent} from './components/sign-up/sign-up.component';
 import {SharedModuleModule} from "../shared/shared.module";
-import { StepOneComponent } from './components/step-one/step-one.component';
-import { SecondStepComponent } from './components/second-step/second-step.component';
-import { ThirdStepComponent } from './components/third-step/third-step.component';
-import { FourthStepComponent } from './components/fourth-step/fourth-step.component';
-import { FifthStepComponent } from './components/fifth-step/fifth-step.component';
+import {StepOneComponent} from './components/step-one/step-one.component';
+import {SecondStepComponent} from './components/second-step/second-step.component';
+import {ThirdStepComponent} from './components/third-step/third-step.component';
+import {FourthStepComponent} from './components/fourth-step/fourth-step.component';
+import {FifthStepComponent} from './components/fifth-step/fifth-step.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
@@ -30,20 +30,20 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     FifthStepComponent,
 
   ],
-    imports: [
-        CommonModule,
-        TutorRoutingModule,
-        SharedModuleModule,
-        ReactiveFormsModule,
-        MatFormFieldModule,
-        MatDatepickerModule,
-        MatIconModule,
-        MatRippleModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatRadioModule,
-        MatCheckboxModule
-    ]
+  imports: [
+    CommonModule,
+    TutorRoutingModule,
+    SharedModuleModule,
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatIconModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    MatCheckboxModule
+  ]
 })
 export class TutorModule {
 }

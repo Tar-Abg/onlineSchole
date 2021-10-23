@@ -43,36 +43,36 @@ export class ThirdStepComponent implements OnInit {
     let formList: any[] = [];
     let isValidAllForms = true;
 
-    if (this.form.valid) {
-      this.dynamicFormList.forEach((form: FormGroup) => {
-          if (form.valid) {
-            formList.push(
-              {
-                ...form.value,
-                date: form.value.date ? form.value.date.toISOString() : null,
-                userId: 51
-              }
-            )
-          } else {
-            form.markAllAsTouched();
-            isValidAllForms = false;
-          }
-        }
-      )
-    } else {
-      this.form.markAllAsTouched();
-      isValidAllForms = false;
-    }
-
-    if (isValidAllForms) {
-      formList.push(
-        {
-          ...this.form.value,
-          userId: 51
-        });
-      this.registrationService.saveCertificates(formList).subscribe(() => this.next.emit())
-    }
-    // this.next.emit()
+    // if (this.form.valid) {
+    //   this.dynamicFormList.forEach((form: FormGroup) => {
+    //       if (form.valid) {
+    //         formList.push(
+    //           {
+    //             ...form.value,
+    //             date: form.value.date ? form.value.date.toISOString() : null,
+    //             userId: 51
+    //           }
+    //         )
+    //       } else {
+    //         form.markAllAsTouched();
+    //         isValidAllForms = false;
+    //       }
+    //     }
+    //   )
+    // } else {
+    //   this.form.markAllAsTouched();
+    //   isValidAllForms = false;
+    // }
+    //
+    // if (isValidAllForms) {
+    //   formList.push(
+    //     {
+    //       ...this.form.value,
+    //       userId: 51
+    //     });
+    //   this.registrationService.saveCertificates(formList).subscribe(() => this.next.emit())
+    // }
+    this.next.emit()
   }
 
   removeForm(form: FormGroup) {

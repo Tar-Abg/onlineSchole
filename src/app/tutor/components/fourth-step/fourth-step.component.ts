@@ -113,18 +113,20 @@ export class FourthStepComponent implements OnInit {
   }
 
   onSubmit(): void {
-    if (this.form.valid) {
-      let studentsLevel = this.selectedStudentLevels.map(item => {
-        return {studentType: item}
-      })
-      this.registrartionService.savePreferences({
-        ...this.form.value,
-        workHistory: this.form.value.wantToBeInstructor ? this.form.value.workHistory : null,
-        linkTutorAndStudentTypes: studentsLevel
-      }).subscribe(()=> this.next.emit());
-    } else {
-      this.form.markAllAsTouched();
-    }
+    // if (this.form.valid) {
+    //   let studentsLevel = this.selectedStudentLevels.map(item => {
+    //     return {studentType: item}
+    //   })
+    //   this.registrartionService.savePreferences({
+    //     ...this.form.value,
+    //     workHistory: this.form.value.wantToBeInstructor ? this.form.value.workHistory : null,
+    //     linkTutorAndStudentTypes: studentsLevel
+    //   }).subscribe(()=> this.next.emit());
+    // } else {
+    //   this.form.markAllAsTouched();
+    // }
+
+    this.next.emit();
   }
 
   selectStudentType(event: Event, studentType: KeyValuePair) {

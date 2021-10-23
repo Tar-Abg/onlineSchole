@@ -1,64 +1,3 @@
-@import "../../vars";
-
-/* GENERAL RULE */
-:root {
-  /*********** Color Variables *************************/
-  --clr-ntrl-min: rgba(255, 255, 255, 1);
-  --clr-ntrl-max: rgba(0, 0, 0, 1);
-  --main-brand-color: rgba(78, 105, 156, 1);
-  --secondary-brand-color: rgba(143, 181, 252, 1);
-  --secondary-icon-brand-color: rgba(255, 181, 25, 1);
-  --step-color: rgba(220, 232, 255, 1);
-  --title-color: rgba(56, 98, 176, 1);
-  --danger-color: rgba(255, 0, 0, 1);
-
-  --placeholder-color: rgba(154, 154, 154, 1);
-  --text-dark-color: rgba(52, 52, 52, 1);
-  --button-border-color: rgba(255, 230, 153, 1);
-
-
-  --primary-color-dk: rgba(100, 100, 100, 1);
-  --primary-color-lt: rgba(96, 96, 96, 1);
-  --primary-color-ltr: rgba(204, 204, 204, 1);
-
-  /**************** Gap and Duration Variables **********************/
-  --vmargin: 150px;
-  --duration: 3s;
-
-  /****************** Z-Index Variables ******************/
-  --zIndex-1: 9;
-  --zIndex-2: 99;
-  --zIndex-3: 999;
-  --zIndex-4: 9999;
-  --zIndex-5: 99999;
-
-  /************ Typography Variables ******************/
-
-  --type-micro: 0.625rem; /* 10px */
-  --type-smallest: 0.75rem; /* 12px */
-  --type-smaller: 0.875rem; /* 14px */
-  --type-small: 1rem; /* 16px */
-  --type-base: 1.25rem; /* 20px */
-  --type-large: 1.5625rem; /* 25px */
-  --type-large-responsive: 1.875rem; /* 35px */
-  --type-larger: 3.125rem; /* 50px */
-  --type-largest: 4.375rem; /* 70px */
-  --type-jumbo: 5.625; /* 90px */
-
-  --type-light: 300;
-  --type-regular: 400;
-  --type-medium: 500;
-  --type-semi-bold: 600;
-  --type-bold: 700;
-  --type-extra-bold: 900;
-
-  /****************** Border Radius Variables ******************/
-
-  --border-radius-circle: 50%;
-  --border-radius-small: 10px;
-  --border-radius-base: 15px;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -70,7 +9,7 @@ html {
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
   line-height: 1.4;
-  color: var(--clr-ntrl-min);
+  color: $clr-ntrl-min;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -81,7 +20,7 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-thumb {
-  background-color: var(--main-brand-color);
+  background-color: $main-brand-color;
   border-radius: 1em;
 }
 
@@ -155,47 +94,51 @@ img {
   padding: 0;
 }
 
-/* Start Button style */
-.sophist-btn {
-  width: 140px;
-  height: 50px;
-  font-size: $type-small;
-  font-weight: $type-semi-bold;
-  text-transform: uppercase;
-  background: rgba(255, 193, 7, 0.05);
-  color: black !important;
-  border: 1px solid #FFE699;
+/* OverWrite Material css*/
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  background-color: unset;
+  border-bottom: 1px solid #B8B8B8;
+}
+
+.mat-radio-outer-circle {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.mat-radio-inner-circle {
+  left: 53% !important;
+  top: 50% !important;
+  transform: translate(-45%, -41%) scale(0.5) !important;
+}
+
+.mat-radio-outer-circle, .mat-checkbox-frame {
+  border: 1px solid #E9E9E9;
+}
+
+.mat-checkbox-frame {
+  width: 24px;
+  height: 24px;
+  background: #FFFFFF;
+  border: 1px solid #E9E9E9;
   box-sizing: border-box;
-  border-radius: var(--border-radius-base);
-  cursor: pointer;
-
-
-  &:focus {
-    box-shadow: none;
-    color: $clr-ntrl-max;
-    background-color: rgba(255, 193, 7, 0.05);
-    border-color: #FFE699;
-  }
-
-  &:active {
-    box-shadow: none;
-    color: $clr-ntrl-max;
-    background-color: rgba(255, 193, 7, 0.05);
-    border-color: #FFE699;
-  }
-
-  &:hover {
-    box-shadow: none;
-    color: $clr-ntrl-max;
-    background-color: rgba(255, 193, 7, 0.05);
-    border-color: #FFE699;
-  }
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
+  border-radius: 5px;
 }
 
-.button-wrapper {
-  margin-top: 30px;
-  grid-gap: 65px;
+.mat-checkbox-inner-container {
+  width: 24px !important;
+  height: 24px !important;
 }
 
-/* End Button style */
+.mat-checkbox-checked.mat-accent .mat-checkbox-background,
+.mat-checkbox-indeterminate.mat-accent[_ngcontent-oiu-c182] .mat-checkbox-background[_ngcontent-oiu-c182] {
+  transform: scale(1) !important;
+}
 
+.date-range-wrapper .mat-form-field-appearance-fill .mat-form-field-flex {
+  border-bottom: 1px solid black !important;
+}
+
+.flex-item-step-min-length {
+  width: 70%;
+}

@@ -1,60 +1,52 @@
-<form>
-  <fieldset class="register-form">
-
-    <legend class="form-legend">Contact Details</legend>
-
-    <label for="phone-number" class="form-label phone-number-label form-label--min-width">
-      <!--                                    <span class="phone-region">-->
-      <!--                                        <img class="flag" src="assets/images/armenia.png" alt="Armenia Flag" width="39"-->
-      <!--                                             height="26">-->
-      <!--                                        <span class="phone-code">-->
-      <!--                                            +374-->
-      <!--                                            <img src="assets/images/arrowDown.png" alt="arrow down" width="11"-->
-      <!--                                                 height="9">-->
-      <!--                                        </span>-->
-      <!--                                    </span>-->
-      <input id="phone-number" class="form-input" autocomplete="phone-number" type="tel"
-             placeholder="*Phone number"
-             value="">
-      <span class="error-message">This is a required field</span>
-    </label>
-
-    <label for="link-to-social-media" class="form-label form-label--min-width">
-      <input id="link-to-social-media" class="form-input"
-             autocomplete="link-to-social-media" type="text"
-             placeholder="*link to the social media profile"
-             value="">
-      <span class="error-message">This is a required field</span>
-    </label>
-
-    <div class="checkboxes-wrapper">
-      <div>
-
-      </div>
-      <mat-checkbox formControlName="linkTutorAndStudentTypes">
-        I do not have a social media profile
-      </mat-checkbox>
-
-      <div class="checkbox-divider-line"></div>
-
-      <label class="container-for-checkbox confirm">
-        <mat-checkbox formControlName="linkTutorAndStudentTypes">
-
-        </mat-checkbox>
-        <span>
+<div class="flex-item">
+  <div class="margin-left-space">
+    <form>
+      <fieldset class="register-form">
+        <legend class="form-legend">Contact Details</legend>
+        <label for="phone-number" class="form-label phone-number-label form-label--min-width">
+          <!--                                    <span class="phone-region">-->
+          <!--                                        <img class="flag" src="assets/images/armenia.png" alt="Armenia Flag" width="39"-->
+          <!--                                             height="26">-->
+          <!--                                        <span class="phone-code">-->
+          <!--                                            +374-->
+          <!--                                            <img src="assets/images/arrowDown.png" alt="arrow down" width="11"-->
+          <!--                                                 height="9">-->
+          <!--                                        </span>-->
+          <!--                                    </span>-->
+          <input id="phone-number" class="form-input" autocomplete="phone-number" type="tel"
+                 placeholder="*Phone number"
+                 value="">
+          <span class="error-message">This is a required field</span>
+        </label>
+        <label for="link-to-social-media" class="form-label form-label--min-width">
+          <input id="link-to-social-media" class="form-input"
+                 autocomplete="link-to-social-media" type="text"
+                 placeholder="*link to the social media profile"
+                 value="">
+          <span class="error-message">This is a required field</span>
+        </label>
+        <div class="checkboxes-wrapper">
+          <mat-checkbox formControlName="linkTutorAndStudentTypes">
+            I do not have a social media profile
+          </mat-checkbox>
+          <div class="checkbox-divider-line"></div>
+          <label class="container-for-checkbox confirm">
+            <mat-checkbox formControlName="linkTutorAndStudentTypes"></mat-checkbox>
+            <span>
                 I confirm that the information provided by me in the application is true,
                 complete
                 and accurate, and that I have not deliberately concealed any information which
                 is
-                likely to affect the review of my pplication in an adverse manner. I accept <a
-                  href="#" class="terms-conditions-link"> Terms
-                and Conditions.</a>
+                likely to affect the review of my pplication in an adverse manner. I accept
+          <a href="#" class="terms-conditions-link"> Terms and Conditions.</a>
         </span>
-      </label>
+          </label>
+        </div>
+      </fieldset>
+    </form>
+    <div class="flex-container-center button-wrapper">
+      <a type="submit" class="sophist-btn flex-container-center previous-btn" (click)="back.emit()">PREVIOUS</a>
+      <a type="submit" class="sophist-btn flex-container-center next-btn">NEXT</a>
     </div>
-  </fieldset>
-</form>
-<div class="flex-container-center button-wrapper">
-  <a type="submit" class="btn flex-container-center previous-btn" (click)="back.emit()">PREVIOUS</a>
-  <a type="submit" class="btn flex-container-center next-btn" >NEXT</a>
+  </div>
 </div>

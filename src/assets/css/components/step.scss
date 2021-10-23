@@ -18,9 +18,9 @@
     font-style: normal;
     font-weight: normal;
     line-height: 48px;
-    border-radius: var(--border-radius-circle);
-    background-color: var(--step-color);
-    color: var(--clr-ntrl-min);
+    border-radius: $border-radius-circle;
+    background-color: $step-color;
+    color: $clr-ntrl-min;
 }
 
 .step-item-line {
@@ -28,7 +28,7 @@
     width: 100px;
     height: 2px;
     margin: 0 34px;
-    background-color: var(--step-color);
+    background-color: $step-color;
 }
 
 .step-item-line::before, .step-item-line::after {
@@ -40,8 +40,8 @@
     display: block;
     width: 10px;
     height: 10px;
-    border-radius: var(--border-radius-circle);
-    border: 1px solid var(--step-color);
+    border-radius: $border-radius-circle;
+    border: 1px solid $step-color;
 }
 
 .step-item-line::after {
@@ -52,17 +52,17 @@
 .step-item__active .step-item-counter {
     width: 70px;
     height: 70px;
-    font-size: var(--type-larger);
+    font-size: $type-larger;
 }
 
 .step-item__active .step-item-line::before,
 .step-item__active .step-item-line::after,
 .step-item__passed .step-item-line::before,
 .step-item__passed .step-item-line::after{
-    background-color: var(--secondary-brand-color)
+    background-color: $secondary-brand-color;
 }
 
 .step-item__active .step-item-counter,
 .step-item__passed .step-item-counter {
-    background-color: var(--secondary-brand-color);
+    background-color: $secondary-brand-color;
 }

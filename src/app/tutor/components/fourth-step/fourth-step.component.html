@@ -1,212 +1,239 @@
-<form [formGroup]="form">
-  <fieldset class="register-form">
-    <legend class="form-legend">Tutoring Preferences/Employment history</legend>
-    <div class="question-list">
-      <ol>
-        <li class="question-list__item">
-          <h3 class="main-question">Have you ever been a tutor?</h3>
-          <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
-            <mat-radio-group name="everTutored" class="everTutored" formControlName="everTutored">
-              <mat-radio-button [value]="true">Yes</mat-radio-button>
-              <mat-radio-button [value]="false">No</mat-radio-button>
-            </mat-radio-group>
-            <span class="error-message" *ngIf="form.get('everTutored')?.errors && form.get('everTutored')?.touched">This is a required field</span>
-          </div>
-          <ol>
-            <li class="nested" *ngIf="form.get('everTutored')?.value">
-              <h3 class="main-question">1.1 How many years of experience do you have as a tutor? </h3>
-              <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
-                <mat-radio-group name="experienceYears" class="everTutored" formControlName="experienceYears">
-                  <mat-radio-button [value]="item.id" *ngFor="let item of (tutorExperiences$ | async)">{{item.description}}</mat-radio-button>
-                </mat-radio-group>
-                <span class="error-message" *ngIf="form.get('experienceYears')?.errors && form.get('experienceYears')?.touched">This is a required field</span>
-              </div>
-            </li>
-          </ol>
-        </li>
-        <li class="question-list__item">
-          <h3 class="main-question">Have you ever tutored online?</h3>
-          <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
-            <mat-radio-group name="everTutoredOnline" class="everTutoredOnline" formControlName="everTutoredOnline">
-              <mat-radio-button [value]="true">Yes</mat-radio-button>
-              <mat-radio-button [value]="false">No</mat-radio-button>
-            </mat-radio-group>
-            <span class="error-message" *ngIf="form.get('everTutoredOnline')?.errors && form.get('everTutoredOnline')?.touched">This is a required field</span>
-          </div>
-          <ol>
-            <li class="nested" *ngIf="form.get('everTutoredOnline')?.value">
-              <h3 class="main-question">2.1 Please choose all that apply</h3>
-              <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
-                <mat-radio-group name="onlineTutoringVariant" class="everTutored" formControlName="onlineTutoringVariant">
-                  <mat-radio-button [value]="'Online platforms'">Online platforms</mat-radio-button>
-                  <mat-radio-button [value]="false">Other</mat-radio-button>
-                  <input type="text" placeholder="Enter the option" *ngIf="form.get('onlineTutoringVariant')?.value === false">
-                </mat-radio-group>
-                <span class="error-message" *ngIf="form.get('onlineTutoringVariant')?.errors && form.get('onlineTutoringVariant')?.touched">This is a required field</span>
-              </div>
-            </li>
-          </ol>
-        </li>
-        <li class="question-list__item">
-          <h3 class="main-question">Which type of students do you like to tutor?</h3>
-          <h5 class="sub-question">You can choose more than one value</h5>
-          <div class="checkboxes-wrapper-flex">
-            <mat-checkbox class="example-margin" *ngFor="let item of (studentLevels$ | async)" formControlName="linkTutorAndStudentTypes"
-                          [checked]="true" (ngModelChange)="selectStudentType($event, item)">
-              {{item.description}}
-            </mat-checkbox>
-            <span class="error-message" *ngIf="form.get('linkTutorAndStudentTypes')?.errors && form.get('linkTutorAndStudentTypes')?.touched">This is a required field</span>
-          </div>
-        </li>
-        <li class="question-list__item">
-          <h3 class="main-question">How many hours per week do you currently
-            tutor?</h3>
-          <div class="checkboxes-wrapper-flex">
-            <mat-radio-group name="hoursPerWeekCurrently" formControlName="hoursPerWeekCurrently">
-              <mat-radio-button [value]="item.id" class="hoursPerWeekForTutor"
-                                *ngFor="let item of hoursPerWeekForTutor$ | async">{{item.description}}</mat-radio-button>
-            </mat-radio-group>
-            <span class="error-message" *ngIf="form.get('hoursPerWeekCurrently')?.errors && form.get('hoursPerWeekCurrently')?.touched">This is a required field</span>
-          </div>
-        </li>
-        <li class="question-list__item">
-          <h3 class="main-question">Please select a suitable day of the week for the
-            interview. (US Pacific
-            Standard Time)</h3>
-          <div class="flex-container-justify-start date-picker-container" formArrayName="interview"  *ngFor="let item of interview.controls; let i = index">
-            <div [formGroupName]="i" class="d-flex align-items-center gap-3">
-              <i class="fas fa-plus" (click)="addInterview()" *ngIf="i == interview.controls.length-1"></i>
-              <div class="selectWrapper">
-                <app-select [label]="'*year of birth'" [list]="daysOfWeek$ | async" [keyName]="'name'" formControlName="dayOfWeek"></app-select>
-                <span class="error-message" *ngIf="interview.controls[i]?.get('dayOfWeek')?.errors && interview.controls[i]?.get('dayOfWeek')?.touched">This is a required field</span>
-              </div>
-              <div class="selectWrapper">
-                <app-select [label]="'*year of birth'" [list]="hoursOfDay$ | async" [keyName]="'time'" formControlName="startOfRange"></app-select>
-                <span class="error-message" *ngIf="interview.controls[i]?.get('startOfRange')?.errors && interview.controls[i]?.get('startOfRange')?.touched">This is a required field</span>
-              </div>
-              <div class="selectWrapper">
-                <app-select [label]="'*year of birth'" [list]="hoursOfDay$ | async" [keyName]="'time'" formControlName="endOfRange"></app-select>
-                <span class="error-message" *ngIf="interview.controls[i]?.get('endOfRange')?.errors && interview.controls[i]?.get('endOfRange')?.touched">This is a required field</span>
-              </div>
-              <i (click)="removeInterview(item)" class="text-danger" *ngIf="interview.controls.length > 1">x</i>
+<div class="margin-left-space">
+  <form [formGroup]="form">
+    <fieldset class="register-form">
+      <legend class="form-legend">Tutoring Preferences/Employment history</legend>
+      <div class="question-list">
+        <ol>
+          <li class="question-list__item">
+            <h3 class="main-question">Have you ever been a tutor?</h3>
+            <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
+              <mat-radio-group name="everTutored" class="everTutored" formControlName="everTutored">
+                <mat-radio-button [value]="true">Yes</mat-radio-button>
+                <mat-radio-button [value]="false">No</mat-radio-button>
+              </mat-radio-group>
+              <span class="error-message" *ngIf="form.get('everTutored')?.errors && form.get('everTutored')?.touched">This is a required field</span>
             </div>
-
-          </div>
-        </li>
-        <li class="question-list__item">
-          <h3 class="main-question">Would you also like to be considered for an
-            instructor’s position if one
-            becomes available?</h3>
-          <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
-            <mat-radio-group name="wantToBeInstructor" class="everTutoredOnline" formControlName="wantToBeInstructor">
-              <mat-radio-button [value]="true">Yes</mat-radio-button>
-              <mat-radio-button [value]="false">No</mat-radio-button>
-            </mat-radio-group>
-            <span class="error-message" *ngIf="form.get('wantToBeInstructor')?.errors && form.get('wantToBeInstructor')?.touched">This is a required field</span>
-          </div>
-          <div *ngIf="form.get('wantToBeInstructor')?.value === true" >
-            <h3>Please list work history, starting from the most recent institution/school.</h3>
-            <div formArrayName="workHistory" *ngFor="let item of workHistory.controls; let i = index">
-              <div  [formGroupName]="i" >
-                <div class="d-flex p-relative">
-                  <i class="fas fa-plus" (click)="addWorkHistory()" *ngIf="i == workHistory.controls.length-1"></i>
-                  <input type="text" formControlName="schoolOrInstitutionName">
-                  <span class="error-message" *ngIf="workHistory.controls[i]?.get('schoolOrInstitutionName')?.errors && workHistory.controls[i]?.get('schoolOrInstitutionName')?.touched">This is a required field</span>
+            <ol>
+              <li class="nested" *ngIf="form.get('everTutored')?.value">
+                <h3 class="main-question">1.1 How many years of experience do you have as a tutor? </h3>
+                <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
+                  <mat-radio-group name="experienceYears" class="everTutored" formControlName="experienceYears">
+                    <mat-radio-button [value]="item.id"
+                                      *ngFor="let item of (tutorExperiences$ | async)">{{item.description}}</mat-radio-button>
+                  </mat-radio-group>
+                  <span class="error-message"
+                        *ngIf="form.get('experienceYears')?.errors && form.get('experienceYears')?.touched">This is a required field</span>
                 </div>
-                <div class="d-flex">
-                  <div class="date-picker-wrapper">
-                    <h2 class="date-picker-label">From </h2>
-                    <mat-form-field appearance="fill">
-                      <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="startYear"
-                             [readonly]="true">
-                      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                      <mat-datepicker #picker></mat-datepicker>
-                      <mat-label>*mm/dd/yyyy</mat-label>
-                    </mat-form-field>
-                    <span class="error-message" *ngIf="workHistory.controls[i]?.get('startYear')?.errors && workHistory.controls[i]?.get('startYear')?.touched">This is a required field</span>
-                  </div>
-                  <div class="date-picker-wrapper">
-                    <h2 class="date-picker-label">To </h2>
-                    <mat-form-field appearance="fill">
-                      <input matInput [matDatepicker]="picker1" (click)="picker1.open()" formControlName="endYear"
-                             [readonly]="true">
-                      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-                      <mat-datepicker #picker1></mat-datepicker>
-                      <mat-label>*mm/dd/yyyy</mat-label>
-                    </mat-form-field>
-                    <span class="error-message" *ngIf="workHistory.controls[i]?.get('endYear')?.errors && workHistory.controls[i]?.get('endYear')?.touched">This is a required field</span>
-                  </div>
-                  <div class="p-relative">
-
-                    <mat-checkbox class="example-margin" formControlName="current">
-                      current
-                    </mat-checkbox>
-                    <span class="error-message" *ngIf="workHistory.controls[i]?.get('current')?.errors && workHistory.controls[i]?.get('current')?.touched">This is a required field</span>
-                  </div>
+              </li>
+            </ol>
+          </li>
+          <li class="question-list__item">
+            <h3 class="main-question">Have you ever tutored online?</h3>
+            <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
+              <mat-radio-group name="everTutoredOnline" class="everTutoredOnline" formControlName="everTutoredOnline">
+                <mat-radio-button [value]="true">Yes</mat-radio-button>
+                <mat-radio-button [value]="false">No</mat-radio-button>
+              </mat-radio-group>
+              <span class="error-message"
+                    *ngIf="form.get('everTutoredOnline')?.errors && form.get('everTutoredOnline')?.touched">This is a required field</span>
+            </div>
+            <ol>
+              <li class="nested" *ngIf="form.get('everTutoredOnline')?.value">
+                <h3 class="main-question">2.1 Please choose all that apply</h3>
+                <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
+                  <mat-radio-group name="onlineTutoringVariant" class="everTutored"
+                                   formControlName="onlineTutoringVariant">
+                    <mat-radio-button [value]="'Online platforms'">Online platforms</mat-radio-button>
+                    <mat-radio-button [value]="false">Other</mat-radio-button>
+                    <input type="text" placeholder="Enter the option" class="form-input"
+                           *ngIf="form.get('onlineTutoringVariant')?.value === false">
+                  </mat-radio-group>
+                  <span class="error-message"
+                        *ngIf="form.get('onlineTutoringVariant')?.errors && form.get('onlineTutoringVariant')?.touched">This is a required field</span>
+                </div>
+              </li>
+            </ol>
+          </li>
+          <li class="question-list__item">
+            <h3 class="main-question">Which type of students do you like to tutor?</h3>
+            <h5 class="sub-question">You can choose more than one value</h5>
+            <div class="checkboxes-wrapper-flex">
+              <mat-checkbox class="example-margin" *ngFor="let item of (studentLevels$ | async)"
+                            formControlName="linkTutorAndStudentTypes"
+                            [checked]="true" (ngModelChange)="selectStudentType($event, item)">
+                {{item.description}}
+              </mat-checkbox>
+              <span class="error-message"
+                    *ngIf="form.get('linkTutorAndStudentTypes')?.errors && form.get('linkTutorAndStudentTypes')?.touched">This is a required field</span>
+            </div>
+          </li>
+          <li class="question-list__item">
+            <h3 class="main-question">How many hours per week do you currently
+              tutor?</h3>
+            <div class="checkboxes-wrapper-flex">
+              <mat-radio-group name="hoursPerWeekCurrently" formControlName="hoursPerWeekCurrently">
+                <mat-radio-button [value]="item.id" class="hoursPerWeekForTutor"
+                                  *ngFor="let item of hoursPerWeekForTutor$ | async">{{item.description}}</mat-radio-button>
+              </mat-radio-group>
+              <span class="error-message"
+                    *ngIf="form.get('hoursPerWeekCurrently')?.errors && form.get('hoursPerWeekCurrently')?.touched">This is a required field</span>
+            </div>
+          </li>
+          <li class="question-list__item">
+            <h3 class="main-question">Please select a suitable day of the week for the interview. (US Pacific Standard
+              Time)</h3>
+            <div class="flex-container-justify-start date-picker-container" formArrayName="interview"
+                 *ngFor="let item of interview.controls; let i = index">
+              <div [formGroupName]="i" class="d-flex align-items-center gap-3 grid-gap-10">
+                <i class="fas fa-plus" (click)="addInterview()" *ngIf="i == interview.controls.length-1"></i>
+                <div class="selectWrapper">
+                  <app-select [label]="'*days of week'" [list]="daysOfWeek$ | async" [keyName]="'name'"
+                              formControlName="dayOfWeek"></app-select>
+                  <span class="error-message"
+                        *ngIf="interview.controls[i]?.get('dayOfWeek')?.errors && interview.controls[i]?.get('dayOfWeek')?.touched">This is a required field</span>
+                </div>
+                <div class="selectWrapper">
+                  <app-select [label]="'*hours of day'" [list]="hoursOfDay$ | async" [keyName]="'time'"
+                              formControlName="startOfRange"></app-select>
+                  <span class="error-message"
+                        *ngIf="interview.controls[i]?.get('startOfRange')?.errors && interview.controls[i]?.get('startOfRange')?.touched">This is a required field</span>
+                </div>
+                <div class="selectWrapper">
+                  <app-select [label]="'*hours of day'" [list]="hoursOfDay$ | async" [keyName]="'time'"
+                              formControlName="endOfRange"></app-select>
+                  <span class="error-message"
+                        *ngIf="interview.controls[i]?.get('endOfRange')?.errors && interview.controls[i]?.get('endOfRange')?.touched">This is a required field</span>
+                </div>
+                <div class="remove-icon-content">
+                  <i (click)="removeInterview(item)" class="text-danger" *ngIf="interview.controls.length > 1">x</i>
                 </div>
               </div>
+            </div>
+          </li>
+          <li class="question-list__item">
+            <h3 class="main-question">Would you also like to be considered for an
+              instructor’s position if one
+              becomes available?</h3>
+            <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
+              <mat-radio-group name="wantToBeInstructor" class="everTutoredOnline" formControlName="wantToBeInstructor">
+                <mat-radio-button [value]="true">Yes</mat-radio-button>
+                <mat-radio-button [value]="false">No</mat-radio-button>
+              </mat-radio-group>
+              <span class="error-message"
+                    *ngIf="form.get('wantToBeInstructor')?.errors && form.get('wantToBeInstructor')?.touched">This is a required field</span>
+            </div>
+            <div *ngIf="form.get('wantToBeInstructor')?.value === true">
+              <h3 class="warning-title">Please list work history, starting from the most recent institution/school.</h3>
+              <div formArrayName="workHistory" *ngFor="let item of workHistory.controls; let i = index">
+                <div [formGroupName]="i">
+                  <div class="nested-form-item grid-gap-10">
+                    <i class="fas fa-plus" (click)="addWorkHistory()" *ngIf="i == workHistory.controls.length-1"></i>
+                    <div class="form-label-nested-content">
+                      <input type="text" formControlName="schoolOrInstitutionName" class="form-input">
+                      <span class="error-message"
+                            *ngIf="workHistory.controls[i]?.get('schoolOrInstitutionName')?.errors && workHistory.controls[i]?.get('schoolOrInstitutionName')?.touched">This is a required field</span>
+                    </div>
+                  </div>
+                  <div class="d-flex align-items-center grid-gap-10">
+                    <div class="date-picker-wrapper">
+                      <h2 class="date-picker-label">From </h2>
+                      <mat-form-field appearance="fill">
+                        <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="startYear"
+                               [readonly]="true">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-label>*mm/dd/yyyy</mat-label>
+                      </mat-form-field>
+                      <span class="error-message"
+                            *ngIf="workHistory.controls[i]?.get('startYear')?.errors && workHistory.controls[i]?.get('startYear')?.touched">This is a required field</span>
+                    </div>
+                    <div class="date-picker-wrapper">
+                      <h2 class="date-picker-label">To </h2>
+                      <mat-form-field appearance="fill">
+                        <input matInput [matDatepicker]="picker1" (click)="picker1.open()" formControlName="endYear"
+                               [readonly]="true">
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                        <mat-label>*mm/dd/yyyy</mat-label>
+                      </mat-form-field>
+                      <span class="error-message"
+                            *ngIf="workHistory.controls[i]?.get('endYear')?.errors && workHistory.controls[i]?.get('endYear')?.touched">This is a required field</span>
+                    </div>
+                    <div class="p-relative">
+                      <mat-checkbox class="example-margin" formControlName="current">
+                        current
+                      </mat-checkbox>
+                      <span class="error-message"
+                            *ngIf="workHistory.controls[i]?.get('current')?.errors && workHistory.controls[i]?.get('current')?.touched">This is a required field</span>
+                    </div>
+                  </div>
+                </div>
                 <i class="text-danger" (click)="removeWorkHistory(item)" *ngIf="workHistory.controls.length > 1">x</i>
+              </div>
             </div>
-
-          </div>
-        </li>
-      </ol>
-    </div>
-
-    <div class="flex-container-start register-step-form row no-gutter">
-      <div class="flex-item col-md-5" formArrayName="professionalReferencesForInstructor"  *ngFor="let item of professionalReferencesForInstructor?.controls; let i = index">
-        <div  [formGroupName]="i">
-
-          <h2 class="form-title"> Professional reference 1 </h2>
-          <label for="first-name" class="form-label">
-            <input id="first-name" class="form-input" type="text"
-                   placeholder="*first name"
-                   formControlName="name">
-            <span class="error-message" *ngIf="professionalReferencesForInstructor.controls[i]?.get('name')?.errors && professionalReferencesForInstructor.controls[i]?.get('name')?.touched">This is a required field</span>
-          </label>
-
-          <label for="last-name" class="form-label">
-            <input id="last-name" class="form-input" type="text"
-                   placeholder="*last name"
-                   formControlName="lastName">
-            <span class="error-message" *ngIf="professionalReferencesForInstructor.controls[i]?.get('lastName')?.errors && professionalReferencesForInstructor.controls[i]?.get('lastName')?.touched">This is a required field</span>
-          </label>
-
-          <label for="email" class="form-label">
-            <input id="email" class="form-input" autocomplete="username" type="email"
-                   placeholder="*email address"
-                  formControlName="emailAddress">
-            <span class="error-message" *ngIf="professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.errors?.required && professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.touched">This is a required field</span>
-            <span class="error-message" *ngIf="professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.errors?.pattern && professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.touched">Please provide a valid email address</span>
-
-          </label>
-
-          <label for="phone-number" class="form-label phone-number-label p-relative">
-<!--                                    <span class="phone-region">-->
-<!--                                        <img class="flag" src="assets/images/armenia.png" alt="Armenia Flag" width="39"-->
-<!--                                             height="26">-->
-<!--                                        <span class="phone-code">-->
-<!--                                            +374-->
-<!--                                            <img src="assets/images/arrowDown.png" alt="arrow down" width="11"-->
-<!--                                                 height="9">-->
-<!--                                        </span>-->
-<!--                                    </span>-->
-            <input id="phone-number" class="form-input" autocomplete="phone-number"
-                   type="tel"
-                   placeholder="*Phone number"
-                  formControlName="mobilePhone">
-            <span class="error-message" *ngIf="professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.errors && professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.touched">This is a required field</span>
-          </label>
-          <i class="text-danger" (click)="removeReferencesForInstructor(item)" *ngIf="professionalReferencesForInstructor.controls.length > 2">x</i>
-
-        </div>
+            <h3 class="warning-title">We would require a minimum of two professional references, please enter the
+              information below.</h3>
+          </li>
+        </ol>
       </div>
-      <button (click)="addProfessionalReferencesForInstructor()">add</button>
 
-    </div>
-  </fieldset>
-</form>
-<div class="flex-container-center button-wrapper">
-  <a type="submit" class="sophist-btn flex-container-center previous-btn" (click)="back.emit()">PREVIOUS</a>
-  <a type="submit" class="sophist-btn flex-container-center next-btn" (click)="onSubmit()">NEXT</a>
+      <div class="flex-container-start register-step-form row no-gutter">
+        <div class="flex-item col-md-6" formArrayName="professionalReferencesForInstructor"
+             *ngFor="let item of professionalReferencesForInstructor?.controls; let i = index">
+          <div [formGroupName]="i">
+            <i class="text-danger" (click)="removeReferencesForInstructor(item)"
+               *ngIf="professionalReferencesForInstructor.controls.length > 2">x</i>
+            <div class="">
+              <h2 class="form-title"> Professional reference 1 </h2>
+              <label for="first-name" class="form-label">
+                <input id="first-name" class="form-input" type="text"
+                       placeholder="*first name"
+                       formControlName="name">
+                <span class="error-message"
+                      *ngIf="professionalReferencesForInstructor.controls[i]?.get('name')?.errors && professionalReferencesForInstructor.controls[i]?.get('name')?.touched">This is a required field</span>
+              </label>
+              <label for="last-name" class="form-label">
+                <input id="last-name" class="form-input" type="text"
+                       placeholder="*last name"
+                       formControlName="lastName">
+                <span class="error-message"
+                      *ngIf="professionalReferencesForInstructor.controls[i]?.get('lastName')?.errors && professionalReferencesForInstructor.controls[i]?.get('lastName')?.touched">This is a required field</span>
+              </label>
+              <label for="email" class="form-label">
+                <input id="email" class="form-input" autocomplete="username" type="email"
+                       placeholder="*email address"
+                       formControlName="emailAddress">
+                <span class="error-message"
+                      *ngIf="professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.errors?.required && professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.touched">This is a required field</span>
+                <span class="error-message"
+                      *ngIf="professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.errors?.pattern && professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.touched">Please provide a valid email address</span>
+              </label>
+              <label for="phone-number" class="form-label phone-number-label p-relative">
+                <!--                                    <span class="phone-region">-->
+                <!--                                        <img class="flag" src="assets/images/armenia.png" alt="Armenia Flag" width="39"-->
+                <!--                                             height="26">-->
+                <!--                                        <span class="phone-code">-->
+                <!--                                            +374-->
+                <!--                                            <img src="assets/images/arrowDown.png" alt="arrow down" width="11"-->
+                <!--                                                 height="9">-->
+                <!--                                        </span>-->
+                <!--                                    </span>-->
+                <input id="phone-number" class="form-input" autocomplete="phone-number"
+                       type="tel"
+                       placeholder="*Phone number"
+                       formControlName="mobilePhone">
+                <span class="error-message"
+                      *ngIf="professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.errors && professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.touched">This is a required field</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <button (click)="addProfessionalReferencesForInstructor()" class="add">+ Add</button>
+      </div>
+    </fieldset>
+  </form>
+  <div class="flex-container-center button-wrapper">
+    <a type="submit" class="sophist-btn flex-container-center previous-btn" (click)="back.emit()">PREVIOUS</a>
+    <a type="submit" class="sophist-btn flex-container-center next-btn" (click)="onSubmit()">NEXT</a>
+  </div>
 </div>

@@ -33,13 +33,14 @@ $school-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($school-theme);
 
-@import "assets/css/normalize";
 @import "assets/css/variables";
+@import "assets/css/normalize";
 @import "assets/css/reset";
-@import "assets/css/general";
 @import "assets/css/animation";
-@import "assets/css/register";
+@import "assets/css/general";
 @import "assets/css/header";
+@import "assets/css/footer";
+@import "assets/css/register";
 @import "assets/css/components/button";
 @import "assets/css/components/input";
 @import "assets/css/components/step";

@@ -1,35 +1,30 @@
 /*********** Color Variables *************************/
-$clr-ntrl-min: rgba(255, 255, 255, 1);
-$clr-ntrl-max: rgba(0, 0, 0, 1);
-$main-brand-color: rgba(78, 105, 156, 1);
-$secondary-brand-color: rgba(143, 181, 252, 1);
-$secondary-icon-brand-color: rgba(255, 181, 25, 1);
-$step-color: rgba(220, 232, 255, 1);
-$title-color: rgba(56, 98, 176, 1);
-$danger-color: rgba(255, 0, 0, 1);
-
-$placeholder-color: rgba(154, 154, 154, 1);
-$text-dark-color: rgba(52, 52, 52, 1);
-$button-border-color: rgba(255, 230, 153, 1);
-
-
-$primary-color-dk: rgba(100, 100, 100, 1);
-$primary-color-lt: rgba(96, 96, 96, 1);
-$primary-color-ltr: rgba(204, 204, 204, 1);
+$clr-ntrl-min: white;
+$clr-ntrl-max: black;
+$main-brand-color: #4e699c;
+$secondary-brand-color: #8fb5fc;
+$secondary-icon-brand-color: #ffb519;
+$step-color: #dce8ff;
+$title-color: #3862b0;
+$danger-color: red;
+$placeholder-color: #9a9a9a;
+$text-dark-color: #343434;
+$button-border-color: #ffe699;
+$primary-color-dk: #646464;
+$primary-color-lt: #606060;
+$primary-color-ltr: #ccc;
 
 /**************** Gap and Duration Variables **********************/
 $vmargin: 150px;
 $duration: 3s;
-
 /****************** Z-Index Variables ******************/
 $zIndex-1: 9;
 $zIndex-2: 99;
 $zIndex-3: 999;
 $zIndex-4: 9999;
 $zIndex-5: 99999;
-
 /************ Typography Variables ******************/
-
+/*  Font Size */
 $type-micro: 0.625rem; /* 10px */
 $type-smallest: 0.75rem; /* 12px */
 $type-smaller: 0.875rem; /* 14px */
@@ -41,6 +36,7 @@ $type-larger: 3.125rem; /* 50px */
 $type-largest: 4.375rem; /* 70px */
 $type-jumbo: 5.625; /* 90px */
 
+/*  Font Weight */
 $type-light: 300;
 $type-regular: 400;
 $type-medium: 500;
@@ -48,8 +44,12 @@ $type-semi-bold: 600;
 $type-bold: 700;
 $type-extra-bold: 900;
 
-/****************** Border Radius Variables ******************/
+/*  Font Family */
+$Open-sans: 'Open Sans', sans-serif;
+$Roboto-sans: 'Roboto', sans-serif;
+$Segoe-UI-sans: 'Segoe UI', sans-serif;
 
+/****************** Border Radius Variables ******************/
 $border-radius-circle: 50%;
 $border-radius-small: 10px;
 $border-radius-base: 15px;

@@ -1,108 +1,102 @@
-<form [formGroup]="form">
-  <fieldset class="register-form">
-    <legend class="form-legend">Certificates/Qualification</legend>
-    <div class="register-step-form">
-      <label for="institution-name" class="form-label">
-        <input id="institution-name" class="form-input" type="text"
-               placeholder="institution name" formControlName="institutionName"
-               >
-        <span class="error-message" *ngIf="form.get('institutionName')?.errors && form.get('institutionName')?.touched">Please fill in your first name</span>
-      </label>
-      <label for="qualification" class="form-label">
-
-        <input id="qualification" class="form-input" type="text"
-               placeholder="qualification"
-              formControlName="qualification">
-        <span class="error-message" *ngIf="form.get('qualification')?.errors && form.get('qualification')?.touched">Please fill in your last name</span>
-      </label>
-      <div class="flex-container-start double-calendar form-label">
-
-        <div class="date-picker-wrapper">
-          <h2 class="date-picker-label">From </h2>
-          <mat-form-field appearance="fill">
-            <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="date"
-                   [readonly]="true">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-label>*mm/dd/yyyy</mat-label>
-          </mat-form-field>
-          <span class="error-message" *ngIf="form.get('date')?.errors && form.get('date')?.touched">This is a required field</span>
+<div class="flex-item flex-item-step-min-length">
+  <div class="margin-left-space">
+    <form [formGroup]="form">
+      <fieldset class="register-form">
+        <legend class="form-legend">Certificates/Qualification</legend>
+        <div class="register-step-form">
+          <label for="institution-name" class="form-label">
+            <input id="institution-name" class="form-input" type="text"
+                   placeholder="institution name" formControlName="institutionName">
+            <span class="error-message"
+                  *ngIf="form.get('institutionName')?.errors && form.get('institutionName')?.touched">Please fill in your first name</span>
+          </label>
+          <label for="qualification" class="form-label">
+            <input id="qualification" class="form-input" type="text"
+                   placeholder="qualification"
+                   formControlName="qualification">
+            <span class="error-message" *ngIf="form.get('qualification')?.errors && form.get('qualification')?.touched">Please fill in your last name</span>
+          </label>
+          <div class="flex-container-start double-calendar form-label">
+            <div class="date-picker-wrapper">
+              <h2 class="date-picker-label">From </h2>
+              <mat-form-field appearance="fill">
+                <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="date"
+                       [readonly]="true">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-label>*mm/dd/yyyy</mat-label>
+              </mat-form-field>
+              <span class="error-message" *ngIf="form.get('date')?.errors && form.get('date')?.touched">This is a required field</span>
+            </div>
+            <div class="date-picker-wrapper">
+              <h2 class="date-picker-label">To </h2>
+              <mat-form-field appearance="fill">
+                <input matInput [matDatepicker]="picker1" (click)="picker1.open()" formControlName="date"
+                       [readonly]="true">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+                <mat-label>*mm/dd/yyyy</mat-label>
+              </mat-form-field>
+              <span class="error-message" *ngIf="form.get('date')?.errors && form.get('date')?.touched">This is a required field</span>
+            </div>
+          </div>
         </div>
-        <div class="date-picker-wrapper">
-          <h2 class="date-picker-label">To </h2>
-          <mat-form-field appearance="fill">
-            <input matInput [matDatepicker]="picker1" (click)="picker1.open()" formControlName="date"
-                   [readonly]="true">
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
-            <mat-label>*mm/dd/yyyy</mat-label>
-          </mat-form-field>
-          <span class="error-message" *ngIf="form.get('date')?.errors && form.get('date')?.touched">This is a required field</span>
-        </div>
-      </div>
+      </fieldset>
+    </form>
+    <div *ngFor="let item of dynamicFormList">
+      <form [formGroup]="item" class="form">
+        <fieldset class="register-form">
+          <div class="register-step-form">
+            <label for="institution-name" class="form-label">
+              <input id="institution-name" class="form-input" type="text"
+                     placeholder="institution name" formControlName="institutionName">
+              <span class="error-message"
+                    *ngIf="item.get('institutionName')?.errors && item.get('institutionName')?.touched">Please fill in your first name</span>
+            </label>
+            <label for="qualification" class="form-label">
+              <input id="qualification" class="form-input" type="text"
+                     placeholder="qualification"
+                     formControlName="qualification">
+              <span class="error-message"
+                    *ngIf="item.get('qualification')?.errors && item.get('qualification')?.touched">Please fill in your last name</span>
+            </label>
+            <div class="flex-container-start double-calendar form-label">
+              <div class="date-picker-wrapper">
+                <h2 class="date-picker-label">From </h2>
+                <mat-form-field appearance="fill">
+                  <input matInput [matDatepicker]="picker2" (click)="picker2.open()" formControlName="date"
+                         [readonly]="true">
+                  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                  <mat-datepicker #picker2></mat-datepicker>
+                  <mat-label>*mm/dd/yyyy</mat-label>
+                </mat-form-field>
+                <span class="error-message" *ngIf="item.get('date')?.errors && item.get('date')?.touched">This is a required field</span>
+              </div>
+              <div class="date-picker-wrapper">
+                <h2 class="date-picker-label">To </h2>
+                <mat-form-field appearance="fill">
+                  <input matInput [matDatepicker]="picker3" (click)="picker3.open()" formControlName="date"
+                         [readonly]="true">
+                  <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                  <mat-datepicker #picker3></mat-datepicker>
+                  <mat-label>*mm/dd/yyyy</mat-label>
+                </mat-form-field>
+                <span class="error-message" *ngIf="item.get('date')?.errors && item.get('date')?.touched">This is a required field</span>
+              </div>
+            </div>
+          </div>
+          <div>
+            <button type="button" id="remove" class="remove-icon-wrapper" (click)="removeForm(item)">
+              <img src="assets/images/recycleBin.png" alt="Remove Row">
+            </button>
+          </div>
+        </fieldset>
+      </form>
     </div>
-
-  </fieldset>
-</form>
-
-<div *ngFor="let item of dynamicFormList">
-  <form [formGroup]="item" class="form">
-    <fieldset class="register-form">
-      <div class="register-step-form">
-        <label for="institution-name" class="form-label">
-          <input id="institution-name" class="form-input" type="text"
-                 placeholder="institution name" formControlName="institutionName"
-          >
-          <span class="error-message" *ngIf="item.get('institutionName')?.errors && item.get('institutionName')?.touched">Please fill in your first name</span>
-        </label>
-        <label for="qualification" class="form-label">
-
-          <input id="qualification" class="form-input" type="text"
-                 placeholder="qualification"
-                 formControlName="qualification">
-          <span class="error-message" *ngIf="item.get('qualification')?.errors && item.get('qualification')?.touched">Please fill in your last name</span>
-        </label>
-        <div class="flex-container-start double-calendar form-label">
-
-          <div class="date-picker-wrapper">
-            <h2 class="date-picker-label">From </h2>
-            <mat-form-field appearance="fill">
-              <input matInput [matDatepicker]="picker2" (click)="picker2.open()" formControlName="date"
-                     [readonly]="true">
-              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-              <mat-datepicker #picker2></mat-datepicker>
-              <mat-label>*mm/dd/yyyy</mat-label>
-            </mat-form-field>
-            <span class="error-message" *ngIf="item.get('date')?.errors && item.get('date')?.touched">This is a required field</span>
-          </div>
-          <div class="date-picker-wrapper">
-            <h2 class="date-picker-label">To </h2>
-            <mat-form-field appearance="fill">
-              <input matInput [matDatepicker]="picker3" (click)="picker3.open()" formControlName="date"
-                     [readonly]="true">
-              <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-              <mat-datepicker #picker3></mat-datepicker>
-              <mat-label>*mm/dd/yyyy</mat-label>
-            </mat-form-field>
-            <span class="error-message" *ngIf="item.get('date')?.errors && item.get('date')?.touched">This is a required field</span>
-          </div>
-        </div>
-      </div>
-
-
-      <div>
-        <button type="button" id="remove" class="remove-icon-wrapper" (click)="removeForm(item)">
-          <img src="assets/images/recycleBin.png" alt="Remove Row">
-        </button>
-      </div>
-
-    </fieldset>
-  </form>
-</div>
-
-<button type="button" class="add" id="add" (click)="addNewForm()"> + Add</button>
-
-<div class="flex-container-center button-wrapper">
-  <a type="submit" class="btn flex-container-center previous-btn" (click)="back.emit()">PREVIOUS</a>
-  <a type="submit" class="btn flex-container-center next-btn" (click)="onSubmit()">NEXT</a>
+    <button type="button" class="add" id="add" (click)="addNewForm()"> + Add</button>
+    <div class="flex-container-center button-wrapper">
+      <a type="submit" class="sophist-btn flex-container-center previous-btn" (click)="back.emit()">PREVIOUS</a>
+      <a type="submit" class="sophist-btn flex-container-center next-btn" (click)="onSubmit()">NEXT</a>
+    </div>
+  </div>
 </div>

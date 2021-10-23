@@ -1,7 +1,6 @@
-@import "../../../vars";
-
 .date-picker-wrapper {
   position: relative;
+  width: 45%;
 }
 
 .date-picker {
@@ -17,6 +16,8 @@
 .date-picker-label {
   color: rgba(62, 114, 179, 1);
   font-size: $type-small;
+  font-weight: $type-bold;
+  margin: 0;
 }
 
 .date-picker .input {

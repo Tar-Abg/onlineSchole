@@ -66,20 +66,20 @@ export class StepOneComponent implements OnInit {
   }
 
   onSubmit(): void {
-    // this.next.emit()
-    if (this.form.valid) {
-      if (this.userId) {
-        this.registrationService.updateInformation({...this.form.value, userType: 1, id: +this.userId}).subscribe(()=> this.next.emit())
-      } else {
-        this.registrationService.saveInformation({...this.form.value, userType: 1}).subscribe((userId: number)=> {
-          this.setUserIdInLocalStorage(userId);
-          this.next.emit();
-        })
-      }
-
-    } else {
-      this.form.markAllAsTouched();
-    }
+    this.next.emit()
+    // if (this.form.valid) {
+    //   if (this.userId) {
+    //     this.registrationService.updateInformation({...this.form.value, userType: 1, id: +this.userId}).subscribe(()=> this.next.emit())
+    //   } else {
+    //     this.registrationService.saveInformation({...this.form.value, userType: 1}).subscribe((userId: number)=> {
+    //       this.setUserIdInLocalStorage(userId);
+    //       this.next.emit();
+    //     })
+    //   }
+    //
+    // } else {
+    //   this.form.markAllAsTouched();
+    // }
   }
 
   setUserIdInLocalStorage(userId: number): void {
