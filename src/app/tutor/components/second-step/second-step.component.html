@@ -25,7 +25,7 @@
                     *ngIf="formArray.controls[i]?.get('major')?.errors && formArray.controls[i]?.get('major')?.touched">This is a required field</span>
             </label>
             <label class="container-for-checkbox">Degree in progress
-              <input type="checkbox" checked="checked" class="degree" formControlName="degreeInProgress">
+              <input type="checkbox"  class="degree" formControlName="degreeInProgress">
               <span class="checkmark"></span>
             </label>
             <div class="choose-file-wrapper" *ngIf="formArray.controls[i]?.get('degreeInProgress')?.value">
@@ -35,12 +35,14 @@
                     <img src="assets/images/pdf.png" alt="Pdf" width="36"
                          height="36">
                   </div>
-                  <input type="file" name="chooseFile" class="chooseFile">
+                  <input type="file" accept="application/pdf" name="chooseFile" class="chooseFile"  (change)="fileUploaded($event.target, item)">
                 </div>
                 <h3 class="upload-message">Please upload an unofficial transcript (the
                   file must be in .pdf
                   format)</h3>
               </div>
+              <span class="error-message"
+                    *ngIf="formArray.controls[i]?.get('pdfFromInstitution')?.errors && formArray.controls[i]?.get('pdfFromInstitution')?.touched">This is a required field</span>
             </div>
           </div>
           <div class="flex-item col-md-6">
@@ -75,7 +77,7 @@
                   <input matInput [matDatepicker]="picker1"
                          (click)="picker1.open()"
                          formControlName="graduationDate"
-                         [readonly]="true">
+                         [readonly]="true" [disabled]="item.get('degreeInProgress')?.value === true">
                   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                   <mat-datepicker #picker1></mat-datepicker>
                   <mat-label>*mm/dd/yyyy</mat-label>

@@ -6,7 +6,7 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./steps.component.scss']
 })
 export class StepsComponent implements OnInit {
-  @Input() stepNumber: number = 1;
+  @Input() stepNumber: number;
 
   constructor() { }
 

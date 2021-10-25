@@ -1,17 +1,15 @@
 import {
-  Component,
   ChangeDetectionStrategy,
-  Input,
-  forwardRef,
-  Output,
+  Component,
   EventEmitter,
-  ViewChild, ViewEncapsulation,
+  forwardRef,
+  Input,
+  Output,
+  ViewChild,
+  ViewEncapsulation,
 } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { MatSelect, MatSelectChange } from '@angular/material/select';
-import {KeyValuePair} from "../../models/keyValuePair.model";
-
-// import { ListInterface } from '../../models/Collateral.interface';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
+import {MatSelect, MatSelectChange} from '@angular/material/select';
 
 @Component({
   selector: 'app-select',
@@ -33,6 +31,7 @@ export class SelectComponent implements ControlValueAccessor {
   @Input() error: boolean = false;
   @Input() disable = false;
   @Input() keyName: string = 'description';
+  @Input() optionName: string = 'description';
   @Input() set value(val: number | string) {
     this.matSelect.value = val;
   }

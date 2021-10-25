@@ -1,33 +1,39 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {InfosService} from "../../../shared/services/infos/infos.service";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
-import {DaysOfWeek, HoursOfDay} from "../../../shared/models/infos.model";
+import {Country, DaysOfWeek, HoursOfDay, StudentLevel} from "../../../shared/models/infos.model";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {ValidationService} from "../../../shared/services/validation/validation.service";
+import {StorageService} from "../../../shared/services/storage/storage.service";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-fourth-step',
   templateUrl: './fourth-step.component.html',
   styleUrls: ['./fourth-step.component.scss']
 })
-export class FourthStepComponent implements OnInit {
+export class FourthStepComponent implements OnInit, OnDestroy {
+  private subscription: Subscription = new Subscription();
   @Output() back: EventEmitter<void> = new EventEmitter<void>();
   @Output() next: EventEmitter<void> = new EventEmitter<void>();
   form: FormGroup;
-  studentLevels$: Observable<KeyValuePair[]>;
+  studentLevels: StudentLevel[];
   hoursPerWeekForTutor$: Observable<KeyValuePair[]>;
   daysOfWeek$: Observable<DaysOfWeek[]>;
   hoursOfDay$: Observable<HoursOfDay[]>;
   tutorExperiences$: Observable<KeyValuePair[]>;
-  selectedStudentLevels: number[] = [];
+  phoneCods$: Observable<Country[]>
+  private actionType: "CREATE" | "UPDATE" = "CREATE";
+
 
   constructor(
     private fb: FormBuilder,
     private infoService: InfosService,
-    private registrartionService: RegistrartionService,
+    private registrationService: RegistrartionService,
     private validationService: ValidationService,
+    private storageService: StorageService
   ) {
   }
 
@@ -38,7 +44,8 @@ export class FourthStepComponent implements OnInit {
 
   formInitialization(): void {
     this.form = this.fb.group({
-      userId: [52],
+      id: [null],
+      userId: [this.storageService.getUserId()],
       everTutored: [null, [Validators.required]],
       experienceYears: [null],
       everTutoredOnline: [null, [Validators.required]],
@@ -109,31 +116,71 @@ export class FourthStepComponent implements OnInit {
       lastName: [null, [Validators.required]],
       emailAddress: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern)]],
       mobilePhone: [null, [Validators.required]],
+      numberId: [null, [Validators.required]],
     });
   }
 
   onSubmit(): void {
-    // if (this.form.valid) {
-    //   let studentsLevel = this.selectedStudentLevels.map(item => {
-    //     return {studentType: item}
-    //   })
-    //   this.registrartionService.savePreferences({
-    //     ...this.form.value,
-    //     workHistory: this.form.value.wantToBeInstructor ? this.form.value.workHistory : null,
-    //     linkTutorAndStudentTypes: studentsLevel
-    //   }).subscribe(()=> this.next.emit());
-    // } else {
-    //   this.form.markAllAsTouched();
-    // }
-
-    this.next.emit();
+    if (this.form.valid) {
+      let studentsLevel: { studentType: number }[] = [];
+      this.studentLevels.forEach(level => {
+        if (level.checked) {
+          studentsLevel.push({studentType: level.id})
+        }
+      })
+      if (this.actionType === "CREATE") {
+        this.savePreferences(studentsLevel);
+      } else {
+        this.updatePreferences(studentsLevel);
+      }
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
 
-  selectStudentType(event: Event, studentType: KeyValuePair) {
-    if (this.selectedStudentLevels.includes(studentType.id)) {
-      this.selectedStudentLevels = this.selectedStudentLevels.filter(item => item !== studentType.id);
+  savePreferences(studentsLevel: { studentType: number }[]): void {
+    this.subscription.add(
+      this.registrationService.savePreferences({
+        ...this.form.value,
+        workHistory: this.form.value.wantToBeInstructor ? this.form.value.workHistory : null,
+        linkTutorAndStudentTypes: studentsLevel
+      }).subscribe(() => this.next.emit())
+    );
+  }
+
+  updatePreferences(studentsLevel: { studentType: number }[]): void {
+    this.subscription.add(
+      this.registrationService.updatePreferences({
+        ...this.form.value,
+        workHistory: this.form.value.wantToBeInstructor ? this.form.value.workHistory : null,
+        linkTutorAndStudentTypes: studentsLevel
+      }).subscribe(() => this.next.emit())
+    )
+  }
+
+  selectStudentType(target: any, studentType: StudentLevel) {
+    this.updateStudentTypeList(target, studentType);
+    this.checkStudentLevelAndUpdateForm();
+  }
+
+  checkStudentLevelAndUpdateForm(): void {
+    let levelsIsEmpty = true;
+    this.studentLevels.forEach(level => {
+      if (level.checked) {
+        levelsIsEmpty = false;
+        return
+      }
+    })
+    levelsIsEmpty ? this.form.get('linkTutorAndStudentTypes')?.setValue(null) : null;
+  }
+
+  updateStudentTypeList(target: any, studentType: StudentLevel): void {
+    let type = this.studentLevels.find((level) => level === studentType);
+    if (target.checked) {
+      type ? type.checked = true : null;
+      this.form.get('linkTutorAndStudentTypes')?.setValue(true);
     } else {
-      this.selectedStudentLevels.push(studentType.id);
+      type ? type.checked = false : null;
     }
   }
 
@@ -150,7 +197,8 @@ export class FourthStepComponent implements OnInit {
   }
 
   private initializeListeners(): void {
-    this.studentLevels$ = this.infoService.getStudentLevels();
+    this.getStudentLevels();
+    this.phoneCods$ = this.infoService.getCountries();
     this.hoursPerWeekForTutor$ = this.infoService.getHoursPerWeekForTutor();
     this.daysOfWeek$ = this.infoService.getDaysOfWeek();
     this.hoursOfDay$ = this.infoService.getHoursOfDay();
@@ -158,7 +206,39 @@ export class FourthStepComponent implements OnInit {
     this.subscribeToEverTutoredValueChange();
     this.subscribeToEverTutoredOnlineValueChange();
     this.subscribeToWantToBeInstructorValueChange();
+    this.getPreferencesPage();
+  }
 
+  getStudentLevels(): void {
+    this.infoService.getStudentLevels().pipe(
+      tap((studentLevels: KeyValuePair[]) => {
+        this.studentLevels = studentLevels.map(item => {
+          let modifyedItem = item as StudentLevel
+          modifyedItem.checked = false
+          return modifyedItem
+        })
+      })
+    ).subscribe();
+  }
+
+  getPreferencesPage(): void {
+    this.subscription.add(
+      this.registrationService.getPreferencesPage(this.storageService.getUserId()).subscribe(preferences => {
+        if (preferences) {
+          preferences.linkTutorAndStudentTypes.forEach(item => {
+            let studentLevel = this.studentLevels?.find(level => level.id === item.studentType);
+            if (studentLevel) {
+              studentLevel.checked = true;
+              this.form.get('linkTutorAndStudentTypes')?.setValue(true)
+            }
+          })
+          this.actionType = "UPDATE";
+          this.form.patchValue(preferences);
+        } else {
+          this.actionType = "CREATE";
+        }
+      })
+    );
   }
 
   subscribeToEverTutoredValueChange(): void {
@@ -203,5 +283,9 @@ export class FourthStepComponent implements OnInit {
         })
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

@@ -27,3 +27,9 @@ export interface HoursOfDay {
   time: string;
 }
 
+export interface StudentLevel {
+  id: number;
+  description: string;
+  checked: boolean;
+}
+
