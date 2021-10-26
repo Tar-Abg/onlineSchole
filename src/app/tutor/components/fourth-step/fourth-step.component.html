@@ -58,7 +58,7 @@
             <h3 class="main-question">Which type of students do you like to tutor?</h3>
             <h5 class="sub-question">You can choose more than one value</h5>
             <div class="checkboxes-wrapper-flex">
-              <mat-checkbox class="example-margin" *ngFor="let item of studentLevels"
+              <mat-checkbox class="checkbox-wrapper" *ngFor="let item of studentLevels"
                             [checked]="item.checked" (change)="selectStudentType($event, item)">
                 {{item.description}}
               </mat-checkbox>
@@ -159,7 +159,7 @@
                             *ngIf="workHistory.controls[i]?.get('endYear')?.errors && workHistory.controls[i]?.get('endYear')?.touched">This is a required field</span>
                     </div>
                     <div class="p-relative">
-                      <mat-checkbox class="example-margin" formControlName="current">
+                      <mat-checkbox class="checkbox-wrapper" formControlName="current">
                         current
                       </mat-checkbox>
                       <span class="error-message"
@@ -207,19 +207,24 @@
                 <span class="error-message"
                       *ngIf="professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.errors?.pattern && professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.touched">Please provide a valid email address</span>
               </label>
-
-                <app-select [list]="phoneCods$ | async" [label]="'+374'" [keyName]="'phoneCode'" [optionName]="'iso3'"
-                            formControlName="numberId"></app-select>
-                <span class="error-message"
-                      *ngIf="professionalReferencesForInstructor.controls[i]?.get('numberId')?.errors && professionalReferencesForInstructor.controls[i]?.get('numberId')?.touched">This is a required field</span>
-              <label for="phone-number" class="form-label phone-number-label p-relative">
-              <input id="phone-number" class="form-input" autocomplete="phone-number"
-                     type="tel"
-                     placeholder="*Phone number"
-                     formControlName="mobilePhone">
-              <span class="error-message"
-                    *ngIf="professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.errors && professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.touched">This is a required field</span>
-            </label>
+              <div>
+                <div>
+                  <app-select [list]="phoneCods$ | async" [label]="'+374'" [keyName]="'phoneCode'" [optionName]="'iso3'"
+                              formControlName="numberId"></app-select>
+                  <span class="error-message"
+                        *ngIf="professionalReferencesForInstructor.controls[i]?.get('numberId')?.errors && professionalReferencesForInstructor.controls[i]?.get('numberId')?.touched">This is a required field</span>
+                </div>
+                <div>
+                  <label for="phone-number" class="form-label phone-number-label p-relative">
+                    <input id="phone-number" class="form-input" autocomplete="phone-number"
+                           type="tel"
+                           placeholder="*Phone number"
+                           formControlName="mobilePhone">
+                    <span class="error-message"
+                          *ngIf="professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.errors && professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.touched">This is a required field</span>
+                  </label>
+                </div>
+              </div>
             </div>
           </div>
         </div>

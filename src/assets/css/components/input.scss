@@ -39,6 +39,7 @@
 
   &-textarea {
     width: 697px;
+    height: 100px;
     min-height: 100px;
     padding: 15px 20px;
     background: $clr-ntrl-min;
@@ -52,23 +53,23 @@
   }
 }
 
+.label-for-security-number {
+  margin-bottom: 4px;
+  font: $type-regular normal $type-small $Segoe-UI-sans;
+  line-height: 21px;
+  letter-spacing: 0.08em;
+  color: $clr-ntrl-max;
+}
+
 .error-message {
   position: absolute;
   left: 0;
   bottom: -18px;
-  font-weight: $type-light;
-  font-size: $type-smaller;
-  line-height: 19px;
+  font: $type-light normal 14px / 19px $Segoe-UI-sans;
   color: $danger-color;
   font-family: $Segoe-UI-sans;
   letter-spacing: -0.02em;
   white-space: nowrap;
-}
-
-@for $i from 0 through 3 {
-  .error-message:nth-child(n + #{$i}) {
-    bottom: ($i * -18%);
-  }
 }
 
 /* The container */
@@ -90,6 +91,30 @@
 
     &-with-min-width {
       max-width: 40%;
+    }
+  }
+}
+
+.form-input-container {
+  position: relative;
+  display: flex;
+  grid-gap: 0 55px;
+
+  .input-group-wrapper {
+    display: flex;
+    grid-gap: 0 12px;
+
+    input {
+      width: 55px;
+      height: 50px;
+
+      &[type=number]::-webkit-inner-spin-button,
+      &[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        margin: 0;
+      }
     }
   }
 }

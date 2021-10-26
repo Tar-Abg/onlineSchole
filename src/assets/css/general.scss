@@ -25,7 +25,7 @@ body::-webkit-scrollbar-thumb {
 }
 
 a {
-  color: $clr-ntrl-min !important;
+  color: $clr-ntrl-min;
   text-decoration: none;
 }
 
@@ -117,6 +117,12 @@ img {
   align-items: flex-start;
   height: auto;
   overflow: visible;
+}
+
+.selectWrapper,
+.checkboxes-wrapper-flex,
+.p-relative {
+  position: relative;
 }
 
 /* OverWrite Material css*/
@@ -221,3 +227,7 @@ img {
     transform: rotate(225deg);
   }
 }
+
+//.mat-form-field-wrapper {
+//  padding-bottom: 0;
+//}

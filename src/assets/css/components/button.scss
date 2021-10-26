@@ -2,8 +2,9 @@
 .sophist-btn {
   width: 140px;
   height: 50px;
-  font-size: $type-small;
-  font-weight: $type-semi-bold;
+  font: $type-regular normal $type-medium-size $Segoe-UI-sans;
+  line-height: 24px;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   background: rgba(255, 193, 7, 0.05);
   color: black !important;
@@ -11,7 +12,6 @@
   box-sizing: border-box;
   border-radius: $border-radius-base;
   cursor: pointer;
-
 
   &:focus {
     box-shadow: none;
@@ -29,6 +29,7 @@
 
   &:hover {
     box-shadow: none;
+    text-decoration: unset;
     color: $clr-ntrl-max;
     background-color: rgba(255, 193, 7, 0.05);
     border-color: #FFE699;
@@ -38,6 +39,10 @@
 .button-wrapper {
   margin-top: 30px;
   grid-gap: 65px;
+
+  &__mt {
+    margin-top: 65px;
+  }
 }
 
 .button-wrapper--max-margin {

@@ -12,7 +12,7 @@
               <span class="error-message"
                     *ngIf="formArray.controls[i]?.get('name')?.errors && formArray.controls[i]?.get('name')?.touched">This is a required field </span>
             </label>
-            <div class="form-group">
+            <div class="form-label fixed-width">
               <app-select [label]="'*education level'" [list]="institutionalLevels$ | async"
                           formControlName="educationalLevel"></app-select>
               <span class="error-message block"
@@ -24,10 +24,13 @@
               <span class="error-message"
                     *ngIf="formArray.controls[i]?.get('major')?.errors && formArray.controls[i]?.get('major')?.touched">This is a required field</span>
             </label>
-            <label class="container-for-checkbox">Degree in progress
-              <input type="checkbox"  class="degree" formControlName="degreeInProgress">
-              <span class="checkmark"></span>
-            </label>
+
+            <div class="checkboxes-wrapper-flex">
+              <mat-checkbox class="checkbox-wrapper">
+                Degree in progress
+              </mat-checkbox>
+              <span class="error-message">This is a required field</span>
+            </div>
             <div class="choose-file-wrapper" *ngIf="formArray.controls[i]?.get('degreeInProgress')?.value">
               <div class="file-upload">
                 <div class="file-select">
@@ -35,7 +38,8 @@
                     <img src="assets/images/pdf.png" alt="Pdf" width="36"
                          height="36">
                   </div>
-                  <input type="file" accept="application/pdf" name="chooseFile" class="chooseFile"  (change)="fileUploaded($event.target, item)">
+                  <input type="file" accept="application/pdf" name="chooseFile" class="chooseFile"
+                         (change)="fileUploaded($event.target, item)">
                 </div>
                 <h3 class="upload-message">Please upload an unofficial transcript (the
                   file must be in .pdf
@@ -46,7 +50,7 @@
             </div>
           </div>
           <div class="flex-item col-md-6">
-            <div class="form-group">
+            <div class="form-label fixed-width">
               <app-select [label]="'*country'" [list]="countries$ | async" [keyName]="'nameLowerCase'"
                           formControlName="countryId"></app-select>
               <span class="error-message block"
@@ -58,13 +62,19 @@
               <span class="error-message"
                     *ngIf="formArray.controls[i]?.get('city')?.errors && formArray.controls[i]?.get('city')?.touched">This is a required field</span>
             </label>
-            <div class="flex-container-start double-calendar">
+            <div class="flex-container-start double-calendar fixed-width">
               <div class="date-picker-wrapper">
                 <h2 class="date-picker-label">From </h2>
                 <mat-form-field appearance="fill" class="date-range-wrapper">
-                  <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="startDate"
-                         [readonly]="true">
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <input matInput
+                         [matDatepicker]="picker"
+                         (click)="picker.open()"
+                         formControlName="startDate"
+                         [readonly]="true"
+                  >
+                  <mat-datepicker-toggle matSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>arrow_drop_down</mat-icon>
+                  </mat-datepicker-toggle>
                   <mat-datepicker #picker></mat-datepicker>
                   <mat-label>*mm/dd/yyyy</mat-label>
                 </mat-form-field>

@@ -26,5 +26,9 @@
     font-size: $type-small;
     letter-spacing: 0.03em;
     text-transform: capitalize;
+
+    a {
+      color: $clr-ntrl-min;
+    }
   }
 }

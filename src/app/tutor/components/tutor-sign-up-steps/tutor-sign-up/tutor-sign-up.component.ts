@@ -6,7 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./tutor-sign-up.component.scss']
 })
 export class TutorSignUpComponent implements OnInit {
-  stepNumber: number = 3;
+  stepNumber: number = 1;
 
   constructor() {
   }

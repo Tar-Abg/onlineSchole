@@ -1,48 +1,99 @@
 <!--================ Section Tutor Sign Up Second Step Area Start ================-->
 <section class="tutor-sign-up-wrapper">
-  <div class="tutor-sign-up-form-container container-fluid">
+  <h5 class="group-subtitle"> Tell us about yourself! </h5>
+  <h5 class="group-subtitle">This is your chance to stand out. Students and parents will see this information
+    on your profile page.</h5>
+  <div class="tutor-sign-up-form-container">
     <form action="">
       <fieldset>
         <legend class="group-title group-title__bold text-center text-bold">
-          Terms for Tutoring
+          Create Your Profile
         </legend>
         <ul class="tutor-sign-up-list">
           <li class="tutor-sign-up-list__item">
-            <h3 class="main-question">Agreement and Terms for Tutoring</h3>
-            <p class="">The agreement on this page is a binding legal contract. By proceeding with
-              registration, this legal Agreement is entered into between Wyzant, Inc. (“the
-              Company”) and you (the Tutor).
+            <h3 class="main-question">Profile Headline</h3>
+            <label for="profile-headline" class="form-label form-label--flex-container">
+                <textarea id="profile-headline" class="form-textarea" type="text"
+                          rows="5" cols="3"
+                          placeholder="*a short headline about yourself"
+                          value="*a short headline about yourself"> *a short headline about yourself
+                </textarea>
+              <span class="error-message">You cannot enter anything below $20</span>
+            </label>
+            <p class="form-item-notification">This will appear at the top of your profile.</p>
+            <p class="form-item-notification">Your profile headline must be between 15 and 100
+              characters.
             </p>
-            <ul>
-              <li>
-                <p>
-                  I voluntarily agree to be bound by all terms provided in the above
-                  Independent Tutor Agreement as of today’s date. I understand that I may
-                  refuse to conduct this transaction with Wyzant by electronic means.
-                </p>
-              </li>
-              <li>
-                <p>
-                  I have read and agree to the <a href="#">Terms and Condition.</a>
-                </p>
-              </li>
-              <li>
-                <p>
-                  I have a valid Social Security number, I am authorized to work and I am at
-                  least 18 years of age or older.
-                </p>
-              </li>
-            </ul>
           </li>
-          <li class="tutor-sign-up-list__item flex-container-center">
+          <li class="tutor-sign-up-list__item">
+            <h3 class="main-question upload-photo-title">Profile photo*</h3>
+            <div class="file-upload-wrapper">
+              <div class="upload-image-box">
+                <div class="image-upload-wrap">
+                  <input class="file-upload-input" type='file' onchange="readURL(this);"
+                         accept="image/*"/>
+                  <div class="drag-text">
+                    <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
+                         width="33" height="33">
+                  </div>
+                </div>
+                <div class="file-upload-content">
+                  <img class="file-upload-image" src="#" alt="your image"/>
+                  <div class="image-title-wrap">
+                    <button type="button" onclick="removeUpload()" class="remove-image">
+                      Remove
+                      <span class="image-title">Uploaded Image</span></button>
+                  </div>
+                </div>
+                <span class="error-message">This is a required field</span>
+              </div>
+              <div class="upload-image-requirement">
+                <p class="form-item-notification">Minimum size 200 x 200 pixels.</p>
+                <p class="form-item-notification">Tutuors with a profile photo receive three
+                  times more business than tutors with one.</p>
+                <p class="form-item-notification">You can upload a photo later or change your
+                  photo at any time.</p>
+              </div>
+            </div>
+          </li>
+          <li class="tutor-sign-up-list__item">
+            <h3 class="main-question">Bio</h3>
+            <label for="bio" class="form-label form-label--flex-container">
+                                    <textarea id="bio" class="form-textarea" type="text" rows="5" cols="3"
+                                              placeholder="*a paragraph or more about yourself "
+                                              value="*a paragraph or more about yourself "> *a paragraph or more about yourself
+
+                                    </textarea>
+              <span class="error-message">This is a required field</span>
+            </label>
+            <p class="form-item-notification">Help students get to know you.</p>
+            <p class="form-item-notification">Do you have experience tutoring or teaching? What do
+              you love about tutoring.
+            </p>
+            <p class="form-item-notification">Your free response must be between 100 and 2000
+              characters.
+            </p>
+          </li>
+          <li class="tutor-sign-up-list__item">
+            <h3 class="main-question">Wrap up your profile</h3>
+            <label for="wrap-up-profile" class="form-label form-label--flex-container">
+                <textarea id="wrap-up-profile" class="form-textarea" type="text" rows="5"
+                          cols="3"
+                          placeholder="enter the text"
+                          value="enter the text"> enter the text
+                </textarea>
+              <span class="error-message">This is a required field</span>
+            </label>
+            <p class="form-item-notification">Encourage students to contact you to learn more and
+              schedule lessons.</p>
           </li>
         </ul>
 
-        <div class="flex-container-center button-wrapper col-md-12 col-lg-12 col-xs-12">
-          <a href="tutorSignUpFirstStep.html" type="submit"
-             class="btn flex-container-center">PREVIOUS</a>
-          <a href="tutorSignUpThirdStep.html" type="submit"
-             class="btn flex-container-center">NEXT</a>
+        <div class="flex-container-center button-wrapper button-wrapper__mt">
+          <a href="" type="submit"
+             class="sophist-btn flex-container-center">PREVIOUS</a>
+          <a href="#" type="submit"
+             class="sophist-btn flex-container-center">NEXT</a>
         </div>
       </fieldset>
     </form>

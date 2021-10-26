@@ -93,10 +93,10 @@
   }
 }
 
-
 .main-question {
-  margin-bottom: 13px;
-  font: $type-bold normal 18px/ 24px $Segoe-UI-sans;
+  margin-bottom: 4px;
+  font: $type-regular normal $type-small $Segoe-UI-sans;
+  line-height: 24px;
   /* identical to box height */
   letter-spacing: 0.03em;
   color: $clr-ntrl-max;
@@ -123,7 +123,8 @@
 
 .tutor-sign-up-list__item {
   margin-bottom: 30px;
-  font: $type-light normal $type-small/ $type-base $Roboto-sans;
+  font: $type-light normal $type-small $Roboto-sans;
+  line-height: $type-base;
 }
 
 .input-notification {
@@ -136,6 +137,9 @@
 }
 
 .address-form {
+  padding: 0;
+  margin: 0;
+
   &__item {
     margin-bottom: 45px;
 

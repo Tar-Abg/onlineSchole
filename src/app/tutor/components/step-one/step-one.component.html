@@ -13,17 +13,17 @@
                  formControlName="lastName">
           <span class="error-message" *ngIf="form.get('lastName')?.errors && form.get('lastName')?.touched">Please fill in your last name</span>
         </label>
-        <div class="gender">
+        <div class="gender fixed-width">
           <app-select [label]="'*gender'" [list]="genderList$ | async" formControlName="gender"></app-select>
           <span class="error-message" *ngIf="form.get('gender')?.errors && form.get('gender')?.touched">Please specify your gender</span>
         </div>
-        <div class="flex-container form-label double-select">
-          <div>
+        <div class="flex-container form-label double-select fixed-width">
+          <div class="p-relative min-width-select">
             <app-select [label]="'*month of birth'" [list]="months$ | async" [keyName]="'name'"
                         formControlName="monthOfBirth"></app-select>
             <span class="error-message" *ngIf="form.get('monthOfBirth')?.errors && form.get('monthOfBirth')?.touched">Please specify month of your  birth</span>
           </div>
-          <div>
+          <div class="p-relative min-width-select">
             <app-select [label]="'*year of birth'" [list]="yearList" formControlName="yearOfBirth"></app-select>
             <span class="error-message" *ngIf="form.get('yearOfBirth')?.errors && form.get('yearOfBirth')?.touched">Please specify year of your birth</span>
           </div>

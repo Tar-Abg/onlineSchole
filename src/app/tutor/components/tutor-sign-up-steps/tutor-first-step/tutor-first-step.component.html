@@ -1,9 +1,10 @@
 <!--================ Section Tutor Sign Up First Step Area Start ================-->
 <section class="tutor-sign-up-wrapper">
   <h3 class="group-title">Basic information</h3>
-  <h5 class="group-subtitle">Please provide the following information so we can start composing your
+  <h5 class="group-subtitle">
+    Please provide the following information so we can start composing your
     profile.</h5>
-  <div class="tutor-sign-up-form-container container-fluid">
+  <div class="tutor-sign-up-form-container">
     <form action="">
       <fieldset>
         <legend class="group-title group-title__bold text-center text-bold">
@@ -18,18 +19,24 @@
                 <app-select
                   [label]="'*Category'"
                   [keyName]="'name'"
-                  formControlName="dayOfWeek">
+                  formControlName="category">
                 </app-select>
                 <span class="error-message">This is a required field</span>
               </div>
               <div class="selectWrapper">
-                <app-select [label]="'*Time'" [keyName]="'time'"
-                            formControlName="startOfRange"></app-select>
+                <app-select
+                  [label]="'*Time'"
+                  [keyName]="'time'"
+                  formControlName="startOfRange">
+                </app-select>
                 <span class="error-message">This is a required field</span>
               </div>
               <div class="selectWrapper">
-                <app-select [label]="'*Time'" [keyName]="'time'"
-                            formControlName="startOfRange"></app-select>
+                <app-select
+                  [label]="'*Time'"
+                  [keyName]="'time'"
+                  formControlName="endOfRange">
+                </app-select>
                 <span class="error-message">This is a required field</span>
               </div>
               <i class="fas fa-plus"></i>
@@ -54,8 +61,8 @@
           </li>
           <li class="tutor-sign-up-list__item">
             <h3 class="main-question">Please choose Cancellation notice</h3>
-            <div class="double-select">
-              <div class="dropdown dropdown-menu-with-selected-icon">
+            <div class="form-label">
+              <div class="dropdown-menu-with-selected-icon">
                 <app-select
                   [label]="'*Country'"
                   [keyName]="'name'"
@@ -63,20 +70,20 @@
                 </app-select>
                 <span class="error-message">Please fill in your last name</span>
               </div>
-              <p class="form-item-notification">You may wish to maintain a
-                cancellation policy to guard against late notice of rescheduling or
-                lesson cancellation. Please make sure to communicate this cancellation
-                policy before you schedule a lesson with a student.</p>
             </div>
+            <p class="form-item-notification">You may wish to maintain a
+              cancellation policy to guard against late notice of rescheduling or
+              lesson cancellation. Please make sure to communicate this cancellation
+              policy before you schedule a lesson with a student.</p>
           </li>
         </ul>
-        <div class="address-wrapper row">
-          <h2 class="col-md-12 group-title group-title__bold text-center text-bold">
+        <div class="address-wrapper">
+          <h2 class="group-title group-title__bold group-title__m text-center text-bold">
             Your Address
           </h2>
-          <ul class="address-form col-md-6 col-lg-6 col-xs-12">
+          <ul class="address-form col-md-6 col-lg-6 col-xs-12 no-gutters">
             <li class="address-form__item">
-              <div class="dropdown form-input full-width-dropdown">
+              <div class="form-label">
                 <app-select
                   [label]="'*Country'"
                   [keyName]="'name'"
@@ -84,6 +91,38 @@
                 </app-select>
                 <span class="form-item-notification">Visible on the public profile</span>
                 <span class="error-message block">This Field is requires</span>
+              </div>
+            </li>
+            <li class="address-form__item">
+              <div>
+                <label class="form-label label-for-security-number">Social Security Number*</label>
+                <div class="form-input-container">
+                  <div class="input-group-wrapper">
+                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
+                           value="" formControlName="securityNumber">
+                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
+                           value="" formControlName="securityNumber">
+                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
+                           value="" formControlName="securityNumber">
+                  </div>
+                  <div class="input-group-wrapper">
+                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
+                           value="" formControlName="securityNumber">
+                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
+                           value="" formControlName="securityNumber">
+                  </div>
+                  <div class="input-group-wrapper">
+                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
+                           value="" formControlName="securityNumber">
+                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
+                           value="" formControlName="securityNumber">
+                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
+                           value="" formControlName="securityNumber">
+                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
+                           value="" formControlName="securityNumber">
+                  </div>
+                  <span class="form-item-notification">Visible on the public profile</span>
+                </div>
               </div>
             </li>
             <li class="address-form__item">
@@ -122,13 +161,13 @@
               </label>
             </li>
           </ul>
-          <div class="flex-container-center button-wrapper col-md-12 col-lg-12 col-xs-12">
-            <button class="sophist-btn flex-container-center" (click)="back.emit()">PREVIOUS</button>
-            <button type="submit" class="sophist-btn flex-container-center next-btn" (click)="next.emit()">NEXT</button>
-          </div>
         </div>
       </fieldset>
     </form>
+    <div class="flex-container-center button-wrapper button-wrapper__mt">
+      <button class="sophist-btn flex-container-center" (click)="back.emit()">PREVIOUS</button>
+      <button type="submit" class="sophist-btn flex-container-center next-btn" (click)="next.emit()">NEXT</button>
+    </div>
   </div>
 </section>
 <!--================ Section Tutor Sign Up First Step Area End ================-->

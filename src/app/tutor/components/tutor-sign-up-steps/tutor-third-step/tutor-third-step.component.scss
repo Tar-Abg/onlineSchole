@@ -1,0 +1,74 @@
+@import "src/assets/css/variables";
+
+.tutor-sign-up-wrapper {
+  position: relative;
+  padding: 15px 0 100px 30px;
+
+  .tutor-sign-up-image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.group-title__bold {
+  margin-bottom: 18px;
+}
+
+.terms {
+  &-title {
+    margin-bottom: 25px;
+    font: $type-bold normal $type-medium-size $Segoe-UI-sans;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: $clr-ntrl-max;
+  }
+
+  &-description {
+    margin-bottom: 39px;
+    font: $type-regular normal $type-medium-size $Segoe-UI-sans;
+    line-height: 29px;
+    color: $clr-ntrl-max;
+  }
+
+  &-list {
+    padding-left: 24px;
+
+    &__item {
+      position: relative;
+      margin-bottom: 25px;
+
+      &-text {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        font: $type-regular normal $type-medium-size $Segoe-UI-sans;
+        line-height: 29px;
+        white-space: pre-wrap;
+        color: $clr-ntrl-max;
+      }
+    }
+  }
+
+  &-link {
+    color: $secondary-icon-brand-color;
+    text-decoration: underline;
+  }
+
+  &-notify {
+    margin-bottom: 25px;
+    font: $type-light normal $type-small $Roboto-sans;
+    font-size: 16px;
+    line-height: 20px;
+    color: #de9300;
+  }
+}
+
+.tutor-sign-up-list__item {
+  .form-label {
+    width: 418px;
+  }
+
+  .grid-gap-30 {
+    grid-gap: 30px;
+  }
+}

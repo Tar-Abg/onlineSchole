@@ -10,8 +10,7 @@
 
     &-wrapper {
       width: 1221px;
-      height: 1345px;
-      margin: 40px auto 200px;
+      margin: 76px auto 0;
       padding: 12px 44px 93px;
       background: rgba(197, 217, 255, 0.11);
       border-radius: 28px;
@@ -25,7 +24,9 @@
 
 .group {
   &-title {
-    font: $type-regular normal 18px/30px $Segoe-UI-sans;
+    font: $type-regular normal $type-medium-size $Segoe-UI-sans;
+    line-height: 30px;
+    letter-spacing: 0.03em;
     color: $clr-ntrl-max;
     margin-bottom: 5px;
 
@@ -33,10 +34,15 @@
       font-weight: $type-bold;
       margin-bottom: 4px;
     }
+
+    &__m {
+      margin: 54px 0 30px;
+    }
   }
 
   &-subtitle {
-    font: $type-light normal $type-small/ $type-base $Roboto-sans;
+    font: $type-light normal 1rem / 1.25rem $Roboto-sans;
     color: #ff5c00;
+    margin-bottom: 0;
   }
 }
