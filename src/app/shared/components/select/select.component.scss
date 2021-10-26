@@ -31,23 +31,29 @@
 .mat-form-field-underline {
   display: none;
 }
+
 .hasValue .mat-form-field-label-wrapper {
   display: none !important;
 }
+
 .mat-form-field-label {
   color: #a1a1a1 !important;
   margin-top: 0 !important;
   line-height: 10px;
 }
+
 .mat-select-arrow {
   color: #a1a1a1 !important;
 }
-.mat-option  {
+
+.mat-option {
   height: 35px !important;
 }
+
 .mat-option-text {
   color: black !important;
 }
+
 .select {
   width: 100%;
   height: 50px;

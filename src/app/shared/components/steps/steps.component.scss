@@ -1,0 +1,70 @@
+@import "src/assets/css/variables";
+
+/* Custom fonts for step count */
+@import url('https://fonts.googleapis.com/css2?family=Girassol&display=swap');
+
+/* Register Page Steps Style Start */
+.step {
+  &-wrapper {
+    list-style-type: none;
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+
+    &-counter {
+      width: 54px;
+      height: 54px;
+      border-radius: $border-radius-circle;
+      font: normal normal 40px/48px 'Girassol', cursive;
+      text-align: center;
+      color: $clr-ntrl-min;
+      background-color: $step-color;
+    }
+
+    &-line {
+      position: relative;
+      width: 100px;
+      height: 2px;
+      margin: 0 34px;
+      background-color: $step-color;
+
+      &::before, &::after {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(-11px, -50%);
+        content: "";
+        display: block;
+        width: 10px;
+        height: 10px;
+        border: 1px solid $step-color;
+        border-radius: $border-radius-circle;
+      }
+
+      &::after {
+        left: 100%;
+        transform: translate(0, -50%)
+      }
+    }
+
+    &__active, &__passed {
+      .step-item-counter {
+        transform: scale(1.3);
+      }
+
+      .step-item-line {
+        &::before, &::after {
+          background-color: $secondary-brand-color;
+        }
+      }
+
+      .step-item-counter {
+        background-color: $secondary-brand-color;
+      }
+    }
+  }
+}
+
+/* Register Page Steps Style End */

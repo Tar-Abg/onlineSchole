@@ -1,41 +1,38 @@
 <div class="grid-container">
-  <app-registr-header></app-registr-header>
+  <app-register-header></app-register-header>
   <main class="content-wrapper">
     <!--================ Section Register Form First Step Area Start ================-->
     <section class="register-form-wrapper">
-      <div class="container-fluid">
-        <h2 class="register-form-wrapper__title">
-          Tutor application form
-        </h2>
-        <app-steps [stepNumber]="stepNumber"></app-steps>
-        <div class="flex-container-start row">
-          <div class="flex-item col-md-6 col-xs-12 col-lg-7">
-            <ng-container [ngSwitch]="stepNumber">
-              <app-step-one *ngSwitchCase="1" (next)="changeStepNumber('FORWARD')"></app-step-one>
-              <app-second-step *ngSwitchCase="2" (back)="changeStepNumber('BACK')"
-                               (next)="changeStepNumber('FORWARD')"></app-second-step>
-              <app-third-step *ngSwitchCase="3" (back)="changeStepNumber('BACK')"
-                              (next)="changeStepNumber('FORWARD')"></app-third-step>
-              <app-fourth-step *ngSwitchCase="4" (back)="changeStepNumber('BACK')"
-                               (next)="changeStepNumber('FORWARD')"></app-fourth-step>
-              <app-fifth-step *ngSwitchCase="5" (back)="changeStepNumber('BACK')"></app-fifth-step>
-            </ng-container>
-          </div>
-          <!--            <div class="flex-container-center button-wrapper">-->
-          <!--              <a type="submit" class="btn flex-container-center previous-btn" (click)="changeStepNumber('BACK')" *ngIf="stepNumber > 1">PREVIOUS</a>-->
-          <!--              <a type="submit" class="btn flex-container-center next-btn" (click)="changeStepNumber('FORWARD')" *ngIf="stepNumber < 5">NEXT</a>-->
-          <!--              <a type="submit" class="btn flex-container-center sophist-btn" *ngIf="stepNumber === 5">REGISTER</a>-->
-          <!--            </div>-->
-          <div class="flex-item col-md-6 col-xs-12 col-lg-4">
-            <img src="assets/images/illustration.png"
-                 alt="Register illustration"
-                 width="100"
-                 height="100">
-          </div>
+      <h2 class="register-form-wrapper__title">
+        Tutor application form
+      </h2>
+      <app-steps [stepNumber]="stepNumber"></app-steps>
+      <div class="flex-container-start">
+        <div class="flex-item">
+          <ng-container [ngSwitch]="stepNumber">
+            <app-step-one *ngSwitchCase="1" (next)="changeStepNumber('FORWARD')"></app-step-one>
+            <app-second-step *ngSwitchCase="2" (back)="changeStepNumber('BACK')"
+                             (next)="changeStepNumber('FORWARD')"></app-second-step>
+            <app-third-step *ngSwitchCase="3" (back)="changeStepNumber('BACK')"
+                            (next)="changeStepNumber('FORWARD')"></app-third-step>
+            <app-fourth-step *ngSwitchCase="4" (back)="changeStepNumber('BACK')"
+                             (next)="changeStepNumber('FORWARD')"></app-fourth-step>
+            <app-fifth-step *ngSwitchCase="5" (back)="changeStepNumber('BACK')"></app-fifth-step>
+          </ng-container>
+        </div>
+        <!--            <div class="flex-container-center button-wrapper">-->
+        <!--              <a type="submit" class="btn flex-container-center previous-btn" (click)="changeStepNumber('BACK')" *ngIf="stepNumber > 1">PREVIOUS</a>-->
+        <!--              <a type="submit" class="btn flex-container-center next-btn" (click)="changeStepNumber('FORWARD')" *ngIf="stepNumber < 5">NEXT</a>-->
+        <!--              <a type="submit" class="btn flex-container-center sophist-btn" *ngIf="stepNumber === 5">REGISTER</a>-->
+        <!--            </div>-->
+        <div class="flex-item col-md-6 col-xs-12 col-lg-4">
+          <img src="assets/images/illustration.png"
+               alt="Register illustration"
+               width="100"
+               height="100">
         </div>
       </div>
     </section>
     <!--================ Section Register Form First Step Area End ================-->
   </main>
-
 </div>

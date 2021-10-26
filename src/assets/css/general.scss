@@ -94,6 +94,31 @@ img {
   padding: 0;
 }
 
+
+.fa-plus {
+  color: #FFB519;
+}
+
+.margin-left-space {
+  margin-left: 280px;
+}
+
+.image {
+  width: 100px;
+  height: 100px;
+}
+
+.column-gap {
+  grid-gap: 84px;
+}
+
+.cloned-wrapper {
+  display: flex;
+  align-items: flex-start;
+  height: auto;
+  overflow: visible;
+}
+
 /* OverWrite Material css*/
 .mat-form-field-appearance-fill .mat-form-field-flex {
   background-color: unset;
@@ -139,6 +164,60 @@ img {
   border-bottom: 1px solid black !important;
 }
 
-.flex-item-step-min-length {
-  width: 70%;
+.mat-select-panel:not([class*=mat-elevation-z]) {
+  border: 1px solid $primary-color-ltr;
+  border-radius: $border-radius-small;
+  box-shadow: 0 1px 2px rgb(204, 204, 204);
+  padding: 10px 20px;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-track {
+    box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(143, 181, 252, 0.75);
+    border-radius: 10px;
+  }
+}
+
+.mat-select-panel .mat-optgroup-label, .mat-select-panel .mat-option {
+  border-bottom: 1px solid #f2f2f2;
+  padding: 0 10px;
+  font: $type-regular normal $type-small / $type-base $Segoe-UI-sans;
+  color: $clr-ntrl-max;
+  transition: all .2s ease-in-out;
+  cursor: pointer;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.mat-select-panel .mat-option.mat-selected:not(.mat-option-multiple),
+.mat-option.mat-active {
+  background: rgb(171, 200, 253, 0.5);
+}
+
+.mat-select-arrow {
+  position: relative;
+  border: 0 !important;
+
+  &:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -7px;
+    height: 9px;
+    width: 9px;
+    display: block;
+    z-index: 11;
+    border-top: 2px solid #343434;
+    border-left: 2px solid #343434;
+    transform: rotate(225deg);
+  }
 }

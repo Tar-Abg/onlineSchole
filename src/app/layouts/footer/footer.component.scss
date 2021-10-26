@@ -1,0 +1,30 @@
+@import "src/assets/css/variables";
+
+.footer {
+  height: 392px;
+  background-color: $main-brand-color;
+  color: $clr-ntrl-min;
+
+  &-part {
+    padding: 0 90px;
+
+    &:first-child {
+      border-right: 1px solid $clr-ntrl-min;
+    }
+
+    &__title {
+      margin-bottom: 18px;
+      font-size: $type-base;
+      line-height: 30px;
+      letter-spacing: 0.03em;
+      text-transform: capitalize;
+    }
+  }
+
+  &-list__item {
+    font: $type-light normal 15px/30px $Roboto-sans;
+    font-size: $type-small;
+    letter-spacing: 0.03em;
+    text-transform: capitalize;
+  }
+}

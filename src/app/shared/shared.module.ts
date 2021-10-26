@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {RegistrHeaderComponent} from "./components/registr-header/registr-header.component";
+import {RegisterHeaderComponent} from "./components/register-header/register-header.component";
 import { StepsComponent } from './components/steps/steps.component';
 import { SelectComponent } from './components/select/select.component';
 import {MatSelectModule} from "@angular/material/select";
@@ -8,7 +8,7 @@ import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
-    RegistrHeaderComponent,
+    RegisterHeaderComponent,
     StepsComponent,
     SelectComponent
   ],
@@ -17,7 +17,7 @@ import {MatSelectModule} from "@angular/material/select";
         MatSelectModule,
     ],
   exports: [
-    RegistrHeaderComponent,
+    RegisterHeaderComponent,
     StepsComponent,
     SelectComponent
   ]

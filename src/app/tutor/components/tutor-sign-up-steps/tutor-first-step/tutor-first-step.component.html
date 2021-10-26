@@ -1,0 +1,134 @@
+<!--================ Section Tutor Sign Up First Step Area Start ================-->
+<section class="tutor-sign-up-wrapper">
+  <h3 class="group-title">Basic information</h3>
+  <h5 class="group-subtitle">Please provide the following information so we can start composing your
+    profile.</h5>
+  <div class="tutor-sign-up-form-container container-fluid">
+    <form action="">
+      <fieldset>
+        <legend class="group-title group-title__bold text-center text-bold">
+          Administrative details
+        </legend>
+        <ul class="tutor-sign-up-list">
+          <li class="tutor-sign-up-list__item">
+            <h3 class="main-question">Please choose your subject</h3>
+            <div class="d-flex flex-container-justify-start gap-3
+            grid-gap-10 date-picker-container">
+              <div class="selectWrapper">
+                <app-select
+                  [label]="'*Category'"
+                  [keyName]="'name'"
+                  formControlName="dayOfWeek">
+                </app-select>
+                <span class="error-message">This is a required field</span>
+              </div>
+              <div class="selectWrapper">
+                <app-select [label]="'*Time'" [keyName]="'time'"
+                            formControlName="startOfRange"></app-select>
+                <span class="error-message">This is a required field</span>
+              </div>
+              <div class="selectWrapper">
+                <app-select [label]="'*Time'" [keyName]="'time'"
+                            formControlName="startOfRange"></app-select>
+                <span class="error-message">This is a required field</span>
+              </div>
+              <i class="fas fa-plus"></i>
+            </div>
+          </li>
+          <li class="tutor-sign-up-list__item">
+            <h3 class="main-question">Please enter hourly rate</h3>
+            <label for="hourly-rate" class="form-label form-label--flex-container">
+              <input id="hourly-rate" class="form-input" type="text"
+                     placeholder="*the minimum hourly rate is $20"
+                     value="">
+              <span class="error-message">You cannot enter anything below $20</span>
+            </label>
+            <p class="input-notification">Please choose a default hourly rate.
+              Sophist’s fee is 18% of this amount</p>
+            <p class="form-item-notification">When choosing your rate, not only consider your level
+              of experience, but also the cost
+              of living in your area. Keep in mind that you can change your rate at any time and
+              that
+              you will have the ability to set online tutoring houry rates once you complete
+              registration and are certified to tutor online.</p>
+          </li>
+          <li class="tutor-sign-up-list__item">
+            <h3 class="main-question">Please choose Cancellation notice</h3>
+            <div class="double-select">
+              <div class="dropdown dropdown-menu-with-selected-icon">
+                <app-select
+                  [label]="'*Country'"
+                  [keyName]="'name'"
+                  formControlName="dayOfWeek">
+                </app-select>
+                <span class="error-message">Please fill in your last name</span>
+              </div>
+              <p class="form-item-notification">You may wish to maintain a
+                cancellation policy to guard against late notice of rescheduling or
+                lesson cancellation. Please make sure to communicate this cancellation
+                policy before you schedule a lesson with a student.</p>
+            </div>
+          </li>
+        </ul>
+        <div class="address-wrapper row">
+          <h2 class="col-md-12 group-title group-title__bold text-center text-bold">
+            Your Address
+          </h2>
+          <ul class="address-form col-md-6 col-lg-6 col-xs-12">
+            <li class="address-form__item">
+              <div class="dropdown form-input full-width-dropdown">
+                <app-select
+                  [label]="'*Country'"
+                  [keyName]="'name'"
+                  formControlName="dayOfWeek">
+                </app-select>
+                <span class="form-item-notification">Visible on the public profile</span>
+                <span class="error-message block">This Field is requires</span>
+              </div>
+            </li>
+            <li class="address-form__item">
+              <label for="city" class="form-label">
+                <input id="city" name="city" class="form-input" type="text" placeholder="*city"
+                       value="">
+                <span class="form-item-notification">Not visible on the public profile</span>
+                <span class="error-message block">This Field is requires</span>
+              </label>
+            </li>
+            <li class="address-form__item">
+              <label for="street-number" class="form-label">
+                <input id="street-number" name="street-number" class="form-input" type="text"
+                       placeholder="*street number"
+                       value="">
+                <span class="form-item-notification">Not visible on the public profile</span>
+                <span class="error-message block">This Field is requires</span>
+              </label>
+            </li>
+            <li class="address-form__item">
+              <label for="street-name" class="form-label">
+                <input id="street-name" name="street-name" class="form-input" type="text"
+                       placeholder="*street name"
+                       value="">
+                <span class="form-item-notification">Not visible on the public profile</span>
+                <span class="error-message block">This Field is requires</span>
+              </label>
+            </li>
+            <li class="address-form__item">
+              <label for="zip-code" class="form-label">
+                <input id="zip-code" name="zip-code" class="form-input" type="text"
+                       placeholder="*zip-code"
+                       value="">
+                <span class="form-item-notification">Not visible on the public profile</span>
+                <span class="error-message block">This Field is requires</span>
+              </label>
+            </li>
+          </ul>
+          <div class="flex-container-center button-wrapper col-md-12 col-lg-12 col-xs-12">
+            <button class="sophist-btn flex-container-center" (click)="back.emit()">PREVIOUS</button>
+            <button type="submit" class="sophist-btn flex-container-center next-btn" (click)="next.emit()">NEXT</button>
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
+<!--================ Section Tutor Sign Up First Step Area End ================-->

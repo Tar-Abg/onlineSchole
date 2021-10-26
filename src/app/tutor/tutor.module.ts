@@ -17,6 +17,10 @@ import {MatRippleModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { TutorSignUpComponent } from './components/tutor-sign-up-steps/tutor-sign-up/tutor-sign-up.component';
+import { TutorFirstStepComponent } from './components/tutor-sign-up-steps/tutor-first-step/tutor-first-step.component';
+import { TutorSecondStepComponent } from './components/tutor-sign-up-steps/tutor-second-step/tutor-second-step.component';
+import { TutorThirdStepComponent } from './components/tutor-sign-up-steps/tutor-third-step/tutor-third-step.component';
 
 
 @NgModule({
@@ -28,7 +32,10 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     ThirdStepComponent,
     FourthStepComponent,
     FifthStepComponent,
-
+    TutorSignUpComponent,
+    TutorFirstStepComponent,
+    TutorSecondStepComponent,
+    TutorThirdStepComponent,
   ],
   imports: [
     CommonModule,

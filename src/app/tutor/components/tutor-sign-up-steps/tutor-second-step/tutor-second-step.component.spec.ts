@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegistrHeaderComponent } from './registr-header.component';
+import { TutorSecondStepComponent } from './tutor-second-step.component';
 
-describe('RegistrHeaderComponent', () => {
-  let component: RegistrHeaderComponent;
-  let fixture: ComponentFixture<RegistrHeaderComponent>;
+describe('TutorSecondStepComponent', () => {
+  let component: TutorSecondStepComponent;
+  let fixture: ComponentFixture<TutorSecondStepComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegistrHeaderComponent ]
+      declarations: [ TutorSecondStepComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegistrHeaderComponent);
+    fixture = TestBed.createComponent(TutorSecondStepComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

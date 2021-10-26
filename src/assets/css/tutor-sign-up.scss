@@ -1,0 +1,42 @@
+.tutor {
+  &-step-wrapper {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  &-sign-up {
+
+    &-wrapper {
+      width: 1221px;
+      height: 1345px;
+      margin: 40px auto 200px;
+      padding: 12px 44px 93px;
+      background: rgba(197, 217, 255, 0.11);
+      border-radius: 28px;
+    }
+
+    &-form-container {
+      margin-top: 35px;
+    }
+  }
+}
+
+.group {
+  &-title {
+    font: $type-regular normal 18px/30px $Segoe-UI-sans;
+    color: $clr-ntrl-max;
+    margin-bottom: 5px;
+
+    &__bold {
+      font-weight: $type-bold;
+      margin-bottom: 4px;
+    }
+  }
+
+  &-subtitle {
+    font: $type-light normal $type-small/ $type-base $Roboto-sans;
+    color: #ff5c00;
+  }
+}

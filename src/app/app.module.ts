@@ -5,7 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {LandingComponent} from './components/landing/landing.component';
 import {LayoutsModule} from "./layouts/layouts.module";
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 
@@ -14,13 +14,13 @@ import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from '@angular/material/radio';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +36,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatInputModule,
     MatRadioModule,
     NgbModule
-
   ],
   providers: [],
   exports: [MatInputModule],

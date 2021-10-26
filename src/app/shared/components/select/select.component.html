@@ -8,7 +8,7 @@
       (selectionChange)='selectionChanged($event)'
       [disabled]='disable'
     >
-      <mat-option [value]="null"></mat-option>
+<!--      <mat-option [value]="null"></mat-option>-->
       <mat-option *ngFor="let item of list" [value]="item.id" [title]="item.description">
         {{item[keyName]}}
       </mat-option>
