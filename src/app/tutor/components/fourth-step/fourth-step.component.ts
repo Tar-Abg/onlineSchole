@@ -7,7 +7,8 @@ import {Country, DaysOfWeek, HoursOfDay, StudentLevel} from "../../../shared/mod
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {ValidationService} from "../../../shared/services/validation/validation.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
-import {tap} from "rxjs/operators";
+import {switchMap, tap} from "rxjs/operators";
+import {Preferences} from "../../../shared/models/registration.model";
 
 @Component({
   selector: 'app-fourth-step',
@@ -43,6 +44,12 @@ export class FourthStepComponent implements OnInit, OnDestroy {
   }
 
   formInitialization(): void {
+    const workHistory = this.fb.group({
+      schoolOrInstitutionName: [null],
+      startYear: [null],
+      endYear: [null],
+      current: [false]
+    });
     this.form = this.fb.group({
       id: [null],
       userId: [this.storageService.getUserId()],
@@ -55,18 +62,15 @@ export class FourthStepComponent implements OnInit, OnDestroy {
       wantToBeInstructor: [null, [Validators.required]],
       interview: this.fb.array([this.newInterview()]),
       workHistory: this.fb.array([
-        this.fb.group({
-          schoolOrInstitutionName: [null],
-          startYear: [null],
-          endYear: [null],
-          current: [false]
-        })
+        workHistory
       ]),
       professionalReferencesForInstructor: this.fb.array([
         this.newProfessionalReferencesForInstructor(),
         this.newProfessionalReferencesForInstructor(),
       ])
     })
+    this.wantToBeInstructorChanged(workHistory);
+
   }
 
   get interview(): FormArray {
@@ -102,12 +106,14 @@ export class FourthStepComponent implements OnInit, OnDestroy {
   }
 
   newWorkHistory(): FormGroup {
-    return this.fb.group({
+    const workHistory = this.fb.group({
       schoolOrInstitutionName: [null, [Validators.required]],
       startYear: [null, [Validators.required]],
       endYear: [null, [Validators.required]],
       current: [false, [Validators.required]]
     });
+    this.wantToBeInstructorChanged(workHistory)
+    return workHistory;
   }
 
   newProfessionalReferencesForInstructor(): FormGroup {
@@ -186,14 +192,17 @@ export class FourthStepComponent implements OnInit, OnDestroy {
 
   removeInterview(item: AbstractControl) {
     this.interview.controls = this.interview.controls.filter(control => control != item);
+    this.interview.updateValueAndValidity();
   }
 
   removeWorkHistory(item: AbstractControl) {
     this.workHistory.controls = this.workHistory.controls.filter(control => control != item);
+    this.workHistory.updateValueAndValidity();
   }
 
   removeReferencesForInstructor(item: AbstractControl) {
     this.professionalReferencesForInstructor.controls = this.professionalReferencesForInstructor.controls.filter(control => control != item);
+    this.professionalReferencesForInstructor.updateValueAndValidity();
   }
 
   private initializeListeners(): void {
@@ -206,7 +215,6 @@ export class FourthStepComponent implements OnInit, OnDestroy {
     this.subscribeToEverTutoredValueChange();
     this.subscribeToEverTutoredOnlineValueChange();
     this.subscribeToWantToBeInstructorValueChange();
-    this.getPreferencesPage();
   }
 
   getStudentLevels(): void {
@@ -217,8 +225,10 @@ export class FourthStepComponent implements OnInit, OnDestroy {
           modifyedItem.checked = false
           return modifyedItem
         })
-      })
-    ).subscribe();
+      }),
+    ).subscribe(() => {
+      this.getPreferencesPage();
+    });
   }
 
   getPreferencesPage(): void {
@@ -234,11 +244,50 @@ export class FourthStepComponent implements OnInit, OnDestroy {
           })
           this.actionType = "UPDATE";
           this.form.patchValue(preferences);
+          this.patchInterview(preferences);
+          this.patchWorkHistory(preferences);
+          this.patchProfessionalReferencesForInstructor(preferences);
         } else {
           this.actionType = "CREATE";
         }
       })
     );
+  }
+
+  patchInterview(preferences: Preferences): void {
+    if (preferences.interview.length) {
+      this.interview.controls = [];
+      preferences.interview.forEach(item => {
+        const interview = this.newInterview();
+        interview.patchValue(item);
+        this.interview?.controls.push(interview);
+      })
+      this.interview.updateValueAndValidity();
+    }
+  }
+
+  patchWorkHistory(preferences: Preferences): void {
+    if (preferences.workHistory.length) {
+      this.workHistory.controls = [];
+      preferences.workHistory.forEach(item => {
+        const workHistory = this.newWorkHistory();
+        workHistory.patchValue(item);
+        this.workHistory?.controls.push(workHistory);
+      })
+      this.workHistory.updateValueAndValidity();
+    }
+  }
+
+  patchProfessionalReferencesForInstructor(preferences: Preferences): void {
+    if (preferences.professionalReferencesForInstructor.length) {
+      this.professionalReferencesForInstructor.controls = [];
+      preferences.professionalReferencesForInstructor.forEach(item => {
+        const professionalReferencesForInstructor = this.newProfessionalReferencesForInstructor();
+        professionalReferencesForInstructor.patchValue(item);
+        this.professionalReferencesForInstructor?.controls.push(professionalReferencesForInstructor);
+      })
+      this.professionalReferencesForInstructor.updateValueAndValidity();
+    }
   }
 
   subscribeToEverTutoredValueChange(): void {
@@ -283,6 +332,23 @@ export class FourthStepComponent implements OnInit, OnDestroy {
         })
       }
     });
+  }
+
+  wantToBeInstructorChanged(form: FormGroup): void {
+    this.subscription.add(
+      form.get('current')?.valueChanges.subscribe(value => {
+        if (value === true) {
+          form.get('endYear')?.reset();
+          form.get('endYear')?.removeValidators(Validators.required);
+          form.get('endYear')?.disable();
+          form.get('endYear')?.updateValueAndValidity();
+        } else {
+          form.get('endYear')?.enable();
+          form.get('endYear')?.addValidators(Validators.required);
+        }
+        form.get('endYear')?.updateValueAndValidity();
+      })
+    );
   }
 
   ngOnDestroy(): void {
