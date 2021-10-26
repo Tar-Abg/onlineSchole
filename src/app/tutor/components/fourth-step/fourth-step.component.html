@@ -58,9 +58,8 @@
             <h3 class="main-question">Which type of students do you like to tutor?</h3>
             <h5 class="sub-question">You can choose more than one value</h5>
             <div class="checkboxes-wrapper-flex">
-              <mat-checkbox class="example-margin" *ngFor="let item of (studentLevels$ | async)"
-                            formControlName="linkTutorAndStudentTypes"
-                            [checked]="true" (ngModelChange)="selectStudentType($event, item)">
+              <mat-checkbox class="example-margin" *ngFor="let item of studentLevels"
+                            [checked]="item.checked" (change)="selectStudentType($event, item)">
                 {{item.description}}
               </mat-checkbox>
               <span class="error-message"
@@ -105,7 +104,7 @@
                         *ngIf="interview.controls[i]?.get('endOfRange')?.errors && interview.controls[i]?.get('endOfRange')?.touched">This is a required field</span>
                 </div>
                 <div class="remove-icon-content">
-                  <i (click)="removeInterview(item)" class="text-danger" *ngIf="interview.controls.length > 1">x</i>
+                  <i (click)="removeInterview(item)" class="text-danger" *ngIf="i > 0">x</i>
                 </div>
               </div>
             </div>
@@ -168,7 +167,7 @@
                     </div>
                   </div>
                 </div>
-                <i class="text-danger" (click)="removeWorkHistory(item)" *ngIf="workHistory.controls.length > 1">x</i>
+                <i class="text-danger" (click)="removeWorkHistory(item)" *ngIf="i > 0">x</i>
               </div>
             </div>
             <h3 class="warning-title">We would require a minimum of two professional references, please enter the
@@ -182,7 +181,7 @@
              *ngFor="let item of professionalReferencesForInstructor?.controls; let i = index">
           <div [formGroupName]="i">
             <i class="text-danger" (click)="removeReferencesForInstructor(item)"
-               *ngIf="professionalReferencesForInstructor.controls.length > 2">x</i>
+               *ngIf="i > 1">x</i>
             <div class="">
               <h2 class="form-title"> Professional reference 1 </h2>
               <label for="first-name" class="form-label">
@@ -208,23 +207,19 @@
                 <span class="error-message"
                       *ngIf="professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.errors?.pattern && professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.touched">Please provide a valid email address</span>
               </label>
-              <label for="phone-number" class="form-label phone-number-label p-relative">
-                <!--                                    <span class="phone-region">-->
-                <!--                                        <img class="flag" src="assets/images/armenia.png" alt="Armenia Flag" width="39"-->
-                <!--                                             height="26">-->
-                <!--                                        <span class="phone-code">-->
-                <!--                                            +374-->
-                <!--                                            <img src="assets/images/arrowDown.png" alt="arrow down" width="11"-->
-                <!--                                                 height="9">-->
-                <!--                                        </span>-->
-                <!--                                    </span>-->
-                <input id="phone-number" class="form-input" autocomplete="phone-number"
-                       type="tel"
-                       placeholder="*Phone number"
-                       formControlName="mobilePhone">
+
+                <app-select [list]="phoneCods$ | async" [label]="'+374'" [keyName]="'phoneCode'" [optionName]="'iso3'"
+                            formControlName="numberId"></app-select>
                 <span class="error-message"
-                      *ngIf="professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.errors && professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.touched">This is a required field</span>
-              </label>
+                      *ngIf="professionalReferencesForInstructor.controls[i]?.get('numberId')?.errors && professionalReferencesForInstructor.controls[i]?.get('numberId')?.touched">This is a required field</span>
+              <label for="phone-number" class="form-label phone-number-label p-relative">
+              <input id="phone-number" class="form-input" autocomplete="phone-number"
+                     type="tel"
+                     placeholder="*Phone number"
+                     formControlName="mobilePhone">
+              <span class="error-message"
+                    *ngIf="professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.errors && professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.touched">This is a required field</span>
+            </label>
             </div>
           </div>
         </div>

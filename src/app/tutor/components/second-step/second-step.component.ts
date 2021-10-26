@@ -1,76 +1,73 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Observable} from "rxjs";
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {AbstractControl, Form, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Observable, Subscription} from "rxjs";
 import {Country} from "../../../shared/models/infos.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {StorageService} from "../../../shared/services/storage/storage.service";
+import {SaveInstitutions} from "../../../shared/models/registration.model";
 
 @Component({
   selector: 'app-second-step',
   templateUrl: './second-step.component.html',
   styleUrls: ['./second-step.component.scss']
 })
-export class SecondStepComponent implements OnInit {
+export class SecondStepComponent implements OnInit, OnDestroy {
+  private readonly subscription: Subscription = new Subscription();
   @Output() back: EventEmitter<void> = new EventEmitter<void>();
   @Output() next: EventEmitter<void> = new EventEmitter<void>();
-  form: FormGroup
+  form: FormGroup;
   countries$: Observable<Country[]>;
   institutionalLevels$: Observable<KeyValuePair[]>;
-  userId: any
+  userId: number;
+  private actionType: "CREATE" | "UPDATE" = "CREATE";
+
 
   constructor(
     private fb: FormBuilder,
     private infoService: InfosService,
-    private registrationService: RegistrartionService
+    private registrationService: RegistrartionService,
+    private storageService: StorageService,
   ) {
   }
 
   ngOnInit(): void {
-    this.countries$ = this.infoService.getCountries();
-    this.institutionalLevels$ = this.infoService.getInstitutionalLevels();
-    this.userId = localStorage.getItem('userId');
     this.formInitialization();
-
-    this.userId && this.registrationService.getInstitutionsPage(+this.userId).subscribe((institutions) => {
-      console.log(institutions)
-      this.formArray.controls = [];
-      institutions.forEach(item => {
-        let form = this.createNewForm();
-        form.patchValue(item)
-        this.formArray.controls.push(form)
-      })
-      // this.formArray.patchValue(institutions)
-    })
-    console.log(this.userId);
+    this.initializeSubscriptions();
   }
 
   addNewForm(): void {
     const form = this.createNewForm();
+    this.subscribeForFormValueChange(form)
     this.formArray.controls.push(form)
-    // this.dynamicFormList.push(form);
   }
 
   onSubmit(): void {
-    // if (this.formArray.valid) {
-    //     this.registrationService.saveInstitutions(this.formArray.value).subscribe(() => this.next.emit());
-    // } else {
-    //   this.formArray.markAllAsTouched()
-    // }
-    // console.log(this.formArray.valid)
-    // console.log()
-    this.next.emit();
+    if (this.formArray.valid) {
+      if (this.actionType === "CREATE") {
+        this.saveInstitutions();
+      } else {
+        this.updateInstitutions();
+      }
+    } else {
+      this.formArray.markAllAsTouched()
+    }
   }
 
   formInitialization(): void {
-    // this.form = this.createNewForm();
+    const form = this.createNewForm();
+    this.subscribeForFormValueChange(form);
     this.form = this.fb.group({
-      formArray:  this.fb.array([this.createNewForm()])
+      formArray: this.fb.array([form])
     })
+    this.formArray.updateValueAndValidity();
   }
+
   get formArray(): FormArray {
-    return this.form.get('formArray') as FormArray
+    return this.form.get('formArray') as FormArray;
   }
+
   createNewForm(): FormGroup {
     return this.fb.group({
       name: [null, [Validators.required]],
@@ -81,14 +78,102 @@ export class SecondStepComponent implements OnInit {
       startDate: [null, [Validators.required]],
       graduationDate: [null, [Validators.required]],
       degreeInProgress: [false, [Validators.required]],
-      userId: [+this.userId],
-
+      pdfFromInstitution: [null],
+      userId: [this.userId],
+      id: [null]
     })
   }
 
   removeForm(form: any): void {
-      this.formArray.controls = this.formArray.controls.filter(item => item !== form);
-    console.log(this.formArray.controls);
+    this.formArray.controls = this.formArray.controls.filter(item => item !== form);
+    this.formArray.updateValueAndValidity();
   }
+
+  initializeSubscriptions(): void {
+    this.countries$ = this.infoService.getCountries();
+    this.institutionalLevels$ = this.infoService.getInstitutionalLevels();
+    this.userId = this.storageService.getUserId();
+    this.userId && this.getInstitutionsPage();
+  }
+
+  getInstitutionsPage(): void {
+    this.subscription.add(
+      this.registrationService.getInstitutionsPage(this.userId).subscribe((institutions) => {
+        if (institutions.length) {
+          this.actionType = "UPDATE";
+          this.patchFormValue(institutions);
+        } else {
+          this.actionType = "CREATE";
+        }
+      })
+    );
+  }
+
+  saveInstitutions(): void {
+    this.subscription.add(
+      this.registrationService.saveInstitutions(this.formArray.value).subscribe(() => this.next.emit())
+    )
+  }
+
+  updateInstitutions(): void {
+    this.subscription.add(
+      this.registrationService.updateInstitutions(this.formArray.value).subscribe(() => this.next.emit())
+    )
+  }
+
+  patchFormValue(institutions: SaveInstitutions[]): void {
+    this.formArray.controls = [];
+    institutions.forEach(item => {
+      let form = this.createNewForm();
+      this.subscribeForFormValueChange(form);
+      form.patchValue(item)
+      this.formArray.controls.push(form)
+      this.formArray.updateValueAndValidity()
+    })
+  }
+
+
+  subscribeForFormValueChange(form: FormGroup): void {
+   this.degreeInProgressChanged(form);
+    this.subscription.add(
+      form.valueChanges.subscribe(val => {
+        this.formArray.updateValueAndValidity();
+      })
+    );
+  }
+
+  fileUploaded(event: any, formGroup: any) {
+    let reader = new FileReader();
+    let file = event.files[0];
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      formGroup.get('pdfFromInstitution')?.setValue(reader.result);
+      this.formArray.updateValueAndValidity();
+    };
+  }
+
+  degreeInProgressChanged(form: FormGroup): void {
+    this.subscription.add(
+      form.get('degreeInProgress')?.valueChanges.subscribe(value => {
+        if (value === true) {
+          form.get('graduationDate')?.reset();
+          form.get('graduationDate')?.removeValidators(Validators.required);
+          form.get('pdfFromInstitution')?.addValidators(Validators.required);
+        } else {
+          form.get('graduationDate')?.addValidators(Validators.required);
+          form.get('pdfFromInstitution')?.removeValidators(Validators.required);
+          form.get('pdfFromInstitution')?.updateValueAndValidity();
+          form.get('pdfFromInstitution')?.reset();
+        }
+        form.get('graduationDate')?.updateValueAndValidity();
+        form.get('pdfFromInstitution')?.updateValueAndValidity();
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
 
 }

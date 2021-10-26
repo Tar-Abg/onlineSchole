@@ -1,39 +1,38 @@
 <div class="flex-item">
   <div class="margin-left-space">
-    <form>
+    <form [formGroup]="form">
       <fieldset class="register-form">
         <legend class="form-legend">Contact Details</legend>
-        <label for="phone-number" class="form-label phone-number-label form-label--min-width">
-          <!--                                    <span class="phone-region">-->
-          <!--                                        <img class="flag" src="assets/images/armenia.png" alt="Armenia Flag" width="39"-->
-          <!--                                             height="26">-->
-          <!--                                        <span class="phone-code">-->
-          <!--                                            +374-->
-          <!--                                            <img src="assets/images/arrowDown.png" alt="arrow down" width="11"-->
-          <!--                                                 height="9">-->
-          <!--                                        </span>-->
-          <!--                                    </span>-->
-          <input id="phone-number" class="form-input" autocomplete="phone-number" type="tel"
-                 placeholder="*Phone number"
-                 value="">
-          <span class="error-message">This is a required field</span>
-        </label>
+        <div class="d-flex">
+          <div class="form-label phone-number-label form-label--min-width w-25">
+            <app-select [list]="phoneCods$ | async" [label]="'+374'" [keyName]="'phoneCode'" [optionName]="'iso3'"
+                        formControlName="mobileCode"></app-select>
+            <span class="error-message" *ngIf="form.get('mobileCode')?.errors && form.get('mobileCode')?.touched">This is a required field</span>
+          </div>
+          <label for="phone-number" class="form-label phone-number-label form-label--min-width w-100">
+            <input id="phone-number" class="form-input" autocomplete="phone-number" type="tel"
+                   placeholder="*Phone number"
+                   formControlName="mobile">
+            <span class="error-message" *ngIf="form.get('mobile')?.errors && form.get('mobile')?.touched">This is a required field</span>
+          </label>
+        </div>
         <label for="link-to-social-media" class="form-label form-label--min-width">
           <input id="link-to-social-media" class="form-input"
                  autocomplete="link-to-social-media" type="text"
                  placeholder="*link to the social media profile"
-                 value="">
-          <span class="error-message">This is a required field</span>
+                 formControlName="linkToSocialMedia">
+          <span class="error-message"
+                *ngIf="form.get('linkToSocialMedia')?.errors && form.get('linkToSocialMedia')?.touched">This is a required field</span>
         </label>
         <div class="checkboxes-wrapper">
-          <mat-checkbox formControlName="linkTutorAndStudentTypes">
+          <mat-checkbox formControlName="socialMediaExistance">
             I do not have a social media profile
           </mat-checkbox>
           <div class="checkbox-divider-line"></div>
           <label class="container-for-checkbox confirm">
-            <mat-checkbox formControlName="linkTutorAndStudentTypes"></mat-checkbox>
+            <mat-checkbox #accept></mat-checkbox>
             <span>
-                I confirm that the information provided by me in the application is true,
+              I confirm that the information provided by me in the application is true,
                 complete
                 and accurate, and that I have not deliberately concealed any information which
                 is
@@ -45,8 +44,11 @@
       </fieldset>
     </form>
     <div class="flex-container-center button-wrapper">
-      <a type="submit" class="sophist-btn flex-container-center previous-btn" (click)="back.emit()">PREVIOUS</a>
-      <a type="submit" class="sophist-btn flex-container-center next-btn">NEXT</a>
+      <button type="submit" class="sophist-btn flex-container-center previous-btn" (click)="back.emit()">PREVIOUS
+      </button>
+      <button type="submit" class="sophist-btn flex-container-center next-btn" (click)="accept.checked && onSubmit()"
+              [disabled]="!accept.checked">NEXT
+      </button>
     </div>
   </div>
 </div>
