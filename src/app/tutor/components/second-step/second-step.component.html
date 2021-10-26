@@ -25,12 +25,10 @@
                     *ngIf="formArray.controls[i]?.get('major')?.errors && formArray.controls[i]?.get('major')?.touched">This is a required field</span>
             </label>
 
-            <div class="checkboxes-wrapper-flex">
-              <mat-checkbox class="checkbox-wrapper">
-                Degree in progress
-              </mat-checkbox>
-              <span class="error-message">This is a required field</span>
-            </div>
+            <label class="container-for-checkbox">Degree in progress
+              <input type="checkbox"  class="degree" formControlName="degreeInProgress">
+              <span class="checkmark"></span>
+            </label>
             <div class="choose-file-wrapper" *ngIf="formArray.controls[i]?.get('degreeInProgress')?.value">
               <div class="file-upload">
                 <div class="file-select">
@@ -38,8 +36,7 @@
                     <img src="assets/images/pdf.png" alt="Pdf" width="36"
                          height="36">
                   </div>
-                  <input type="file" accept="application/pdf" name="chooseFile" class="chooseFile"
-                         (change)="fileUploaded($event.target, item)">
+                  <input type="file" accept="application/pdf" name="chooseFile" class="chooseFile"  (change)="fileUploaded($event.target, item)">
                 </div>
                 <h3 class="upload-message">Please upload an unofficial transcript (the
                   file must be in .pdf

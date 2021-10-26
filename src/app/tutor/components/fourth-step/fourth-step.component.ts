@@ -7,7 +7,7 @@ import {Country, DaysOfWeek, HoursOfDay, StudentLevel} from "../../../shared/mod
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {ValidationService} from "../../../shared/services/validation/validation.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
-import {switchMap, tap} from "rxjs/operators";
+import {tap} from "rxjs/operators";
 import {Preferences} from "../../../shared/models/registration.model";
 
 @Component({
