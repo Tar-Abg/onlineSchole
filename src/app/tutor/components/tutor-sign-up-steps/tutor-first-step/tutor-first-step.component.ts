@@ -40,20 +40,8 @@ export class TutorFirstStepComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initializeForm();
     this.initializeListeners();
-    // const handle = this.userAddress.get('socialSecurityNumber')?.valueChanges.subscribe(
-    //   value => {
-    //     const newVal = this.transform(value);
-    //     this.userAddress.get('socialSecurityNumber')?.setValue(newVal, { emitEvent: false });
-    //     handle?.unsubscribe()
-    //   }
-    // );
-
   }
 
-  transform(value: string) {
-    console.log(value)
-    return value + 5
-  }
 
   getBasicInformation(): void {
     this.subscription.add(

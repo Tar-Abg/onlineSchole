@@ -112,7 +112,7 @@
             <li class="address-form__item">
               <div *ngIf="userAddress.get('countryId')?.value === 226">
                 <label class="form-label label-for-security-number">Social Security Number*</label>
-                <input name="securityNumber" class="form-input" type="text" formControlName="socialSecurityNumber">
+                <input  mask="000-00-0000" name="securityNumber" class="form-input" type="text" formControlName="socialSecurityNumber" [innerHTML]="'123456789' | slice:0:3">
                 <span class="error-message block" *ngIf="userAddress.get('socialSecurityNumber')?.errors?.required && userAddress.get('socialSecurityNumber')?.touched">This is a required field</span>
               </div>
             </li>
