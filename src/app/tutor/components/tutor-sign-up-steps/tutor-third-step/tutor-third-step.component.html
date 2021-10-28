@@ -1,6 +1,6 @@
 <!--================ Section Tutor Sign Up Third Step Area Start ================-->
 <section class="tutor-sign-up-wrapper">
-  <form action="">
+  <form [formGroup]="form">
     <fieldset>
       <legend class="group-title group-title__bold text-center text-bold">
         Terms for Tutoring
@@ -15,36 +15,33 @@
           <ul class="terms-list">
             <li class="terms-list__item">
               <div class="checkboxes-wrapper-flex">
-                <mat-checkbox class="checkbox-wrapper">
+                <mat-checkbox class="checkbox-wrapper" #agree>
                 </mat-checkbox>
                 <p class="terms-list__item-text">
                   I voluntarily agree to be bound by all terms provided in the above
                   Independent Tutor Agreement as of today’s date. I understand that I may
                   refuse to conduct this transaction with Wyzant by electronic means.
                 </p>
-                <span class="error-message">This is a required field</span>
               </div>
             </li>
             <li class="terms-list__item">
               <div class="checkboxes-wrapper-flex">
-                <mat-checkbox class="checkbox-wrapper">
+                <mat-checkbox class="checkbox-wrapper" #termsAndCondition>
                 </mat-checkbox>
                 <p class="terms-list__item-text">
                   I have read and agree to the <a href="#" class="terms-link">
                   Terms and Condition.</a>
                 </p>
-                <span class="error-message">This is a required field</span>
               </div>
             </li>
             <li class="terms-list__item">
               <div class="checkboxes-wrapper-flex">
-                <mat-checkbox class="checkbox-wrapper">
+                <mat-checkbox class="checkbox-wrapper" #security>
                   <p class="terms-list__item-text">
                     I have a valid Social Security number, I am authorized to work and I am at
                     least 18 years of age or older.
                   </p>
                 </mat-checkbox>
-                <span class="error-message">This is a required field</span>
               </div>
             </li>
           </ul>
@@ -56,13 +53,13 @@
               <input id="legal-first-name" class="form-input" type="text"
                      placeholder="*legal first name"
                      formControlName="legalFirstName">
-              <span class="error-message">This is a required field</span>
+              <span class="error-message" *ngIf="form.get('legalFirstName')?.errors && form.get('legalFirstName')?.touched">This is a required field</span>
             </label>
             <label for="legal-last-name" class="form-label">
               <input id="legal-last-name" class="form-input" type="text"
                      placeholder="*legal last name"
                      formControlName="legalLastName">
-              <span class="error-message">This is a required field</span>
+              <span class="error-message" *ngIf="form.get('legalLastName')?.errors && form.get('legalLastName')?.touched" >This is a required field</span>
             </label>
           </div>
         </li>
@@ -75,10 +72,8 @@
     </div>
   </form>
   <div class="flex-container-center button-wrapper col-md-12 col-lg-12 col-xs-12">
-    <a href="" type="submit"
-       class="sophist-btn flex-container-center">PREVIOUS</a>
-    <a href="" type="submit"
-       class="sophist-btn flex-container-center">NEXT</a>
+    <button class="sophist-btn flex-container-center" (click)="back.emit()">PREVIOUS</button>
+    <button class="sophist-btn flex-container-center" [disabled]="!agree.checked || !termsAndCondition.checked || !security.checked" (click)="onSubmit()" >NEXT</button>
   </div>
 </section>
 <!--================ Section Tutor Sign Up Third Step Area End ================-->

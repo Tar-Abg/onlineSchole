@@ -92,3 +92,19 @@ export interface SaveContacts {
   linkToSocialMedia: string;
   socialMediaExistance: boolean;
 }
+
+export interface SaveWrapUpProfile {
+  id: number;
+  userId: number;
+  headline: string;
+  photo: string;
+  bio: string;
+  wrapUp: string
+}
+
+export interface SaveTermsForTutor {
+  id: number;
+  userId: number;
+  legalFirstName: string;
+  legalLastName: string
+}

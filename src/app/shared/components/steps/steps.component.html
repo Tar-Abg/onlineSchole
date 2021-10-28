@@ -3,10 +3,12 @@
     <li class="step-item" [class.step-item__active]="stepNumber === 1" [class.step-item__passed]="stepNumber > 1">
       <span class="step-item-counter flex-container-center">1</span>
     </li>
-    <li class="step-item" *ngFor="let step of [2,3,4,5]" [class.step-item__active]="stepNumber === step"
-        [class.step-item__passed]="stepNumber > step">
-      <span class="step-item-line"></span>
-      <span class="step-item-counter">{{step}}</span>
+    <li class="step-item" *ngFor="let step of steps; let i = index" [class.step-item__active]="stepNumber === step+1"
+        [class.step-item__passed]="stepNumber > step+1">
+      <ng-container *ngIf="i !== 0">
+        <span class="step-item-line"></span>
+        <span class="step-item-counter">{{step+1}}</span>
+      </ng-container>
     </li>
   </ul>
 </div>

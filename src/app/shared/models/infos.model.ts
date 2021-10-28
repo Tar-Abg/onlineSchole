@@ -33,3 +33,18 @@ export interface StudentLevel {
   checked: boolean;
 }
 
+export interface Categories {
+  id: number;
+  categoryName: string;
+}
+export interface Subjects {
+  id: number;
+  subjectName: string;
+  categoryId: number;
+}
+export interface Level {
+  id: number;
+  level: string;
+  orderNumber: number;
+}
+

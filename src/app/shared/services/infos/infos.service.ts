@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {Observable} from "rxjs";
 import {KeyValuePair} from "../../models/keyValuePair.model";
 import {map} from "rxjs/operators";
 import {ResponseModel} from "../../models/responseModel.model";
-import {Country, DaysOfWeek, HoursOfDay, Month} from "../../models/infos.model";
+import {Categories, Country, DaysOfWeek, HoursOfDay, Level, Month, Subjects} from "../../models/infos.model";
 
 @Injectable({
   providedIn: 'root'
@@ -69,4 +69,33 @@ export class InfosService {
       map(data => data.result)
     );
   }
+
+  getCategories(): Observable<Categories[]> {
+    return this.http.get<ResponseModel<Categories[]>>(`${this.url}/GetCategories`).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getSubjectsByCategoryId(id: number): Observable<Subjects[]> {
+    let params = new HttpParams();
+    params = params.append('categoryId', id);
+    return this.http.get<ResponseModel<Subjects[]>>(`${this.url}/FindAllSubjectsByCategoryId`, {params: params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getLevelsBySubjectId(id: number): Observable<Level[]> {
+    let params = new HttpParams();
+    params = params.append('subjectId', id);
+    return this.http.get<ResponseModel<Level[]>>(`${this.url}/GetLevelsBySubjectId`, {params: params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getCancelationHours(): Observable<KeyValuePair[]> {
+    return this.http.get<ResponseModel<KeyValuePair[]>>(`${this.url}/GetCancelationHours`).pipe(
+      map(data => data.result)
+    );
+  }
+
 }

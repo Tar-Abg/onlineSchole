@@ -41,13 +41,8 @@
               <li class="nested" *ngIf="form.get('everTutoredOnline')?.value">
                 <h3 class="main-question">2.1 Please choose all that apply</h3>
                 <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
-                  <mat-radio-group name="onlineTutoringVariant" class="everTutored"
-                                   formControlName="onlineTutoringVariant">
-                    <mat-radio-button [value]="'Online platforms'">Online platforms</mat-radio-button>
-                    <mat-radio-button [value]="false">Other</mat-radio-button>
-                    <input type="text" placeholder="Enter the option" class="form-input"
-                           *ngIf="form.get('onlineTutoringVariant')?.value === false">
-                  </mat-radio-group>
+                  <input type="text" formControlName="onlineTutoringVariant" placeholder="Online platforms"
+                         class="form-input">
                   <span class="error-message"
                         *ngIf="form.get('onlineTutoringVariant')?.errors && form.get('onlineTutoringVariant')?.touched">This is a required field</span>
                 </div>

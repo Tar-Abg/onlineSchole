@@ -7,10 +7,11 @@ import {
   SaveCertificates,
   SaveContacts,
   SaveInformation,
-  SaveInstitutions
+  SaveInstitutions, SaveTermsForTutor, SaveWrapUpProfile
 } from "../../models/registration.model";
 import {map} from "rxjs/operators";
 import {ResponseModel} from "../../models/responseModel.model";
+import {BasicInformation} from "../../../tutor/models/tutor.model";
 
 @Injectable({
   providedIn: 'root'
@@ -134,7 +135,42 @@ export class RegistrartionService {
       map(data => data.result)
     );
   }
-
   // Contacts end
+
+  saveBasicInformation(body: SaveCertificates): Observable<any> {
+    return this.http.post<Observable<any>>(`${this.url}/SaveBasicInformation`, body);
+  }
+
+  getBasicInformation(id: number): Observable<BasicInformation> {
+    let params = new HttpParams();
+    params = params.append('userId', id);
+    return this.http.get<ResponseModel<BasicInformation>>(`${this.url}/GetBasicInformation`, {params: params}).pipe(
+      map(data => data.result)
+    )
+  }
+
+  updateBasicInformation(body: SaveCertificates): Observable<any> {
+    return this.http.put<ResponseModel<any>>(`${this.url}/UpdateBasicInformation`, body);
+  }
+
+  saveWrapUpProfile(body: SaveWrapUpProfile): Observable<any> {
+    return this.http.post(`${this.url}/SaveWrapUpProfile`, body);
+  }
+
+  getWrapUpProfile(id: number): Observable<SaveWrapUpProfile> {
+    let params = new HttpParams();
+    params = params.append('userId', id);
+    return this.http.get<ResponseModel<SaveWrapUpProfile>>(`${this.url}/GetWrapUpProfile`, {params: params}).pipe(
+      map(data => data.result)
+    )
+  }
+
+  updateWrapUpProfile(body: SaveWrapUpProfile): Observable<any> {
+    return this.http.put<ResponseModel<any>>(`${this.url}/UpdateWrapUpProfile`, body);
+  }
+
+  saveTermsForTutor(body: SaveTermsForTutor): Observable<any> {
+    return this.http.post<ResponseModel<any>>(`${this.url}/SaveTermsForTutor`, body);
+  }
 
 }
