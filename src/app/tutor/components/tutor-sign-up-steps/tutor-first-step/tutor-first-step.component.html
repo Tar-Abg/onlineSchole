@@ -5,7 +5,7 @@
     Please provide the following information so we can start composing your
     profile.</h5>
   <div class="tutor-sign-up-form-container">
-    <form action="">
+    <form [formGroup]="form">
       <fieldset>
         <legend class="group-title group-title__bold text-center text-bold">
           Administrative details
@@ -14,32 +14,44 @@
           <li class="user-sign-up-list__item">
             <h3 class="main-question">Please choose your subject</h3>
             <div class="d-flex flex-container-justify-start gap-3
-            grid-gap-10 date-picker-container">
-              <div class="selectWrapper">
-                <app-select
-                  [label]="'*Category'"
-                  [keyName]="'name'"
-                  formControlName="category">
-                </app-select>
-                <span class="error-message">This is a required field</span>
-              </div>
-              <div class="selectWrapper">
-                <app-select
-                  [label]="'*Time'"
-                  [keyName]="'time'"
-                  formControlName="startOfRange">
-                </app-select>
-                <span class="error-message">This is a required field</span>
-              </div>
-              <div class="selectWrapper">
-                <app-select
-                  [label]="'*Time'"
-                  [keyName]="'time'"
-                  formControlName="endOfRange">
-                </app-select>
-                <span class="error-message">This is a required field</span>
-              </div>
-              <i class="fas fa-plus"></i>
+            grid-gap-10 date-picker-container"  *ngFor="let item of tutorSubjects.controls; let i = index" formArrayName="tutorSubjects">
+              <ng-container [formGroupName]="i">
+                <div class="selectWrapper">
+                  <app-select
+                    [label]="'*Category'"
+                    [list]="categories$ | async"
+                    [keyName]="'categoryName'"
+                    (ngModelChange)="categoryChange($event, i)"
+                    formControlName="categoryId"
+                  >
+                  </app-select>
+                  <span class="error-message"  *ngIf="tutorSubjects.controls[i]?.get('categoryId')?.errors && tutorSubjects.controls[i]?.get('categoryId')?.touched">This is a required field</span>
+                </div>
+                <div class="selectWrapper">
+                  <app-select
+                    [label]="'*Subject'"
+                    [list]="observables[i]?.subjects$ | async"
+                    [keyName]="'subjectName'"
+                    (ngModelChange)="subjectChange($event, i)"
+                    formControlName="subjectId"
+                  >
+                  </app-select>
+                  <span class="error-message"  *ngIf="tutorSubjects.controls[i]?.get('subjectId')?.errors && tutorSubjects.controls[i]?.get('subjectId')?.touched">This is a required field</span>
+                </div>
+                <div class="selectWrapper">
+                  <app-select
+                    [label]="'*Level'"
+                    [list]="observables[i]?.levels$ | async"
+                    [keyName]="'level'"
+                    formControlName="levelId"
+                  >
+                  </app-select>
+                  <span class="error-message"  *ngIf="tutorSubjects.controls[i]?.get('levelId')?.errors && tutorSubjects.controls[i]?.get('levelId')?.touched">This is a required field</span>
+                </div>
+                <i class="text-danger" (click)="removeTutorSubjects(item)" *ngIf="i > 0">x</i>
+                <i class="fas fa-plus" (click)="addTutorSubjects()" *ngIf="i == tutorSubjects.controls.length-1"></i>
+              </ng-container>
+
             </div>
           </li>
           <li class="user-sign-up-list__item">
@@ -47,8 +59,9 @@
             <label for="hourly-rate" class="form-label form-label--flex-container">
               <input id="hourly-rate" class="form-input" type="text"
                      placeholder="*the minimum hourly rate is $20"
-                     value="">
-              <span class="error-message">You cannot enter anything below $20</span>
+                     formControlName="hourlyRate">
+              <span class="error-message" *ngIf="form.get('hourlyRate')?.errors?.min && form.get('hourlyRate')?.touched">You cannot enter anything below $20</span>
+              <span class="error-message" *ngIf="form.get('hourlyRate')?.errors?.required && form.get('hourlyRate')?.touched">This is a required field</span>
             </label>
             <p class="input-notification">Please choose a default hourly rate.
               Sophist’s fee is 18% of this amount</p>
@@ -64,11 +77,12 @@
             <div class="form-label">
               <div class="dropdown-menu-with-selected-icon">
                 <app-select
-                  [label]="'*Country'"
-                  [keyName]="'name'"
-                  formControlName="dayOfWeek">
+                  [label]="'*None'"
+                  [list]="cancelationHours$ | async"
+                  formControlName="cancellationId"
+                  >
                 </app-select>
-                <span class="error-message">Please fill in your last name</span>
+                <span class="error-message" *ngIf="form.get('cancellationId')?.errors?.required && form.get('cancellationId')?.touched">This is a required field</span>
               </div>
             </div>
             <p class="form-item-notification">You may wish to maintain a
@@ -81,83 +95,60 @@
           <h2 class="group-title group-title__bold group-title__m text-center text-bold">
             Your Address
           </h2>
-          <ul class="address-form col-md-6 col-lg-6 col-xs-12 no-gutters">
+          <ul class="address-form col-md-6 col-lg-6 col-xs-12 no-gutters" formGroupName="userAddress">
             <li class="address-form__item">
               <div class="form-label">
                 <app-select
                   [label]="'*Country'"
-                  [keyName]="'name'"
-                  formControlName="dayOfWeek">
+                  [list]="countries$ | async"
+                  [keyName]="'nameLowerCase'"
+                  formControlName="countryId"
+                 >
                 </app-select>
                 <span class="form-item-notification">Visible on the public profile</span>
-                <span class="error-message block">This Field is requires</span>
+                <span class="error-message block" *ngIf="userAddress.get('countryId')?.errors?.required && userAddress.get('countryId')?.touched">This is a required field</span>
               </div>
             </li>
             <li class="address-form__item">
-              <div>
+              <div *ngIf="userAddress.get('countryId')?.value === 226">
                 <label class="form-label label-for-security-number">Social Security Number*</label>
-                <div class="form-input-container">
-                  <div class="input-group-wrapper">
-                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
-                           value="" formControlName="securityNumber">
-                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
-                           value="" formControlName="securityNumber">
-                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
-                           value="" formControlName="securityNumber">
-                  </div>
-                  <div class="input-group-wrapper">
-                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
-                           value="" formControlName="securityNumber">
-                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
-                           value="" formControlName="securityNumber">
-                  </div>
-                  <div class="input-group-wrapper">
-                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
-                           value="" formControlName="securityNumber">
-                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
-                           value="" formControlName="securityNumber">
-                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
-                           value="" formControlName="securityNumber">
-                    <input name="securityNumber" class="form-input" type="text" pattern="\d*" maxlength="1"
-                           value="" formControlName="securityNumber">
-                  </div>
-                  <span class="form-item-notification">Visible on the public profile</span>
-                </div>
+                <input  mask="000-00-0000" name="securityNumber" class="form-input" type="text" formControlName="socialSecurityNumber" [innerHTML]="'123456789' | slice:0:3">
+                <span class="error-message block" *ngIf="userAddress.get('socialSecurityNumber')?.errors?.required && userAddress.get('socialSecurityNumber')?.touched">This is a required field</span>
               </div>
             </li>
             <li class="address-form__item">
               <label for="city" class="form-label">
                 <input id="city" name="city" class="form-input" type="text" placeholder="*city"
-                       value="">
+                       formControlName="city">
                 <span class="form-item-notification">Not visible on the public profile</span>
-                <span class="error-message block">This Field is requires</span>
+                <span class="error-message block" *ngIf="userAddress.get('city')?.errors?.required && userAddress.get('city')?.touched">This is a required field</span>
               </label>
             </li>
             <li class="address-form__item">
               <label for="street-number" class="form-label">
                 <input id="street-number" name="street-number" class="form-input" type="text"
                        placeholder="*street number"
-                       value="">
+                       formControlName="streetNumber">
                 <span class="form-item-notification">Not visible on the public profile</span>
-                <span class="error-message block">This Field is requires</span>
+                <span class="error-message block" *ngIf="userAddress.get('streetNumber')?.errors?.required && userAddress.get('streetNumber')?.touched">This is a required field</span>
               </label>
             </li>
             <li class="address-form__item">
               <label for="street-name" class="form-label">
                 <input id="street-name" name="street-name" class="form-input" type="text"
                        placeholder="*street name"
-                       value="">
+                       formControlName="streetName">
                 <span class="form-item-notification">Not visible on the public profile</span>
-                <span class="error-message block">This Field is requires</span>
+                <span class="error-message block" *ngIf="userAddress.get('streetName')?.errors?.required && userAddress.get('streetName')?.touched">This is a required field</span>
               </label>
             </li>
             <li class="address-form__item">
               <label for="zip-code" class="form-label">
                 <input id="zip-code" name="zip-code" class="form-input" type="text"
                        placeholder="*zip-code"
-                       value="">
+                       formControlName="zipCode">
                 <span class="form-item-notification">Not visible on the public profile</span>
-                <span class="error-message block">This Field is requires</span>
+                <span class="error-message block" *ngIf="userAddress.get('zipCode')?.errors?.required && userAddress.get('zipCode')?.touched">This is a required field</span>
               </label>
             </li>
           </ul>
@@ -166,7 +157,7 @@
     </form>
     <div class="flex-container-center button-wrapper button-wrapper__mt">
       <button class="sophist-btn flex-container-center" (click)="back.emit()">PREVIOUS</button>
-      <button type="submit" class="sophist-btn flex-container-center next-btn" (click)="next.emit()">NEXT</button>
+      <button type="submit" class="sophist-btn flex-container-center next-btn" (click)="onSubmit()">NEXT</button>
     </div>
   </div>
 </section>

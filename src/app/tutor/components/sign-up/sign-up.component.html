@@ -6,7 +6,7 @@
       <h2 class="register-form-wrapper__title">
         Tutor application form
       </h2>
-      <app-steps [stepNumber]="stepNumber"></app-steps>
+      <app-steps [stepNumber]="stepNumber" [stepCount]="5"></app-steps>
       <div class="flex-container-start">
         <div class="flex-item">
           <ng-container [ngSwitch]="stepNumber">
@@ -20,11 +20,6 @@
             <app-fifth-step *ngSwitchCase="5" (back)="changeStepNumber('BACK')"></app-fifth-step>
           </ng-container>
         </div>
-        <!--            <div class="flex-container-center button-wrapper">-->
-        <!--              <a type="submit" class="btn flex-container-center previous-btn" (click)="changeStepNumber('BACK')" *ngIf="stepNumber > 1">PREVIOUS</a>-->
-        <!--              <a type="submit" class="btn flex-container-center next-btn" (click)="changeStepNumber('FORWARD')" *ngIf="stepNumber < 5">NEXT</a>-->
-        <!--              <a type="submit" class="btn flex-container-center sophist-btn" *ngIf="stepNumber === 5">REGISTER</a>-->
-        <!--            </div>-->
         <div class="flex-item col-md-6 col-xs-12 col-lg-4">
           <img src="assets/images/illustration.png"
                alt="Register illustration"

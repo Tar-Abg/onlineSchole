@@ -9,7 +9,7 @@
           <h2 class="register-form-wrapper__title">
             Tutor sign up steps
           </h2>
-          <app-steps [stepNumber]="stepNumber"></app-steps>
+          <app-steps [stepNumber]="stepNumber" [stepCount]="3"></app-steps>
         </div>
       </section>
       <!--================ Section Tutor Register Form Step Area End ================-->
@@ -28,8 +28,7 @@
             </app-tutor-second-step>
             <app-tutor-third-step
               *ngSwitchCase="3"
-              (back)="changeStepNumber('BACK')"
-              (next)="changeStepNumber('FORWARD')">
+              (back)="changeStepNumber('BACK')">
             </app-tutor-third-step>
           </ng-container>
         </div>

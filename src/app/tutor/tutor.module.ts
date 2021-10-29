@@ -17,10 +17,11 @@ import {MatRippleModule} from "@angular/material/core";
 import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from "@angular/material/radio";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-import { TutorSignUpComponent } from './components/tutor-sign-up-steps/tutor-sign-up/tutor-sign-up.component';
-import { TutorFirstStepComponent } from './components/tutor-sign-up-steps/tutor-first-step/tutor-first-step.component';
-import { TutorSecondStepComponent } from './components/tutor-sign-up-steps/tutor-second-step/tutor-second-step.component';
-import { TutorThirdStepComponent } from './components/tutor-sign-up-steps/tutor-third-step/tutor-third-step.component';
+import {TutorSignUpComponent} from './components/tutor-sign-up-steps/tutor-sign-up/tutor-sign-up.component';
+import {TutorFirstStepComponent} from './components/tutor-sign-up-steps/tutor-first-step/tutor-first-step.component';
+import {TutorSecondStepComponent} from './components/tutor-sign-up-steps/tutor-second-step/tutor-second-step.component';
+import {TutorThirdStepComponent} from './components/tutor-sign-up-steps/tutor-third-step/tutor-third-step.component';
+import {NgxMaskModule} from 'ngx-mask';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { TutorThirdStepComponent } from './components/tutor-sign-up-steps/tutor-
     MatFormFieldModule,
     MatInputModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    NgxMaskModule.forRoot()
   ]
 })
 export class TutorModule {
