@@ -1,0 +1,68 @@
+<div class="flex-container">
+  <div class="flex-item flex-item-step-min-length">
+    <div class="margin-left-space">
+      <form class="register-form">
+        <fieldset>
+          <legend class="form-legend">Basic Information</legend>
+          <p>Please provide the following information so we can start creating your profile</p>
+          <ul>
+            <li class="address-form__item">
+              Physical Address
+              <div class="fixed-width form-label">
+                <app-select [label]="'*country'"></app-select>
+                <span class="form-item-notification">Visible on the public profile</span>
+                <span class="error-message block">This Field is requires</span>
+              </div>
+            </li>
+            <li class="address-form__item">
+              <label for="city" class="form-label">
+                <input id="city" class="form-input" autocomplete="city" type="text"
+                       placeholder="*city">
+                <span class="form-item-notification">Visible on the public profile</span>
+                <span class="error-message block">This Field is requires</span>
+              </label>
+            </li>
+            <li class="address-form__item">
+              <label for="streetNumber" class="form-label">
+                <input id="streetNumber" class="form-input" autocomplete="streetNumber" type="text"
+                       placeholder="*Street Number">
+                <span class="form-item-notification">Visible on the public profile</span>
+                <span class="error-message block">This Field is requires</span>
+              </label>
+            </li>
+            <li class="address-form__item">
+              <label for="streetName" class="form-label">
+                <input id="streetName" class="form-input" autocomplete="streetName" type="text"
+                       placeholder="*Street Name">
+                <span class="form-item-notification">Visible on the public profile</span>
+                <span class="error-message block">This Field is requires</span>
+              </label>
+            </li>
+            <li class="address-form__item">
+              <label for="zipCode" class="form-label">
+                <input id="zipCode" class="form-input" autocomplete="zipCode" type="text"
+                       placeholder="*Zip Code">
+                <span class="form-item-notification">Visible on the public profile</span>
+                <span class="error-message block">This Field is requires</span>
+              </label>
+            </li>
+          </ul>
+
+
+        </fieldset>
+        <div class="flex-container-center button-wrapper button-wrapper__mt">
+          <a href="" type="submit"
+             class="sophist-btn flex-container-center" (click)="back.emit()">PREVIOUS</a>
+          <a href="#" type="submit"
+             class="sophist-btn flex-container-center" (click)="next.emit()">NEXT</a>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="flex-item">
+    <img src="assets/images/studentRegister.png"
+         alt="Register illustration"
+         width="100"
+         height="100">
+  </div>
+</div>

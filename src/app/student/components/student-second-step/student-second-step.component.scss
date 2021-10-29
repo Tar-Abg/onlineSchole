@@ -1,0 +1,62 @@
+th {
+  font-family: Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  color: #DE9300;
+}
+
+td h4 {
+  font-family: Segoe UI;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  color: #DE9300;
+  margin: 0;
+  padding: 0;
+}
+
+td p {
+  margin: 0;
+  padding: 0;
+  font-family: Segoe UI;
+  font-style: normal;
+  font-weight: 350;
+  font-size: 16px;
+  line-height: 21px;
+  color: #717171;
+}
+
+td {
+  border-top: 1px solid #F7F7F7;
+  border-bottom: 1px solid #F7F7F7;
+}
+
+td:first-child {
+  border: 0;
+}
+
+td:last-child {
+  border-right: 1px solid #F7F7F7;
+  border-radius: 0 5px 5px 0;
+}
+
+td:nth-child(2) {
+  border-left: 1px solid #F7F7F7;
+  border-radius: 5px 0 0 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
