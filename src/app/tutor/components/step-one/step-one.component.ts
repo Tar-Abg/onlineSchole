@@ -36,6 +36,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.storageService.setUserType(1) // will be removed
     this.formInitialization();
     this.userId = this.storageService.getUserId();
     this.initializeSubscriptions();
@@ -43,6 +44,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
 
   formInitialization(): void {
     this.form = this.fb.group({
+      userType: [this.storageService.getUserType()],
       firstName: [null, [Validators.required]],
       lastName: [null, [Validators.required]],
       gender: [null, [Validators.required]],

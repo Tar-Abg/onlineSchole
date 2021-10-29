@@ -20,7 +20,6 @@ export class SecondStepComponent implements OnInit, OnDestroy {
   form: FormGroup;
   countries$: Observable<Country[]>;
   institutionalLevels$: Observable<KeyValuePair[]>;
-  userId: number;
   private actionType: "CREATE" | "UPDATE" = "CREATE";
 
 
@@ -79,7 +78,8 @@ export class SecondStepComponent implements OnInit, OnDestroy {
       graduationDate: [null, [Validators.required]],
       degreeInProgress: [false, [Validators.required]],
       pdfFromInstitution: [null],
-      userId: [this.userId],
+      userId: [this.storageService.getUserId()],
+      pdfName: [null],
       id: [null]
     })
   }
@@ -92,21 +92,23 @@ export class SecondStepComponent implements OnInit, OnDestroy {
   initializeSubscriptions(): void {
     this.countries$ = this.infoService.getCountries();
     this.institutionalLevels$ = this.infoService.getInstitutionalLevels();
-    this.userId = this.storageService.getUserId();
-    this.userId && this.getInstitutionsPage();
+    this.getInstitutionsPage();
   }
 
   getInstitutionsPage(): void {
-    this.subscription.add(
-      this.registrationService.getInstitutionsPage(this.userId).subscribe((institutions) => {
-        if (institutions.length) {
-          this.actionType = "UPDATE";
-          this.patchFormValue(institutions);
-        } else {
-          this.actionType = "CREATE";
-        }
-      })
-    );
+    const userId = this.storageService.getUserId();
+    if (userId) {
+      this.subscription.add(
+        this.registrationService.getInstitutionsPage(userId).subscribe((institutions) => {
+          if (institutions.length) {
+            this.actionType = "UPDATE";
+            this.patchFormValue(institutions);
+          } else {
+            this.actionType = "CREATE";
+          }
+        })
+      )
+    }
   }
 
   saveInstitutions(): void {
@@ -134,7 +136,7 @@ export class SecondStepComponent implements OnInit, OnDestroy {
 
 
   subscribeForFormValueChange(form: FormGroup): void {
-   this.degreeInProgressChanged(form);
+    this.degreeInProgressChanged(form);
     this.subscription.add(
       form.valueChanges.subscribe(val => {
         this.formArray.updateValueAndValidity();
@@ -145,7 +147,8 @@ export class SecondStepComponent implements OnInit, OnDestroy {
   fileUploaded(event: any, formGroup: any) {
     let reader = new FileReader();
     let file = event.files[0];
-    reader.readAsDataURL(file);
+    reader.readAsDataURL(file)
+    formGroup.get('pdfName')?.setValue(file.name);
     reader.onload = () => {
       formGroup.get('pdfFromInstitution')?.setValue(reader.result);
       this.formArray.updateValueAndValidity();
@@ -164,6 +167,7 @@ export class SecondStepComponent implements OnInit, OnDestroy {
           form.get('pdfFromInstitution')?.removeValidators(Validators.required);
           form.get('pdfFromInstitution')?.updateValueAndValidity();
           form.get('pdfFromInstitution')?.reset();
+          form.get('pdfName')?.reset();
         }
         form.get('graduationDate')?.updateValueAndValidity();
         form.get('pdfFromInstitution')?.updateValueAndValidity();
