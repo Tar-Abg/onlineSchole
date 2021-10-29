@@ -1,0 +1,23 @@
+<div class="grid-container">
+  <app-register-header></app-register-header>
+  <main class="content-wrapper">
+    <!--================ Section Register Form First Step Area Start ================-->
+    <section class="register-form-wrapper">
+      <h2 class="register-form-wrapper__title">
+        Tutor application form
+      </h2>
+      <app-steps [stepNumber]="stepNumber"></app-steps>
+      <ng-container [ngSwitch]="stepNumber">
+        <app-student-first-step *ngSwitchCase="1" (next)="changeStepNumber('FORWARD')"></app-student-first-step>
+        <app-student-second-step *ngSwitchCase="2" (back)="changeStepNumber('BACK')"
+                                 (next)="changeStepNumber('FORWARD')"></app-student-second-step>
+        <app-student-third-step *ngSwitchCase="3" (back)="changeStepNumber('BACK')"
+                                (next)="changeStepNumber('FORWARD')"></app-student-third-step>
+        <app-student-fourth-step *ngSwitchCase="4" (back)="changeStepNumber('BACK')"
+                                 (next)="changeStepNumber('FORWARD')"></app-student-fourth-step>
+        <app-student-fifth-step *ngSwitchCase="5" (back)="changeStepNumber('BACK')"></app-student-fifth-step>
+      </ng-container>
+    </section>
+    <!--================ Section Register Form First Step Area End ================-->
+  </main>
+</div>
