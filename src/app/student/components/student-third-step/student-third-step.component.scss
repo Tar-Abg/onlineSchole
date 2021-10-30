@@ -1,0 +1,21 @@
+@import "src/assets/css/variables";
+
+.form-legend-description {
+  font: $type-light normal $type-medium-size $Segoe-UI-sans;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  color: #3862B0;
+  margin-bottom: 22px;
+}
+
+.form-wrapper {
+  width: 418px;
+
+  .select-label {
+    margin-bottom: 5px;
+    font: $type-regular normal $type-medium-size $Segoe-UI-sans;
+    line-height: 24px;
+    color: $clr-ntrl-max;
+  }
+}
+

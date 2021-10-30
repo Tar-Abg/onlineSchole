@@ -64,7 +64,8 @@
 .error-message {
   position: absolute;
   left: 0;
-  bottom: -18px;
+  bottom: -24px;
+  margin: 5px 0;
   font: $type-light normal 14px / 19px $Segoe-UI-sans;
   color: $danger-color;
   font-family: $Segoe-UI-sans;
