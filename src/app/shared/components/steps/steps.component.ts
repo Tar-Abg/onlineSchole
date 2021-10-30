@@ -7,7 +7,7 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 })
 export class StepsComponent implements OnInit, OnChanges {
   @Input() stepNumber: number;
-  @Input() stepCount: number;
+  @Input()  stepCount: number;
   steps: number[];
 
   constructor() { }

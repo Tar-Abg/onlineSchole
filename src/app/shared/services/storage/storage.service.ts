@@ -11,6 +11,10 @@ export class StorageService {
     localStorage.setItem('userId', JSON.stringify(userId))
   }
 
+  setUserType(type: number): void {
+    localStorage.setItem('userType', JSON.stringify(type))
+  }
+
   getUserId(): number{
     const userId = localStorage.getItem('userId');
     if (userId) {
@@ -20,8 +24,21 @@ export class StorageService {
     }
   }
 
+  getUserType(): number{
+    const userType = localStorage.getItem('userType');
+    if (userType) {
+      return +userType;
+    } else {
+      return NaN;
+    }
+  }
+
   clearUserId(): void {
     localStorage.removeItem('userId');
+  }
+
+  clearUserType(): void {
+    localStorage.removeItem('userType');
   }
 
 }

@@ -24,6 +24,7 @@ export interface SaveInstitutions {
   startDate: string;
   graduationDate: string;
   degreeInProgress: boolean;
+  pdfName: string;
 }
 
 export interface SaveCertificates {

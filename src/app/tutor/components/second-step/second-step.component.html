@@ -37,6 +37,7 @@
                          height="36">
                   </div>
                   <input type="file" accept="application/pdf" name="chooseFile" class="chooseFile"  (change)="fileUploaded($event.target, item)">
+                  <p>{{formArray.controls[i]?.get('pdfName')?.value}}</p>
                 </div>
                 <h3 class="upload-message">Please upload an unofficial transcript (the
                   file must be in .pdf
