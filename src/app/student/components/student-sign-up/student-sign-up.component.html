@@ -6,7 +6,7 @@
       <h2 class="register-form-wrapper__title">
         Tutor application form
       </h2>
-      <app-steps [stepNumber]="stepNumber"></app-steps>
+      <app-steps [stepNumber]="stepNumber" [stepCount]="5"></app-steps>
       <ng-container [ngSwitch]="stepNumber">
         <app-student-first-step *ngSwitchCase="1" (next)="changeStepNumber('FORWARD')"></app-student-first-step>
         <app-student-second-step *ngSwitchCase="2" (back)="changeStepNumber('BACK')"

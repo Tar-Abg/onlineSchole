@@ -10,8 +10,7 @@ import { StudentFourthStepComponent } from './components/student-fourth-step/stu
 import { StudentFifthStepComponent } from './components/student-fifth-step/student-fifth-step.component';
 import {SharedModuleModule} from "../shared/shared.module";
 import {MatCheckboxModule} from "@angular/material/checkbox";
-
-
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -27,7 +26,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         CommonModule,
         StudentRoutingModule,
         SharedModuleModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        ReactiveFormsModule
     ]
 })
 export class StudentModule { }

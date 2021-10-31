@@ -47,7 +47,7 @@
                  placeholder="*re-enter password" formControlName="rePassword">
           <span class="error-message"
                 *ngIf="form.get('rePassword')?.errors?.required && form.get('rePassword')?.touched">Please create your password</span>
-          <span class="error-message" *ngIf="form?.errors?.notSame  && form.get('rePassword')?.touched">Passwords are not the same</span>
+          <span class="error-message" *ngIf="form?.errors?.notSame  && form.get('rePassword')?.touched && !form.get('rePassword')?.errors?.required">Passwords are not the same</span>
         </label>
       </fieldset>
       <div class="flex-container-center button-wrapper">
