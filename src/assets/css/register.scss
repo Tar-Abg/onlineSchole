@@ -44,35 +44,37 @@
   grid-gap: 34px;
 }
 
-.phone-region {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  width: 125px;
-  height: 50px;
-  border: 1px solid #E9E9E9;
-  box-sizing: border-box;
-  border-radius: $border-radius-small;
-  padding: 12px 0 12px 10px;
-  cursor: pointer;
+.phone {
+  &-region {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    width: 125px;
+    height: 50px;
+    border: 1px solid #E9E9E9;
+    box-sizing: border-box;
+    border-radius: $border-radius-small;
+    padding: 12px 0 12px 10px;
+    cursor: pointer;
+  }
+
+  &-code {
+    display: flex;
+    align-items: center;
+    margin-left: 6px;
+    font: $type-bold normal 18px/24px $Segoe-UI-sans;
+    letter-spacing: 0.03em;
+    color: $primary-color-dk;
+
+    img {
+      margin: 0 5px;
+    }
+  }
 }
 
 .flag {
   width: 39px;
   height: 26px;
-}
-
-.phone-code {
-  display: flex;
-  align-items: center;
-  margin-left: 6px;
-  font: $type-bold normal 18px/24px $Segoe-UI-sans;
-  letter-spacing: 0.03em;
-  color: $primary-color-dk;
-
-  img {
-    margin: 0 5px;
-  }
 }
 
 .question-list {
@@ -133,6 +135,9 @@
 }
 
 .form-item-notification {
+  margin-bottom: 5px;
+  font: $type-light normal $type-small $Roboto-sans;
+  line-height: 20px;
   color: #DE9300;
 }
 
@@ -145,7 +150,7 @@
 
     .form-item-notification {
       position: absolute;
-      bottom: -30px;
+      bottom: -24px;
       margin: 5px 0;
     }
 
@@ -155,5 +160,3 @@
     }
   }
 }
-
-/*Image Uploader */

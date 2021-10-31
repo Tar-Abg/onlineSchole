@@ -1,0 +1,35 @@
+.student-form-title {
+  width: 1221px;
+  margin: 0 auto 20px;
+}
+
+.tutor-sign-up {
+
+  &-wrapper {
+    margin-top: 0;
+    padding: 20px 33px 110px;
+  }
+
+  &-form-container {
+    margin: 0;
+
+    .upload-photo-title {
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.form-label--textarea {
+  width: 697px;
+  margin-bottom: 5px;
+
+  .error-message {
+    left: unset;
+    right: 0;
+  }
+}
+
+.button-wrapper__mt {
+  margin-top: 50px;
+}
+

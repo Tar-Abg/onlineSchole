@@ -12,7 +12,7 @@
                   [label]="'*Category'"
                   [keyName]="'name'">
                 </app-select>
-                <span class="error-message">This is a required field</span>
+                <span class="error-message">Please choose a subject</span>
               </div>
               <div class="selectWrapper">
                 <app-select
@@ -20,7 +20,6 @@
                   [keyName]="'subject'"
                   formControlName="startOfRange">
                 </app-select>
-                <span class="error-message">This is a required field</span>
               </div>
               <div class="selectWrapper">
                 <app-select
@@ -28,123 +27,177 @@
                   [keyName]="'level'"
                   formControlName="endOfRange">
                 </app-select>
-                <span class="error-message">This is a required field</span>
               </div>
               <i class="fas fa-plus"></i>
             </div>
           </li>
           <li class="user-sign-up-list__item">
-            <h3 class="main-question">When are you available for lesson?</h3>
-            <table id="customers">
-              <thead>
-              <tr>
-                <th></th>
-                <th>Sun</th>
-                <th>Mon</th>
-                <th>Tue</th>
-                <th>Wed</th>
-                <th>Thu</th>
-                <th>Fri</th>
-                <th>Sat</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr>
-                <td>
-                  <h4> Morning</h4>
-                  <p>Before noon </p>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4> Afternoon</h4>
-                  <p>12-5 pm </p>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4> Evening</h4>
-                  <p>After 5 pm </p>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-                <td>
-                  <mat-checkbox></mat-checkbox>
-                </td>
-              </tr>
-              </tbody>
-            </table>
-          </li>
-          <li class="user-sign-up-list__item">
+            <div class="mb-15">
+              <h3 class="main-question mb-15">When are you available for lesson?</h3>
+              <table id="customers">
+                <thead>
+                <tr>
+                  <th></th>
+                  <th>
+                    <h2 class="table-head__title">Sun</h2>
+                  </th>
+                  <th>
+                    <h2 class="table-head__title"> Mon </h2>
+                  </th>
+                  <th>
+                    <h2 class="table-head__title">Tue </h2>
+                  </th>
+                  <th>
+                    <h2 class="table-head__title">Wed</h2>
+                  </th>
+                  <th>
+                    <h2 class="table-head__title">Thu</h2>
+                  </th>
+                  <th>
+                    <h2 class="table-head__title">Fri</h2>
+                  </th>
+                  <th>
+                    <h2 class="table-head__title">Sat</h2>
+                  </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                  <td>
+                    <h4 class="table-row__title"> Morning</h4>
+                    <p class="table-row__description">Before noon </p>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h4 class="table-row__title"> Afternoon</h4>
+                    <p class="table-row__description">12-5 pm </p>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <h4 class="table-row__title"> Evening</h4>
+                    <p class="table-row__description">After 5 pm </p>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox></mat-checkbox>
+                    </div>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
             <div class="checkboxes-wrapper">
               <mat-checkbox>
                 Anytime (I’m flixable)
               </mat-checkbox>
             </div>
           </li>
-          <li class="user-sign-up-list__item checkboxes-wrapper-flex-with-min-width">
+          <li class="user-sign-up-list__item select-wrapper-min-width">
             <h3 class="main-question">How many tutoring sessions do you think you will need?</h3>
             <div class="fixed-width form-label">
               <app-select [label]="'*select'"></app-select>
-              <span class="error-message">This field is required</span>
             </div>
           </li>
         </ul>

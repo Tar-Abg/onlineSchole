@@ -125,6 +125,14 @@ img {
   position: relative;
 }
 
+.mb-15.form-legend {
+  margin-bottom: 15px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
 /* OverWrite Material css*/
 .mat-form-field-appearance-fill .mat-form-field-flex {
   background-color: unset;
@@ -228,6 +236,18 @@ img {
   }
 }
 
-//.mat-form-field-wrapper {
-//  padding-bottom: 0;
-//}
+.table-checkbox-wrapper {
+  .mat-checkbox-layout {
+    margin: 0;
+    display: table;
+  }
+}
+
+.mat-checkbox-indeterminate.mat-accent .mat-checkbox-background, .mat-checkbox-checked.mat-accent .mat-checkbox-background {
+  background-color: $checked-checkbox-color;
+}
+
+.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element,
+.mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
+  background-color: $checked-checkbox-color;
+}

@@ -18,5 +18,4 @@ export class StepsComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
     this.steps = Array.from(Array(this.stepCount).keys());
   }
-
 }

@@ -3,11 +3,12 @@
     <div class="margin-left-space">
       <form class="register-form">
         <fieldset>
-          <legend class="form-legend">Basic Information</legend>
-          <p>Please provide the following information so we can start creating your profile</p>
-          <ul>
+          <legend class="form-legend mb-15">Basic Information</legend>
+          <p class="form-legend-description">Please provide the following information so we can start creating your
+            profile</p>
+          <ul class="form-wrapper">
             <li class="address-form__item">
-              Physical Address
+              <p class="select-label">Physical Address</p>
               <div class="fixed-width form-label">
                 <app-select [label]="'*country'"></app-select>
                 <span class="form-item-notification">Visible on the public profile</span>
