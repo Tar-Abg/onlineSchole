@@ -7,6 +7,7 @@ import {KeyValuePair} from "../../../../shared/models/keyValuePair.model";
 import {RegistrartionService} from "../../../../shared/services/registration/registrartion.service";
 import {StorageService} from "../../../../shared/services/storage/storage.service";
 import {BasicInformation} from "../../../models/tutor.model";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-tutor-first-step',
@@ -99,7 +100,7 @@ export class TutorFirstStepComponent implements OnInit, OnDestroy {
       id: [null],
       categoryId: [null, [Validators.required]],
       subjectId: [null, [Validators.required]],
-      levelId: [null, [Validators.required]],
+      levelId: [null],
     });
   }
 
@@ -161,8 +162,19 @@ export class TutorFirstStepComponent implements OnInit, OnDestroy {
     this.observables[index].subjects$ = this.infoService.getSubjectsByCategoryId(event);
   }
 
-  subjectChange(event: any, index: number) {
-    this.observables[index].levels$ = this.infoService.getLevelsBySubjectId(event);
+  subjectChange(event: any, index: number, form: any) {
+    this.observables[index].levels$ = this.infoService.getLevelsBySubjectId(event).pipe(
+      tap(list => {
+        if (list.length) {
+          form.get('levelId')?.setValidators(Validators.required);
+          form.get('levelId').updateValueAndValidity()
+        } else {
+          form.get('levelId')?.removeValidators(Validators.required);
+          form.get('levelId').updateValueAndValidity()
+        }
+        this.form.updateValueAndValidity();
+      })
+    );
   }
 
   ngOnDestroy(): void {

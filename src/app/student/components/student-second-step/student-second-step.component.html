@@ -1,34 +1,51 @@
 <div class="flex-container">
   <div class="flex-item flex-item-step-min-length">
     <div class="margin-left-space">
-      <form class="register-form">
+      <form class="register-form" [formGroup]="form" (ngSubmit)="onSubmit()">
         <ul class="user-sign-up-list">
           <li class="user-sign-up-list__item">
             <h3 class="main-question">What subject(s) are you interested in?</h3>
             <div class="d-flex flex-container-justify-start gap-3
-            grid-gap-10 date-picker-container">
-              <div class="selectWrapper">
-                <app-select
-                  [label]="'*Category'"
-                  [keyName]="'name'">
-                </app-select>
-                <span class="error-message">Please choose a subject</span>
-              </div>
-              <div class="selectWrapper">
-                <app-select
-                  [label]="'Subject'"
-                  [keyName]="'subject'"
-                  formControlName="startOfRange">
-                </app-select>
-              </div>
-              <div class="selectWrapper">
-                <app-select
-                  [label]="'What level is this for?'"
-                  [keyName]="'level'"
-                  formControlName="endOfRange">
-                </app-select>
-              </div>
-              <i class="fas fa-plus"></i>
+            grid-gap-10 date-picker-container" *ngFor="let item of studentSubjects.controls; let i = index"
+                 formArrayName="studentSubjects">
+              <ng-container [formGroupName]="i">
+                <div class="selectWrapper">
+                  <app-select
+                    [label]="'*Category'"
+                    [keyName]="'categoryName'"
+                    [list]="categories$ | async"
+                    formControlName="categoryId"
+                    (ngModelChange)="categoryChange($event, i, studentSubjects.controls[i])"
+                  >
+                  </app-select>
+                  <span class="error-message"
+                        *ngIf="studentSubjects.controls[i]?.get('categoryId')?.errors && studentSubjects.controls[i]?.get('categoryId')?.touched">Please choose a subject</span>
+                </div>
+                <div class="selectWrapper">
+                  <app-select
+                    [label]="'Subject'"
+                    [keyName]="'subjectName'"
+                    [list]="observables[i]?.subjects$ | async"
+                    (ngModelChange)="subjectChange($event, i, studentSubjects.controls[i])"
+                    formControlName="subjectId">
+                  </app-select>
+                  <span class="error-message"
+                        *ngIf="studentSubjects.controls[i]?.get('subjectId')?.errors && studentSubjects.controls[i]?.get('subjectId')?.touched">This is a required field</span>
+                </div>
+                <div class="selectWrapper">
+                  <app-select
+                    [label]="'What level is this for?'"
+                    [list]="observables[i]?.levels$ | async"
+                    [keyName]="'level'"
+                    formControlName="levelId">
+                  </app-select>
+                  <span class="error-message"
+                        *ngIf="studentSubjects.controls[i]?.get('levelId')?.errors && studentSubjects.controls[i]?.get('levelId')?.touched">This is a required field</span>
+                </div>
+                <i class="text-danger" (click)="removeStudentSubjects(item)" *ngIf="i > 0">x</i>
+                <i class="fas fa-plus" (click)="addStudentSubjects()"
+                   *ngIf="i == studentSubjects.controls.length-1"></i>
+              </ng-container>
             </div>
           </li>
           <li class="user-sign-up-list__item">
@@ -62,126 +79,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                <tr *ngFor="let item of availableHours; let j = index">
                   <td>
-                    <h4 class="table-row__title"> Morning</h4>
-                    <p class="table-row__description">Before noon </p>
+                    <h4 class="table-row__title"> {{item[j+1].description}}</h4>
+                    <p class="table-row__description">{{item[j+1].details}}</p>
                   </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h4 class="table-row__title"> Afternoon</h4>
-                    <p class="table-row__description">12-5 pm </p>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <h4 class="table-row__title"> Evening</h4>
-                    <p class="table-row__description">After 5 pm </p>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="table-checkbox-wrapper">
-                      <mat-checkbox></mat-checkbox>
+                  <td *ngFor="let day of item.days; let i = index">
+                    <div class="table-checkbox-wrapper" >
+                      <mat-checkbox [disabled]="isDisabledCalendar" (change)="selectDay($event, item.days[i])" [checked]="item.days[i].checked"></mat-checkbox>
                     </div>
                   </td>
                 </tr>
@@ -189,21 +94,21 @@
               </table>
             </div>
             <div class="checkboxes-wrapper">
-              <mat-checkbox>
-                Anytime (I’m flixable)
+              <mat-checkbox formControlName="isFlexible" (ngModelChange)="isFlexibleChange($event)">
+                Anytime (I’m flexible)
               </mat-checkbox>
             </div>
           </li>
           <li class="user-sign-up-list__item select-wrapper-min-width">
             <h3 class="main-question">How many tutoring sessions do you think you will need?</h3>
             <div class="fixed-width form-label">
-              <app-select [label]="'*select'"></app-select>
+              <app-select [label]="'*select'" [list]="lessonsCounts$ | async" formControlName="sessionsCountId"></app-select>
             </div>
           </li>
         </ul>
         <div class="flex-container-center button-wrapper button-wrapper__mt">
           <button class="sophist-btn flex-container-center" (click)="back.emit()">PREVIOUS</button>
-          <button type="submit" class="sophist-btn flex-container-center next-btn" (click)="next.emit()">NEXT</button>
+          <button type="submit" class="sophist-btn flex-container-center next-btn">NEXT</button>
         </div>
       </form>
     </div>

@@ -32,11 +32,11 @@
                     [label]="'*Subject'"
                     [list]="observables[i]?.subjects$ | async"
                     [keyName]="'subjectName'"
-                    (ngModelChange)="subjectChange($event, i)"
+                    (ngModelChange)="subjectChange($event, i, tutorSubjects.controls[i])"
                     formControlName="subjectId"
                   >
                   </app-select>
-                  <span class="error-message"  *ngIf="tutorSubjects.controls[i]?.get('subjectId')?.errors && tutorSubjects.controls[i]?.get('subjectId')?.touched">This is a required field</span>
+                  <span class="error-message" *ngIf="tutorSubjects.controls[i]?.get('subjectId')?.errors && tutorSubjects.controls[i]?.get('subjectId')?.touched">This is a required field</span>
                 </div>
                 <div class="selectWrapper">
                   <app-select

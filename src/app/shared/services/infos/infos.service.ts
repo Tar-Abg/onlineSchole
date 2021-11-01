@@ -5,7 +5,15 @@ import {Observable} from "rxjs";
 import {KeyValuePair} from "../../models/keyValuePair.model";
 import {map} from "rxjs/operators";
 import {ResponseModel} from "../../models/responseModel.model";
-import {Categories, Country, DaysOfWeek, HoursOfDay, Level, Month, Subjects} from "../../models/infos.model";
+import {
+  Categories,
+  Country,
+  DaysOfWeek,
+  HoursOfDay,
+  Level,
+  Month,
+  Subjects
+} from "../../models/infos.model";
 
 @Injectable({
   providedIn: 'root'
@@ -94,6 +102,17 @@ export class InfosService {
 
   getCancelationHours(): Observable<KeyValuePair[]> {
     return this.http.get<ResponseModel<KeyValuePair[]>>(`${this.url}/GetCancelationHours`).pipe(
+      map(data => data.result)
+    );
+  }
+  getStudentWantedLessonsCounts(): Observable<KeyValuePair[]> {
+    return this.http.get<ResponseModel<KeyValuePair[]>>(`${this.url}/GetStudentWantedLessonsCounts`).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getStudentAvailableHours(): any {
+    return this.http.get<ResponseModel<any[]>>(`${this.url}/GetStudentAvailableHours`).pipe(
       map(data => data.result)
     );
   }
