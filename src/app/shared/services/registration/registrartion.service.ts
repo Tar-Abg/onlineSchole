@@ -3,11 +3,12 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {Observable} from "rxjs";
 import {
+  Address,
   Preferences,
   SaveCertificates,
   SaveContacts,
   SaveInformation,
-  SaveInstitutions, SaveTermsForTutor, SaveWrapUpProfile
+  SaveInstitutions, SaveTermsForTutor, SaveWrapUpProfile, StudentWantedLessons
 } from "../../models/registration.model";
 import {map} from "rxjs/operators";
 import {ResponseModel} from "../../models/responseModel.model";
@@ -172,5 +173,38 @@ export class RegistrartionService {
   saveTermsForTutor(body: SaveTermsForTutor): Observable<any> {
     return this.http.post<ResponseModel<any>>(`${this.url}/SaveTermsForTutor`, body);
   }
+
+  saveStudentAddress(body: Address): Observable<any> {
+    return this.http.post<ResponseModel<any>>(`${this.url}/SaveAddress`, body);
+  }
+
+  updateStudentAddress(body: Address): Observable<any> {
+    return this.http.put<ResponseModel<any>>(`${this.url}/UpdateAddress`, body);
+  }
+
+  getStudentAddressPage(userId: number): Observable<Address> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    return this.http.get<ResponseModel<Address>>(`${this.url}/GetAddressPage`, {params: params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  saveStudentWantedLessons(body: StudentWantedLessons): Observable<any> {
+    return this.http.post<ResponseModel<any>>(`${this.url}/SaveStudentWantedLessons`, body);
+  }
+
+  updateStudentWantedLessons(body: StudentWantedLessons): Observable<any> {
+    return this.http.put<ResponseModel<any>>(`${this.url}/UpdateStudentWantedLessons`, body);
+  }
+
+  getStudentWantedLessons(userId: number): Observable<StudentWantedLessons> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    return this.http.get<ResponseModel<StudentWantedLessons>>(`${this.url}/GetStudentWantedLessons`, {params: params}).pipe(
+      map(data => data.result)
+    );
+  }
+
 
 }

@@ -109,3 +109,38 @@ export interface SaveTermsForTutor {
   legalFirstName: string;
   legalLastName: string
 }
+
+export interface Address {
+  id?: number;
+  userId?: number;
+  countryId: number;
+  city: string;
+  streetNumber: string;
+  streetName: string;
+  zipCode: string;
+  socialSecurityNumber?: number;
+}
+export interface StudentWantedLessons {
+  id: number;
+  userId: number;
+  sessionsCountId: number;
+  isFlexible: true,
+  studentSubjects: StudentSubjects[],
+  availabilities: Availabilities[]
+}
+
+export interface StudentSubjects {
+  categoryId: number;
+  subjectId: number;
+  levelId: number;
+  infoId?: number;
+}
+
+export interface Availabilities {
+  id?: number;
+  userId?: number;
+  dayId: number;
+  partOfDayId: number;
+  infoId?: number;
+  infoAboutStudentWantedLessonId?: number;
+}

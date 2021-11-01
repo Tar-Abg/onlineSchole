@@ -48,3 +48,8 @@ export interface Level {
   orderNumber: number;
 }
 
+export interface StudentAvailableHours {
+  id: number;
+  description: string;
+  details: number;
+}
