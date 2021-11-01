@@ -251,3 +251,28 @@ img {
 .mat-checkbox:active:not(.mat-checkbox-disabled).mat-accent .mat-ripple-element {
   background-color: $checked-checkbox-color;
 }
+
+.credit-card-container {
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+    width: 114px;
+  }
+
+  .mat-datepicker-input {
+    height: 37px;
+    border: 0;
+    border-bottom: 1px solid #8fb5fc;
+  }
+
+  .mat-form-field {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .form-control.select {
+    border: 0;
+    border-bottom: 1px solid #8fb5fc;
+    border-radius: 0;
+    box-shadow: unset;
+  }
+}

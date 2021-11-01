@@ -10,6 +10,9 @@ import { StudentFourthStepComponent } from './components/student-fourth-step/stu
 import { StudentFifthStepComponent } from './components/student-fifth-step/student-fifth-step.component';
 import {SharedModuleModule} from "../shared/shared.module";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatIconModule} from "@angular/material/icon";
 
 
 
@@ -23,11 +26,14 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     StudentFourthStepComponent,
     StudentFifthStepComponent
   ],
-    imports: [
-        CommonModule,
-        StudentRoutingModule,
-        SharedModuleModule,
-        MatCheckboxModule
-    ]
+  imports: [
+    CommonModule,
+    StudentRoutingModule,
+    SharedModuleModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatIconModule
+  ]
 })
 export class StudentModule { }

@@ -1,0 +1,104 @@
+@import "src/assets/css/variables";
+
+.main-convenient {
+  padding-left: 105px;
+
+  &-list {
+    padding: 30px 0 0 30px;
+    width: 60%;
+
+    &__item {
+      display: flex;
+      align-items: flex-start;
+      grid-gap: 20px;
+      margin-bottom: 20px;
+      font: $type-light normal $type-medium-size $Segoe-UI-sans;
+      line-height: 24px;
+      color: $clr-ntrl-max;
+
+      img {
+        width: auto;
+        height: auto;
+      }
+    }
+  }
+}
+
+.checkboxes-wrapper {
+  a {
+    color: $secondary-icon-brand-color;
+    text-decoration: underline;
+  }
+}
+
+.credit-card-container {
+  width: 100%;
+  padding: 0 168px 0 178px;
+}
+
+.flex-item-for-card, .form-legend {
+  margin-left: 105px;
+  width: 382px;
+}
+
+.billing-address-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 37px 0 58px;
+  padding: 0 190px 58px 105px;
+  grid-gap: 32px;
+  border-bottom: 2px solid #efefef;
+
+  .form-label {
+    flex: 0 0 418px;
+  }
+}
+
+.card-field {
+  height: 34px;
+  border: 0;
+  border-bottom: 1px solid #8FB5FC;
+}
+
+.main-question {
+  flex: 0 0 100%;
+  font-size: $type-base;
+  line-height: 27px;
+}
+
+.mb-32 {
+  margin-bottom: 32px;
+}
+
+.form-group {
+  display: flex;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.card-input-label {
+  font: $type-light normal $type-small $Segoe-UI-sans;
+  line-height: 21px;
+  color: #7a7a7a;
+}
+
+.checkbox-text {
+  margin-top: 16px;
+  font: $type-regular normal $type-small $Segoe-UI-sans;
+  line-height: 21px;
+  color: $clr-ntrl-max;
+}
+
+.date-picker-wrapper {
+  display: flex;
+  grid-gap: 30px;
+
+  .cvv-label {
+    width: 110px;
+    margin-left: 33px;
+  }
+}
+
+.select-year-wrapper {
+  width: 62px;
+}

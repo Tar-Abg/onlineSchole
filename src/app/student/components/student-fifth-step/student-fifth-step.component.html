@@ -1,22 +1,107 @@
-<div class="flex-container">
-  <div class="flex-item flex-item-step-min-length">
-    <div class="margin-left-space">
-      <form class="register-form">
-        <fieldset>
-          <legend class="form-legend">Payment Information</legend>
-          <div class="flex-container">
-            <div class="flex-item-for-card">
-
+<div class="credit-card-container">
+  <form class="register-form">
+    <fieldset>
+      <legend class="form-legend">Payment Information</legend>
+      <div class="flex-container-start">
+        <div class="flex-item-for-card">
+          <h3 class="main-question mb-32">ADD credit card/debet card</h3>
+          <label for="cardNumber" class="flex-column form-group">
+            <span class="card-input-label"> Card Number*</span>
+            <input type="text" id="cardNumber" class="card-field" placeholder="" maxlength="16">
+            <span class="error-message block">This Field is required</span>
+          </label>
+          <label for="cardName" class="form-group form-label flex-column">
+            <span class="card-input-label"> Insert your name as it appears on the card </span>
+            <input id="cardName" class="card-field" autocomplete="cardName" type="text" placeholder="*name on  card">
+            <span class="error-message">This Field is required</span>
+          </label>
+          <span class="card-input-label">Card expiration date*</span>
+          <div class="date-picker-wrapper">
+            <div class="form-group">
+              <mat-form-field appearance="fill" class="date-range-wrapper">
+                <input
+                  [matDatepicker]="picker"
+                  (click)="picker.open()"
+                  [readonly]="true"
+                >
+                <mat-datepicker-toggle matSuffix [for]="picker">
+                  <mat-icon matDatepickerToggleIcon>arrow_drop_down</mat-icon>
+                </mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-label>*mm/dd/yyyy</mat-label>
+              </mat-form-field>
+              <span class="error-message">This is a required field</span>
             </div>
-            <div class="card__image">
-              <img src="assets/images/card.png" alt="Card" width="693" height="420">
+            <div class="form-group select-year-wrapper">
+              <app-select [label]="'*year of card'" formControlName="yearOfCard"></app-select>
             </div>
+            <label for="cvv" class="form-group form-label flex-column cvv-label">
+              <span class="card-input-label"> CVC2/CVV2* </span>
+              <input id="cvv" class="card-field" autocomplete="cvv" type="text" placeholder="" maxlength="3">
+              <span class="error-message">This Field is required</span>
+            </label>
           </div>
-        </fieldset>
-        <div class="flex-container-center button-wrapper">
-          <button type="submit" class="sophist-btn flex-container-center next-btn">NEXT</button>
         </div>
-      </form>
+        <div class="card__image">
+          <img src="assets/images/card.png" alt="Card" width="693" height="420">
+        </div>
+      </div>
+      <div class="billing-address-container">
+        <h3 class="main-question">Billing Address</h3>
+        <label for="streetNumber" class="form-label">
+          <input id="streetNumber" class="form-input" autocomplete="streetNumber" type="text"
+                 placeholder="*Street Number">
+          <span class="error-message block">This Field is requires</span>
+        </label>
+        <label for="city" class="form-label">
+          <input id="city" class="form-input" autocomplete="city" type="text"
+                 placeholder="*city">
+          <span class="error-message block">This Field is requires</span>
+        </label>
+        <label for="apartmentOrSuite" class="form-label">
+          <input id="apartmentOrSuite" class="form-input" autocomplete="apartmentOrSuite" type="text"
+                 placeholder="*apartment or suite">
+          <span class="error-message block">This Field is requires</span>
+        </label>
+        <label for="state" class="form-label">
+          <input id="state" class="form-input" autocomplete="state" type="text"
+                 placeholder="*state">
+          <span class="error-message block">This Field is requires</span>
+        </label>
+        <label for="zipCode" class="form-label">
+          <input id="zipCode" class="form-input" autocomplete="zipCode" type="text"
+                 placeholder="*Zip Code">
+          <span class="error-message block">This Field is requires</span>
+        </label>
+      </div>
+    </fieldset>
+  </form>
+  <div class="main-convenient">
+    <h3 class="main-question">Convenient , cashless payments</h3>
+    <ul class="main-convenient-list">
+      <li class="main-convenient-list__item">
+        <img src="assets/images/checked.png" alt="Checked" width="26" height="26">
+        Pay only once your lesson’s complete
+      </li>
+      <li class="main-convenient-list__item">
+        <img src="assets/images/checked.png" alt="Checked" width="26" height="26">
+        Lessons are changed by each tutor’s hourly rate
+      </li>
+      <li class="main-convenient-list__item">
+        <img src="assets/images/checked.png" alt="Checked" width="26" height="26">
+        It is your responsibility to notify the tutor about the cancelation of the class. Please read the
+        cancelation policy of your tutor prior to scheduling the class. The tutor may charge you for the late
+        notice.
+      </li>
+    </ul>
+    <div class="checkboxes-wrapper">
+      <mat-checkbox>
+        <p class="checkbox-text">I have read and agree to the to the <a href="">Payment Policies</a></p>
+      </mat-checkbox>
     </div>
+  </div>
+  <div class="flex-container-center button-wrapper button-wrapper__mt">
+    <button class="sophist-btn flex-container-center" (click)="back.emit()">PREVIOUS</button>
+    <button type="submit" class="sophist-btn flex-container-center next-btn">Sign</button>
   </div>
 </div>
