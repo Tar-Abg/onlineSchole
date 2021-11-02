@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Observable, Subscription} from "rxjs";
+import {Observable, Subject, Subscription} from "rxjs";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {Month} from "../../../shared/models/infos.model";
@@ -22,6 +22,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
   genderList$: Observable<KeyValuePair[]>;
   months$: Observable<Month[]>;
   yearList: KeyValuePair[];
+  emailIsExist$: Subject<boolean>;
   private actionType: "CREATE" | "UPDATE" = "CREATE";
   userId: number;
 
@@ -88,6 +89,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
     this.months$ = this.infosService.getMonths();
     this.yearList = this.dateService.getYears(1930);
     this.userId && this.getInformationForUser();
+    this.emailIsExist$ = this.registrationService.emailIsExist$;
   }
 
   getInformationForUser(): void {

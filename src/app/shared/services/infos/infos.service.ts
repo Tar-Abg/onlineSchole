@@ -11,7 +11,7 @@ import {
   DaysOfWeek,
   HoursOfDay,
   Level,
-  Month,
+  Month, States,
   Subjects
 } from "../../models/infos.model";
 
@@ -113,6 +113,18 @@ export class InfosService {
 
   getStudentAvailableHours(): any {
     return this.http.get<ResponseModel<any[]>>(`${this.url}/GetStudentAvailableHours`).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getStates(): Observable<States[]> {
+    return this.http.get<ResponseModel<States[]>>(`${this.url}/GetStates`).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getIsUserAmerican(): Observable<boolean> {
+    return this.http.get<ResponseModel<boolean>>(`${this.url}/IsUserAmerican`).pipe(
       map(data => data.result)
     );
   }

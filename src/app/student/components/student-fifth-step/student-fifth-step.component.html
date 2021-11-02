@@ -1,5 +1,5 @@
 <div class="credit-card-container">
-  <form class="register-form">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="register-form">
     <fieldset>
       <legend class="form-legend">Payment Information</legend>
       <div class="flex-container-start">
@@ -7,38 +7,32 @@
           <h3 class="main-question mb-32">ADD credit card/debet card</h3>
           <label for="cardNumber" class="flex-column form-group">
             <span class="card-input-label"> Card Number*</span>
-            <input type="text" id="cardNumber" class="card-field" placeholder="" maxlength="16">
-            <span class="error-message block">This Field is required</span>
+            <input type="text" id="cardNumber" class="card-field" placeholder="" maxlength="16" formControlName="cardNumber">
+            <span class="error-message block" *ngIf="form.get('cardNumber')?.errors?.required && form.get('cardNumber')?.touched">This Field is required</span>
           </label>
           <label for="cardName" class="form-group form-label flex-column">
             <span class="card-input-label"> Insert your name as it appears on the card </span>
-            <input id="cardName" class="card-field" autocomplete="cardName" type="text" placeholder="*name on  card">
-            <span class="error-message">This Field is required</span>
+            <input id="cardName" class="card-field" autocomplete="cardName" type="text" placeholder="*name on  card" formControlName="name">
+            <span class="error-message" *ngIf="form.get('name')?.errors?.required && form.get('name')?.touched">This Field is required</span>
           </label>
           <span class="card-input-label">Card expiration date*</span>
           <div class="date-picker-wrapper">
             <div class="form-group">
-              <mat-form-field appearance="fill" class="date-range-wrapper">
-                <input
-                  [matDatepicker]="picker"
-                  (click)="picker.open()"
-                  [readonly]="true"
-                >
-                <mat-datepicker-toggle matSuffix [for]="picker">
-                  <mat-icon matDatepickerToggleIcon>arrow_drop_down</mat-icon>
-                </mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                <mat-label>*mm/dd/yyyy</mat-label>
-              </mat-form-field>
-              <span class="error-message">This is a required field</span>
+              <select formControlName="monthId">
+                <option [ngValue]="item.id" *ngFor="let item of months$ | async">{{item.numberInString + ' ' + item.name}}</option>
+              </select>
+              <span class="error-message" *ngIf="form.get('monthId')?.errors?.required && form.get('monthId')?.touched">This is a required field</span>
             </div>
             <div class="form-group select-year-wrapper">
-              <app-select [label]="'*year of card'" formControlName="yearOfCard"></app-select>
+              <select formControlName="year">
+                <option [ngValue]="item.id" *ngFor="let item of yearList">{{item.description}}</option>
+              </select>
+              <span class="error-message" *ngIf="form.get('year')?.errors?.required && form.get('year')?.touched">This is a required field</span>
             </div>
             <label for="cvv" class="form-group form-label flex-column cvv-label">
               <span class="card-input-label"> CVC2/CVV2* </span>
-              <input id="cvv" class="card-field" autocomplete="cvv" type="text" placeholder="" maxlength="3">
-              <span class="error-message">This Field is required</span>
+              <input id="cvv" class="card-field" autocomplete="cvv" type="text" placeholder="" maxlength="3" formControlName="cvv">
+              <span class="error-message" *ngIf="form.get('cvv')?.errors?.required && form.get('cvv')?.touched">This Field is required</span>
             </label>
           </div>
         </div>
@@ -46,32 +40,31 @@
           <img src="assets/images/card.png" alt="Card" width="693" height="420">
         </div>
       </div>
-      <div class="billing-address-container">
+      <div class="billing-address-container" *ngIf="isUserFromUS$ | async" formGroupName="billingAddress">
         <h3 class="main-question">Billing Address</h3>
         <label for="streetNumber" class="form-label">
           <input id="streetNumber" class="form-input" autocomplete="streetNumber" type="text"
-                 placeholder="*Street Number">
-          <span class="error-message block">This Field is requires</span>
+                 placeholder="*Street Number" formControlName="streetNumber">
+          <span class="error-message block" *ngIf="billingAddress.get('streetNumber')?.errors?.required && billingAddress.get('streetNumber')?.touched">This Field is requires</span>
         </label>
         <label for="city" class="form-label">
           <input id="city" class="form-input" autocomplete="city" type="text"
-                 placeholder="*city">
-          <span class="error-message block">This Field is requires</span>
+                 placeholder="*city" formControlName="city">
+          <span class="error-message block" *ngIf="billingAddress.get('city')?.errors?.required && billingAddress.get('city')?.touched">This Field is requires</span>
         </label>
         <label for="apartmentOrSuite" class="form-label">
           <input id="apartmentOrSuite" class="form-input" autocomplete="apartmentOrSuite" type="text"
-                 placeholder="*apartment or suite">
-          <span class="error-message block">This Field is requires</span>
+                 placeholder="*apartment or suite" formControlName="apartment">
+          <span class="error-message block" *ngIf="billingAddress.get('apartment')?.errors?.required && billingAddress.get('apartment')?.touched">This Field is requires</span>
         </label>
-        <label for="state" class="form-label">
-          <input id="state" class="form-input" autocomplete="state" type="text"
-                 placeholder="*state">
-          <span class="error-message block">This Field is requires</span>
+        <label class="form-label">
+          <app-select [list]="states$ | async" [keyName]="'name'" [label]="'*state'" formControlName="stateId"></app-select>
+          <span class="error-message block" *ngIf="billingAddress.get('stateId')?.errors?.required && billingAddress.get('stateId')?.touched">This Field is requires</span>
         </label>
         <label for="zipCode" class="form-label">
-          <input id="zipCode" class="form-input" autocomplete="zipCode" type="text"
-                 placeholder="*Zip Code">
-          <span class="error-message block">This Field is requires</span>
+          <input id="zipCode" class="form-input" autocomplete="zipCode"
+                 placeholder="*Zip Code" formControlName="zipCode">
+          <span class="error-message block" *ngIf="billingAddress.get('zipCode')?.errors?.required && billingAddress.get('zipCode')?.touched">This Field is requires</span>
         </label>
       </div>
     </fieldset>
@@ -95,13 +88,13 @@
       </li>
     </ul>
     <div class="checkboxes-wrapper">
-      <mat-checkbox>
+      <mat-checkbox #paymentPolicies>
         <p class="checkbox-text">I have read and agree to the to the <a href="">Payment Policies</a></p>
       </mat-checkbox>
     </div>
   </div>
   <div class="flex-container-center button-wrapper button-wrapper__mt">
     <button class="sophist-btn flex-container-center" (click)="back.emit()">PREVIOUS</button>
-    <button type="submit" class="sophist-btn flex-container-center next-btn">Sign</button>
+    <button type="submit" class="sophist-btn flex-container-center next-btn" (click)="onSubmit()" [disabled]="!paymentPolicies.checked">Sign</button>
   </div>
 </div>

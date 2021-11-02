@@ -2,6 +2,7 @@ export interface Month {
   id: number;
   name: string;
   shortName: string;
+  numberInString: string;
   days: number;
   daysLeapYear: number;
 }
@@ -52,4 +53,10 @@ export interface StudentAvailableHours {
   id: number;
   description: string;
   details: number;
+}
+
+export interface States {
+  id: number;
+  code: string;
+  name: string;
 }

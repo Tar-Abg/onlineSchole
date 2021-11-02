@@ -124,9 +124,9 @@ export interface StudentWantedLessons {
   id: number;
   userId: number;
   sessionsCountId: number;
-  isFlexible: true,
-  studentSubjects: StudentSubjects[],
-  availabilities: Availabilities[]
+  isFlexible: true;
+  studentSubjects: StudentSubjects[];
+  availabilities: Availabilities[];
 }
 
 export interface StudentSubjects {
@@ -143,4 +143,21 @@ export interface Availabilities {
   partOfDayId: number;
   infoId?: number;
   infoAboutStudentWantedLessonId?: number;
+}
+export interface CardDetails {
+  userId: number;
+  cardNumber: string;
+  name: string;
+  monthId: number;
+  year: number;
+  cvv: number;
+  billingAddress?: BillingAddress;
+}
+
+export interface BillingAddress {
+  stateId: number;
+  streetNumber: string;
+  apartment: string;
+  zipCode: string;
+  city: string;
 }

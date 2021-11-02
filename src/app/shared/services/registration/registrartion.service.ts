@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {Observable} from "rxjs";
+import {Observable, of, Subject} from "rxjs";
 import {
-  Address,
+  Address, CardDetails,
   Preferences,
   SaveCertificates,
   SaveContacts,
   SaveInformation,
   SaveInstitutions, SaveTermsForTutor, SaveWrapUpProfile, StudentWantedLessons
 } from "../../models/registration.model";
-import {map} from "rxjs/operators";
+import {catchError, map} from "rxjs/operators";
 import {ResponseModel} from "../../models/responseModel.model";
 import {BasicInformation} from "../../../tutor/models/tutor.model";
 
@@ -18,7 +18,8 @@ import {BasicInformation} from "../../../tutor/models/tutor.model";
   providedIn: 'root'
 })
 export class RegistrartionService {
-  private url = `${environment.apiUrl}/Registration`
+  private url = `${environment.apiUrl}/Registration`;
+  emailIsExist$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private http: HttpClient) {
   }
@@ -35,7 +36,13 @@ export class RegistrartionService {
     }
     delete body.password
     return this.http.post<ResponseModel<number>>(`${this.url}/SaveInformation`, body).pipe(
-      map(data => data.result)
+      map(data => data.result),
+      catchError(err => {
+        if(err.error?.type === 'Email existence error') {
+          this.emailIsExist$.next(true)
+        }
+        throw new Error(err.error.type);
+      })
     );
   }
 
@@ -50,7 +57,13 @@ export class RegistrartionService {
     }
     delete body.password
     return this.http.put<ResponseModel<number>>(`${this.url}/UpdateInformation`, body).pipe(
-      map(data => data.result)
+      map(data => data.result),
+      catchError(err => {
+        if(err.error?.type === 'Email existence error') {
+          this.emailIsExist$.next(true)
+        }
+        throw new Error(err.error.type);
+      })
     );
   }
 
@@ -206,5 +219,8 @@ export class RegistrartionService {
     );
   }
 
+  saveCardDetails(body: CardDetails): Observable<any> {
+    return this.http.post<ResponseModel<any>>(`${this.url}/SaveCardDetails`, body);
+  }
 
 }
