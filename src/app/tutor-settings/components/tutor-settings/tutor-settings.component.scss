@@ -1,0 +1,20 @@
+.settingsWrapper {
+  padding: 15px;
+  gap: 50px;
+  display: grid;
+  ul {
+    li {
+      cursor: pointer;
+      white-space: nowrap;
+      &.active {
+        border: 1px solid black;
+      }
+    }
+  }
+  > div {
+    border: 1px solid black;
+    border-radius: 50px;
+    padding: 20px;
+    width: 100%;
+  }
+}

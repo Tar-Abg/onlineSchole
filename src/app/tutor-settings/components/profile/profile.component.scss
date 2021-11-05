@@ -1,0 +1,13 @@
+form {
+  >div {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .image-uploaded {
+    border-radius: 50%;
+    display: block;
+    overflow: hidden;
+  }
+
+}

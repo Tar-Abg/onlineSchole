@@ -1,0 +1,22 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <div>
+    <div>
+      <label class="form-label">Hourly rate</label>
+      <input class="form-input" type="text" formControlName="hourlyRate">
+      <span>The minimum hourly rate is $20</span>
+      <span>Your online lesson rate appears in search results and on your tutor profile when students are looking for online tutoring. </span>
+    </div>
+  </div>
+  <div>
+    <label>Lesson Cancelation</label>
+    <app-select
+      [label]="'*None'"
+      [list]="cancelationHours$ | async"
+      formControlName="cancellationId"
+    >
+    </app-select>
+  </div>
+
+  <button type="submit">Update infromation</button>
+
+</form>

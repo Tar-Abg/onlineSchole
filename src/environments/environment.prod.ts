@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  apiUrl: 'http://sophisteducation-001-site1.itempurl.com'
 };
