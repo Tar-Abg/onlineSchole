@@ -1,0 +1,116 @@
+<div [class.margin-left-space]="!isLoggedIn" [class.margin-left-onLogged]="isLoggedIn">
+  <form [formGroup]="form">
+    <div formArrayName="formArray" *ngFor="let item of formArray.controls; let i = index">
+      <fieldset class="register-form" [formGroupName]="i">
+        <div class="flex-container-start register-step-form row">
+          <div class="flex-item col-md-6">
+            <label for="institution-name" class="form-label">
+              <input id="institution-name" class="form-input" type="text"
+                     placeholder="*institution name"
+                     formControlName="name">
+              <span class="error-message"
+                    *ngIf="formArray.controls[i]?.get('name')?.errors && formArray.controls[i]?.get('name')?.touched">This is a required field </span>
+            </label>
+            <div class="form-label fixed-width">
+              <app-select [label]="'*education level'" [list]="institutionalLevels$ | async"
+                          formControlName="educationalLevel"></app-select>
+              <span class="error-message block"
+                    *ngIf="formArray.controls[i]?.get('educationalLevel')?.errors && formArray.controls[i]?.get('educationalLevel')?.touched">This is a required field </span>
+            </div>
+            <label for="major" class="form-label">
+              <input id="major" class="form-input" type="text" placeholder="*major"
+                     formControlName="major">
+              <span class="error-message"
+                    *ngIf="formArray.controls[i]?.get('major')?.errors && formArray.controls[i]?.get('major')?.touched">This is a required field</span>
+            </label>
+
+            <label class="container-for-checkbox">Degree in progress
+              <input type="checkbox"  class="degree" formControlName="degreeInProgress">
+              <span class="checkmark"></span>
+            </label>
+            <div class="choose-file-wrapper" *ngIf="formArray.controls[i]?.get('degreeInProgress')?.value">
+              <div class="file-upload">
+                <div class="file-select">
+                  <div class="file-select-button" id="fileName">
+                    <img src="assets/images/pdf.png" alt="Pdf" width="36"
+                         height="36">
+                  </div>
+                  <input type="file" accept="application/pdf" name="chooseFile" class="chooseFile"  (change)="fileUploaded($event.target, item)">
+                  <p>{{formArray.controls[i]?.get('pdfName')?.value}}</p>
+                </div>
+                <h3 class="upload-message">Please upload an unofficial transcript (the
+                  file must be in .pdf
+                  format)</h3>
+              </div>
+              <span class="error-message"
+                    *ngIf="formArray.controls[i]?.get('pdfFromInstitution')?.errors && formArray.controls[i]?.get('pdfFromInstitution')?.touched">This is a required field</span>
+            </div>
+          </div>
+          <div class="flex-item col-md-6">
+            <div class="form-label fixed-width">
+              <app-select [label]="'*country'" [list]="countries$ | async" [keyName]="'nameLowerCase'"
+                          formControlName="countryId"></app-select>
+              <span class="error-message block"
+                    *ngIf="formArray.controls[i]?.get('countryId')?.errors && formArray.controls[i]?.get('countryId')?.touched">This is a required field </span>
+            </div>
+            <label for="city" class="form-label">
+              <input id="city" class="form-input" type="text" placeholder="*city"
+                     formControlName="city">
+              <span class="error-message"
+                    *ngIf="formArray.controls[i]?.get('city')?.errors && formArray.controls[i]?.get('city')?.touched">This is a required field</span>
+            </label>
+            <div class="flex-container-start double-calendar fixed-width">
+              <div class="date-picker-wrapper">
+                <h2 class="date-picker-label">From </h2>
+                <mat-form-field appearance="fill" class="date-range-wrapper">
+                  <input matInput
+                         [matDatepicker]="picker"
+                         (click)="picker.open()"
+                         formControlName="startDate"
+                         [readonly]="true"
+                  >
+                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
+                  <mat-label>*mm/dd/yyyy</mat-label>
+                </mat-form-field>
+                <span class="error-message"
+                      *ngIf="formArray.controls[i]?.get('startDate')?.errors && formArray.controls[i]?.get('startDate')?.touched">This is a required field</span>
+              </div>
+              <div class="date-picker-wrapper">
+                <h2 class="date-picker-label">To </h2>
+                <mat-form-field appearance="fill" class="date-range-wrapper">
+                  <input matInput [matDatepicker]="picker1"
+                         (click)="picker1.open()"
+                         formControlName="graduationDate"
+                         [readonly]="true" [disabled]="item.get('degreeInProgress')?.value === true">
+                  <mat-datepicker-toggle matSuffix [for]="picker1">
+
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #picker1></mat-datepicker>
+                  <mat-label>*mm/dd/yyyy</mat-label>
+                </mat-form-field>
+                <span class="error-message"
+                      *ngIf="formArray.controls[i]?.get('graduationDate')?.errors && formArray.controls[i]?.get('graduationDate')?.touched">This is a required field</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div *ngIf="i > 0">
+          <button type="button" class="remove-icon-wrapper" (click)="removeForm(item)">
+            <img src="assets/images/recycleBin.png" alt="Remove Row">
+          </button>
+        </div>
+      </fieldset>
+    </div>
+  </form>
+  <button type="button" class="add" (click)="addNewForm()"> + Add</button>
+  <div class="flex-container-center button-wrapper">
+    <ng-container *ngIf="!isLoggedIn">
+      <button class="sophist-btn flex-container-center previous-btn" (click)="back.emit()">PREVIOUS</button>
+      <button class="sophist-btn flex-container-center next-btn" (click)="onSubmit()">NEXT</button>
+    </ng-container>
+
+    <button *ngIf="isLoggedIn" type="submit" class="sophist-btn flex-container-center btn-blue" (click)="updateInstitutions()">Update information</button>
+  </div>
+</div>
+
