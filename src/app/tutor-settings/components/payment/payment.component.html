@@ -1,1 +1,87 @@
-<p>payment works!</p>
+<div class="tutor-settings-nested-page">
+  <h3 class="tutor-settings-page-title">Add Payment Method</h3>
+  <form action="" class="tutor-settings-nested-page__form tutor-settings-nested-page__form--fixed--width">
+    <fieldset>
+      <legend class="tutor-settings-page-legend">
+        <h3 class="form-legend-title-tab">CREDIT CARD/DEBET CARD</h3>
+        <h3  class="form-legend-title-tab active">DIRECT DEPOSIT</h3>
+      </legend>
+      <div class="setting-form-input-wrapper">
+        <label for="account-holder-name" class="form-label">
+          <input id="account-holder-name"
+                 class="form-input"
+                 name="account-holder-name"
+                 required
+                 autocomplete="accountHolderName"
+                 type="text"
+                 placeholder="*account holder’s name"
+                 formControlName="accountHolderName">
+          <span class="error-message">The Current Password field is required.</span>
+        </label>
+        <div class="fixed-width form-label">
+          <app-select [label]="'*account type'" formControlName="accountType"></app-select>
+          <span class="error-message">Please specify your gender</span>
+        </div>
+        <label for="bank-name" class="form-label">
+          <input id="bank-name"
+                 class="form-input"
+                 name="bank-name"
+                 required
+                 autocomplete="bank-name"
+                 type="text"
+                 placeholder="*bank name"
+                 formControlName="bankName">
+          <span class="error-message">The Confirm New Password field is required.</span>
+        </label>
+        <label for="nine-digit-routing" class="form-label">
+          <input id="nine-digit-routing"
+                 class="form-input"
+                 name="nine-digit-routing"
+                 required
+                 autocomplete="nine-digit-routing"
+                 type="text"
+                 placeholder="*nine digit routing"
+                 formControlName="nineDigitrouting">
+          <span class="error-message">The Confirm New Password field is required.</span>
+        </label>
+        <label for="confirm-routing" class="form-label">
+          <input id="confirm-routing"
+                 class="form-input"
+                 name="confirm-routing"
+                 required
+                 autocomplete="confirm-routing"
+                 type="text"
+                 placeholder="*confirm routing"
+                 formControlName="confirmRouting">
+          <span class="error-message">The Confirm New Password field is required.</span>
+        </label>
+        <label for="account" class="form-label">
+          <input id="account"
+                 class="form-input"
+                 name="account"
+                 required
+                 autocomplete="account"
+                 type="text"
+                 placeholder="*account"
+                 formControlName="account">
+          <span class="error-message">The Confirm New Password field is required.</span>
+        </label>
+        <label for="confirm-account" class="form-label">
+          <input id="confirm-account"
+                 class="form-input"
+                 name="confirm-account"
+                 required
+                 autocomplete="confirm-account"
+                 type="text"
+                 placeholder="*confirm account"
+                 formControlName="confirm-account">
+          <span class="error-message">The Confirm New Password field is required.</span>
+        </label>
+      </div>
+    </fieldset>
+    <div class="flex-container-center grid-gap-for-buttons">
+      <button class="settings-form-button settings-form-button__with-border button-border--blue">Edit</button>
+      <button class="settings-form-button settings-form-button__with-border button-border--green">Save</button>
+    </div>
+  </form>
+</div>

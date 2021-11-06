@@ -11,6 +11,7 @@ import {ChangePasswordComponent} from "./components/change-password/change-passw
 import {AvailabilityComponent} from "./components/availability/availability.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModuleModule} from "../shared/shared.module";
+import {LayoutsModule} from "../layouts/layouts.module";
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {SharedModuleModule} from "../shared/shared.module";
     CommonModule,
     TutorSettingsRoutingModule,
     ReactiveFormsModule,
-    SharedModuleModule
+    SharedModuleModule,
+    LayoutsModule
 
   ]
 })

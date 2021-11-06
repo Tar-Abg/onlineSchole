@@ -1,4 +1,3 @@
-
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
 @use '~@angular/material' as mat;
@@ -37,6 +36,7 @@ $school-theme: mat.define-light-theme((
 @import "assets/css/normalize";
 @import "assets/css/reset";
 @import "assets/css/animation";
+@import "assets/css/layouts/header";
 @import "assets/css/general";
 @import "assets/css/components/button";
 @import "assets/css/components/input";
@@ -46,6 +46,7 @@ $school-theme: mat.define-light-theme((
 @import "assets/css/components/modal";
 @import "assets/css/components/upload-file";
 @import "assets/css/tutor-sign-up";
+@import "assets/css/tutorSettingPages/tutorSettingPages";
 @import "assets/css/register";
 
 
@@ -54,8 +55,14 @@ $school-theme: mat.define-light-theme((
   src: local("Segoe UI"), url(./assets/fonts/SegoeUI.ttf) format("truetype");
 }
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 app-select {
   width: 100%;

@@ -1,0 +1,19 @@
+/*!********* Header Are Start ***************!*/
+.header {
+  &-wrapper {
+    grid-area: header;
+    height: 181px;
+    padding: 0 140px;
+    margin-bottom: 4px;
+  }
+
+  &-logo {
+    width: 240px;
+
+    &-link {
+      display: inline-block;
+    }
+  }
+}
+
+/*!********* Header Are End ***************!*/
