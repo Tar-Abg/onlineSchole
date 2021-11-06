@@ -51,7 +51,7 @@ export class StudentSecondStepComponent implements OnInit, OnDestroy {
       id: [null],
       userId: [this.storageService.getUserId()],
       sessionsCountId: [null],
-      isFlexible: [null],
+      isFlexible: [false],
       studentSubjects: this.fb.array([
         this.newStudentSubjects()
       ]),

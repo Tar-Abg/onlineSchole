@@ -73,7 +73,6 @@ export class ThirdStepComponent implements OnInit, OnDestroy {
     } else {
       this.updateCertificates();
     }
-    // this.next.emit()
   }
 
   updateValueAndValidity(form: FormGroup): void {
