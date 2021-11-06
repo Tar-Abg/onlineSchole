@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core'
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {ValidationService} from "../../../shared/services/validation/validation.service";
-import {Observable, Subscription} from "rxjs";
+import {Observable, Subject, Subscription} from "rxjs";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
@@ -19,6 +19,7 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
   form: FormGroup;
   genderList$: Observable<KeyValuePair[]>;
   private actionType: "CREATE" | "UPDATE" = "CREATE";
+  emailIsExist$: Subject<boolean>;
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +35,7 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
     this.initializeForm();
     this.genderList$ = this.infosService.getGenders();
     this.getInformationForStudent();
+    this.emailIsExist$ = this.registrationService.emailIsExist$;
   }
 
   initializeForm(): void {

@@ -18,4 +18,16 @@ export class DateService {
     }
     return yearList
   }
+
+  getYearsForCard(): KeyValuePair[] {
+    let yearList: KeyValuePair[] = [];
+    const thisYear = new Date().getFullYear();
+    let year = thisYear-10;
+    while (year <= thisYear ) {
+      yearList.push({id: year, description: year.toString()});
+      year++
+    }
+    return yearList
+  }
+
 }

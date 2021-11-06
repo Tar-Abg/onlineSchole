@@ -1,0 +1,14 @@
+<div class="d-flex settingsWrapper">
+  <ul>
+    <li [routerLink]="['./']" routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">Profile information</li>
+    <li [routerLink]="['rates']" routerLinkActive="active">Rates and politics</li>
+    <li [routerLink]="['availability']" routerLinkActive="active">Availability</li>
+    <li [routerLink]="['subjects']" routerLinkActive="active">Subjects</li>
+    <li [routerLink]="['personal-information']" routerLinkActive="active">Personal information</li>
+    <li [routerLink]="['payment-methode']" routerLinkActive="active">Payment method</li>
+    <li [routerLink]="['change-password']" routerLinkActive="active">Change password</li>
+  </ul>
+  <div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

@@ -21,6 +21,7 @@
                    placeholder="*email address" formControlName="email">
             <span class="error-message" *ngIf="form.get('email')?.errors?.required && form.get('email')?.touched">Please enter your email address</span>
             <span class="error-message" *ngIf="form.get('email')?.errors?.pattern && form.get('email')?.touched">Please provide a valid email address</span>
+            <span class="error-message" *ngIf="emailIsExist$ | async">This email is already registered on Sophist</span>
           </label>
           <label for="password" class="form-label">
             <input id="password" class="form-input" autocomplete="new-password" type="password"

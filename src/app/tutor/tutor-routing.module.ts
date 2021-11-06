@@ -9,6 +9,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signUp', component: SignUpComponent},
   {path: 'profileDetails', component: TutorSignUpComponent},
+  {path: 'settings', loadChildren: () => import('../tutor-settings/tutor-settings.module').then(m => m.TutorSettingsModule)},
 ]
 
 @NgModule({
