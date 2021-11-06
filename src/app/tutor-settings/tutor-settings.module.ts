@@ -13,6 +13,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModuleModule} from "../shared/shared.module";
 import {TutorInstitutionsComponent} from "./components/tutor-institutions/tutor-institutions.component";
 import {TutorCertificatesComponent} from "./components/tutor-certificates/tutor-certificates.component";
+import {LayoutsModule} from "../layouts/layouts.module";
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {TutorCertificatesComponent} from "./components/tutor-certificates/tutor-
     CommonModule,
     TutorSettingsRoutingModule,
     ReactiveFormsModule,
-    SharedModuleModule
+    SharedModuleModule,
+    LayoutsModule
 
   ]
 })

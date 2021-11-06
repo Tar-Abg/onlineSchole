@@ -29,7 +29,8 @@
               formControlName="bio"
     > *a short headline about yourself
                 </textarea>
-    <span class="error-message" *ngIf="form.get('bio')?.errors && form.get('bio')?.touched">This is a required field</span>
+    <span class="error-message"
+          *ngIf="form.get('bio')?.errors && form.get('bio')?.touched">This is a required field</span>
     <span>Your free response must be between 100 and 2000 characters.</span>
   </div>
   <div>
