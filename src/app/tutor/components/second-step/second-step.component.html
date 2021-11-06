@@ -25,10 +25,16 @@
                     *ngIf="formArray.controls[i]?.get('major')?.errors && formArray.controls[i]?.get('major')?.touched">This is a required field</span>
             </label>
 
-            <label class="container-for-checkbox">Degree in progress
-              <input type="checkbox"  class="degree" formControlName="degreeInProgress">
-              <span class="checkmark"></span>
-            </label>
+            <div class="checkboxes-wrapper">
+              <mat-checkbox formControlName="degreeInProgress">
+                Degree in progress
+              </mat-checkbox>
+            </div>
+
+            <!--            <label class="container-for-checkbox">-->
+            <!--              <input type="checkbox" class="degree" formControlName="">-->
+            <!--              <span class="checkmark"></span>-->
+            <!--            </label>-->
             <div class="choose-file-wrapper" *ngIf="formArray.controls[i]?.get('degreeInProgress')?.value">
               <div class="file-upload">
                 <div class="file-select">
@@ -36,7 +42,8 @@
                     <img src="assets/images/pdf.png" alt="Pdf" width="36"
                          height="36">
                   </div>
-                  <input type="file" accept="application/pdf" name="chooseFile" class="chooseFile"  (change)="fileUploaded($event.target, item)">
+                  <input type="file" accept="application/pdf" name="chooseFile" class="chooseFile"
+                         (change)="fileUploaded($event.target, item)">
                   <p>{{formArray.controls[i]?.get('pdfName')?.value}}</p>
                 </div>
                 <h3 class="upload-message">Please upload an unofficial transcript (the
@@ -63,32 +70,40 @@
             <div class="flex-container-start double-calendar fixed-width">
               <div class="date-picker-wrapper">
                 <h2 class="date-picker-label">From </h2>
-                <mat-form-field appearance="fill" class="date-range-wrapper">
+                <mat-form-field appearance="fill" class="date-range-wrapper
+                custom-date-range-wrapper">
+                  <mat-datepicker-toggle matSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>
+                      <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+                    </mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #picker></mat-datepicker>
                   <input matInput
                          [matDatepicker]="picker"
                          (click)="picker.open()"
                          formControlName="startDate"
+                         placeholder="*dd/mm/yyyy"
                          [readonly]="true"
                   >
-                  <mat-datepicker-toggle matSuffix [for]="picker">
-                    <mat-icon matDatepickerToggleIcon>arrow_drop_down</mat-icon>
-                  </mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                  <mat-label>*mm/dd/yyyy</mat-label>
                 </mat-form-field>
                 <span class="error-message"
                       *ngIf="formArray.controls[i]?.get('startDate')?.errors && formArray.controls[i]?.get('startDate')?.touched">This is a required field</span>
               </div>
               <div class="date-picker-wrapper">
                 <h2 class="date-picker-label">To </h2>
-                <mat-form-field appearance="fill" class="date-range-wrapper">
+                <mat-form-field appearance="fill" class="date-range-wrapper
+                custom-date-range-wrapper">
+                  <mat-datepicker-toggle matSuffix [for]="picker1">
+                    <mat-icon matDatepickerToggleIcon>
+                      <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+                    </mat-icon>
+                  </mat-datepicker-toggle>
                   <input matInput [matDatepicker]="picker1"
                          (click)="picker1.open()"
                          formControlName="graduationDate"
+                         placeholder="*dd/mm/yyyy"
                          [readonly]="true" [disabled]="item.get('degreeInProgress')?.value === true">
-                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                   <mat-datepicker #picker1></mat-datepicker>
-                  <mat-label>*mm/dd/yyyy</mat-label>
                 </mat-form-field>
                 <span class="error-message"
                       *ngIf="formArray.controls[i]?.get('graduationDate')?.errors && formArray.controls[i]?.get('graduationDate')?.touched">This is a required field</span>

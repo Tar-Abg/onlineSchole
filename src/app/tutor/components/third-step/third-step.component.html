@@ -2,7 +2,7 @@
   <div class="margin-left-space">
     <form [formGroup]="form">
       <div formArrayName="formArray" *ngFor="let item of formArray.controls; let i = index">
-        <fieldset  [formGroupName]="i" class="register-form">
+        <fieldset [formGroupName]="i" class="register-form">
           <legend class="form-legend">Certificates/Qualification</legend>
           <div class="register-step-form">
             <label for="institution-name" class="form-label">
@@ -17,12 +17,21 @@
             <div class="flex-container-start double-calendar form-label">
               <div class="fixed-width">
                 <h2 class="date-picker-label">Date </h2>
-                <mat-form-field appearance="fill">
-                  <input matInput [matDatepicker]="picker1" (click)="picker1.open()" formControlName="date"
-                         [readonly]="true">
-                  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-form-field appearance="fill" class="date-range-wrapper
+                custom-date-range-wrapper">
+                  <mat-datepicker-toggle matSuffix [for]="picker1">
+                    <mat-icon matDatepickerToggleIcon>
+                      <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+                    </mat-icon>
+                  </mat-datepicker-toggle>
                   <mat-datepicker #picker1></mat-datepicker>
-                  <mat-label>*mm/dd/yyyy</mat-label>
+                  <input matInput
+                         [matDatepicker]="picker1"
+                         (click)="picker1.open()"
+                         formControlName="date"
+                         placeholder="*dd/mm/yyyy"
+                         [readonly]="true"
+                  >
                 </mat-form-field>
               </div>
             </div>

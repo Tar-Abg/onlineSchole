@@ -276,3 +276,19 @@ img {
     box-shadow: unset;
   }
 }
+
+:host {
+  ::ng-deep {
+    .custom-date-range-wrapper {
+      .mat-form-field-wrapper {
+        padding-bottom: 0;
+      }
+
+      .mat-form-field-flex {
+        height: 37px;
+        flex-direction: row-reverse;
+        padding: 0;
+      }
+    }
+  }
+}
