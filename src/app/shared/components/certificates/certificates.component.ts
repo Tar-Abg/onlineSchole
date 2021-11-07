@@ -88,15 +88,29 @@ export class CertificatesComponent implements OnInit {
   }
 
   private saveCertificates(): void {
+    const body = this.checkIfEmpty();
     this.subscription.add(
-      this.registrationService.saveCertificates(this.formArray.value).subscribe(() => this.next.emit())
+      this.registrationService.saveCertificates(body).subscribe(() => this.next.emit())
     )
   }
 
   updateCertificates(): void {
+    const body = this.checkIfEmpty();
     this.subscription.add(
-      this.registrationService.updateCertificates(this.formArray.value).subscribe(() => this.next.emit())
+      this.registrationService.updateCertificates(body).subscribe(() => this.next.emit())
     )
+  }
+
+  checkIfEmpty(): any {
+    let formArray = this.formArray.value;
+    formArray.forEach((form: any) => {
+      const copyForm = JSON.parse(JSON.stringify(form));
+      delete copyForm.userId
+      delete copyForm.id
+      const isEmpty = Object.values(copyForm).every(x => (x === null || x === ''));
+      isEmpty ? formArray = formArray.filter((item: any) => item !== form): formArray = formArray;
+    });
+    return formArray;
   }
 
   patchFormValue(institutions: SaveCertificates[]): void {
