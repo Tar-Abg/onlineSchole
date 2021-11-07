@@ -1,0 +1,82 @@
+.tutor-settings-nested-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+  }
+
+  &__info {
+    margin-bottom: 52px;
+    color: #de9300;
+
+    h2, p {
+      font: $type-bold normal 20px $Segoe-UI-sans;
+      line-height: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    p {
+      font-weight: $type-regular;
+    }
+  }
+
+  .form-label {
+    margin-bottom: 0;
+  }
+
+  .grid-gap {
+    &-space {
+      flex-wrap: wrap;
+      max-width: 60%;
+      grid-gap: 27px 23px;
+    }
+
+    &-for-icons {
+      grid-gap: 13px;
+    }
+  }
+
+  .recycle-bin-wrapper {
+    width: 45px;
+    height: 45px;
+    padding: 5px;
+    background: $clr-ntrl-min;
+    border: 1px solid rgba(113, 204, 255, 0.44);
+    box-sizing: border-box;
+    box-shadow: 0 2px 2px rgba(113, 204, 255, 0.14);
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .settings-form-button {
+    height: 50px;
+    align-self: center;
+    padding: 13px 16px;
+    border-radius: 15px;
+    border: 0;
+    font: $type-regular normal $type-medium-size $Segoe-UI-sans;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $clr-ntrl-min;
+    background: #1e81ce;
+  }
+
+  &__form--fixed--width {
+    .form-label {
+      max-width: 468px;
+    }
+
+    .setting-form-input-wrapper {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 20px;
+    }
+  }
+}
