@@ -14,6 +14,7 @@ import {SharedModuleModule} from "../shared/shared.module";
 import {TutorInstitutionsComponent} from "./components/tutor-institutions/tutor-institutions.component";
 import {TutorCertificatesComponent} from "./components/tutor-certificates/tutor-certificates.component";
 import {LayoutsModule} from "../layouts/layouts.module";
+import {MatTabsModule} from "@angular/material/tabs";
 
 
 @NgModule({
@@ -30,14 +31,15 @@ import {LayoutsModule} from "../layouts/layouts.module";
     TutorCertificatesComponent
 
   ],
-  imports: [
-    CommonModule,
-    TutorSettingsRoutingModule,
-    ReactiveFormsModule,
-    SharedModuleModule,
-    LayoutsModule
+    imports: [
+        CommonModule,
+        TutorSettingsRoutingModule,
+        ReactiveFormsModule,
+        SharedModuleModule,
+        LayoutsModule,
+        MatTabsModule
 
-  ]
+    ]
 })
 export class TutorSettingsModule {
 }
