@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {TutorSettingsRoutingModule} from "./tutorSettingsRouting.module";
+import {TutorSettingsRoutingModule} from "./tutor-settings-routing.module";
 import {TutorSettingsComponent} from "./components/tutor-settings/tutor-settings.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {RatesComponent} from "./components/rates/rates.component";
