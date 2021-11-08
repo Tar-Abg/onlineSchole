@@ -4,6 +4,8 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {SaveInstitutions, SaveWrapUpProfile} from "../../models/registration.model";
 import {Observable} from "rxjs";
 import {RateAndPolitics} from "../../models/settings.model";
+import {map} from "rxjs/operators";
+import {ResponseModel} from "../../models/responseModel.model";
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +27,9 @@ export class SettingsService {
 
   getRateAndPolitics(userId: number): Observable<any> {
     let params = new HttpParams();
-    params = params.append('subjectId', userId);
-    return this.http.get<Observable<any>>(`${this.url}/GetRateAndPolitics`, {params: params});
+    params = params.append('userId', userId);
+    return this.http.get<ResponseModel<any>>(`${this.url}/GetRateAndPolitics`, {params: params}).pipe(
+      map(data => data.result)
+    );
   }
 }

@@ -15,6 +15,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from '@angular/material/radio';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 
 
 @NgModule({
@@ -37,7 +38,9 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     MatRadioModule,
     NgbModule
   ],
-  providers: [],
+  providers: [
+    {provide: LocationStrategy, useClass: HashLocationStrategy}
+  ],
   exports: [MatInputModule],
   bootstrap: [AppComponent]
 })

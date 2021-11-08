@@ -11,6 +11,8 @@ import {ChangePasswordComponent} from "./components/change-password/change-passw
 import {AvailabilityComponent} from "./components/availability/availability.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModuleModule} from "../shared/shared.module";
+import {TutorInstitutionsComponent} from "./components/tutor-institutions/tutor-institutions.component";
+import {TutorCertificatesComponent} from "./components/tutor-certificates/tutor-certificates.component";
 import {LayoutsModule} from "../layouts/layouts.module";
 
 
@@ -24,6 +26,8 @@ import {LayoutsModule} from "../layouts/layouts.module";
     ChangePasswordComponent,
     AvailabilityComponent,
     RatesComponent,
+    TutorInstitutionsComponent,
+    TutorCertificatesComponent
 
   ],
   imports: [
