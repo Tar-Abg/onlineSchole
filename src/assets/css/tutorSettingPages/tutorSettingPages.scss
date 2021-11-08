@@ -55,19 +55,6 @@
     cursor: pointer;
   }
 
-  .settings-form-button {
-    height: 50px;
-    align-self: center;
-    padding: 13px 16px;
-    border-radius: 15px;
-    border: 0;
-    font: $type-regular normal $type-medium-size $Segoe-UI-sans;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: $clr-ntrl-min;
-    background: #1e81ce;
-  }
-
   &__form--fixed--width {
     .form-label {
       max-width: 468px;
