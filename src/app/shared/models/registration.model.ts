@@ -144,6 +144,22 @@ export interface Availabilities {
   infoId?: number;
   infoAboutStudentWantedLessonId?: number;
 }
+
+export interface TutorAvailabilities {
+  id?: number;
+  userId?: number;
+  dayId: number;
+  startHourId: number;
+  endHourId?: number;
+}
+export interface TutorSubjects {
+  id?: number;
+  userId?: number;
+  categoryId: number;
+  subjectId: number;
+  levelId?: number;
+  tutorBasicInformationId?: number;
+}
 export interface CardDetails {
   userId: number;
   cardNumber: string;
@@ -161,3 +177,10 @@ export interface BillingAddress {
   zipCode: string;
   city: string;
 }
+
+export interface UpdatePassword {
+  userId: number;
+  currentPassword: string;
+  newPassword: string;
+}
+

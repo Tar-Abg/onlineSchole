@@ -8,6 +8,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signUp', component: StudentSignUpComponent},
   {path: 'StudentProfileDetails', component: StudentSignUpComponent},
+  {path: 'settings', loadChildren: () => import('../student-settings/student-settings.module').then(m => m.StudentSettingsModule)},
 ];
 
 @NgModule({

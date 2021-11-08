@@ -7,7 +7,7 @@ import {LandingComponent} from './components/landing/landing.component';
 import {LayoutsModule} from "./layouts/layouts.module";
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from "@angular/forms";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule, MatRippleModule} from '@angular/material/core';
@@ -16,6 +16,7 @@ import {MatInputModule} from "@angular/material/input";
 import {MatRadioModule} from '@angular/material/radio';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
+import {HttpRequestInterceptor} from "./interceptors/loading.interceptor";
 
 
 @NgModule({
@@ -39,7 +40,11 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
     NgbModule
   ],
   providers: [
-    {provide: LocationStrategy, useClass: HashLocationStrategy}
+    {provide: LocationStrategy, useClass: HashLocationStrategy},
+    {
+      provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi:true
+    },
+
   ],
   exports: [MatInputModule],
   bootstrap: [AppComponent]

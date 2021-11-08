@@ -34,7 +34,7 @@ export class RatesComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       id: [null],
       userId: [this.storageService.getUserId()],
-      hourlyRate: [null],
+      hourlyRate: [null, [Validators.required, Validators.min(20), Validators.max(1000)]],
       cancellationId: [null],
     })
   }

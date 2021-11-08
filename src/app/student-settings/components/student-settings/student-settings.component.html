@@ -1,0 +1,16 @@
+<div class="settings-wrapper">
+  <div class="flex-container-start full-height-container">
+    <ul class="tutor-setting-list">
+      <li class="tutor-setting-list__item flex-container-justify-start" [routerLink]="['./']" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">Profile information
+      </li>
+      <li class="tutor-setting-list__item flex-container-justify-start" [routerLink]="['subjects']" routerLinkActive="active">Subjects</li>
+      <li class="tutor-setting-list__item flex-container-justify-start" [routerLink]="['personalInformation']" routerLinkActive="active">Personal information</li>
+      <li class="tutor-setting-list__item flex-container-justify-start" [routerLink]="['paymentMethod']" routerLinkActive="active">Payment method</li>
+      <li class="tutor-setting-list__item flex-container-justify-start" [routerLink]="['changePassword']" routerLinkActive="active">Change password</li>
+    </ul>
+    <section class="tutor-setting-main-info">
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+</div>

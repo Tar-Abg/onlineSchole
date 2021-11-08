@@ -4,33 +4,41 @@
     <p> Keeping your availability current not only cuts down on back-and-forth messaging with students,
       but will also improve your rank in our search results.</p>
   </div>
-  <form action="" class="tutor-settings-nested-page__form">
+  <form [formGroup]="form" class="tutor-settings-nested-page__form">
     <div class="flex-container-justify-start grid-gap-space">
-      <div class="form-label fixed-width">
-        <app-select [label]="'*days'" [keyName]="'nameLowerCase'" formControlName="days"></app-select>
-      </div>
-      <div class="form-label fixed-width">
-        <app-select [label]="'*time'" [keyName]="'nameLowerCase'" formControlName="time"></app-select>
-      </div>
-      <div class="form-label fixed-width">
-        <app-select [label]="'*time'" [keyName]="'nameLowerCase'" formControlName="time"></app-select>
-      </div>
-      <div class="form-label fixed-width">
-        <app-select [label]="'*days'" [keyName]="'nameLowerCase'" formControlName="days"></app-select>
-      </div>
-      <div class="form-label fixed-width">
-        <app-select [label]="'*time'" [keyName]="'nameLowerCase'" formControlName="time"></app-select>
-      </div>
-      <div class="form-label fixed-width">
-        <app-select [label]="'*time'" [keyName]="'nameLowerCase'" formControlName="time"></app-select>
-      </div>
-      <div class="flex-container grid-gap-for-icons">
-        <i class="fas fa-plus"></i>
-        <div class="recycle-bin-wrapper">
-          <img src="./assets/images/recycleBin.png" alt="">
+      <ng-container *ngFor="let item of formArray.controls; let i = index">
+        <div formArrayName="formArray">
+
+
+          <div [formGroupName]="i" class="d-flex selectRow">
+            <div class="form-label fixed-width">
+              <app-select [label]="'*days of week'" [list]="daysOfWeek$ | async" [keyName]="'name'"
+                          formControlName="dayId"></app-select>
+              <span class="error-message"
+                    *ngIf="formArray.controls[i]?.get('dayOfWeek')?.errors && formArray.controls[i]?.get('dayOfWeek')?.touched">This is a required field</span>
+            </div>
+            <div class="form-label fixed-width">
+              <app-select [label]="'*hours of day'" [list]="hoursOfDay$ | async" [keyName]="'time'"
+                          formControlName="startHourId"></app-select>
+              <span class="error-message"
+                    *ngIf="formArray.controls[i]?.get('startOfRange')?.errors && formArray.controls[i]?.get('startOfRange')?.touched">This is a required field</span>
+            </div>
+            <div class="form-label fixed-width">
+              <app-select [label]="'*hours of day'" [list]="hoursOfDay$ | async" [keyName]="'time'"
+                          formControlName="endHourId"></app-select>
+              <span class="error-message"
+                    *ngIf="formArray.controls[i]?.get('endOfRange')?.errors && formArray.controls[i]?.get('endOfRange')?.touched">This is a required field</span>
+            </div>
+            <div class="flex-container grid-gap-for-icons">
+              <i class="fas fa-plus" (click)="addNewForm()" *ngIf="i === formArray.controls.length - 1 "></i>
+              <div class="recycle-bin-wrapper" (click)="removeForm(item)" class="text-danger" *ngIf="i > 0">
+                <img src="./assets/images/recycleBin.png" class="trashIcon">
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
+      </ng-container>
     </div>
-    <button class="settings-form-button">Update information</button>
+    <button class="settings-form-button" (click)="onSubmit()">Update information</button>
   </form>
 </div>
