@@ -65,7 +65,6 @@ export class CertificatesComponent implements OnInit {
     this.updateValueAndValidity(form);
     this.formArray.controls.push(form);
     this.formArray.updateValueAndValidity();
-
   }
 
   onSubmit(): void {

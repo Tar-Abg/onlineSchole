@@ -1,7 +1,13 @@
 import { Injectable } from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {SaveInstitutions, SaveWrapUpProfile} from "../../models/registration.model";
+import {
+  SaveInstitutions,
+  SaveWrapUpProfile,
+  TutorAvailabilities,
+  TutorSubjects,
+  UpdatePassword
+} from "../../models/registration.model";
 import {Observable} from "rxjs";
 import {RateAndPolitics} from "../../models/settings.model";
 import {map} from "rxjs/operators";
@@ -32,4 +38,36 @@ export class SettingsService {
       map(data => data.result)
     );
   }
+
+  saveAvailabilities(body: TutorAvailabilities): Observable<any> {
+    return this.http.post<ResponseModel<any>>(`${this.url}/SaveAvailabilities`, body);
+  }
+
+  updateAvailabilities(body: TutorAvailabilities): Observable<any> {
+    return this.http.put<ResponseModel<any>>(`${this.url}/UpdateAvailabilities`, body);
+  }
+
+  getAvailabilities(userId: number): Observable<TutorAvailabilities[]> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    return this.http.get<ResponseModel<TutorAvailabilities[]>>(`${this.url}/GetAvailabilities`, {params: params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getTutorSubjects(userId: number): Observable<TutorSubjects[]> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    return this.http.get<ResponseModel<TutorSubjects[]>>(`${this.url}/GetTutorSubjects`, {params: params}).pipe(
+      map(data => data.result)
+    );
+  }
+  updateTutorSubjects(body: TutorSubjects): Observable<any> {
+    return this.http.put<ResponseModel<any>>(`${this.url}/UpdateTutorSubjects`, body);
+  }
+
+  updatePassword(body: UpdatePassword): Observable<any> {
+    return this.http.put<ResponseModel<any>>(`${this.url}/UpdatePassword`, body);
+  }
+
 }
