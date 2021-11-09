@@ -11,6 +11,8 @@ import {MatInputModule} from "@angular/material/input";
 import {CertificatesComponent} from './components/certificates/certificates.component';
 import {MatIconModule} from "@angular/material/icon";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {PersonalInformationComponent} from './components/personal-information/personal-information.component';
+import { ConfirmPasswordComponent } from './components/confirm-password/confirm-password.component';
 
 
 @NgModule({
@@ -19,23 +21,26 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     StepsComponent,
     SelectComponent,
     InstitutionsComponent,
-    CertificatesComponent
+    CertificatesComponent,
+    PersonalInformationComponent,
+    ConfirmPasswordComponent
   ],
-    imports: [
-        CommonModule,
-        MatSelectModule,
-        ReactiveFormsModule,
-        MatDatepickerModule,
-        MatInputModule,
-        MatIconModule,
-        MatCheckboxModule
-    ],
+  imports: [
+    CommonModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatIconModule,
+    MatCheckboxModule
+  ],
   exports: [
     RegisterHeaderComponent,
     StepsComponent,
     SelectComponent,
     InstitutionsComponent,
-    CertificatesComponent
+    CertificatesComponent,
+    PersonalInformationComponent
   ]
 })
 export class SharedModuleModule {
