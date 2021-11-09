@@ -1,13 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
 import {LoadingService} from "./shared/services/loading/loading.service";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  isLoading: boolean = false;
+  isLoading$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private loadingService: LoadingService
@@ -17,11 +19,7 @@ export class AppComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.loadingService.loadingSub.subscribe((val) => {
-      if (val) {
-        this.isLoading = val;
-      }
-    });
+    this.isLoading$ = this.loadingService.loadingSub;
   }
 
 
