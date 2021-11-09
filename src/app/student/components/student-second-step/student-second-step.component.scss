@@ -69,3 +69,10 @@ table {
     letter-spacing: normal;
   }
 }
+
+.grid-gap-space-for-student {
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  grid-gap: 24px;
+}

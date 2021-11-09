@@ -16,7 +16,7 @@
                 <textarea id="profile-headline" class="form-textarea" type="text"
                           rows="5" cols="3"
                           placeholder="*a short headline about yourself"
-                         formControlName="headline"> *a short headline about yourself
+                          formControlName="headline"> *a short headline about yourself
                 </textarea>
               <span class="error-message" *ngIf="form.get('headline')?.errors && form.get('headline')?.touched">This is a required field</span>
             </label>
@@ -31,7 +31,7 @@
               <div class="upload-image-box">
                 <div class="image-upload-wrap" [class.image-uploaded]="userImage">
                   <input class="file-upload-input" type='file' (change)="selectFile($event)"
-                         accept="image/*" />
+                         accept="image/*"/>
                   <div class="drag-text" *ngIf="!userImage">
                     <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
                          width="33" height="33">
@@ -74,7 +74,7 @@
                 <textarea id="wrap-up-profile" class="form-textarea" type="text" rows="5"
                           cols="3"
                           placeholder="enter the text"
-                         formControlName="wrapUp"> enter the text
+                          formControlName="wrapUp"> enter the text
                 </textarea>
               <span class="error-message" *ngIf="form.get('wrapUp')?.errors && form.get('wrapUp')?.touched">This is a required field</span>
             </label>

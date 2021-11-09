@@ -1,1 +1,38 @@
-<p>profile-information works!</p>
+<form>
+  <ul class="user-sign-up-list profile-wrapper">
+    <li class="user-sign-up-list__item">
+      <h3 class="form-item-label upload-photo-title">Profile photo*</h3>
+      <div class="file-upload-wrapper">
+        <div class="upload-image-box">
+          <div class="image-upload-wrap">
+            <input class="file-upload-input" type='file'
+                   accept="image/*"/>
+            <div class="drag-text">
+              <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
+                   width="33" height="33">
+            </div>
+            <img alt="Upload Photo">
+          </div>
+        </div>
+        <div class="upload-image-requirement">
+          <p class="form-item-notification">Minimum size 200 x 200 pixels.</p>
+        </div>
+      </div>
+    </li>
+    <li class="user-sign-up-list__item large-size">
+      <h3 class="form-item-label">Wrap up your profile</h3>
+      <label for="wrapUp" class="form-label form-label--flex-container">
+        <textarea id="wrapUp" class="form-textarea" type="text"
+                  rows="10" cols="10"
+                  placeholder="*a short headline about yourself"
+                  formControlName="wrapUp"
+        > *a short headline about yourself
+                </textarea>
+      </label>
+      <p class="form-item-notification">Briefly describe what you need help with</p>
+    </li>
+  </ul>
+  <div class="flex-container-center">
+    <button type="submit" class="settings-form-button">Update information</button>
+  </div>
+</form>

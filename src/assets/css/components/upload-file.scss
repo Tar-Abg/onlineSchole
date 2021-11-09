@@ -1,190 +1,190 @@
 /****** Upload File ******/
 
 .file-upload {
-    display: flex;
-    margin: 16px 0 0 16px;
-    color: black;
+  display: flex;
+  margin: 16px 0 0 16px;
+  color: black;
 }
 
 .file-select {
-    position: relative;
-    min-width: 152px;
-    width: 152px;
-    min-height: 30px;
-    padding: 0 20px;
-    font-size: 12px;
-    margin-right: 8px;
-    box-sizing: border-box;
-    border: 1px solid #E9E9E9;
-    border-radius: 5px;
-    background: $clr-ntrl-min;
-    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
-    cursor: pointer;
+  position: relative;
+  min-width: 152px;
+  width: 152px;
+  min-height: 30px;
+  padding: 0 20px;
+  font-size: 12px;
+  margin-right: 8px;
+  box-sizing: border-box;
+  border: 1px solid #E9E9E9;
+  border-radius: 5px;
+  background: $clr-ntrl-min;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.04);
+  cursor: pointer;
 }
 
 .file-select-button {
-    position: absolute;
-    left: -20px;
-    top: -5px;
-    height: 36px;
+  position: absolute;
+  left: -20px;
+  top: -5px;
+  height: 36px;
 }
 
 .file-select-name {
-    display: inline-block;
-    padding: 0 10px;
+  display: inline-block;
+  padding: 0 10px;
 }
 
 .file-upload.active .file-select .file-select-button {
-    color: #FFFFFF;
-    transition: all .2s ease-in-out;
-    -moz-transition: all .2s ease-in-out;
-    -webkit-transition: all .2s ease-in-out;
-    -o-transition: all .2s ease-in-out;
+  color: #FFFFFF;
+  transition: all .2s ease-in-out;
+  -moz-transition: all .2s ease-in-out;
+  -webkit-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
 }
 
 .file-upload .file-select input[type=file] {
-    z-index: 100;
-    cursor: pointer;
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    filter: alpha(opacity=0);
+  z-index: 100;
+  cursor: pointer;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  filter: alpha(opacity=0);
 }
 
 .file-upload .file-select.file-select-disabled {
-    opacity: 0.65;
+  opacity: 0.65;
 }
 
 .file-upload .file-select.file-select-disabled:hover {
-    display: block;
-    border: 2px solid #dce4ec;
-    color: #34495e;
-    cursor: pointer;
-    height: 40px;
-    line-height: 40px;
-    margin-top: 5px;
-    text-align: left;
-    background: #FFFFFF;
-    overflow: hidden;
-    position: relative;
+  display: block;
+  border: 2px solid #dce4ec;
+  color: #34495e;
+  cursor: pointer;
+  height: 40px;
+  line-height: 40px;
+  margin-top: 5px;
+  text-align: left;
+  background: #FFFFFF;
+  overflow: hidden;
+  position: relative;
 }
 
 .file-upload .file-select.file-select-disabled:hover .file-select-button {
-    background: #dce4ec;
-    color: #666666;
-    padding: 0 10px;
-    display: inline-block;
-    height: 40px;
-    line-height: 40px;
+  background: #dce4ec;
+  color: #666666;
+  padding: 0 10px;
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
 }
 
 .file-upload .file-select.file-select-disabled:hover .file-select-name {
-    line-height: 40px;
-    display: inline-block;
-    padding: 0 10px;
+  line-height: 40px;
+  display: inline-block;
+  padding: 0 10px;
 }
 
 .upload-message {
-    font-family: Segoe UI;
-    font-style: normal;
-    font-weight: 350;
-    font-size: 12px;
-    line-height: 16px;
-    color: #1F1F1F;
-    max-width: 237px;
+  font-family: Segoe UI;
+  font-style: normal;
+  font-weight: 350;
+  font-size: 12px;
+  line-height: 16px;
+  color: #1F1F1F;
+  max-width: 237px;
 }
 
 
 /*Upload Image*/
-
 .file-upload-wrapper {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .upload-image-requirement {
-    margin-left: 27px;
+  margin-left: 27px;
 }
 
 .file-upload-content {
-    display: none;
+  display: none;
 }
 
 .file-upload-input {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    opacity: 0;
-    outline: none;
-    cursor: pointer;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  outline: none;
+  cursor: pointer;
 }
 
 .image-upload-wrap {
-    position: relative;
-    width: 200px;
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    box-shadow: 0 1px 5px #68beda;
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  box-shadow: 0 1px 5px #68beda;
+  overflow: hidden;
 }
 
 .image-title-wrap {
-    padding: 0 15px 15px 15px;
-    color: #222;
+  padding: 0 15px 15px 15px;
+  color: #222;
 }
 
 .file-upload-image {
-    height: 200px;
-    width: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    object-position: center;
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
 }
 
 .remove-image {
-    width: 200px;
-    margin: 10px 0;
-    padding: 10px;
-    font-weight: 700;
-    color: $clr-ntrl-max;
-    border: none;
-    outline: none;
-    text-transform: uppercase;
-    transition: all .2s ease;
+  width: 200px;
+  margin: 10px 0;
+  padding: 10px;
+  font-weight: 700;
+  color: $clr-ntrl-max;
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  transition: all .2s ease;
 }
 
 .remove-image:active {
-    border: 0;
-    transition: all .2s ease;
+  border: 0;
+  transition: all .2s ease;
 }
 
 .drag-text {
-    width: 60px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: rgba(143, 181, 252, 0.47);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(143, 181, 252, 0.47);
 }
 
 .drag-text img {
-    width: 33px;
-    height: 33px;
+  width: 33px;
+  height: 33px;
 }
 
 .upload-image-box {
-    position: relative;
+  position: relative;
 }
 
 .upload-image-box .error-message {
-    left: 50%;
-    transform: translate(-50%, 3px);
+  left: 50%;
+  transform: translate(-50%, 3px);
 }

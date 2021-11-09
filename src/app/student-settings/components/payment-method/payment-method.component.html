@@ -1,1 +1,103 @@
-<p>payment-method works!</p>
+<div class="tutor-settings-nested-page">
+  <h3 class="tutor-settings-page-title">Add Payment Method</h3>
+  <p class="tutor-settings-page-notification form-item-notification">
+    Please be informed that in case of providing a non- US dollar account/card, the amount will be transferred to the
+    appropriate account at the exchange rate set by your bank for the respective currency.
+  </p>
+  <form action="" class="tutor-settings-nested-page__form tutor-settings-nested-page__form--fixed--width">
+    <fieldset>
+      <legend class="tutor-settings-page-legend">
+        <h3 class="form-legend-title-tab active">CREDIT CARD/DEBET CARD</h3>
+      </legend>
+      <div class="setting-form-input-wrapper">
+        <div>
+          <h3 class="form-item-label">Insert your name as it appears on the card*</h3>
+          <label for="account-holder-name" class="form-label">
+            <input id="account-holder-name"
+                   class="form-input"
+                   name="account-holder-name"
+                   required
+                   autocomplete="accountHolderName"
+                   type="text"
+                   placeholder="*account holder’s name"
+                   formControlName="accountHolderName">
+            <span class="error-message">This is a required field.</span>
+          </label>
+        </div>
+        <div>
+          <h3 class="form-item-label">Card number* </h3>
+          <label for="card-number" class="form-label">
+            <input id="card-number"
+                   class="form-input"
+                   name="card-number"
+                   required
+                   autocomplete="card-number"
+                   type="text"
+                   placeholder="*Card Number"
+                   formControlName="cardNumber">
+            <span class="error-message">This is a required field.</span>
+          </label>
+        </div>
+        <div>
+          <h3 class="form-item-label">Card expiration date* </h3>
+          <div class="flex-container form-label double-select fixed-width">
+            <div class="p-relative min-width-select">
+              <select formControlName="monthId" class="form-input selectpicker">
+                <option>tets</option>
+                <option>tets</option>
+                <option>tets</option>
+              </select>
+              <span class="error-message">This is a required field.</span>
+            </div>
+            <div class="p-relative min-width-select">
+              <select formControlName="year" class="form-input selectpicker">
+                <option>jjsdjskd</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="form-item-label">CVC2/CVV2* </h3>
+          <label for="cvv" class="form-label">
+            <input id="cvv"
+                   class="form-input"
+                   name="cvv"
+                   required
+                   autocomplete="card-cvv"
+                   type="text"
+                   placeholder="*CVC2/CVV2"
+                   formControlName="cardCvv">
+            <span class="error-message">This is a required field.</span>
+          </label>
+        </div>
+      </div>
+      <div class="billing-address-container" formGroupName="billingAddress">
+        <h3 class="tutor-settings-page-title size-mid">Billing Address</h3>
+        <label for="streetNumber" class="form-label">
+          <input id="streetNumber" class="form-input" autocomplete="streetNumber" type="text"
+                 placeholder="*Street Number" formControlName="streetNumber">
+          <span class="error-message block">This Field is requires</span>
+        </label>
+        <label for="city" class="form-label">
+          <input id="city" class="form-input" autocomplete="city" type="text"
+                 placeholder="*city" formControlName="city">
+          <span class="error-message block">This Field is requires</span>
+        </label>
+        <label class="form-label">
+          <app-select [keyName]="'name'" [label]="'*state'"
+                      formControlName="stateId"></app-select>
+          <span class="error-message block">This Field is requires</span>
+        </label>
+        <label for="zipCode" class="form-label">
+          <input id="zipCode" class="form-input" autocomplete="zipCode"
+                 placeholder="*Zip Code" formControlName="zipCode">
+          <span class="error-message block">This Field is requires</span>
+        </label>
+      </div>
+    </fieldset>
+    <div class="flex-container-center grid-gap-for-buttons">
+      <button class="settings-form-button settings-form-button__with-border button-border--blue">Edit</button>
+      <button class="settings-form-button settings-form-button__with-border button-border--green">Save</button>
+    </div>
+  </form>
+</div>

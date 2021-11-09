@@ -10,6 +10,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatInputModule} from "@angular/material/input";
 import {CertificatesComponent} from './components/certificates/certificates.component';
 import {MatIconModule} from "@angular/material/icon";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -20,14 +21,15 @@ import {MatIconModule} from "@angular/material/icon";
     InstitutionsComponent,
     CertificatesComponent
   ],
-  imports: [
-    CommonModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatIconModule
-  ],
+    imports: [
+        CommonModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatIconModule,
+        MatCheckboxModule
+    ],
   exports: [
     RegisterHeaderComponent,
     StepsComponent,

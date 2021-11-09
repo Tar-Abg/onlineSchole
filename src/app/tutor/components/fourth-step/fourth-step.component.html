@@ -132,11 +132,16 @@
                     <div class="date-picker-wrapper">
                       <h2 class="date-picker-label">From </h2>
                       <mat-form-field appearance="fill">
-                        <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="startYear"
-                               [readonly]="true">
-                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker-toggle matSuffix [for]="picker">
+                          <mat-icon matDatepickerToggleIcon>
+                            <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+                          </mat-icon>
+                        </mat-datepicker-toggle>
                         <mat-datepicker #picker></mat-datepicker>
-                        <mat-label>*mm/dd/yyyy</mat-label>
+                        <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="startYear"
+                               [readonly]="true"
+                               placeholder="*mm/dd/yyyy"
+                        >
                       </mat-form-field>
                       <span class="error-message"
                             *ngIf="workHistory.controls[i]?.get('startYear')?.errors && workHistory.controls[i]?.get('startYear')?.touched">This is a required field</span>
@@ -144,11 +149,14 @@
                     <div class="date-picker-wrapper">
                       <h2 class="date-picker-label">To </h2>
                       <mat-form-field appearance="fill">
-                        <input matInput [matDatepicker]="picker1" (click)="picker1.open()" formControlName="endYear"
-                               [readonly]="true">
-                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker-toggle matSuffix [for]="picker1">
+                          <mat-icon matDatepickerToggleIcon>
+                            <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+                          </mat-icon>
+                        </mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
-                        <mat-label>*mm/dd/yyyy</mat-label>
+                        <input matInput [matDatepicker]="picker1" (click)="picker1.open()" formControlName="endYear"
+                               [readonly]="true" placeholder="*mm/dd/yyyy">
                       </mat-form-field>
                       <span class="error-message"
                             *ngIf="workHistory.controls[i]?.get('endYear')?.errors && workHistory.controls[i]?.get('endYear')?.touched">This is a required field</span>

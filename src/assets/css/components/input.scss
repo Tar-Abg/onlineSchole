@@ -49,7 +49,11 @@
     border-radius: 10px;
     font: $type-light normal 16px / 21px $Segoe-UI-sans;
     letter-spacing: 0.08em;
-    color: #9A9A9A;
+    color: $clr-ntrl-max;
+
+    &::placeholder {
+      color: #9A9A9A;
+    }
   }
 }
 

@@ -3,27 +3,29 @@
     <form [formGroup]="form">
       <fieldset class="register-form">
         <legend class="form-legend">Contact Details</legend>
-        <div class="d-flex">
-          <div class="form-label phone-number-label form-label--min-width w-25">
-            <app-select [list]="phoneCods$ | async" [label]="'+374'" [keyName]="'phoneCode'" [optionName]="'iso3'"
-                        formControlName="mobileCode"></app-select>
-            <span class="error-message" *ngIf="form.get('mobileCode')?.errors && form.get('mobileCode')?.touched">This is a required field</span>
+        <div class="w-30">
+          <div class="d-flex">
+            <div class="form-label phone-number-label form-label--min-width w-25">
+              <app-select [list]="phoneCods$ | async" [label]="'+374'" [keyName]="'phoneCode'" [optionName]="'iso3'"
+                          formControlName="mobileCode"></app-select>
+              <span class="error-message" *ngIf="form.get('mobileCode')?.errors && form.get('mobileCode')?.touched">This is a required field</span>
+            </div>
+            <label for="phone-number" class="form-label phone-number-label form-label--min-width w-100">
+              <input id="phone-number" class="form-input" autocomplete="phone-number" type="tel"
+                     placeholder="*Phone number"
+                     formControlName="mobile">
+              <span class="error-message" *ngIf="form.get('mobile')?.errors && form.get('mobile')?.touched">This is a required field</span>
+            </label>
           </div>
-          <label for="phone-number" class="form-label phone-number-label form-label--min-width w-100">
-            <input id="phone-number" class="form-input" autocomplete="phone-number" type="tel"
-                   placeholder="*Phone number"
-                   formControlName="mobile">
-            <span class="error-message" *ngIf="form.get('mobile')?.errors && form.get('mobile')?.touched">This is a required field</span>
+          <label for="link-to-social-media" class="form-label form-label--min-width">
+            <input id="link-to-social-media" class="form-input"
+                   autocomplete="link-to-social-media" type="text"
+                   placeholder="*link to the social media profile"
+                   formControlName="linkToSocialMedia">
+            <span class="error-message"
+                  *ngIf="form.get('linkToSocialMedia')?.errors && form.get('linkToSocialMedia')?.touched">This is a required field</span>
           </label>
         </div>
-        <label for="link-to-social-media" class="form-label form-label--min-width">
-          <input id="link-to-social-media" class="form-input"
-                 autocomplete="link-to-social-media" type="text"
-                 placeholder="*link to the social media profile"
-                 formControlName="linkToSocialMedia">
-          <span class="error-message"
-                *ngIf="form.get('linkToSocialMedia')?.errors && form.get('linkToSocialMedia')?.touched">This is a required field</span>
-        </label>
         <div class="checkboxes-wrapper">
           <mat-checkbox formControlName="socialMediaExistance">
             I do not have a social media profile

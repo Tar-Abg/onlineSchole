@@ -86,6 +86,7 @@
   height: 50px;
   align-self: center;
   padding: 13px 16px;
+  margin-top: 40px;
   border-radius: 15px;
   border: 0;
   font: $type-regular normal $type-medium-size $Segoe-UI-sans;
@@ -93,4 +94,52 @@
   text-transform: uppercase;
   color: $clr-ntrl-min;
   background: #1e81ce;
+
+  &__with-border {
+    height: 50px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    font: $type-regular normal $type-medium-size $Segoe-UI-sans;
+    letter-spacing: 0.08em;
+    text-transform: capitalize;
+    background-color: unset;
+
+    &.button-border--blue {
+      padding: 0 34px;
+      border: 1px solid #1E81CE;
+      font-weight: $type-bold;
+      color: #1E81CE;
+    }
+
+    &.button-border--green {
+      padding: 0 46px;
+      border: 1px solid rgba(164, 217, 166, 0.58);
+      box-sizing: border-box;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+      color: #4E9651;
+    }
+  }
+}
+
+.grid-gap-for {
+  &-buttons {
+    grid-gap: 35px;
+    margin-top: 32px;
+  }
+
+  &-icons {
+    grid-gap: 13px;
+  }
+}
+
+.recycle-bin-wrapper {
+  width: 45px;
+  height: 45px;
+  padding: 5px;
+  background: $clr-ntrl-min;
+  border: 1px solid rgba(113, 204, 255, 0.44);
+  box-sizing: border-box;
+  box-shadow: 0 2px 2px rgba(113, 204, 255, 0.14);
+  border-radius: 5px;
+  cursor: pointer;
 }

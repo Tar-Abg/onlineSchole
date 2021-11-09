@@ -8,8 +8,6 @@
     <div class="flex-container-justify-start grid-gap-space">
       <ng-container *ngFor="let item of formArray.controls; let i = index">
         <div formArrayName="formArray">
-
-
           <div [formGroupName]="i" class="d-flex selectRow">
             <div class="form-label fixed-width">
               <app-select [label]="'*days of week'" [list]="daysOfWeek$ | async" [keyName]="'name'"
@@ -30,10 +28,10 @@
                     *ngIf="formArray.controls[i]?.get('endOfRange')?.errors && formArray.controls[i]?.get('endOfRange')?.touched">This is a required field</span>
             </div>
             <div class="flex-container grid-gap-for-icons">
-              <i class="fas fa-plus" (click)="addNewForm()" *ngIf="i === formArray.controls.length - 1 "></i>
-              <div class="recycle-bin-wrapper" (click)="removeForm(item)" class="text-danger" *ngIf="i > 0">
-                <img src="./assets/images/recycleBin.png" class="trashIcon">
+              <div class="recycle-bin-wrapper text-danger" (click)="removeForm(item)" *ngIf="i > 0">
+                <img src="./assets/images/recycleBin.png" alt="recycle byn" class="trashIcon">
               </div>
+              <i class="fas fa-plus" (click)="addNewForm()" *ngIf="i === formArray.controls.length - 1 "></i>
             </div>
           </div>
         </div>

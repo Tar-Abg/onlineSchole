@@ -1,0 +1,18 @@
+.subjects-wrapper {
+  padding-top: 10px;
+
+  .grid-gap-space {
+    position: relative;
+    max-width: 100%;
+    grid-gap: 34px 42px;
+
+    .form-label {
+      flex: 1 1 363px;
+      width: 363px;
+    }
+  }
+
+  .selectRow {
+    gap: 24px;
+  }
+}

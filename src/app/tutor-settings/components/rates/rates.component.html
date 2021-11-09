@@ -1,23 +1,35 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <div>
-    <div>
-      <label class="form-label">Hourly rate</label>
-      <input class="form-input" type="text" formControlName="hourlyRate">
-      <span class="error-message"  *ngIf="form.get('hourlyRate')?.errors?.required && form.get('hourlyRate')?.touched">This is a required field</span>
-      <span class="error-message"  *ngIf="form.get('hourlyRate')?.errors?.min && form.get('hourlyRate')?.touched">You CANNOT enter anything below $20</span>
-      <span>The minimum hourly rate is $20</span><br>
-      <span>Your online lesson rate appears in search results and on your tutor profile when students are looking for online tutoring. </span>
-    </div>
+  <ul class="setting-list">
+    <li class="setting-list__item mb-45">
+      <h3 class="form-item-label">Hourly rate</h3>
+      <label for="hourlyRate" class="form-label">
+        <input id="hourlyRate"
+               class="form-input"
+               type="text"
+               formControlName="hourlyRate"
+        >
+        <span class="error-message" *ngIf="form.get('hourlyRate')?.errors?.required && form.get('hourlyRate')?.touched">This is a required field</span>
+        <span class="error-message" *ngIf="form.get('hourlyRate')?.errors?.min && form.get('hourlyRate')?.touched">You CANNOT enter anything below $20</span>
+      </label>
+      <p class="form-item-notification">The minimum hourly rate is $20</p>
+      <p class="form-item-notification">Your online lesson rate appears in search results and on your tutor profile
+        when students are looking for online tutoring. </p>
+    </li>
+    <li class="setting-list__item">
+      <h3 class="form-item-label">Lesson Cancelation</h3>
+      <label for="cancellationId" class="form-label">
+        <app-select
+          id="cancellationId"
+          class="form-select"
+          [label]="'*None'"
+          [list]="cancelationHours$ | async"
+          formControlName="cancellationId"
+        >
+        </app-select>
+      </label>
+    </li>
+  </ul>
+  <div class="flex-container-center">
+    <button type="submit" class="settings-form-button">Update information</button>
   </div>
-  <div>
-    <label>Lesson Cancelation</label>
-    <app-select
-      [label]="'*None'"
-      [list]="cancelationHours$ | async"
-      formControlName="cancellationId"
-    >
-    </app-select>
-  </div>
-
-  <button type="submit" class="settings-form-button">Update information</button>
 </form>

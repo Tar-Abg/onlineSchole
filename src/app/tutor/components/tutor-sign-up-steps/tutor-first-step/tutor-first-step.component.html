@@ -14,7 +14,8 @@
           <li class="user-sign-up-list__item">
             <h3 class="main-question">Please choose your subject</h3>
             <div class="d-flex flex-container-justify-start gap-3
-            grid-gap-10 date-picker-container"  *ngFor="let item of tutorSubjects.controls; let i = index" formArrayName="tutorSubjects">
+            grid-gap-10 date-picker-container" *ngFor="let item of tutorSubjects.controls; let i = index"
+                 formArrayName="tutorSubjects">
               <ng-container [formGroupName]="i">
                 <div class="selectWrapper">
                   <app-select
@@ -25,7 +26,8 @@
                     formControlName="categoryId"
                   >
                   </app-select>
-                  <span class="error-message"  *ngIf="tutorSubjects.controls[i]?.get('categoryId')?.errors && tutorSubjects.controls[i]?.get('categoryId')?.touched">This is a required field</span>
+                  <span class="error-message"
+                        *ngIf="tutorSubjects.controls[i]?.get('categoryId')?.errors && tutorSubjects.controls[i]?.get('categoryId')?.touched">This is a required field</span>
                 </div>
                 <div class="selectWrapper">
                   <app-select
@@ -36,7 +38,8 @@
                     formControlName="subjectId"
                   >
                   </app-select>
-                  <span class="error-message" *ngIf="tutorSubjects.controls[i]?.get('subjectId')?.errors && tutorSubjects.controls[i]?.get('subjectId')?.touched">This is a required field</span>
+                  <span class="error-message"
+                        *ngIf="tutorSubjects.controls[i]?.get('subjectId')?.errors && tutorSubjects.controls[i]?.get('subjectId')?.touched">This is a required field</span>
                 </div>
                 <div class="selectWrapper">
                   <app-select
@@ -46,7 +49,8 @@
                     formControlName="levelId"
                   >
                   </app-select>
-                  <span class="error-message"  *ngIf="tutorSubjects.controls[i]?.get('levelId')?.errors && tutorSubjects.controls[i]?.get('levelId')?.touched">This is a required field</span>
+                  <span class="error-message"
+                        *ngIf="tutorSubjects.controls[i]?.get('levelId')?.errors && tutorSubjects.controls[i]?.get('levelId')?.touched">This is a required field</span>
                 </div>
                 <i class="text-danger" (click)="removeTutorSubjects(item)" *ngIf="i > 0">x</i>
                 <i class="fas fa-plus" (click)="addTutorSubjects()" *ngIf="i == tutorSubjects.controls.length-1"></i>
@@ -60,8 +64,10 @@
               <input id="hourly-rate" class="form-input" type="text"
                      placeholder="*the minimum hourly rate is $20"
                      formControlName="hourlyRate">
-              <span class="error-message" *ngIf="form.get('hourlyRate')?.errors?.min && form.get('hourlyRate')?.touched">You cannot enter anything below $20</span>
-              <span class="error-message" *ngIf="form.get('hourlyRate')?.errors?.required && form.get('hourlyRate')?.touched">This is a required field</span>
+              <span class="error-message"
+                    *ngIf="form.get('hourlyRate')?.errors?.min && form.get('hourlyRate')?.touched">You cannot enter anything below $20</span>
+              <span class="error-message"
+                    *ngIf="form.get('hourlyRate')?.errors?.required && form.get('hourlyRate')?.touched">This is a required field</span>
             </label>
             <p class="input-notification">Please choose a default hourly rate.
               Sophist’s fee is 18% of this amount</p>
@@ -80,9 +86,10 @@
                   [label]="'*None'"
                   [list]="cancelationHours$ | async"
                   formControlName="cancellationId"
-                  >
+                >
                 </app-select>
-                <span class="error-message" *ngIf="form.get('cancellationId')?.errors?.required && form.get('cancellationId')?.touched">This is a required field</span>
+                <span class="error-message"
+                      *ngIf="form.get('cancellationId')?.errors?.required && form.get('cancellationId')?.touched">This is a required field</span>
               </div>
             </div>
             <p class="form-item-notification">You may wish to maintain a
@@ -103,17 +110,22 @@
                   [list]="countries$ | async"
                   [keyName]="'nameLowerCase'"
                   formControlName="countryId"
-                 >
+                >
                 </app-select>
                 <span class="form-item-notification">Visible on the public profile</span>
-                <span class="error-message block" *ngIf="userAddress.get('countryId')?.errors?.required && userAddress.get('countryId')?.touched">This is a required field</span>
+                <span class="error-message block"
+                      *ngIf="userAddress.get('countryId')?.errors?.required && userAddress.get('countryId')?.touched">This is a required field</span>
               </div>
             </li>
             <li class="address-form__item">
               <div *ngIf="userAddress.get('countryId')?.value === 226">
-                <label class="form-label label-for-security-number">Social Security Number*</label>
-                <input  mask="000-00-0000" name="securityNumber" class="form-input" type="text" formControlName="socialSecurityNumber" [innerHTML]="'123456789' | slice:0:3">
-                <span class="error-message block" *ngIf="userAddress.get('socialSecurityNumber')?.errors?.required && userAddress.get('socialSecurityNumber')?.touched">This is a required field</span>
+                <label class="form-label label-for-security-number">
+                  Social Security Number*
+                </label>
+                <input mask="000-00-0000" name="securityNumber" class="form-input" type="text"
+                       formControlName="socialSecurityNumber" [innerHTML]="'123456789' | slice:0:3">
+                <span class="error-message block"
+                      *ngIf="userAddress.get('socialSecurityNumber')?.errors?.required && userAddress.get('socialSecurityNumber')?.touched">This is a required field</span>
               </div>
             </li>
             <li class="address-form__item">
@@ -121,7 +133,8 @@
                 <input id="city" name="city" class="form-input" type="text" placeholder="*city"
                        formControlName="city">
                 <span class="form-item-notification">Not visible on the public profile</span>
-                <span class="error-message block" *ngIf="userAddress.get('city')?.errors?.required && userAddress.get('city')?.touched">This is a required field</span>
+                <span class="error-message block"
+                      *ngIf="userAddress.get('city')?.errors?.required && userAddress.get('city')?.touched">This is a required field</span>
               </label>
             </li>
             <li class="address-form__item">
@@ -130,7 +143,8 @@
                        placeholder="*street number"
                        formControlName="streetNumber">
                 <span class="form-item-notification">Not visible on the public profile</span>
-                <span class="error-message block" *ngIf="userAddress.get('streetNumber')?.errors?.required && userAddress.get('streetNumber')?.touched">This is a required field</span>
+                <span class="error-message block"
+                      *ngIf="userAddress.get('streetNumber')?.errors?.required && userAddress.get('streetNumber')?.touched">This is a required field</span>
               </label>
             </li>
             <li class="address-form__item">
@@ -139,7 +153,8 @@
                        placeholder="*street name"
                        formControlName="streetName">
                 <span class="form-item-notification">Not visible on the public profile</span>
-                <span class="error-message block" *ngIf="userAddress.get('streetName')?.errors?.required && userAddress.get('streetName')?.touched">This is a required field</span>
+                <span class="error-message block"
+                      *ngIf="userAddress.get('streetName')?.errors?.required && userAddress.get('streetName')?.touched">This is a required field</span>
               </label>
             </li>
             <li class="address-form__item">
@@ -148,7 +163,8 @@
                        placeholder="*zip-code"
                        formControlName="zipCode">
                 <span class="form-item-notification">Not visible on the public profile</span>
-                <span class="error-message block" *ngIf="userAddress.get('zipCode')?.errors?.required && userAddress.get('zipCode')?.touched">This is a required field</span>
+                <span class="error-message block"
+                      *ngIf="userAddress.get('zipCode')?.errors?.required && userAddress.get('zipCode')?.touched">This is a required field</span>
               </label>
             </li>
           </ul>

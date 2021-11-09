@@ -1,21 +1,35 @@
-.lds-hourglass {
-  display: inline-block;
-  position: relative;
-  width: 80px;
-  height: 80px;
+.loadingWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+
+  .lds-hourglass {
+    position: relative;
+    width: 80px;
+    height: 80px;
+
+    &:after {
+      content: " ";
+      display: block;
+      border-radius: 50%;
+      width: 0;
+      height: 0;
+      margin: 8px;
+      box-sizing: border-box;
+      border: 32px solid #fff;
+      border-color: #86d6ff transparent #86d6ff transparent;
+      animation: lds-hourglass 1.2s infinite;
+    }
+  }
 }
-.lds-hourglass:after {
-  content: " ";
-  display: block;
-  border-radius: 50%;
-  width: 0;
-  height: 0;
-  margin: 8px;
-  box-sizing: border-box;
-  border: 32px solid #fff;
-  border-color: #86d6ff transparent #86d6ff transparent;
-  animation: lds-hourglass 1.2s infinite;
-}
+
 @keyframes lds-hourglass {
   0% {
     transform: rotate(0);
@@ -28,12 +42,4 @@
   100% {
     transform: rotate(1800deg);
   }
-}
-.loadingWrapper {
-  position: absolute;
-  top: calc(100vh - 50%);
-  right: calc(100vw - 50%);
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }

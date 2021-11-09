@@ -1,0 +1,22 @@
+.personal-info-wrapper {
+  justify-content: space-between;
+  padding: 0 178px 0 31px;
+
+  .form-label {
+    width: 418px;
+  }
+
+  .phone-number-label {
+    z-index: 99;
+  }
+
+  .phone-number-label-input {
+    width: 74%;
+    margin-left: -10px;
+    z-index: 1;
+
+    .form-input {
+      padding: 0 40px;
+    }
+  }
+}

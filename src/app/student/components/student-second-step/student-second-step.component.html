@@ -5,46 +5,54 @@
         <ul class="user-sign-up-list">
           <li class="user-sign-up-list__item">
             <h3 class="main-question">What subject(s) are you interested in?</h3>
-            <div class="d-flex flex-container-justify-start gap-3
-            grid-gap-10 date-picker-container" *ngFor="let item of studentSubjects.controls; let i = index"
-                 formArrayName="studentSubjects">
-              <ng-container [formGroupName]="i">
-                <div class="selectWrapper">
-                  <app-select
-                    [label]="'*Category'"
-                    [keyName]="'categoryName'"
-                    [list]="categories$ | async"
-                    formControlName="categoryId"
-                    (ngModelChange)="categoryChange($event, i, studentSubjects.controls[i])"
-                  >
-                  </app-select>
-                  <span class="error-message"
-                        *ngIf="studentSubjects.controls[i]?.get('categoryId')?.errors && studentSubjects.controls[i]?.get('categoryId')?.touched">Please choose a subject</span>
+            <div class="flex-container-justify-start grid-gap-space-for-student">
+              <ng-container *ngFor="let item of studentSubjects.controls; let i = index">
+                <div formArrayName="studentSubjects">
+                  <div [formGroupName]="i" class="d-flex selectRow">
+                    <div class="selectWrapper">
+                      <app-select
+                        [label]="'*Category'"
+                        [keyName]="'categoryName'"
+                        [list]="categories$ | async"
+                        formControlName="categoryId"
+                        (ngModelChange)="categoryChange($event, i, studentSubjects.controls[i])"
+                      >
+                      </app-select>
+                      <span class="error-message"
+                            *ngIf="studentSubjects.controls[i]?.get('categoryId')?.errors && studentSubjects.controls[i]?.get('categoryId')?.touched">Please choose a subject</span>
+                    </div>
+                    <div class="selectWrapper">
+                      <app-select
+                        [label]="'Subject'"
+                        [keyName]="'subjectName'"
+                        [list]="observables[i]?.subjects$ | async"
+                        (ngModelChange)="subjectChange($event, i, studentSubjects.controls[i])"
+                        formControlName="subjectId">
+                      </app-select>
+                      <span class="error-message"
+                            *ngIf="studentSubjects.controls[i]?.get('subjectId')?.errors && studentSubjects.controls[i]?.get('subjectId')?.touched">This is a required field</span>
+                    </div>
+                    <div class="selectWrapper">
+                      <app-select
+                        [label]="'What level is this for?'"
+                        [list]="observables[i]?.levels$ | async"
+                        [keyName]="'level'"
+                        formControlName="levelId">
+                      </app-select>
+                      <span class="error-message"
+                            *ngIf="studentSubjects.controls[i]?.get('levelId')?.errors && studentSubjects.controls[i]?.get('levelId')?.touched">This is a required field</span>
+                    </div>
+                    <div class="flex-container grid-gap-for-icons">
+                      <div class="recycle-bin-wrapper text-danger"
+                           (click)="removeStudentSubjects(item)"
+                           *ngIf="i > 0">
+                        <img src="./assets/images/recycleBin.png" alt="recycle byn" class="trashIcon">
+                      </div>
+                      <i class="fas fa-plus" (click)="addStudentSubjects()"
+                         *ngIf="i == studentSubjects.controls.length-1"></i>
+                    </div>
+                  </div>
                 </div>
-                <div class="selectWrapper">
-                  <app-select
-                    [label]="'Subject'"
-                    [keyName]="'subjectName'"
-                    [list]="observables[i]?.subjects$ | async"
-                    (ngModelChange)="subjectChange($event, i, studentSubjects.controls[i])"
-                    formControlName="subjectId">
-                  </app-select>
-                  <span class="error-message"
-                        *ngIf="studentSubjects.controls[i]?.get('subjectId')?.errors && studentSubjects.controls[i]?.get('subjectId')?.touched">This is a required field</span>
-                </div>
-                <div class="selectWrapper">
-                  <app-select
-                    [label]="'What level is this for?'"
-                    [list]="observables[i]?.levels$ | async"
-                    [keyName]="'level'"
-                    formControlName="levelId">
-                  </app-select>
-                  <span class="error-message"
-                        *ngIf="studentSubjects.controls[i]?.get('levelId')?.errors && studentSubjects.controls[i]?.get('levelId')?.touched">This is a required field</span>
-                </div>
-                <i class="text-danger" (click)="removeStudentSubjects(item)" *ngIf="i > 0">x</i>
-                <i class="fas fa-plus" (click)="addStudentSubjects()"
-                   *ngIf="i == studentSubjects.controls.length-1"></i>
               </ng-container>
             </div>
           </li>
@@ -81,12 +89,13 @@
                 <tbody>
                 <tr *ngFor="let item of availableHours; let j = index">
                   <td>
-                    <h4 class="table-row__title"> {{item[j+1].description}}</h4>
-                    <p class="table-row__description">{{item[j+1].details}}</p>
+                    <h4 class="table-row__title"> {{item[j + 1].description}}</h4>
+                    <p class="table-row__description">{{item[j + 1].details}}</p>
                   </td>
                   <td *ngFor="let day of item.days; let i = index">
-                    <div class="table-checkbox-wrapper" >
-                      <mat-checkbox [disabled]="isDisabledCalendar" (change)="selectDay($event, item.days[i])" [checked]="item.days[i].checked"></mat-checkbox>
+                    <div class="table-checkbox-wrapper">
+                      <mat-checkbox [disabled]="isDisabledCalendar" (change)="selectDay($event, item.days[i])"
+                                    [checked]="item.days[i].checked"></mat-checkbox>
                     </div>
                   </td>
                 </tr>
@@ -102,7 +111,8 @@
           <li class="user-sign-up-list__item select-wrapper-min-width">
             <h3 class="main-question">How many tutoring sessions do you think you will need?</h3>
             <div class="fixed-width form-label">
-              <app-select [label]="'*select'" [list]="lessonsCounts$ | async" formControlName="sessionsCountId"></app-select>
+              <app-select [label]="'*select'" [list]="lessonsCounts$ | async"
+                          formControlName="sessionsCountId"></app-select>
             </div>
           </li>
         </ul>

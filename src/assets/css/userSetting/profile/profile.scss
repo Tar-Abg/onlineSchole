@@ -1,0 +1,21 @@
+.profile-wrapper {
+  .form-label--flex-container {
+    margin-bottom: 5px;
+  }
+
+  .user-sign-up-list__item {
+    margin-bottom: 70px;
+  }
+
+  .large-size {
+    .form-textarea {
+      width: calc(100% - 116px);
+      height: auto;
+      padding: 15px 20px;
+    }
+  }
+
+  .settings-form-button {
+    margin: 0 auto;
+  }
+}

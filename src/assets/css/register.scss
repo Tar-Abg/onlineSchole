@@ -104,6 +104,13 @@
   color: $clr-ntrl-max;
 }
 
+.form-item-label {
+  margin-bottom: 4px;
+  font: $type-regular normal $type-medium-size $Segoe-UI-sans;
+  line-height: 24px;
+  color: $clr-ntrl-max;
+}
+
 .sub-question {
   font: $type-regular normal 18px/ 24px $Segoe-UI-sans;
   letter-spacing: 0.03em;
@@ -145,8 +152,18 @@
   padding: 0;
   margin: 0;
 
-  &__item {
+  &__item, .form-item-with-notification {
     margin-bottom: 45px;
+    display: flex;
+    flex-direction: column;
+
+    .form-label {
+      margin: 0;
+    }
+
+    &:empty {
+      margin: 0;
+    }
 
     .form-item-notification {
       position: absolute;
@@ -159,4 +176,6 @@
       left: unset;
     }
   }
+
+
 }

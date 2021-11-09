@@ -1,3 +1,17 @@
 .margin-left-onLogged {
   margin-left: 40px;
 }
+
+.date-picker-wrapper {
+  width: 100%;
+  flex-direction: column;
+}
+
+.register-step-form {
+  position: relative;
+
+  .remove-icon-wrapper {
+    position: absolute;
+    top: 0;
+  }
+}

@@ -1,10 +1,8 @@
-<div class="tutor-settings-nested-page">
+<div class="tutor-settings-nested-page subjects-wrapper">
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="tutor-settings-nested-page__form">
     <div class="flex-container-justify-start grid-gap-space">
       <ng-container formArrayName="formArray" *ngFor="let item of formArray.controls; let i = index">
-        <div [formGroupName]="i" class="d-flex selectRow" >
-
-
+        <div [formGroupName]="i" class="d-flex selectRow">
           <div class="form-label fixed-width">
             <app-select
               [label]="'*Category'"
@@ -32,10 +30,10 @@
             ></app-select>
           </div>
           <div class="flex-container grid-gap-for-icons">
-            <i class="fas fa-plus" (click)="addNewForm()" ></i>
             <div class="recycle-bin-wrapper" *ngIf="i > 0">
-              <img src="./assets/images/recycleBin.png" (click)="removeForm(item)" alt="">
+              <img src="./assets/images/recycleBin.png" (click)="removeForm(item)" alt="Recycle Byn">
             </div>
+            <i class="fas fa-plus" (click)="addNewForm()" *ngIf="i === formArray.controls.length - 1 "></i>
           </div>
         </div>
       </ng-container>
