@@ -1,18 +1,20 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../services/storage/storage.service";
 import {InfosService} from "../../services/infos/infos.service";
-import {SettingsService} from "../../services/settings/settings.service";
 import {ValidationService} from "../../services/validation/validation.service";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {Country} from "../../models/infos.model";
+import {PersonalInformation} from "../../models/settings.model";
+import {SettingsService} from "../../services/settings/settings.service";
 
 @Component({
   selector: 'app-personal-information',
   templateUrl: './personal-information.component.html',
   styleUrls: ['./personal-information.component.scss']
 })
-export class PersonalInformationComponent implements OnInit {
+export class PersonalInformationComponent implements OnInit, OnDestroy {
+  private readonly subscription = new Subscription();
   countries$: Observable<Country[]>;
   form: FormGroup;
   isOpenPasswordModal: boolean = true;
@@ -23,11 +25,13 @@ export class PersonalInformationComponent implements OnInit {
     private infoService: InfosService,
     private settingService: SettingsService,
     private validationService: ValidationService
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.formInitialization();
     this.countries$ = this.infoService.getCountries();
+    this.getPersonalInformation();
   }
 
   formInitialization(): void {
@@ -59,5 +63,20 @@ export class PersonalInformationComponent implements OnInit {
     } else {
       this.form.markAllAsTouched();
     }
+  }
+
+  getPersonalInformation(): void {
+    if (this.storageService.getUserId()) {
+      this.subscription.add(
+        this.settingService.getPersonalInformation(this.storageService.getUserId()).subscribe(
+          (data: PersonalInformation) => this.form.patchValue(data)
+        )
+      )
+    }
+
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

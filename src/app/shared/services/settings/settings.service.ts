@@ -84,4 +84,12 @@ export class SettingsService {
     return this.http.put<ResponseModel<PersonalInformation>>(`${this.url}/UpdatePersonalInformation`, body, {params: params});
   }
 
+  getPersonalInformation(userId: number): Observable<PersonalInformation> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    return this.http.get<ResponseModel<PersonalInformation>>(`${this.url}/GetPersonalInformation`,  {params: params}).pipe(
+      map(data => data.result)
+    );
+  }
+
 }
