@@ -93,4 +93,4 @@
   <button class="settings-form-button settings-form-button__with-border button-border--blue" (click)="form.enable()">Edit</button>
   <button class="settings-form-button" (click)="onSubmit()" [disabled]="form.disabled">Update Information</button>
 </div>
-<app-confirm-password (close)="isOpenPasswordModal = false" *ngIf="isOpenPasswordModal"></app-confirm-password>
+<app-confirm-password (close)="isOpenPasswordModal = false" (updated)="form.disable()" *ngIf="isOpenPasswordModal" [body]="form.value"></app-confirm-password>

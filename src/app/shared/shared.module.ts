@@ -12,7 +12,9 @@ import {CertificatesComponent} from './components/certificates/certificates.comp
 import {MatIconModule} from "@angular/material/icon";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {PersonalInformationComponent} from './components/personal-information/personal-information.component';
-import { ConfirmPasswordComponent } from './components/confirm-password/confirm-password.component';
+import {ConfirmPasswordComponent} from './components/confirm-password/confirm-password.component';
+import {ChangePasswordComponent} from './components/change-password/change-password.component';
+import {SubjectsComponent} from './components/subjects/subjects.component';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import { ConfirmPasswordComponent } from './components/confirm-password/confirm-
     InstitutionsComponent,
     CertificatesComponent,
     PersonalInformationComponent,
-    ConfirmPasswordComponent
+    ConfirmPasswordComponent,
+    ChangePasswordComponent,
+    SubjectsComponent
   ],
   imports: [
     CommonModule,

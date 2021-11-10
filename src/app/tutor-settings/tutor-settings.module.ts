@@ -4,9 +4,7 @@ import {TutorSettingsRoutingModule} from "./tutor-settings-routing.module";
 import {TutorSettingsComponent} from "./components/tutor-settings/tutor-settings.component";
 import {ProfileComponent} from "./components/profile/profile.component";
 import {RatesComponent} from "./components/rates/rates.component";
-import {SubjectsComponent} from "./components/subjects/subjects.component";
 import {PaymentComponent} from "./components/payment/payment.component";
-import {ChangePasswordComponent} from "./components/change-password/change-password.component";
 import {AvailabilityComponent} from "./components/availability/availability.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModuleModule} from "../shared/shared.module";
@@ -21,9 +19,7 @@ import {TutorPersonalInformationComponent} from './components/tutor-personal-inf
   declarations: [
     TutorSettingsComponent,
     ProfileComponent,
-    SubjectsComponent,
     PaymentComponent,
-    ChangePasswordComponent,
     AvailabilityComponent,
     RatesComponent,
     TutorInstitutionsComponent,

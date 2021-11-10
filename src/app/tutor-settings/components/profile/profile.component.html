@@ -11,7 +11,7 @@
               <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
                    width="33" height="33">
             </div>
-            <img [src]="userImage" alt="Upload Photo" *ngIf="userImage">
+            <img [src]="userImage" alt="Upload Photo" *ngIf="userImage?.length">
           </div>
         </div>
         <div class="upload-image-requirement">

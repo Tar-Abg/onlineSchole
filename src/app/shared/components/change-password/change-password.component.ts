@@ -1,16 +1,16 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {StorageService} from "../../../shared/services/storage/storage.service";
-import {SettingsService} from "../../../shared/services/settings/settings.service";
+import {Component, OnInit} from '@angular/core';
 import {Subscription} from "rxjs";
-import {ValidationService} from "../../../shared/services/validation/validation.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {StorageService} from "../../services/storage/storage.service";
+import {SettingsService} from "../../services/settings/settings.service";
+import {ValidationService} from "../../services/validation/validation.service";
 
 @Component({
   selector: 'app-change-password',
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.scss']
 })
-export class ChangePasswordComponent implements OnInit, OnDestroy {
+export class ChangePasswordComponent implements OnInit {
   private readonly subscription: Subscription = new Subscription();
   form: FormGroup;
   wrongPassword: boolean;
@@ -72,5 +72,4 @@ export class ChangePasswordComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {Subscription} from "rxjs";
@@ -20,7 +20,8 @@ export class StudentFourthStepComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private storageService: StorageService,
-    private registrationService: RegistrartionService
+    private registrationService: RegistrartionService,
+    private cd: ChangeDetectorRef
   ) {
   }
 
@@ -84,6 +85,7 @@ export class StudentFourthStepComponent implements OnInit, OnDestroy {
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
       this.userImage = reader.result;
+      this.cd.detectChanges()
       this.form.get('photo')?.setValue(true);
     }
   }

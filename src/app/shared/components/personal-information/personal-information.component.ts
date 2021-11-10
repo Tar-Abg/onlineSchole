@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../services/storage/storage.service";
 import {InfosService} from "../../services/infos/infos.service";
@@ -56,7 +56,6 @@ export class PersonalInformationComponent implements OnInit {
   onSubmit(): void {
     if (this.form.valid) {
       this.isOpenPasswordModal = true;
-      console.log(this.isOpenPasswordModal);
     } else {
       this.form.markAllAsTouched();
     }
