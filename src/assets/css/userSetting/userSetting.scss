@@ -27,6 +27,7 @@
         line-height: 21px;
         letter-spacing: 0.02em;
         color: $clr-ntrl-max;
+        white-space: nowrap;
         cursor: pointer;
 
         &.active {
