@@ -15,6 +15,7 @@ import {PersonalInformationComponent} from './components/personal-information/pe
 import {ConfirmPasswordComponent} from './components/confirm-password/confirm-password.component';
 import {ChangePasswordComponent} from './components/change-password/change-password.component';
 import {SubjectsComponent} from './components/subjects/subjects.component';
+import {PaginationComponent} from './components/pagination/pagination.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import {SubjectsComponent} from './components/subjects/subjects.component';
     PersonalInformationComponent,
     ConfirmPasswordComponent,
     ChangePasswordComponent,
-    SubjectsComponent
+    SubjectsComponent,
+    PaginationComponent
   ],
   imports: [
     CommonModule,
@@ -36,7 +38,7 @@ import {SubjectsComponent} from './components/subjects/subjects.component';
     MatDatepickerModule,
     MatInputModule,
     MatIconModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   exports: [
     RegisterHeaderComponent,
@@ -44,8 +46,9 @@ import {SubjectsComponent} from './components/subjects/subjects.component';
     SelectComponent,
     InstitutionsComponent,
     CertificatesComponent,
-    PersonalInformationComponent
+    PersonalInformationComponent,
+    PaginationComponent
   ]
 })
-export class SharedModuleModule {
+export class SharedModule {
 }
