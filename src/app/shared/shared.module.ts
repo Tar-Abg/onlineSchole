@@ -16,6 +16,7 @@ import {ConfirmPasswordComponent} from './components/confirm-password/confirm-pa
 import {ChangePasswordComponent} from './components/change-password/change-password.component';
 import {SubjectsComponent} from './components/subjects/subjects.component';
 import {PaginationComponent} from './components/pagination/pagination.component';
+import { MessageComponent } from './components/message/message.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {PaginationComponent} from './components/pagination/pagination.component'
     ConfirmPasswordComponent,
     ChangePasswordComponent,
     SubjectsComponent,
-    PaginationComponent
+    PaginationComponent,
+    MessageComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import {PaginationComponent} from './components/pagination/pagination.component'
     InstitutionsComponent,
     CertificatesComponent,
     PersonalInformationComponent,
-    PaginationComponent
+    PaginationComponent,
+    MessageComponent
   ]
 })
 export class SharedModule {
