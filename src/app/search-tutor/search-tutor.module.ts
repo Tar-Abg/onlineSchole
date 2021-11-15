@@ -20,7 +20,6 @@ import {SharedModule
     SearchTutorRoutingModule,
     LayoutsModule,
     SharedModule
-
   ]
 })
 export class SearchTutorModule {
