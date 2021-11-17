@@ -8,7 +8,7 @@ import {StudentSecondStepComponent} from './components/student-second-step/stude
 import {StudentThirdStepComponent} from './components/student-third-step/student-third-step.component';
 import {StudentFourthStepComponent} from './components/student-fourth-step/student-fourth-step.component';
 import {StudentFifthStepComponent} from './components/student-fifth-step/student-fifth-step.component';
-import {SharedModuleModule} from "../shared/shared.module";
+import {SharedModule} from "../shared/shared.module";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatFormFieldModule} from "@angular/material/form-field";
@@ -29,7 +29,7 @@ import {MatIconModule} from "@angular/material/icon";
   imports: [
     CommonModule,
     StudentRoutingModule,
-    SharedModuleModule,
+    SharedModule,
     MatCheckboxModule,
     ReactiveFormsModule,
     MatFormFieldModule,

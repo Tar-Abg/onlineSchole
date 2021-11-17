@@ -23,7 +23,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
   months$: Observable<Month[]>;
   yearList: KeyValuePair[];
   emailIsExist$: Subject<boolean>;
-  private actionType: "CREATE" | "UPDATE" = "CREATE";
+  // private actionType: "CREATE" | "UPDATE" = "CREATE";
   userId: number;
 
   constructor(
@@ -59,11 +59,11 @@ export class StepOneComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.form.valid) {
-      if (this.actionType === "UPDATE") {
-        this.updateInformation();
-      } else {
+      // if (this.actionType === "UPDATE") {
+      //   this.updateInformation();
+      // } else {
         this.saveInformation();
-      }
+      // }
     } else {
       this.form.markAllAsTouched();
     }
@@ -88,21 +88,21 @@ export class StepOneComponent implements OnInit, OnDestroy {
     this.genderList$ = this.infosService.getGenders();
     this.months$ = this.infosService.getMonths();
     this.yearList = this.dateService.getYears(1930);
-    this.userId && this.getInformationForUser();
+    // this.userId && this.getInformationForUser();
     this.emailIsExist$ = this.registrationService.emailIsExist$;
   }
 
-  getInformationForUser(): void {
-    this.subscription.add(
-      this.registrationService.getInformationPage(this.userId).subscribe((user) => {
-        this.actionType = "UPDATE";
-        this.patchFormValue(user);
-      }, () => {
-        this.actionType = "CREATE";
-        this.storageService.clearUserId();
-      })
-    );
-  }
+  // getInformationForUser(): void {
+  //   this.subscription.add(
+  //     this.registrationService.getInformationPage(this.userId).subscribe((user) => {
+  //       this.actionType = "UPDATE";
+  //       this.patchFormValue(user);
+  //     }, () => {
+  //       this.actionType = "CREATE";
+  //       this.storageService.clearUserId();
+  //     })
+  //   );
+  // }
 
   patchFormValue(user: SaveInformation): void {
     this.form.patchValue(user);

@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
@@ -19,7 +19,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     private storageService: StorageService,
     private fb: FormBuilder,
     private registrationService: RegistrartionService,
-    private settingsService: SettingsService
+    private settingsService: SettingsService,
+    private cd: ChangeDetectorRef
   ) {
   }
 
@@ -31,8 +32,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
   getWrapUpProfile(): void {
     this.subscription.add(
       this.registrationService.getWrapUpProfile(this.storageService.getUserId()).subscribe(data => {
-        this.form.patchValue(data)
-        this.userImage = data.photo;
+        if (data) {
+          this.form.patchValue(data);
+          this.userImage = data.photo;
+        }
       })
     );
   }
@@ -41,7 +44,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
     const reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
     reader.onload = (_event) => {
-      this.userImage = reader.result;
+      setTimeout(()=> {
+        this.userImage = reader.result;
+        this.cd.detectChanges();
+      }, 0)
+
     }
   }
 

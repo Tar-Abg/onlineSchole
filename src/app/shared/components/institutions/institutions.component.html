@@ -1,6 +1,6 @@
 <div [class.margin-left-space]="!isLoggedIn" [class.margin-left-onLogged]="isLoggedIn">
   <form [formGroup]="form">
-    <div formArrayName="formArray" *ngFor="let item of formArray.controls; let i = index">
+    <div formArrayName="formArray" *ngFor="let item of formArray.controls; let i = index" [class.aitionalForm]="i > 0">
       <fieldset class="register-form" [formGroupName]="i">
         <div class="flex-container-start register-step-form row">
           <div class="flex-item">
@@ -118,7 +118,7 @@
   <button type="button" class="add" (click)="addNewForm()"> + Add</button>
   <div class="flex-container-center button-wrapper">
     <ng-container *ngIf="!isLoggedIn">
-      <button class="sophist-btn flex-container-center previous-btn" (click)="back.emit()">PREVIOUS</button>
+      <button class="sophist-btn flex-container-center previous-btn" (click)="back.emit()" *ngIf="showPrevious">PREVIOUS</button>
       <button class="sophist-btn flex-container-center next-btn" (click)="onSubmit()">NEXT</button>
     </ng-container>
 

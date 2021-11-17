@@ -17,6 +17,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {HttpRequestInterceptor} from "./interceptors/loading.interceptor";
+import {SharedModule} from "./shared/shared.module";
 
 
 @NgModule({
@@ -24,21 +25,22 @@ import {HttpRequestInterceptor} from "./interceptors/loading.interceptor";
     AppComponent,
     LandingComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    LayoutsModule,
-    NoopAnimationsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule,
-    NgbModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        LayoutsModule,
+        NoopAnimationsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatRippleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRadioModule,
+        NgbModule,
+        SharedModule
+    ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {

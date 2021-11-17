@@ -38,7 +38,7 @@ export class RegistrartionService {
     return this.http.post<ResponseModel<number>>(`${this.url}/SaveInformation`, body).pipe(
       map(data => data.result),
       catchError(err => {
-        if(err.error?.type === 'Email existence error') {
+        if (err.error?.type === 'Email existence error') {
           this.emailIsExist$.next(true)
         }
         throw new Error(err.error.type);
@@ -59,7 +59,7 @@ export class RegistrartionService {
     return this.http.put<ResponseModel<number>>(`${this.url}/UpdateInformation`, body).pipe(
       map(data => data.result),
       catchError(err => {
-        if(err.error?.type === 'Email existence error') {
+        if (err.error?.type === 'Email existence error') {
           this.emailIsExist$.next(true)
         }
         throw new Error(err.error.type);
@@ -113,6 +113,7 @@ export class RegistrartionService {
       map(data => data.result)
     );
   }
+
   // Certificates end
 
   // Preferences
@@ -131,6 +132,7 @@ export class RegistrartionService {
       map(data => data.result)
     );
   }
+
   // Preferences end
 
   // Contacts
@@ -149,6 +151,7 @@ export class RegistrartionService {
       map(data => data.result)
     );
   }
+
   // Contacts end
 
   saveBasicInformation(body: SaveCertificates): Observable<any> {
@@ -215,6 +218,15 @@ export class RegistrartionService {
     let params = new HttpParams();
     params = params.append('userId', userId);
     return this.http.get<ResponseModel<StudentWantedLessons>>(`${this.url}/GetStudentWantedLessons`, {params: params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  confirmEmail(userId: number, token: string): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    params = params.append('token', token);
+    return this.http.put<ResponseModel<any>>(`${this.url}/ConfirmEmail`, {},{params: params}).pipe(
       map(data => data.result)
     );
   }

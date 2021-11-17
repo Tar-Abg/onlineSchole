@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {LoginComponent} from './components/login/login.component';
 import {TutorRoutingModule} from "./tutor-routing.module";
 import {SignUpComponent} from './components/sign-up/sign-up.component';
-import {SharedModuleModule} from "../shared/shared.module";
+import {SharedModule} from "../shared/shared.module";
 import {StepOneComponent} from './components/step-one/step-one.component';
 import {SecondStepComponent} from './components/second-step/second-step.component';
 import {ThirdStepComponent} from './components/third-step/third-step.component';
@@ -41,7 +41,7 @@ import {NgxMaskModule} from 'ngx-mask';
   imports: [
     CommonModule,
     TutorRoutingModule,
-    SharedModuleModule,
+    SharedModule,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatDatepickerModule,

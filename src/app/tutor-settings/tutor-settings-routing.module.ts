@@ -4,12 +4,12 @@ import {TutorSettingsComponent} from "./components/tutor-settings/tutor-settings
 import {ProfileComponent} from "./components/profile/profile.component";
 import {RatesComponent} from "./components/rates/rates.component";
 import {AvailabilityComponent} from "./components/availability/availability.component";
-import {SubjectsComponent} from "./components/subjects/subjects.component";
-import {PersonalInformationComponent} from "./components/personal-information/personal-information.component";
+import {SubjectsComponent} from "../shared/components/subjects/subjects.component";
 import {PaymentComponent} from "./components/payment/payment.component";
-import {ChangePasswordComponent} from "./components/change-password/change-password.component";
+import {ChangePasswordComponent} from "../shared/components/change-password/change-password.component";
 import {TutorInstitutionsComponent} from "./components/tutor-institutions/tutor-institutions.component";
 import {TutorCertificatesComponent} from "./components/tutor-certificates/tutor-certificates.component";
+import {TutorPersonalInformationComponent} from "./components/tutor-personal-information/tutor-personal-information.component";
 
 
 const routes: Routes = [
@@ -21,7 +21,7 @@ const routes: Routes = [
       {path: 'rates', component: RatesComponent},
       {path: 'availability', component: AvailabilityComponent},
       {path: 'subjects', component: SubjectsComponent},
-      {path: 'personal-information', component: PersonalInformationComponent},
+      {path: 'personal-information', component: TutorPersonalInformationComponent},
       {path: 'payment-methode', component: PaymentComponent},
       {path: 'change-password', component: ChangePasswordComponent},
       {path: 'institutions', component: TutorInstitutionsComponent},

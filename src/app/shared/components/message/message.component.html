@@ -1,0 +1,10 @@
+<div class="messageModal" *ngIf="(message$ | async) as message">
+  <div class="messageContent">
+    <div class="header">
+      <span (click)="close()">x</span>
+    </div>
+    <div class="body">
+      {{message}}
+    </div>
+  </div>
+</div>

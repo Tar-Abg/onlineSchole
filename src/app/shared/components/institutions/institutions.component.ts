@@ -23,6 +23,7 @@ export class InstitutionsComponent implements OnInit, OnDestroy{
   institutionalLevels$: Observable<KeyValuePair[]>;
   private actionType: "CREATE" | "UPDATE" = "CREATE";
   @Input() isLoggedIn: boolean = true;
+  @Input() showPrevious: boolean = true;
 
 
   constructor(

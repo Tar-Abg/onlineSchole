@@ -1,15 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../../../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {
-  SaveInstitutions,
-  SaveWrapUpProfile,
-  TutorAvailabilities,
-  TutorSubjects,
-  UpdatePassword
-} from "../../models/registration.model";
+import {SaveWrapUpProfile, TutorAvailabilities, TutorSubjects, UpdatePassword} from "../../models/registration.model";
 import {Observable} from "rxjs";
-import {RateAndPolitics} from "../../models/settings.model";
+import {PersonalInformation, RateAndPolitics} from "../../models/settings.model";
 import {map} from "rxjs/operators";
 import {ResponseModel} from "../../models/responseModel.model";
 
@@ -21,7 +15,8 @@ export class SettingsService {
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {
+  }
 
   updateProfileInformation(body: SaveWrapUpProfile): Observable<any> {
     return this.http.put<Observable<any>>(`${this.url}/UpdateProfileInformation`, body);
@@ -62,12 +57,39 @@ export class SettingsService {
       map(data => data.result)
     );
   }
+
+  getStudentSubjects(userId: number): Observable<TutorSubjects[]> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    return this.http.get<ResponseModel<TutorSubjects[]>>(`${this.url}/GetStudentSubjects`, {params: params}).pipe(
+      map(data => data.result)
+    );
+  }
+
   updateTutorSubjects(body: TutorSubjects): Observable<any> {
     return this.http.put<ResponseModel<any>>(`${this.url}/UpdateTutorSubjects`, body);
   }
 
+  updateStudentSubjects(body: TutorSubjects): Observable<any> {
+    return this.http.put<ResponseModel<any>>(`${this.url}/UpdateStudentSubjects`, body);
+  }
+
   updatePassword(body: UpdatePassword): Observable<any> {
     return this.http.put<ResponseModel<any>>(`${this.url}/UpdatePassword`, body);
+  }
+
+  updatePersonalInformation(body: PersonalInformation, password: string): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('password', password);
+    return this.http.put<ResponseModel<PersonalInformation>>(`${this.url}/UpdatePersonalInformation`, body, {params: params});
+  }
+
+  getPersonalInformation(userId: number): Observable<PersonalInformation> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    return this.http.get<ResponseModel<PersonalInformation>>(`${this.url}/GetPersonalInformation`,  {params: params}).pipe(
+      map(data => data.result)
+    );
   }
 
 }

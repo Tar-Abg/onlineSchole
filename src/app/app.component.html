@@ -1,8 +1,13 @@
-<div class="mainWrapper">
+<div class="mainWrapper" [class.isLoading]="isLoading$ | async">
   <div class="content">
     <router-outlet></router-outlet>
   </div>
   <app-footer></app-footer>
   <app-loading></app-loading>
 </div>
+<<<<<<< HEAD
 git
+=======
+<app-loading></app-loading>
+<app-message></app-message>
+>>>>>>> dev

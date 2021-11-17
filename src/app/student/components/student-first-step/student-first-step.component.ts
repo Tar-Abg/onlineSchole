@@ -18,7 +18,7 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
   form: FormGroup;
   genderList$: Observable<KeyValuePair[]>;
-  private actionType: "CREATE" | "UPDATE" = "CREATE";
+  // private actionType: "CREATE" | "UPDATE" = "CREATE";
   emailIsExist$: Subject<boolean>;
 
   constructor(
@@ -34,7 +34,7 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
     this.storageService.setUserType(2); // will be removed
     this.initializeForm();
     this.genderList$ = this.infosService.getGenders();
-    this.getInformationForStudent();
+    // this.getInformationForStudent();
     this.emailIsExist$ = this.registrationService.emailIsExist$;
   }
 
@@ -54,25 +54,25 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.form.valid) {
-      if (this.actionType === "UPDATE") {
-        this.updateInformation();
-      } else {
+      // if (this.actionType === "UPDATE") {
+      //   this.updateInformation();
+      // } else {
         this.saveInformation();
-      }
+      // }
     } else {
       this.form.markAllAsTouched();
     }
   }
 
-  updateInformation(): void {
-    this.subscription.add(
-      this.registrationService.updateInformation({
-        ...this.form.value,
-        userType: this.storageService.getUserType(),
-        id: this.storageService.getUserId()
-      }).subscribe(() => this.next.emit())
-    );
-  }
+  // updateInformation(): void {
+  //   this.subscription.add(
+  //     this.registrationService.updateInformation({
+  //       ...this.form.value,
+  //       userType: this.storageService.getUserType(),
+  //       id: this.storageService.getUserId()
+  //     }).subscribe(() => this.next.emit())
+  //   );
+  // }
 
   saveInformation(): void {
     this.subscription.add(
@@ -86,26 +86,26 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
     );
   }
 
-  getInformationForStudent(): void {
-    const userId = this.storageService.getUserId();
-    if (userId) {
-      this.subscription.add(
-        this.registrationService.getInformationPage(userId).subscribe((user) => {
-          this.actionType = "UPDATE";
-          this.patchFormValue(user);
-        }, () => {
-          this.actionType = "CREATE";
-          this.storageService.clearUserId();
-        })
-      );
-    }
-  }
+  // getInformationForStudent(): void {
+  //   const userId = this.storageService.getUserId();
+  //   if (userId) {
+  //     this.subscription.add(
+  //       this.registrationService.getInformationPage(userId).subscribe((user) => {
+  //         this.actionType = "UPDATE";
+  //         this.patchFormValue(user);
+  //       }, () => {
+  //         this.actionType = "CREATE";
+  //         this.storageService.clearUserId();
+  //       })
+  //     );
+  //   }
+  // }
 
-  patchFormValue(user: SaveInformation): void {
-    this.form.patchValue(user);
-    this.form.get('password')?.setValue(user.userPassword.password);
-    this.form.get('rePassword')?.setValue(user.userPassword.password);
-  }
+  // patchFormValue(user: SaveInformation): void {
+  //   this.form.patchValue(user);
+  //   this.form.get('password')?.setValue(user.userPassword.password);
+  //   this.form.get('rePassword')?.setValue(user.userPassword.password);
+  // }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
