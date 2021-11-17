@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RegistrHeaderComponent } from './register-header.component';
+import { RegisterHeaderComponent } from './register-header.component';
 
-describe('RegistrHeaderComponent', () => {
-  let component: RegistrHeaderComponent;
-  let fixture: ComponentFixture<RegistrHeaderComponent>;
+describe('RegisterHeaderComponent', () => {
+  let component: RegisterHeaderComponent;
+  let fixture: ComponentFixture<RegisterHeaderComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegistrHeaderComponent ]
+      declarations: [ RegisterHeaderComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegistrHeaderComponent);
+    fixture = TestBed.createComponent(RegisterHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
