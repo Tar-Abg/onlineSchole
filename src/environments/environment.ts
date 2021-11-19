@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://sophisteducation-001-site1.itempurl.com'
+  apiUrl: 'https://sophisteducation-001-site1.itempurl.com'
 };
 
 /*

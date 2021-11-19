@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {InfosService} from "../../../shared/services/infos/infos.service";
+import {Observable} from "rxjs";
+import {Categories, DaysOfWeek, Subjects} from "../../../shared/models/infos.model";
+import {MatSelectChange} from "@angular/material/select";
+import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-filter',
@@ -6,10 +12,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
+  categories$: Observable<Categories[]>;
+  subjects$: Observable<Subjects[]>;
+  availableHours$: Observable<DaysOfWeek[]>;
+  genderList$: Observable<KeyValuePair[]>;
+  studentLevels$: Observable<KeyValuePair[]>;
 
-  constructor() { }
 
-  ngOnInit(): void {
+  constructor(
+    private infoService: InfosService
+  ) {
   }
 
+  ngOnInit(): void {
+    this.initializeSubscriptions();
+  }
+
+  getSubject(event: MatSelectChange) {
+    this.subjects$ = this.infoService.getSubjectsByCategoryId(event.value);
+  }
+
+  initializeSubscriptions(): void {
+    this.categories$ = this.infoService.getCategories();
+    this.availableHours$ = this.infoService.getDaysOfWeek();
+    this.genderList$ = this.infoService.getGenders().pipe(
+      map(levels => {
+        levels.unshift({id: 999, description: 'All'});
+        return levels
+      })
+    );
+    this.studentLevels$ = this.infoService.getStudentLevels().pipe(
+      map(levels => {
+        levels.unshift({id: 999, description: 'All'});
+        return levels
+      })
+    );
+  }
 }

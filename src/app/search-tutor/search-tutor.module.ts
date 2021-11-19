@@ -5,8 +5,11 @@ import {SearchTutorComponent} from './components/search-tutor/search-tutor.compo
 import {LayoutsModule} from "../layouts/layouts.module";
 import {FilterComponent} from './components/filter/filter.component';
 import {TutorCardComponent} from './components/tutor-card/tutor-card.component';
-import {SharedModule
+import {
+  SharedModule
 } from "../shared/shared.module";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 
 
 @NgModule({
@@ -19,7 +22,9 @@ import {SharedModule
     CommonModule,
     SearchTutorRoutingModule,
     LayoutsModule,
-    SharedModule
+    SharedModule,
+    MatFormFieldModule,
+    MatSelectModule
   ]
 })
 export class SearchTutorModule {

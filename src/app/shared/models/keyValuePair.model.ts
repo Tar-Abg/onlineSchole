@@ -1,4 +1,4 @@
 export interface KeyValuePair {
-  id: number;
+  id: number | null;
   description: string;
 }

@@ -3,19 +3,39 @@
   <form class="main-filters-content">
     <div class="form-group">
       <h3 class="filter-field-label">I need help with</h3>
-      <app-select [label]="'*Select'" formControlName="needHelp"></app-select>
+      <app-select
+        [label]="'*Select'"
+        formControlName="needHelp"
+        [list]="categories$ | async"
+        [keyName]="'categoryName'"
+        (selectionChange)="getSubject($event)"
+
+      ></app-select>
     </div>
     <div class="form-group">
       <h3 class="filter-field-label">Subject</h3>
-      <app-select [label]="'*Select'" formControlName="subject"></app-select>
+      <app-select
+        [label]="'*Select'"
+        formControlName="subject"
+        [list]="subjects$ | async"
+        [keyName]="'subjectName'"
+      ></app-select>
     </div>
     <div class="form-group">
       <h3 class="filter-field-label">Availability</h3>
-      <app-select [label]="'*Select'" formControlName="availability"></app-select>
+      <mat-form-field appearance="fill">
+        <mat-select formControl="availability" multiple>
+          <mat-option *ngFor="let topping of availableHours$ | async" [value]="topping.id">{{topping.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div class="form-group">
       <h3 class="filter-field-label">Tutor gender</h3>
-      <app-select [label]="'*Select'" formControlName="tutorGender"></app-select>
+      <app-select
+        [label]="'*Select'"
+        formControlName="tutorGender"
+        [list]="genderList$ | async"
+      ></app-select>
     </div>
     <div class="form-group">
       <h3 class="filter-field-label">Hourly rate</h3>
@@ -29,7 +49,10 @@
     </div>
     <div class="form-group">
       <h3 class="filter-field-label">Student’s level</h3>
-      <app-select [label]="'*Select'" formControlName="studentLevel"></app-select>
+      <app-select
+        [label]="'*Select'"
+        [list]="studentLevels$ | async"
+      ></app-select>
     </div>
     <div class="form-group">
       <h3 class="filter-field-label">Sort</h3>
