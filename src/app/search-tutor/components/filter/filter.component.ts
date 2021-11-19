@@ -17,7 +17,7 @@ export class FilterComponent implements OnInit {
   availableHours$: Observable<DaysOfWeek[]>;
   genderList$: Observable<KeyValuePair[]>;
   studentLevels$: Observable<KeyValuePair[]>;
-
+  sortForTutorSearch$: Observable<KeyValuePair[]>;
 
   constructor(
     private infoService: InfosService
@@ -35,17 +35,27 @@ export class FilterComponent implements OnInit {
   initializeSubscriptions(): void {
     this.categories$ = this.infoService.getCategories();
     this.availableHours$ = this.infoService.getDaysOfWeek();
+    this.sortForTutorSearch$ = this.infoService.getSortForTutorSearch();
+    this.getGenderList();
+    this.getStudentLevels();
+  }
+
+  getGenderList(): void {
     this.genderList$ = this.infoService.getGenders().pipe(
       map(levels => {
         levels.unshift({id: 999, description: 'All'});
-        return levels
-      })
-    );
-    this.studentLevels$ = this.infoService.getStudentLevels().pipe(
-      map(levels => {
-        levels.unshift({id: 999, description: 'All'});
-        return levels
+        return levels;
       })
     );
   }
+
+  getStudentLevels(): void {
+    this.studentLevels$ = this.infoService.getStudentLevels().pipe(
+      map(levels => {
+        levels.unshift({id: 999, description: 'All'});
+        return levels;
+      })
+    );
+  }
+
 }

@@ -56,7 +56,11 @@
     </div>
     <div class="form-group">
       <h3 class="filter-field-label">Sort</h3>
-      <app-select [label]="'*Select'" formControlName="sort"></app-select>
+      <app-select
+        [label]="'*Select'"
+        formControlName="sort"
+        [list]="sortForTutorSearch$ | async"
+      ></app-select>
     </div>
     <div class="form-group search-icon-wrapper">
       <span class="search-liner"></span>

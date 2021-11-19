@@ -129,4 +129,10 @@ export class InfosService {
     );
   }
 
+  getSortForTutorSearch(): Observable<KeyValuePair[]> {
+    return this.http.get<ResponseModel<KeyValuePair[]>>(`${this.url}/GetSortForTutorSearch`).pipe(
+      map(data => data.result)
+    );
+  }
+
 }

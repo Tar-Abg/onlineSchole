@@ -17,7 +17,7 @@ export class PersonalInformationComponent implements OnInit, OnDestroy {
   private readonly subscription = new Subscription();
   countries$: Observable<Country[]>;
   form: FormGroup;
-  isOpenPasswordModal: boolean = true;
+  isOpenPasswordModal: boolean;
 
   constructor(
     private fb: FormBuilder,

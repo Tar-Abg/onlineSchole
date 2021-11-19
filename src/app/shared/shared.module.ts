@@ -17,6 +17,7 @@ import {ChangePasswordComponent} from './components/change-password/change-passw
 import {SubjectsComponent} from './components/subjects/subjects.component';
 import {PaginationComponent} from './components/pagination/pagination.component';
 import { MessageComponent } from './components/message/message.component';
+import {RouterModule} from "@angular/router";
 
 
 @NgModule({
@@ -33,15 +34,16 @@ import { MessageComponent } from './components/message/message.component';
     PaginationComponent,
     MessageComponent
   ],
-  imports: [
-    CommonModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatIconModule,
-    MatCheckboxModule,
-  ],
+    imports: [
+        CommonModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatIconModule,
+        MatCheckboxModule,
+        RouterModule,
+    ],
   exports: [
     RegisterHeaderComponent,
     StepsComponent,
