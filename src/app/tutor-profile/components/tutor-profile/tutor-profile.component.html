@@ -1,0 +1,14 @@
+<h1>es mi ejum amboxj@ sarqi isk nerqevinnel kojaknerov bacvox tabernen</h1>
+<button (click)="activeTab = 'availability'">Availability</button>
+<button (click)="activeTab = 'subjects'">SUBJECTS</button>
+<button (click)="activeTab = 'calendar'">Calendar</button>
+<button (click)="activeTab = 'ratings'">Ratings</button>
+<button (click)="activeTab = 'reviews'">Reviews</button>
+
+<div [ngSwitch]="activeTab">
+  <app-availability *ngSwitchCase="'availability'" ></app-availability>
+  <app-calendar *ngSwitchCase="'calendar'"></app-calendar>
+  <app-ratings *ngSwitchCase="'ratings'"></app-ratings>
+  <app-reviews *ngSwitchCase="'reviews'"></app-reviews>
+  <app-subjects *ngSwitchCase="'subjects'"></app-subjects>
+</div>
