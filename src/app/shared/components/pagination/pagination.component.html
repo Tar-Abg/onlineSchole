@@ -1,9 +1,9 @@
-<div class="pagination">
+<div class="pagination" *ngIf="currentPage">
   <ul class="pagination-3">
-    <li class="page-number prev"><a href="#">&laquo;</a></li>
-    <li class="page-number"><a href="#">1</a></li>
-    <li class="page-number active"><a href="#">2</a></li>
-    <li class="page-number"><a href="#">3</a></li>
-    <li class="page-number prev"><a href="#">&raquo;</a></li>
+    <li class="page-number prev" (click)="changePage(currentPage - 1)">&laquo;</li>
+    <li class="page-number" *ngIf="currentPage - 1 > 0">{{currentPage - 1}}</li>
+    <li class="page-number active">{{currentPage}}</li>
+    <li class="page-number" *ngIf="pageCount > currentPage">{{currentPage + 1}}</li>
+    <li class="page-number prev" (click)="changePage(currentPage + 1)">&raquo;</li>
   </ul>
 </div>

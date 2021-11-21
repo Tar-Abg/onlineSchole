@@ -10,6 +10,7 @@ import {
 } from "../shared/shared.module";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -18,14 +19,15 @@ import {MatSelectModule} from "@angular/material/select";
     FilterComponent,
     TutorCardComponent
   ],
-  imports: [
-    CommonModule,
-    SearchTutorRoutingModule,
-    LayoutsModule,
-    SharedModule,
-    MatFormFieldModule,
-    MatSelectModule
-  ]
+    imports: [
+        CommonModule,
+        SearchTutorRoutingModule,
+        LayoutsModule,
+        SharedModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        ReactiveFormsModule
+    ]
 })
 export class SearchTutorModule {
 }

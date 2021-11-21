@@ -1,11 +1,11 @@
 <section class="filter-wrapper d-flex  justify-content-center">
   <h2 class="filter-wrapper__title">Filter</h2>
-  <form class="main-filters-content">
+  <form class="main-filters-content" [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-group">
       <h3 class="filter-field-label">I need help with</h3>
       <app-select
         [label]="'*Select'"
-        formControlName="needHelp"
+        formControlName="categoryId"
         [list]="categories$ | async"
         [keyName]="'categoryName'"
         (selectionChange)="getSubject($event)"
@@ -16,7 +16,7 @@
       <h3 class="filter-field-label">Subject</h3>
       <app-select
         [label]="'*Select'"
-        formControlName="subject"
+        formControlName="subjectId"
         [list]="subjects$ | async"
         [keyName]="'subjectName'"
       ></app-select>
@@ -24,8 +24,8 @@
     <div class="form-group">
       <h3 class="filter-field-label">Availability</h3>
       <mat-form-field appearance="fill">
-        <mat-select formControl="availability" multiple>
-          <mat-option *ngFor="let topping of availableHours$ | async" [value]="topping.id">{{topping.name}}</mat-option>
+        <mat-select formControlName="availabilities" multiple>
+          <mat-option *ngFor="let topping of availableHours$ | async" [value]="topping.id.toString()">{{topping.name}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
@@ -33,17 +33,17 @@
       <h3 class="filter-field-label">Tutor gender</h3>
       <app-select
         [label]="'*Select'"
-        formControlName="tutorGender"
+        formControlName="genderId"
         [list]="genderList$ | async"
       ></app-select>
     </div>
     <div class="form-group">
       <h3 class="filter-field-label">Hourly rate</h3>
       <div class="flex-container-justify-start range-wrapper">
-        <input type="text" formControlName="hourlyRateRange" placeholder=""
+        <input type="text" formControlName="minHourlyRate" placeholder=""
                class="form-input">
         <span class="divider-liner"></span>
-        <input type="text" formControlName="hourlyRateRange" placeholder=""
+        <input type="text" formControlName="maxHourlyRate" placeholder=""
                class="form-input">
       </div>
     </div>
@@ -52,17 +52,18 @@
       <app-select
         [label]="'*Select'"
         [list]="studentLevels$ | async"
+        formControlName="studentLevelId"
       ></app-select>
     </div>
     <div class="form-group">
       <h3 class="filter-field-label">Sort</h3>
       <app-select
         [label]="'*Select'"
-        formControlName="sort"
+        formControlName="sortId"
         [list]="sortForTutorSearch$ | async"
       ></app-select>
     </div>
-    <div class="form-group search-icon-wrapper">
+    <div class="form-group search-icon-wrapper" (click)="submit()">
       <span class="search-liner"></span>
       <span class="filter-circle flex-container-center">
           <img src="assets/images/search.png" alt="Search" width="43" height="44">
