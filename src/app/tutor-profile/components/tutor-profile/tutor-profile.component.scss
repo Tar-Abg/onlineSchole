@@ -1,0 +1,34 @@
+@import "src/assets/css/variables";
+
+.user-profile-wrapper {
+  background: linear-gradient(180deg, #E2ECFF 0%, rgba(255, 255, 255, 0) 100%);
+  padding: 17px;
+}
+
+.profile-container {
+  width: calc(100% - 764px);
+  margin: 0 auto;
+}
+
+.profile-main-info-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  grid-gap: 114px;
+}
+
+.profile-cards {
+  display: grid;
+  row-gap: 15px;
+
+  &__Info--title {
+    margin-bottom: 0;
+    font-weight: $type-bold;
+  }
+
+  &__Info--description {
+    font: $type-regular normal $type-medium-size $Segoe-UI-sans;
+    line-height: 23px;
+    color: $clr-ntrl-max;
+  }
+}

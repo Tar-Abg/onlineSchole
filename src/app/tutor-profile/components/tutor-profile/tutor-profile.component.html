@@ -1,14 +1,148 @@
-<h1>es mi ejum amboxj@ sarqi isk nerqevinnel kojaknerov bacvox tabernen</h1>
-<button (click)="activeTab = 'availability'">Availability</button>
-<button (click)="activeTab = 'subjects'">SUBJECTS</button>
-<button (click)="activeTab = 'calendar'">Calendar</button>
-<button (click)="activeTab = 'ratings'">Ratings</button>
-<button (click)="activeTab = 'reviews'">Reviews</button>
+<main class="user-profile-wrapper">
+  <div class="profile-container">
+    <section class="profile-main-info-wrapper">
+      <div class="file-upload-wrapper">
+        <div class="upload-image-box">
+          <div class="image-upload-wrap">
+            <input class="file-upload-input" type='file'
+                   accept="image/*"/>
+            <div class="drag-text">
+              <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
+                   width="33" height="33">
+            </div>
+            <img [src]="" alt="Upload Photo">
+          </div>
+        </div>
+      </div>
+      <div class="profile-cards">
+        <h2 class="profile-cards__Info--title">Danielle M.</h2>
+        <div class="profile-cards__details--rating">
+          <fieldset class="star-rates">
+            <div>
+              <input id="rate2-star-0.5" class="star-input" type="radio" value="0.5" name="rate2">
+              <label class="half" class="star-label" for="rate2-star-0.5" title="0.5"></label>
+            </div>
+            <div>
+              <input id="rate2-star-1" class="star-input" type="radio" value="1" name="rate2">
+              <label class="full" class="star-label" for="rate2-star-1" title="1"></label>
+            </div>
+            <div>
+              <input id="rate2-star-1.5" class="star-input" type="radio" value="1.5" name="rate2">
+              <label class="half" class="star-label" for="rate2-star-1.5" title="1.5"></label>
+            </div>
+            <div>
+              <input id="rate2-star-2" class="star-input" type="radio" value="2" name="rate2">
+              <label class="full" class="star-label" for="rate2-star-2" title="2"></label>
+            </div>
+            <div>
+              <input id="rate2-star-2.5" class="star-input" type="radio" value="2.5" name="rate2">
+              <label class="half" class="star-label" for="rate2-star-2.5" title="2.5"></label>
+            </div>
+          </fieldset>
+          <span>(777.9 ratings)</span>
+        </div>
+        <h3 class="profile-cards__details--time flex-container-justify-start">
+          <img src="assets/images/hours.svg" alt="Hours" width="24" height="24">
+          42 hours tutoring
+        </h3>
+        <h3 class="profile-cards__details--bold">Hourly rate: <span class="light-text"> $60  </span></h3>
+        <h3 class="profile-cards__details--bold flex-container-justify-start">
+          Lesson cancellation: <span class="light-text"> 24 hours </span>
+        </h3>
+        <h1 class="profile-cards__Info--headline"> Profile Headline </h1>
+        <p class="profile-cards__Info--description">I learned elementary math using a concept-based approach which
+          helped
+          me to understand math instead of just
+          memorizing what to do.</p>
+      </div>
+    </section>
+    <section class="profile-buttons">
+      <button class="profile-buttons--item">
+        <img src="assets/images/online-learning.png"
+             alt="Start Lesson"
+             width="55"
+             height="55">
+        Start Lesson
+      </button>
+      <button class="profile-buttons--item">
+        <img src="assets/images/message.png" alt="Messages" width="51" height="50">
+        Messages
+      </button>
+      <button class="profile-buttons--item">
+        <img src="assets/images/analyst.png" alt="Jobs Board" width="52" height="52">
+        Jobs board
+      </button>
+      <button class="profile-buttons--item">
+        <img src="assets/images/cashless-payment.png" alt="payments" width="48" height="48">
+        Payments
+      </button>
+      <button class="profile-buttons--item">
+        <img src="assets/images/lessonHistory.png" alt="Messages" width="51" height="51">
+        Lesson history
+      </button>
+    </section>
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Bio
+        <hr/>
+      </h2>
+      <div class="nested-info">
+        <p class="profile-section__description">
+          As a former college math professor, you might expect that I always liked math. However, my passion for
+          mathematics
+          actually began when I was in 11th grade. As a homeschooled student, I had a flexible schedule which allowed me
+          to
+          take Algebra II at my local community college. ..
+        </p>
+        <a href="#" class="read-more">Read more</a>
+      </div>
+    </section>
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Wrap up your profile
+        <hr/>
+      </h2>
+      <div class="nested-info">
+        <p class="profile-section__description">
+          As a former college math professor, you might expect that I always liked math. However, my passion for
+          mathematics
+          actually began when I was in 11th grade. As a homeschooled student, I had a flexible schedule which allowed me
+          to
+          take Algebra II at my local community college. I had an amazing professor who made me realize how fun math is.
+        </p>
+        <a href="#" class="read-more">Read more</a>
+      </div>
+    </section>
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Education
+        <hr/>
+      </h2>
+      <div class="nested-info">
 
-<div [ngSwitch]="activeTab">
-  <app-availability *ngSwitchCase="'availability'" ></app-availability>
-  <app-calendar *ngSwitchCase="'calendar'"></app-calendar>
-  <app-ratings *ngSwitchCase="'ratings'"></app-ratings>
-  <app-reviews *ngSwitchCase="'reviews'"></app-reviews>
-  <app-subjects *ngSwitchCase="'subjects'"></app-subjects>
-</div>
+      </div>
+    </section>
+    <section class="">
+
+    </section>
+    <div class="profile-tab-buttons">
+      <button (click)="activeTab = 'availability'" class="profile-tab-buttons--item flex-container-center">
+        Availability
+      </button>
+      <button (click)="activeTab = 'subjects'" class="profile-tab-buttons--item flex-container-center">SUBJECTS</button>
+      <button (click)="activeTab = 'calendar'" class="profile-tab-buttons--item flex-container-center">Calendar</button>
+      <button (click)="activeTab = 'ratings'" class="profile-tab-buttons--item flex-container-center">Ratings</button>
+      <button (click)="activeTab = 'reviews'" class="profile-tab-buttons--item flex-container-center">Reviews</button>
+      <hr/>
+    </div>
+
+    <div [ngSwitch]="activeTab">
+      <app-availability *ngSwitchCase="'availability'"></app-availability>
+      <app-calendar *ngSwitchCase="'calendar'"></app-calendar>
+      <app-ratings *ngSwitchCase="'ratings'"></app-ratings>
+      <app-reviews *ngSwitchCase="'reviews'"></app-reviews>
+      <app-subjects *ngSwitchCase="'subjects'"></app-subjects>
+    </div>
+  </div>
+</main>
+
