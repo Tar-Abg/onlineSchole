@@ -8,6 +8,7 @@ import {SubjectsComponent} from './components/subjects/subjects.component';
 import {CalendarComponent} from './components/calendar/calendar.component';
 import {RatingsComponent} from './components/ratings/ratings.component';
 import {ReviewsComponent} from './components/reviews/reviews.component';
+import {LayoutsModule} from "../layouts/layouts.module";
 
 
 @NgModule({
@@ -19,10 +20,11 @@ import {ReviewsComponent} from './components/reviews/reviews.component';
     RatingsComponent,
     ReviewsComponent
   ],
-  imports: [
-    CommonModule,
-    TutorProfileRoutingModule,
-  ]
+    imports: [
+        CommonModule,
+        TutorProfileRoutingModule,
+        LayoutsModule,
+    ]
 })
 export class TutorProfileModule {
 }
