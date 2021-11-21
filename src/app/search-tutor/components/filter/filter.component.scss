@@ -35,6 +35,8 @@
   .search-icon-wrapper {
     display: flex;
     align-items: flex-end;
+    background-color: unset;
+    border: 0;
 
     .filter-circle {
       width: 69px;

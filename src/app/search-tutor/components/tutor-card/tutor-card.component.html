@@ -1,12 +1,12 @@
-<figure class="profile-cards-item">
-  <div class="profile-cards-item-for-image">
+<figure class="search-cards-item">
+  <div class="search-cards-item-for-image">
     <img [src]="tutor.photo" alt="Tutor Image" width="166" height="167">
   </div>
   <figcaption class="profile-cards__Info">
     <h2 class="profile-cards__Info--title">{{tutor.fullName}}</h2>
     <p class="profile-cards__Info--description">
       {{tutor.profileHeadline}}
-      <a class="read-more d-block" (click)="toggleContent()" *ngIf="tutor.profileHeadline.length > limit">{{isContentToggled ? 'read more' : 'read less'}}</a>
+      <button class="read-more d-block" (click)="toggleContent()" *ngIf="tutor.profileHeadline.length > limit">{{isContentToggled ? 'read more' : 'read less'}}</button>
     </p>
   </figcaption>
   <div class="profile-cards__details">
