@@ -119,12 +119,107 @@
         Education
         <hr/>
       </h2>
-      <div class="nested-info">
-
+      <div class="nested-info without-side-padding">
+        <div class="flex-container-justify-start grid-gap-54">
+          <div class="flex-item large-mr">
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Institution name</h2>
+              <p class="profile-section--subDescription">
+                California Baptist University
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Education level</h2>
+              <p class="profile-section--subDescription">
+                Master’s degree
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Major</h2>
+              <p class="profile-section--subDescription">
+                California Baptist University
+              </p>
+            </div>
+          </div>
+          <div class="flex-item">
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Country</h2>
+              <p class="profile-section--subDescription">
+                California Baptist University
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">City</h2>
+              <p class="profile-section--subDescription">
+                Master’s degree
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Date</h2>
+              <p class="profile-section--subDescription">
+                01․09․2000 - 28.07.2015
+              </p>
+            </div>
+          </div>
+          <div class="flex-item align-self-end">
+            <div class="checkboxes-wrapper">
+              <mat-checkbox formControlName="degreeInProgress">
+                Degree in progress
+              </mat-checkbox>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-    <section class="">
-
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Certificates
+        <hr/>
+      </h2>
+      <div class="nested-info without-side-padding">
+        <div class="flex-container flex-container-justify-start grid-gap-152">
+          <div class="flex-item">
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Institution name</h2>
+              <p class="profile-section--subDescription">
+                California Baptist University
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Qualification</h2>
+              <p class="profile-section--subDescription">
+                Qualification
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Date</h2>
+              <p class="profile-section--subDescription">
+                01․09․2000 - 02.07.2015
+              </p>
+            </div>
+          </div>
+          <div class="flex-item">
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Institution name</h2>
+              <p class="profile-section--subDescription">
+                California Baptist University
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Qualification</h2>
+              <p class="profile-section--subDescription">
+                Qualification
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Date</h2>
+              <p class="profile-section--subDescription">
+                01․09․2000 - 28.07.2015
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
     <div class="profile-tab-buttons">
       <button (click)="activeTab = 'availability'" class="profile-tab-buttons--item flex-container-center">
@@ -139,10 +234,10 @@
 
     <div [ngSwitch]="activeTab">
       <app-availability *ngSwitchCase="'availability'"></app-availability>
+      <app-subjects *ngSwitchCase="'subjects'"></app-subjects>
       <app-calendar *ngSwitchCase="'calendar'"></app-calendar>
       <app-ratings *ngSwitchCase="'ratings'"></app-ratings>
       <app-reviews *ngSwitchCase="'reviews'"></app-reviews>
-      <app-subjects *ngSwitchCase="'subjects'"></app-subjects>
     </div>
   </div>
 </main>

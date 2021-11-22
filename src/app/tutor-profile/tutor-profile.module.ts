@@ -9,6 +9,7 @@ import {CalendarComponent} from './components/calendar/calendar.component';
 import {RatingsComponent} from './components/ratings/ratings.component';
 import {ReviewsComponent} from './components/reviews/reviews.component';
 import {LayoutsModule} from "../layouts/layouts.module";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import {LayoutsModule} from "../layouts/layouts.module";
         CommonModule,
         TutorProfileRoutingModule,
         LayoutsModule,
+        MatCheckboxModule,
     ]
 })
 export class TutorProfileModule {

@@ -39,6 +39,22 @@
 
     .nested-info {
       padding: 29px 60px 45px;
+
+      .grid-gap-152 {
+        grid-gap: 152px;
+      }
+
+      .grid-gap-54 {
+        grid-gap: 54px;
+      }
+
+      .large-mr {
+        margin-right: 98px;
+      }
+
+      &.without-side-padding {
+        padding: 27px 60px;
+      }
     }
 
     &__description {
@@ -57,6 +73,32 @@
       line-height: 20px;
       text-decoration: underline;
       color: #00B81d;
+    }
+
+    &-subItems {
+      border-bottom: 1px solid $border-color;;
+      margin-bottom: 9px;
+
+      &:last-child {
+        border-bottom: 0;
+        margin-bottom: 0;
+      }
+    }
+
+    &--subtitle {
+      margin: 0;
+      font: $type-bold normal $type-small $Roboto-sans;
+      line-height: normal;
+      letter-spacing: 0.03em;
+      color: $clr-ntrl-max;
+    }
+
+    &--subDescription {
+      padding: 5px 0 9px;
+      margin: 0;
+      font: $type-light normal $type-small $Roboto-sans;
+      letter-spacing: 0.03em;
+      color: $clr-ntrl-max;
     }
   }
 
@@ -257,7 +299,63 @@
     hr {
       align-self: flex-end;
       width: 100%;
+      margin: 0;
       background-color: #8FB5FC;
+    }
+  }
+
+  &-tabs {
+
+    &-notification {
+      margin-bottom: 27px;
+      font: $type-regular normal $type-small $Segoe-UI-sans;
+      line-height: 25px;
+      color: $table-titles-color;
+    }
+
+    &-table {
+      width: 407px;
+      table-layout: fixed;
+      margin: 0 0 161px 64px;
+
+      &--row {
+        height: 45px;
+
+        td {
+          vertical-align: bottom;
+          border-bottom: 1px solid $border-color;
+        }
+
+        &__description {
+          margin-bottom: 0;
+          font: $type-light normal $type-small $Roboto-sans;
+          letter-spacing: 0.03em;
+          line-height: 30px;
+          color: $clr-ntrl-max;
+        }
+
+        &__title {
+          font: $type-bold normal $type-small $Roboto-sans;
+          letter-spacing: 0.03em;
+          color: $clr-ntrl-max;
+        }
+      }
+
+      &.table-with-pt {
+        width: 447px;
+
+        td {
+          padding-top: 15px;
+        }
+
+        tr {
+          &:first-child {
+            td {
+              padding-top: 0;
+            }
+          }
+        }
+      }
     }
   }
 }
