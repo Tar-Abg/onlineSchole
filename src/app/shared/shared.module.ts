@@ -16,8 +16,13 @@ import {ConfirmPasswordComponent} from './components/confirm-password/confirm-pa
 import {ChangePasswordComponent} from './components/change-password/change-password.component';
 import {SubjectsComponent} from './components/subjects/subjects.component';
 import {PaginationComponent} from './components/pagination/pagination.component';
-import { MessageComponent } from './components/message/message.component';
+import {MessageComponent} from './components/message/message.component';
 import {RouterModule} from "@angular/router";
+import {LoginComponent} from './components/login/login.component';
+import {ModalSchemComponent} from './components/modal-schem/modal-schem.component';
+import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
+import {ChangePasswordModalComponent} from './components/change-password-modal/change-password-modal.component';
+import {MessageModalComponent} from './components/message-modal/message-modal.component';
 
 
 @NgModule({
@@ -32,18 +37,23 @@ import {RouterModule} from "@angular/router";
     ChangePasswordComponent,
     SubjectsComponent,
     PaginationComponent,
-    MessageComponent
+    MessageComponent,
+    LoginComponent,
+    ModalSchemComponent,
+    ResetPasswordComponent,
+    ChangePasswordModalComponent,
+    MessageModalComponent
   ],
-    imports: [
-        CommonModule,
-        MatSelectModule,
-        ReactiveFormsModule,
-        MatDatepickerModule,
-        MatInputModule,
-        MatIconModule,
-        MatCheckboxModule,
-        RouterModule,
-    ],
+  imports: [
+    CommonModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatIconModule,
+    MatCheckboxModule,
+    RouterModule,
+  ],
   exports: [
     RegisterHeaderComponent,
     StepsComponent,
@@ -52,7 +62,12 @@ import {RouterModule} from "@angular/router";
     CertificatesComponent,
     PersonalInformationComponent,
     PaginationComponent,
-    MessageComponent
+    MessageComponent,
+    ModalSchemComponent,
+    ResetPasswordComponent,
+    ChangePasswordModalComponent,
+    MessageModalComponent,
+    LoginComponent
   ]
 })
 export class SharedModule {

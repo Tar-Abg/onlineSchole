@@ -1,0 +1,13 @@
+<div class="modal-scheme">
+  <div class="modal-content">
+    <div class="modal-header">
+      <!-- "<span>back</span> should be replaced white icon  -->
+      <span *ngIf="isShowBack">back</span>
+      <span *ngIf="title">{{title}}</span>
+      <span (click)="close.emit()">x</span>
+    </div>
+    <div class="modal-body">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>
