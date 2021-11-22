@@ -1,1 +1,22 @@
 <app-header></app-header>
+<ul>
+  <li (click)="isOpenLogin = true">login</li>
+  <li (click)="isOpenResetPassword = true">reset password</li>
+  <li (click)="isOpenChangePassword = true">change password</li>
+  <li (click)="isOpenMessageModal = true">message modal</li>
+</ul>
+<app-modal-schem *ngIf="isOpenLogin" (close)="isOpenLogin = false" [title]="'Welcome to sophist'">
+  <app-login></app-login>
+</app-modal-schem>
+
+<app-modal-schem *ngIf="isOpenResetPassword" (close)="isOpenResetPassword = false" [isShowBack]="true">
+  <app-reset-password ></app-reset-password>
+</app-modal-schem>
+
+<app-modal-schem *ngIf="isOpenChangePassword" (close)="isOpenChangePassword = false">
+  <app-change-password-modal></app-change-password-modal>
+</app-modal-schem>
+
+<app-modal-schem *ngIf="isOpenMessageModal" (close)="isOpenMessageModal = false">
+  <app-message-modal></app-message-modal>
+</app-modal-schem>
