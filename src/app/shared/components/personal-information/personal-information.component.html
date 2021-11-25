@@ -28,8 +28,29 @@
                    placeholder="*Phone number"
                    formControlName="mobile">
           </label>
-          <span class="error-message" *ngIf="form.get('phoneCode')?.errors?.required && form.get('phoneCode')?.touched || form.get('mobile')?.errors?.required && form.get('mobile')?.touched">This is a required field</span>
+          <span class="error-message"
+                *ngIf="form.get('phoneCode')?.errors?.required && form.get('phoneCode')?.touched || form.get('mobile')?.errors?.required && form.get('mobile')?.touched">This is a required field</span>
           <span class="form-item-notification">Visible on the public profile</span>
+        </div>
+      </li>
+      <li class="form-item-with-notification">
+        <h3 class="form-item-label">User Name*</h3>
+        <div class="d-flex position-relative">
+          <label for="user-name" class="form-label">
+            <input id="user-name" class="form-input" type="text" placeholder="*user name"
+                   formControlName="userName">
+            <span class="error-message" *ngIf="form.get('userName')?.errors && form.get('userName')?.touched">Please fill in your last name</span>
+          </label>
+          <span class="form-item-notification">Visible on the public profile</span>
+        </div>
+      </li>
+      <li class="form-item-with-notification">
+        <h3 class="form-item-label">Preferred Time Zone*</h3>
+        <div class="d-flex position-relative">
+          <div class="p-relative form-label">
+            <app-select [label]="'*time zone'" formControlName="timeZone"></app-select>
+            <span class="error-message">Please specify month of your  birth</span>
+          </div>
         </div>
       </li>
     </ul>
@@ -46,7 +67,8 @@
               formControlName="countryId">
             </app-select>
             <span class="form-item-notification">Not visible on the public profile</span>
-            <span class="error-message block"  *ngIf="userAddress.get('countryId')?.errors?.required && userAddress.get('countryId')?.touched">This is a required field </span>
+            <span class="error-message block"
+                  *ngIf="userAddress.get('countryId')?.errors?.required && userAddress.get('countryId')?.touched">This is a required field </span>
           </label>
         </li>
         <li class="form-item-with-notification">
@@ -55,7 +77,8 @@
             <input id="city" class="form-input" type="text" placeholder="*city"
                    formControlName="city">
             <span class="form-item-notification">Not visible on the public profile</span>
-            <span class="error-message" *ngIf="userAddress.get('city')?.errors?.required && userAddress.get('city')?.touched">This is a required field</span>
+            <span class="error-message"
+                  *ngIf="userAddress.get('city')?.errors?.required && userAddress.get('city')?.touched">This is a required field</span>
           </label>
         </li>
         <li class="form-item-with-notification">
@@ -64,7 +87,8 @@
             <input id="streetNumber" class="form-input" autocomplete="streetNumber" type="text"
                    placeholder="*Street Number" formControlName="streetNumber">
             <span class="form-item-notification">Not visible on the public profile</span>
-            <span class="error-message block" *ngIf="userAddress.get('streetNumber')?.errors?.required && userAddress.get('streetNumber')?.touched"> This Field is requires</span>
+            <span class="error-message block"
+                  *ngIf="userAddress.get('streetNumber')?.errors?.required && userAddress.get('streetNumber')?.touched"> This Field is requires</span>
           </label>
         </li>
         <li class="form-item-with-notification">
@@ -73,7 +97,8 @@
             <input id="streetName" class="form-input" autocomplete="streetName" type="text"
                    placeholder="*Street Name" formControlName="streetName">
             <span class="form-item-notification">Not visible on the public profile</span>
-            <span class="error-message block" *ngIf="userAddress.get('streetName')?.errors?.required && userAddress.get('streetName')?.touched">This Field is requires</span>
+            <span class="error-message block"
+                  *ngIf="userAddress.get('streetName')?.errors?.required && userAddress.get('streetName')?.touched">This Field is requires</span>
           </label>
         </li>
         <li class="form-item-with-notification">
@@ -82,7 +107,8 @@
             <input id="zipCode" class="form-input" autocomplete="zipCode"
                    placeholder="*Zip Code" formControlName="zipCode">
             <span class="form-item-notification">Not visible on the public profile</span>
-            <span class="error-message block" *ngIf="userAddress.get('zipCode')?.errors?.required && userAddress.get('zipCode')?.touched">This Field is requires</span>
+            <span class="error-message block"
+                  *ngIf="userAddress.get('zipCode')?.errors?.required && userAddress.get('zipCode')?.touched">This Field is requires</span>
           </label>
         </li>
       </ul>
@@ -90,7 +116,9 @@
   </div>
 </form>
 <div class="flex-container-center grid-gap-for-buttons">
-  <button class="settings-form-button settings-form-button__with-border button-border--blue" (click)="form.enable()">Edit</button>
+  <button class="settings-form-button settings-form-button__with-border button-border--blue" (click)="form.enable()">
+    Edit
+  </button>
   <button class="settings-form-button" (click)="onSubmit()" [disabled]="form.disabled">Update Information</button>
 </div>
 <app-confirm-password
