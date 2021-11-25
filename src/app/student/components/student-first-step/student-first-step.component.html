@@ -12,9 +12,18 @@
             <input id="last-name" class="form-input" type="text" placeholder="*last name" formControlName="lastName">
             <span class="error-message" *ngIf="form.get('lastName')?.errors && form.get('lastName')?.touched">Please fill in your last name</span>
           </label>
+          <label for="user-name" class="form-label">
+            <input id="user-name" class="form-input" type="text" placeholder="*user name"
+                   formControlName="userName">
+            <span class="error-message" *ngIf="form.get('userName')?.errors && form.get('userName')?.touched">Please fill in your last name</span>
+          </label>
           <div class="gender fixed-width form-label">
             <app-select [label]="'*gender'" [list]="genderList$ | async" formControlName="gender"></app-select>
             <span class="error-message" *ngIf="form.get('gender')?.errors && form.get('gender')?.touched">Please specify your gender</span>
+          </div>
+          <div class="p-relative form-label">
+            <app-select [label]="'*time zone'" formControlName="timeZone"></app-select>
+            <span class="error-message">Please specify month of your  birth</span>
           </div>
           <label for="email" class="form-label">
             <input id="email" class="form-input" autocomplete="username" type="email"
