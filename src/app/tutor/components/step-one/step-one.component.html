@@ -13,6 +13,11 @@
                  formControlName="lastName">
           <span class="error-message" *ngIf="form.get('lastName')?.errors && form.get('lastName')?.touched">Please fill in your last name</span>
         </label>
+        <label for="user-name" class="form-label">
+          <input id="user-name" class="form-input" type="text" placeholder="*user name"
+                 formControlName="userName">
+          <span class="error-message" *ngIf="form.get('userName')?.errors && form.get('userName')?.touched">Please fill in your last name</span>
+        </label>
         <div class="gender fixed-width">
           <app-select [label]="'*gender'" [list]="genderList$ | async" formControlName="gender"></app-select>
           <span class="error-message" *ngIf="form.get('gender')?.errors && form.get('gender')?.touched">Please specify your gender</span>
@@ -27,6 +32,10 @@
             <app-select [label]="'*year of birth'" [list]="yearList" formControlName="yearOfBirth"></app-select>
             <span class="error-message" *ngIf="form.get('yearOfBirth')?.errors && form.get('yearOfBirth')?.touched">Please specify year of your birth</span>
           </div>
+        </div>
+        <div class="p-relative form-label">
+          <app-select [label]="'*time zone'" formControlName="timeZone"></app-select>
+          <span class="error-message">This field is required</span>
         </div>
         <label for="email" class="form-label">
           <input id="email" class="form-input" autocomplete="username" type="email"
@@ -48,7 +57,8 @@
                  placeholder="*re-enter password" formControlName="rePassword">
           <span class="error-message"
                 *ngIf="form.get('rePassword')?.errors?.required && form.get('rePassword')?.touched">Please create your password</span>
-          <span class="error-message" *ngIf="form?.errors?.notSame  && form.get('rePassword')?.touched && !form.get('rePassword')?.errors?.required">Passwords are not the same</span>
+          <span class="error-message"
+                *ngIf="form?.errors?.notSame  && form.get('rePassword')?.touched && !form.get('rePassword')?.errors?.required">Passwords are not the same</span>
         </label>
       </fieldset>
       <div class="flex-container-center button-wrapper">
