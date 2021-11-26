@@ -13,26 +13,7 @@
     <h3 class="profile-cards__details--price">${{tutor.hourlyRate}}/hour</h3>
     <div class="profile-cards__details--rating">
       <fieldset class="star-rates">
-        <div>
-          <input id="rate2-star-0.5" class="star-input" type="radio" value="0.5" name="rate2">
-          <label class="half" class="star-label" for="rate2-star-0.5" title="0.5"></label>
-        </div>
-        <div>
-          <input id="rate2-star-1" class="star-input" type="radio" value="1" name="rate2">
-          <label class="full" class="star-label" for="rate2-star-1" title="1"></label>
-        </div>
-        <div>
-          <input id="rate2-star-1.5" class="star-input" type="radio" value="1.5" name="rate2">
-          <label class="half" class="star-label" for="rate2-star-1.5" title="1.5"></label>
-        </div>
-        <div>
-          <input id="rate2-star-2" class="star-input" type="radio" value="2" name="rate2">
-          <label class="full" class="star-label" for="rate2-star-2" title="2"></label>
-        </div>
-        <div>
-          <input id="rate2-star-2.5" class="star-input" type="radio" value="2.5" name="rate2">
-          <label class="half" class="star-label" for="rate2-star-2.5" title="2.5"></label>
-        </div>
+        <star-rating [value]="tutor.rating" [totalstars]="5"  checkedcolor="#FFC107" uncheckedcolor="#c2c2c2" size="24px" [readonly]="true" ></star-rating>
       </fieldset>
       <span>{{tutor.rating}}({{tutor.usersRated}})</span>
     </div>

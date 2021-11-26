@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {BehaviorSubject, combineLatest, Observable, of} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
-import {catchError, filter, map, switchMap} from "rxjs/operators";
+import {catchError, filter, map, share, shareReplay, switchMap} from "rxjs/operators";
 import {StorageService} from "../../shared/services/storage/storage.service";
 import {ResponseModel} from "../../shared/models/responseModel.model";
 import {SearchTutor, TutorSearchResponse} from "../models/search.model";
@@ -32,7 +32,7 @@ export class SearchTutorService {
   getTutors(body: any): Observable<TutorSearchResponse> {
     let params = new HttpParams();
     params = params.append('userId', this.storageService.getUserId());
-    return this.http.post<ResponseModel<TutorSearchResponse>>(`${environment.apiUrl}/SearchUser/GetCertificatesPage`, body, {params: params}).pipe(
+    return this.http.post<ResponseModel<TutorSearchResponse>>(`${environment.apiUrl}/SearchUser/GetTutors`, body, {params: params}).pipe(
       map(data => data.result)
     );
   }
