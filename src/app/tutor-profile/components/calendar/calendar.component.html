@@ -1,1 +1,158 @@
-<p>calendar works!</p>
+<section class="calendar-wrapper">
+  <div class="flex-container add-calendar-wrapper">
+    <p class="calendar-warning">You can manage your lessons.</p>
+    <button class="btn-add-less flex-container-center">Add Lesson</button>
+  </div>
+
+  <div class="flex-container-justify-start calendar-datepicker-wrappers">
+    <div class="date-picker-wrapper-for-calendar">
+      <h2 class="date-picker-label">From </h2>
+      <mat-form-field appearance="fill" class="date-range-wrapper
+                  custom-date-range-wrapper">
+        <mat-datepicker-toggle matSuffix [for]="picker">
+          <mat-icon matDatepickerToggleIcon>
+            <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+          </mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <input matInput
+               [matDatepicker]="picker"
+               (click)="picker.open()"
+               formControlName="startDate"
+               placeholder="*dd/mm/yyyy"
+        >
+      </mat-form-field>
+      <span class="error-message">This is a required field</span>
+    </div>
+    <div class="date-picker-wrapper-for-calendar">
+      <h2 class="date-picker-label">To </h2>
+      <mat-form-field appearance="fill" class="date-range-wrapper
+                  custom-date-range-wrapper">
+        <mat-datepicker-toggle matSuffix [for]="picker1">
+          <mat-icon matDatepickerToggleIcon>
+            <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+          </mat-icon>
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+        <input matInput [matDatepicker]="picker1"
+               (click)="picker1.open()"
+               formControlName="graduationDate">
+      </mat-form-field>
+      <span class="error-message">This is a required field</span>
+    </div>
+    <button class="button-for-show">Show
+    </button>
+  </div>
+
+  <div class="calendar-content">
+    <div class="tWrap">
+      <div class="tWrap__head">
+        <table>
+          <thead>
+          <tr>
+            <th></th>
+            <th><h3 class="calendar-table-thead">Sun</h3></th>
+            <th><h3 class="calendar-table-thead">Mon</h3></th>
+            <th><h3 class="calendar-table-thead">Tue</h3></th>
+            <th><h3 class="calendar-table-thead">Wed</h3></th>
+            <th><h3 class="calendar-table-thead">Thu</h3></th>
+            <th><h3 class="calendar-table-thead">Fri</h3></th>
+            <th><h3 class="calendar-table-thead">Sat</h3></th>
+          </tr>
+          </thead>
+        </table>
+      </div>
+      <div class="tWrap__body">
+        <table>
+          <tbody>
+          <tr>
+            <td>12pm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>1pm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>2pm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>3pm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>4pm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>5pm</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>6pm</td>
+            <td></td>
+            <td>
+              <p class="lesson-time">6.00-12.00</p>
+              <h2 class="main-lesson-subject">English</h2>
+            </td>
+            <td>
+              <p class="lesson-time">6.00-12.00</p>
+              <h2 class="main-lesson-subject">English</h2>
+            </td>
+            <td>
+              <p class="lesson-time">6.00-12.00</p>
+              <h2 class="main-lesson-subject">English</h2>
+            </td>
+            <td>
+              <p class="lesson-time">6.00-12.00</p>
+              <h2 class="main-lesson-subject">English</h2>
+            </td>
+            <td>
+              <p class="lesson-time">6.00-12.00</p>
+              <h2 class="main-lesson-subject">English</h2>
+            </td>
+            <td></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
