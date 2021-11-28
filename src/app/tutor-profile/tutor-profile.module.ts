@@ -13,6 +13,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatIconModule} from "@angular/material/icon";
+import {RatingModule} from "ng-starrating";
 
 
 @NgModule({
@@ -24,15 +25,16 @@ import {MatIconModule} from "@angular/material/icon";
     RatingsComponent,
     ReviewsComponent
   ],
-  imports: [
-    CommonModule,
-    TutorProfileRoutingModule,
-    LayoutsModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatIconModule,
-  ]
+    imports: [
+        CommonModule,
+        TutorProfileRoutingModule,
+        LayoutsModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatIconModule,
+        RatingModule,
+    ]
 })
 export class TutorProfileModule {
 }

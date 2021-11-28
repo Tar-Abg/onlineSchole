@@ -48,8 +48,8 @@
         <h3 class="form-item-label">Preferred Time Zone*</h3>
         <div class="d-flex position-relative">
           <div class="p-relative form-label">
-            <app-select [label]="'*time zone'" formControlName="timeZone"></app-select>
-            <span class="error-message">Please specify month of your  birth</span>
+            <app-select [label]="'*time zone'" formControlName="preferredTimeZone" [list]="timeZones$ | async" [keyName]="'displayName'"></app-select>
+            <span class="error-message" *ngIf="form.get('preferredTimeZone')?.errors && form.get('preferredTimeZone')?.touched">Please specify month of your  birth</span>
           </div>
         </div>
       </li>

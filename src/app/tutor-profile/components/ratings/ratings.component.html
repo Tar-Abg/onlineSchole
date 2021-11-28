@@ -1,54 +1,35 @@
 <section class="rating-wrapper">
   <div class="profile-cards__details--rating">
     <fieldset class="star-rates">
-      <div>
-        <input id="rate2-star-0.5" class="star-input" type="radio" value="0.5" name="rate2">
-        <label class="star-label" for="rate2-star-0.5" title="0.5"></label>
-      </div>
-      <div>
-        <input id="rate2-star-1" class="star-input" type="radio" value="1" name="rate2">
-        <label class="star-label full" for="rate2-star-1" title="1"></label>
-      </div>
-      <div>
-        <input id="rate2-star-1.5" class="star-input" type="radio" value="1.5" name="rate2">
-        <label class="star-label" for="rate2-star-1.5" title="1.5"></label>
-      </div>
-      <div>
-        <input id="rate2-star-2" class="star-input" type="radio" value="2" name="rate2">
-        <label class="star-label full" for="rate2-star-2" title="2"></label>
-      </div>
-      <div>
-        <input id="rate2-star-2.5" class="star-input" type="radio" value="2.5" name="rate2">
-        <label class="star-label full" for="rate2-star-2.5" title="2.5"></label>
-      </div>
+      <star-rating [value]="ratings?.average" [totalstars]="5"  checkedcolor="#FFC107" uncheckedcolor="#c2c2c2" size="40px" [readonly]="true"></star-rating>
     </fieldset>
-    <p class="star-rates-value">4.7 <span>(3 ratings)</span></p>
+    <p class="star-rates-value">{{ratings?.average.toFixed(1)}} <span>({{ratings?.overallCount}})</span></p>
   </div>
   <div class="progress-container">
     <div class="flex-container-justify-start progress-container__item">
       <span class="star-value">5 star</span>
-      <progress value="80" max="100"></progress>
-      <span class="rate-count">(2)</span>
+      <progress [value]="ratings?.fiveLine * 100" max="100"></progress>
+      <span class="rate-count">({{ratings?.fiveCount}})</span>
     </div>
     <div class="flex-container-justify-start progress-container__item">
       <span class="star-value">4 star</span>
-      <progress value="70" max="100"></progress>
-      <span class="rate-count">(1)</span>
+      <progress [value]="ratings?.fourLine * 100" max="100"></progress>
+      <span class="rate-count">({{ratings?.fourCount}})</span>
     </div>
     <div class="flex-container-justify-start progress-container__item">
       <span class="star-value">3 star</span>
-      <progress value="0" max="100"></progress>
-      <span class="rate-count">(0)</span>
+      <progress [value]="ratings?.threeLine * 100" max="100"></progress>
+      <span class="rate-count">({{ratings?.threeCount}})</span>
     </div>
     <div class="flex-container-justify-start progress-container__item">
       <span class="star-value">2 star</span>
-      <progress value="0" max="100"></progress>
-      <span class="rate-count">(0)</span>
+      <progress [value]="ratings?.twoLine * 100" max="100"></progress>
+      <span class="rate-count">({{ratings?.twoCount}})</span>
     </div>
     <div class="flex-container-justify-start progress-container__item">
       <span class="star-value">2 star</span>
-      <progress value="0" max="100"></progress>
-      <span class="rate-count">(0)</span>
+      <progress [value]="ratings?.oneLine * 100" max="100"></progress>
+      <span class="rate-count">({{ratings?.oneCount}})</span>
     </div>
   </div>
   <div class="rating-error-message">

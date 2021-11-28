@@ -5,56 +5,35 @@
       <div class="file-upload-wrapper">
         <div class="upload-image-box">
           <div class="image-upload-wrap">
-            <input class="file-upload-input" type='file'
-                   accept="image/*"/>
             <div class="drag-text">
-              <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
+              <img *ngIf="!tutorBaseInfo?.photo" src="assets/images/photo-camera%201.png" alt="Upload Photo"
                    width="33" height="33">
             </div>
-            <img [src]="" alt="Upload Photo">
+            <img [src]="tutorBaseInfo?.photo" *ngIf="tutorBaseInfo?.photo" alt="Upload Photo">
           </div>
         </div>
       </div>
       <div class="profile-cards">
-        <h2 class="profile-cards__Info--title">Danielle M.</h2>
-        <div class="profile-cards__details--rating">
+        <div class="d-flex">
+          <h2 class="profile-cards__Info--title">{{tutorBaseInfo?.fullName }} </h2>
+          <span> ({{tutorBaseInfo?.userName}})</span>
+        </div>
+        <div class="profile-cards__details--rating" *ngIf="(ratings$ | async) as ratings">
           <fieldset class="star-rates">
-            <div>
-              <input id="rate2-star-0.5" class="star-input" type="radio" value="0.5" name="rate2">
-              <label class="half" class="star-label" for="rate2-star-0.5" title="0.5"></label>
-            </div>
-            <div>
-              <input id="rate2-star-1" class="star-input" type="radio" value="1" name="rate2">
-              <label class="full" class="star-label" for="rate2-star-1" title="1"></label>
-            </div>
-            <div>
-              <input id="rate2-star-1.5" class="star-input" type="radio" value="1.5" name="rate2">
-              <label class="half" class="star-label" for="rate2-star-1.5" title="1.5"></label>
-            </div>
-            <div>
-              <input id="rate2-star-2" class="star-input" type="radio" value="2" name="rate2">
-              <label class="full" class="star-label" for="rate2-star-2" title="2"></label>
-            </div>
-            <div>
-              <input id="rate2-star-2.5" class="star-input" type="radio" value="2.5" name="rate2">
-              <label class="half" class="star-label" for="rate2-star-2.5" title="2.5"></label>
-            </div>
+            <star-rating [value]="ratings.average" [totalstars]="5"  checkedcolor="#FFC107" uncheckedcolor="#c2c2c2" size="35px" [readonly]="true"></star-rating>
           </fieldset>
-          <span>(777.9 ratings)</span>
+          <span>{{ratings.average.toFixed(1)}}({{ratings.overallCount}})</span>
         </div>
         <h3 class="profile-cards__details--time flex-container-justify-start">
           <img src="assets/images/hours.svg" alt="Hours" width="24" height="24">
           42 hours tutoring
         </h3>
-        <h3 class="profile-cards__details--bold">Hourly rate: <span class="light-text"> $60  </span></h3>
+        <h3 class="profile-cards__details--bold">Hourly rate: <span class="light-text">${{tutorBaseInfo?.hourlyRate}}</span></h3>
         <h3 class="profile-cards__details--bold flex-container-justify-start">
-          Lesson cancellation: <span class="light-text"> 24 hours </span>
+          Lesson cancellation: <span class="light-text"> {{tutorBaseInfo?.cancellation}} </span>
         </h3>
         <h1 class="profile-cards__Info--headline"> Profile Headline </h1>
-        <p class="profile-cards__Info--description">I learned elementary math using a concept-based approach which
-          helped
-          me to understand math instead of just
-          memorizing what to do.</p>
+        <p class="profile-cards__Info--description">{{tutorBaseInfo?.headline}}</p>
       </div>
     </section>
     <section class="profile-buttons">
@@ -89,13 +68,9 @@
       </h2>
       <div class="nested-info">
         <p class="profile-section__description">
-          As a former college math professor, you might expect that I always liked math. However, my passion for
-          mathematics
-          actually began when I was in 11th grade. As a homeschooled student, I had a flexible schedule which allowed me
-          to
-          take Algebra II at my local community college. ..
+          {{bio}}
         </p>
-        <button class="read-more">Read more</button>
+        <button class="read-more" (click)="toggleContent('bio')" *ngIf="bio && bio.length > limit">{{isBioContentToggled ? 'read more' : 'read less'}}</button>
       </div>
     </section>
     <section class="profile-section">
@@ -105,39 +80,35 @@
       </h2>
       <div class="nested-info">
         <p class="profile-section__description">
-          As a former college math professor, you might expect that I always liked math. However, my passion for
-          mathematics
-          actually began when I was in 11th grade. As a homeschooled student, I had a flexible schedule which allowed me
-          to
-          take Algebra II at my local community college. I had an amazing professor who made me realize how fun math is.
+         {{wrapUp}}
         </p>
-        <button class="read-more">Read more</button>
+        <button class="read-more" (click)="toggleContent('wrapUp')" *ngIf="wrapUp && wrapUp.length > limit">{{isWrapUpContentToggled ? 'read more' : 'read less'}}</button>
       </div>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="tutorInstitutions?.length">
       <h2 class="profile-section__title">
         Education
         <hr/>
       </h2>
-      <div class="nested-info without-side-padding">
+      <div class="nested-info without-side-padding" *ngFor="let item of tutorInstitutions">
         <div class="flex-container-justify-start grid-gap-54">
           <div class="flex-item large-mr">
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Institution name</h2>
               <p class="profile-section--subDescription">
-                California Baptist University
+                {{item.name}}
               </p>
             </div>
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Education level</h2>
               <p class="profile-section--subDescription">
-                Master’s degree
+                {{item.level}}
               </p>
             </div>
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Major</h2>
               <p class="profile-section--subDescription">
-                California Baptist University
+                {{item.major}}
               </p>
             </div>
           </div>
@@ -145,25 +116,26 @@
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Country</h2>
               <p class="profile-section--subDescription">
-                California Baptist University
+                {{item.country}}
               </p>
             </div>
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">City</h2>
               <p class="profile-section--subDescription">
-                Master’s degree
+                {{item.city}}
               </p>
             </div>
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Date</h2>
               <p class="profile-section--subDescription">
-                01․09․2000 - 28.07.2015
+                <span>{{item.startDate | date : 'shortDate'}} </span>
+                <span *ngIf="item.graduationDate">- {{item.graduationDate | date: 'shortDate'}} </span>
               </p>
             </div>
           </div>
-          <div class="flex-item align-self-end">
+          <div class="flex-item align-self-end" *ngIf="item.degreeInProgress">
             <div class="checkboxes-wrapper">
-              <mat-checkbox formControlName="degreeInProgress">
+              <mat-checkbox formControlName="degreeInProgress" [checked]="item.degreeInProgress">
                 Degree in progress
               </mat-checkbox>
             </div>
@@ -171,50 +143,30 @@
         </div>
       </div>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="tutorCertificates?.length">
       <h2 class="profile-section__title">
         Certificates
         <hr/>
       </h2>
-      <div class="nested-info without-side-padding">
-        <div class="flex-container flex-container-justify-start grid-gap-152">
-          <div class="flex-item">
+      <div class="nested-info without-side-padding" >
+        <div class="flex-container flex-container-justify-start grid-gap-152" >
+          <div class="flex-item" *ngFor="let item of tutorCertificates">
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Institution name</h2>
               <p class="profile-section--subDescription">
-                California Baptist University
+               {{item?.institutionName}}
               </p>
             </div>
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Qualification</h2>
               <p class="profile-section--subDescription">
-                Qualification
+                {{item?.qualification}}
               </p>
             </div>
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Date</h2>
               <p class="profile-section--subDescription">
-                01․09․2000 - 02.07.2015
-              </p>
-            </div>
-          </div>
-          <div class="flex-item">
-            <div class="profile-section-subItems">
-              <h2 class="profile-section--subtitle">Institution name</h2>
-              <p class="profile-section--subDescription">
-                California Baptist University
-              </p>
-            </div>
-            <div class="profile-section-subItems">
-              <h2 class="profile-section--subtitle">Qualification</h2>
-              <p class="profile-section--subDescription">
-                Qualification
-              </p>
-            </div>
-            <div class="profile-section-subItems">
-              <h2 class="profile-section--subtitle">Date</h2>
-              <p class="profile-section--subDescription">
-                01․09․2000 - 28.07.2015
+                {{item?.date | date: 'shortDate'}}
               </p>
             </div>
           </div>
@@ -233,11 +185,11 @@
     </div>
 
     <div [ngSwitch]="activeTab">
-      <app-availability *ngSwitchCase="'availability'"></app-availability>
-      <app-subjects *ngSwitchCase="'subjects'"></app-subjects>
+      <app-availability *ngSwitchCase="'availability'" [userId]="userId"></app-availability>
+      <app-subjects *ngSwitchCase="'subjects'" [userId]="userId"></app-subjects>
       <app-calendar *ngSwitchCase="'calendar'"></app-calendar>
-      <app-ratings *ngSwitchCase="'ratings'"></app-ratings>
-      <app-reviews *ngSwitchCase="'reviews'"></app-reviews>
+      <app-ratings *ngSwitchCase="'ratings'" [ratings]="ratings$ | async"></app-ratings>
+      <app-reviews *ngSwitchCase="'reviews'" [userId]="userId"></app-reviews>
     </div>
   </div>
 </main>

@@ -4,7 +4,7 @@ import {StorageService} from "../../services/storage/storage.service";
 import {InfosService} from "../../services/infos/infos.service";
 import {ValidationService} from "../../services/validation/validation.service";
 import {Observable, Subscription} from "rxjs";
-import {Country} from "../../models/infos.model";
+import {Country, TimeZones} from "../../models/infos.model";
 import {PersonalInformation} from "../../models/settings.model";
 import {SettingsService} from "../../services/settings/settings.service";
 
@@ -18,6 +18,7 @@ export class PersonalInformationComponent implements OnInit, OnDestroy {
   countries$: Observable<Country[]>;
   form: FormGroup;
   isOpenPasswordModal: boolean;
+  timeZones$: Observable<TimeZones[]>;
 
   constructor(
     private fb: FormBuilder,
@@ -31,6 +32,7 @@ export class PersonalInformationComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.formInitialization();
     this.countries$ = this.infoService.getCountries();
+    this.timeZones$ = this.infoService.getTimeZones();
     this.getPersonalInformation();
   }
 
@@ -40,6 +42,8 @@ export class PersonalInformationComponent implements OnInit, OnDestroy {
       userId: [this.storageService.getUserId()],
       mobileCode: [null, [Validators.required]],
       mobile: [null, [Validators.required]],
+      userName: [null, [Validators.required]],
+      preferredTimeZone: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern)]],
       userAddress: this.fb.group({
         countryId: [null, [Validators.required]],
@@ -73,7 +77,6 @@ export class PersonalInformationComponent implements OnInit, OnDestroy {
         )
       )
     }
-
   }
 
   ngOnDestroy(): void {

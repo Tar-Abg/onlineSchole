@@ -7,6 +7,7 @@ import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {SaveInformation} from "../../../shared/models/registration.model";
+import {TimeZones} from "../../../shared/models/infos.model";
 
 @Component({
   selector: 'app-student-first-step',
@@ -16,6 +17,7 @@ import {SaveInformation} from "../../../shared/models/registration.model";
 export class StudentFirstStepComponent implements OnInit, OnDestroy {
   @Output() next: EventEmitter<void> = new EventEmitter<void>();
   private subscription: Subscription = new Subscription();
+  timeZones$: Observable<TimeZones[]>;
   form: FormGroup;
   genderList$: Observable<KeyValuePair[]>;
   // private actionType: "CREATE" | "UPDATE" = "CREATE";
@@ -36,6 +38,7 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
     this.genderList$ = this.infosService.getGenders();
     // this.getInformationForStudent();
     this.emailIsExist$ = this.registrationService.emailIsExist$;
+    this.timeZones$ = this.infosService.getTimeZones();
   }
 
   initializeForm(): void {
@@ -44,6 +47,8 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
       userType: [this.storageService.getUserType()],
       firstName: [null, [Validators.required]],
       lastName: [null, [Validators.required]],
+      userName: [null, [Validators.required]],
+      preferredTimeZone: [null, [Validators.required]],
       gender: [null],
       email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern)]],
       password: [null, [Validators.required]],

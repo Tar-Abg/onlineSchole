@@ -3,20 +3,9 @@
     Feedbacks
   </h3>
   <div class="review-wrapper">
-    <div class="review-item">
-      <h4 class="review-item-name">Ann S.</h4>
-      <p class="review-item-desc">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-        unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-    </div>
-    <div class="review-item">
-      <h4 class="review-item-name">Ann S.</h4>
-      <p class="review-item-desc">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-        unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
-    </div>
-    <div class="review-item">
-      <h4 class="review-item-name">Ann S.</h4>
-      <p class="review-item-desc">Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an
-        unknown printer took a galley of type and scrambled it to make a type specimen book. </p>
+    <div class="review-item" *ngFor="let item of reviews$ | async">
+      <h4 class="review-item-name">{{item?.authorName}}</h4>
+      <p class="review-item-desc">{{item?.review}}</p>
     </div>
   </div>
 </section>

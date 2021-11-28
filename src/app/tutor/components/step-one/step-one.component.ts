@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Observable, Subject, Subscription} from "rxjs";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
-import {Month} from "../../../shared/models/infos.model";
+import {Month, TimeZones} from "../../../shared/models/infos.model";
 import {ValidationService} from "../../../shared/services/validation/validation.service";
 import {SaveInformation} from "../../../shared/models/registration.model";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
@@ -21,6 +21,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
   public form: FormGroup = {} as FormGroup;
   genderList$: Observable<KeyValuePair[]>;
   months$: Observable<Month[]>;
+  timeZones$: Observable<TimeZones[]>;
   yearList: KeyValuePair[];
   emailIsExist$: Subject<boolean>;
   // private actionType: "CREATE" | "UPDATE" = "CREATE";
@@ -48,6 +49,8 @@ export class StepOneComponent implements OnInit, OnDestroy {
       userType: [this.storageService.getUserType()],
       firstName: [null, [Validators.required]],
       lastName: [null, [Validators.required]],
+      userName: [null, [Validators.required]],
+      preferredTimeZone: [null, [Validators.required]],
       gender: [null, [Validators.required]],
       monthOfBirth: [null, [Validators.required]],
       yearOfBirth: [null, [Validators.required]],
@@ -90,6 +93,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
     this.yearList = this.dateService.getYears(1930);
     // this.userId && this.getInformationForUser();
     this.emailIsExist$ = this.registrationService.emailIsExist$;
+    this.timeZones$ = this.infosService.getTimeZones();
   }
 
   // getInformationForUser(): void {

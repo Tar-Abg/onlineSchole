@@ -60,3 +60,8 @@ export interface States {
   code: string;
   name: string;
 }
+
+export interface TimeZones {
+  id: string;
+  displayName: string;
+}
