@@ -306,3 +306,47 @@ img {
 .fa-plus {
   cursor: pointer;
 }
+
+.login-modal-wrapper {
+
+  .modal-content {
+    min-height: auto;
+    height: auto;
+    padding-bottom: 48px;
+    background: #FFFFFF;
+    border: 2px solid rgba(143, 181, 252, 0.31) !important;
+    box-sizing: border-box;
+    border-radius: 15px !important;
+  }
+
+  .modal-header {
+    justify-content: center !important;
+    border: 0;
+    padding: 25px 0 50px;
+
+    span {
+      font-family: Segoe UI;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 24px;
+      line-height: 32px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #8FB5FC;
+
+
+      &:last-child {
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        color: black !important;
+      }
+    }
+  }
+
+  .modal-body {
+    width: 476px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}

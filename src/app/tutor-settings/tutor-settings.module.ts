@@ -13,29 +13,34 @@ import {TutorCertificatesComponent} from "./components/tutor-certificates/tutor-
 import {LayoutsModule} from "../layouts/layouts.module";
 import {MatTabsModule} from "@angular/material/tabs";
 import {TutorPersonalInformationComponent} from './components/tutor-personal-information/tutor-personal-information.component';
+import { AddLessonModalComponent } from './components/add-lesson-modal/add-lesson-modal.component';
 
 
 @NgModule({
-  declarations: [
-    TutorSettingsComponent,
-    ProfileComponent,
-    PaymentComponent,
-    AvailabilityComponent,
-    RatesComponent,
-    TutorInstitutionsComponent,
-    TutorCertificatesComponent,
-    TutorPersonalInformationComponent
+    declarations: [
+        TutorSettingsComponent,
+        ProfileComponent,
+        PaymentComponent,
+        AvailabilityComponent,
+        RatesComponent,
+        TutorInstitutionsComponent,
+        TutorCertificatesComponent,
+        TutorPersonalInformationComponent,
+        AddLessonModalComponent
 
-  ],
-  imports: [
-    CommonModule,
-    TutorSettingsRoutingModule,
-    ReactiveFormsModule,
-    SharedModule,
-    LayoutsModule,
-    MatTabsModule
+    ],
+    exports: [
+        AddLessonModalComponent
+    ],
+    imports: [
+        CommonModule,
+        TutorSettingsRoutingModule,
+        ReactiveFormsModule,
+        SharedModule,
+        LayoutsModule,
+        MatTabsModule
 
-  ]
+    ]
 })
 export class TutorSettingsModule {
 }

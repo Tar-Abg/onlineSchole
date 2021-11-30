@@ -5,9 +5,11 @@
   <li (click)="isOpenChangePassword = true">change password</li>
   <li (click)="isOpenMessageModal = true">message modal</li>
 </ul>
-<app-modal-schem *ngIf="isOpenLogin" (close)="isOpenLogin = false" [title]="'Welcome to sophist'">
-  <app-login></app-login>
-</app-modal-schem>
+<div class="login-modal-wrapper">
+  <app-modal-schem *ngIf="isOpenLogin" (close)="isOpenLogin = false" [title]="'Welcome to sophist'">
+    <app-login></app-login>
+  </app-modal-schem>
+</div>
 
 <app-modal-schem *ngIf="isOpenResetPassword" (close)="isOpenResetPassword = false" [isShowBack]="true">
   <app-reset-password ></app-reset-password>

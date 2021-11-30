@@ -14,6 +14,7 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatIconModule} from "@angular/material/icon";
 import {RatingModule} from "ng-starrating";
+import {TutorSettingsModule} from "../tutor-settings/tutor-settings.module";
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {RatingModule} from "ng-starrating";
         MatDatepickerModule,
         MatIconModule,
         RatingModule,
+        TutorSettingsModule,
     ]
 })
 export class TutorProfileModule {
