@@ -15,6 +15,7 @@ import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatIconModule} from "@angular/material/icon";
 import {RatingModule} from "ng-starrating";
 import {TutorSettingsModule} from "../tutor-settings/tutor-settings.module";
+import {AddLessonComponent} from './components/add-lesson/add-lesson.component';
 
 
 @NgModule({
@@ -24,19 +25,20 @@ import {TutorSettingsModule} from "../tutor-settings/tutor-settings.module";
     SubjectsComponent,
     CalendarComponent,
     RatingsComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    AddLessonComponent
   ],
-    imports: [
-        CommonModule,
-        TutorProfileRoutingModule,
-        LayoutsModule,
-        MatCheckboxModule,
-        MatFormFieldModule,
-        MatDatepickerModule,
-        MatIconModule,
-        RatingModule,
-        TutorSettingsModule,
-    ]
+  imports: [
+    CommonModule,
+    TutorProfileRoutingModule,
+    LayoutsModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatIconModule,
+    RatingModule,
+    TutorSettingsModule,
+  ]
 })
 export class TutorProfileModule {
 }

@@ -187,10 +187,11 @@
     <div [ngSwitch]="activeTab">
       <app-availability *ngSwitchCase="'availability'" [userId]="userId"></app-availability>
       <app-subjects *ngSwitchCase="'subjects'" [userId]="userId"></app-subjects>
-      <app-calendar *ngSwitchCase="'calendar'"></app-calendar>
+      <app-calendar *ngSwitchCase="'calendar'" (onAddLesson)="isOpenAddLesson = true"></app-calendar>
       <app-ratings *ngSwitchCase="'ratings'" [ratings]="ratings$ | async"></app-ratings>
       <app-reviews *ngSwitchCase="'reviews'" [userId]="userId"></app-reviews>
     </div>
   </div>
 </main>
 
+<app-add-lesson *ngIf="isOpenAddLesson" (onClose)="isOpenAddLesson = false"></app-add-lesson>

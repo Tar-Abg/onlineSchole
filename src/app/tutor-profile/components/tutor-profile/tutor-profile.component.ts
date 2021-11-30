@@ -16,8 +16,9 @@ export class TutorProfileComponent implements OnInit, OnDestroy {
   tutorInstitutions: TutorInstitutions[];
   tutorCertificates: TutorCertificates[];
   ratings$: Observable<TutorRatings>;
-  isBioContentToggled: boolean = false;
-  isWrapUpContentToggled: boolean = false;
+  isBioContentToggled: boolean;
+  isWrapUpContentToggled: boolean = true;
+  isOpenAddLesson: boolean = false;
   limit = 150;
   originalBioContent: string;
   originalWrapUpContent: string;
