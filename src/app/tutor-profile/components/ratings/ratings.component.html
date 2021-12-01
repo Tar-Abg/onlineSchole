@@ -1,7 +1,7 @@
 <section class="rating-wrapper">
   <div class="profile-cards__details--rating">
     <fieldset class="star-rates">
-      <star-rating [value]="ratings?.average" [totalstars]="5"  checkedcolor="#FFC107" uncheckedcolor="#c2c2c2" size="40px" [readonly]="true"></star-rating>
+      <star-rating [value]="ratings.average" [totalstars]="5"  checkedcolor="#FFC107" uncheckedcolor="#c2c2c2" size="40px" [readonly]="true"></star-rating>
     </fieldset>
     <p class="star-rates-value">{{ratings?.average.toFixed(1)}} <span>({{ratings?.overallCount}})</span></p>
   </div>
