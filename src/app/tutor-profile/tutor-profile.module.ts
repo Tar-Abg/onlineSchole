@@ -16,6 +16,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {RatingModule} from "ng-starrating";
 import {TutorSettingsModule} from "../tutor-settings/tutor-settings.module";
 import {AddLessonComponent} from './components/add-lesson/add-lesson.component';
+import {MatInputModule} from "@angular/material/input";
 
 
 @NgModule({
@@ -28,17 +29,18 @@ import {AddLessonComponent} from './components/add-lesson/add-lesson.component';
     ReviewsComponent,
     AddLessonComponent
   ],
-  imports: [
-    CommonModule,
-    TutorProfileRoutingModule,
-    LayoutsModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatIconModule,
-    RatingModule,
-    TutorSettingsModule,
-  ]
+    imports: [
+        CommonModule,
+        TutorProfileRoutingModule,
+        LayoutsModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatIconModule,
+        RatingModule,
+        TutorSettingsModule,
+        MatInputModule,
+    ]
 })
 export class TutorProfileModule {
 }
