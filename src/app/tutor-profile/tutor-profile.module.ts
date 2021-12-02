@@ -17,6 +17,7 @@ import {RatingModule} from "ng-starrating";
 import {TutorSettingsModule} from "../tutor-settings/tutor-settings.module";
 import {AddLessonComponent} from './components/add-lesson/add-lesson.component';
 import {MatInputModule} from "@angular/material/input";
+import {SharedModule} from "../shared/shared.module";
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import {MatInputModule} from "@angular/material/input";
         RatingModule,
         TutorSettingsModule,
         MatInputModule,
+        SharedModule,
     ]
 })
 export class TutorProfileModule {

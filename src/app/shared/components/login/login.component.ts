@@ -13,7 +13,7 @@ import {Subscription} from "rxjs";
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-  private readonly subscription: Subscription;
+  private readonly subscription: Subscription = new Subscription();
   form: FormGroup;
   errorMessage: string;
 

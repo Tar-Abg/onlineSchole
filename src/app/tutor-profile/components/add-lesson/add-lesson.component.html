@@ -1,4 +1,150 @@
-<div>
-  <button (click)="onClose.emit()">x</button>
-
+<div class="add-lesson-modal-wrapper">
+  <div class="add-lesson-modal-body">
+    <form action="">
+      <ul class="flex-item-for-info address-form">
+        <li class="add-lesson-list--item add-lesson-list--item__fixed-width">
+          <h3 class="form-item-label">Student’s name</h3>
+          <label for="studentName" class="form-label">
+            <input id="studentName"
+                   class="form-input"
+                   autocomplete="studentName"
+                   type="text"
+                   placeholder="*type a student’s name"
+                   formControlName="studentName"
+            >
+            <span class="error-message">This is a required field</span>
+          </label>
+        </li>
+        <li class="add-lesson-list--item date-wrapper">
+          <h3 class="form-item-label label-with-minus-margin">Date</h3>
+          <mat-form-field
+            appearance="fill"
+            class="date-range-wrapper
+          custom-date-range-wrapper">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>
+                <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+              </mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <input matInput
+                   [matDatepicker]="picker"
+                   (click)="picker.open()"
+                   placeholder="*dd/mm/yyyy"
+            >
+          </mat-form-field>
+          <span class="error-message">This is a required field</span>
+        </li>
+        <li class="add-lesson-list--item">
+          <h3 class="form-item-label">Lesson start time</h3>
+          <div class="lesson-time-wrapper">
+            <div class="d-flex position-relative selects-wrapper">
+              <div class="modal-select-width position-relative">
+                <app-select
+                  [label]="'*time'"
+                  [keyName]="'time'"
+                  formControlName="time"
+                ></app-select>
+                <span class="error-message">This is a required field</span>
+              </div>
+              <div class="modal-select-width">
+                <app-select
+                  [label]="'*minutes'"
+                  [keyName]="'minutes'"
+                  formControlName="minutes"
+                ></app-select>
+              </div>
+              <div class="modal-select-width__min-width">
+                <app-select
+                  [label]="'*AM'"
+                  [keyName]="'am'"
+                  formControlName="am"
+                ></app-select>
+              </div>
+            </div>
+            <div class="d-flex position-relative selects-fixed-width">
+              <app-select
+                [label]="'*duration'"
+                [keyName]="'duration'"
+                formControlName="duration"
+              ></app-select>
+              <span class="error-message">This is a required field</span>
+            </div>
+          </div>
+        </li>
+        <li class="user-sign-up-list__item">
+          <h3 class="main-question">Please choose your subject</h3>
+          <div class="d-flex flex-wrap flex-container-justify-start
+            grid-gap-10 date-picker-container">
+            <ng-container>
+              <div formArrayName="tutorSubjects">
+                <div class="d-flex selectRow">
+                  <div class="selectWrapper">
+                    <app-select
+                      [label]="'*Category'"
+                      [keyName]="'categoryName'"
+                      formControlName="categoryId"
+                    >
+                    </app-select>
+                    <span class="error-message">This is a required field</span>
+                  </div>
+                  <div class="selectWrapper">
+                    <app-select
+                      [label]="'*Subject'"
+                      [keyName]="'subjectName'"
+                      formControlName="subjectId"
+                    >
+                    </app-select>
+                  </div>
+                  <div class="selectWrapper">
+                    <app-select
+                      [label]="'*Level'"
+                      [keyName]="'level'"
+                      formControlName="levelId"
+                    >
+                    </app-select>
+                  </div>
+                  <div class="flex-container grid-gap-for-icons">
+                    <div class="recycle-bin-wrapper text-danger">
+                      <img src="./assets/images/recycleBin.png" alt="recycle byn" class="trashIcon">
+                    </div>
+                    <i class="fas fa-plus"></i>
+                  </div>
+                </div>
+              </div>
+            </ng-container>
+          </div>
+        </li>
+        <li class="add-lesson-list--item add-lesson-list--item__fixed-width">
+          <h3 class="form-item-label">Hourly rate</h3>
+          <label for="hourlyRate" class="form-label">
+            <input id="hourlyRate"
+                   class="form-input"
+                   type="text"
+                   formControlName="hourlyRate"
+                   placeholder="*the minimum hourly rate is $20"
+            >
+            <span class="error-message">You cannot enter anything below $20</span>
+          </label>
+        </li>
+        <li class="add-lesson-list--item add-lesson-list--item__fixed-width">
+          <h3 class="form-item-label">Lesson plan</h3>
+          <label for="lessonPlan" class="form-label">
+            <input id="lessonPlan"
+                   class="form-input"
+                   autocomplete="lessonPlan"
+                   type="text"
+                   placeholder="*write a lesson plan"
+                   formControlName="lessonPlan"
+            >
+            <span class="error-message">This is a required field</span>
+          </label>
+          <span class="form-item-notification">Your lesson plan must be between 15 and 100 characters.</span>
+        </li>
+      </ul>
+      <div class="flex-container-center">
+        <button class="settings-form-button__with-border button-border--green">Save</button>
+      </div>
+    </form>
+  </div>
 </div>
