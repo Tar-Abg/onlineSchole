@@ -1,4 +1,4 @@
-<section class="calendar-wrapper">
+<section class="calendar-wrapper min-width-certificates-wrapper">
   <div class="flex-container add-calendar-wrapper">
     <p class="calendar-warning">You can manage your lessons.</p>
     <button class="btn-add-less flex-container-center" (click)="onAddLesson.emit()">Add Lesson</button>
@@ -7,7 +7,8 @@
   <div class="flex-container-justify-start calendar-datepicker-wrappers">
     <div class="date-picker-wrapper-for-calendar">
       <h2 class="date-picker-label">From </h2>
-      <mat-form-field appearance="fill" class="date-range-wrapper
+      <mat-form-field appearance="fill"
+                      class="date-range-wrapper
                   custom-date-range-wrapper">
         <mat-datepicker-toggle matSuffix [for]="picker">
           <mat-icon matDatepickerToggleIcon>
@@ -18,11 +19,9 @@
         <input matInput
                [matDatepicker]="picker"
                (click)="picker.open()"
-
                placeholder="*dd/mm/yyyy"
         >
       </mat-form-field>
-      <span class="error-message">This is a required field</span>
     </div>
     <div class="date-picker-wrapper-for-calendar">
       <h2 class="date-picker-label">To </h2>
@@ -36,12 +35,11 @@
         <mat-datepicker #picker1></mat-datepicker>
         <input matInput [matDatepicker]="picker1"
                (click)="picker1.open()"
-               >
+               placeholder="*dd/mm/yyyy"
+        >
       </mat-form-field>
-      <span class="error-message">This is a required field</span>
     </div>
-    <button class="button-for-show">Show
-    </button>
+    <button class="button-for-show">Show</button>
   </div>
 
   <div class="calendar-content">
@@ -156,6 +154,3 @@
     </div>
   </div>
 </section>
-
-<app-add-lesson-modal>
-</app-add-lesson-modal>

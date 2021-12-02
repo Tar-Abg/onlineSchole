@@ -13,49 +13,58 @@
         <ul class="user-sign-up-list">
           <li class="user-sign-up-list__item">
             <h3 class="main-question">Please choose your subject</h3>
-            <div class="d-flex flex-container-justify-start gap-3
-            grid-gap-10 date-picker-container" *ngFor="let item of tutorSubjects.controls; let i = index"
-                 formArrayName="tutorSubjects">
-              <ng-container [formGroupName]="i">
-                <div class="selectWrapper">
-                  <app-select
-                    [label]="'*Category'"
-                    [list]="categories$ | async"
-                    [keyName]="'categoryName'"
-                    (ngModelChange)="categoryChange($event, i)"
-                    formControlName="categoryId"
-                  >
-                  </app-select>
-                  <span class="error-message"
-                        *ngIf="tutorSubjects.controls[i]?.get('categoryId')?.errors && tutorSubjects.controls[i]?.get('categoryId')?.touched">This is a required field</span>
-                </div>
-                <div class="selectWrapper">
-                  <app-select
-                    [label]="'*Subject'"
-                    [list]="observables[i]?.subjects$ | async"
-                    [keyName]="'subjectName'"
-                    (ngModelChange)="subjectChange($event, i, tutorSubjects.controls[i])"
-                    formControlName="subjectId"
-                  >
-                  </app-select>
-                  <span class="error-message"
-                        *ngIf="tutorSubjects.controls[i]?.get('subjectId')?.errors && tutorSubjects.controls[i]?.get('subjectId')?.touched">This is a required field</span>
-                </div>
-                <div class="selectWrapper">
-                  <app-select
-                    [label]="'*Level'"
-                    [list]="observables[i]?.levels$ | async"
-                    [keyName]="'level'"
-                    formControlName="levelId"
-                  >
-                  </app-select>
-                  <span class="error-message"
-                        *ngIf="tutorSubjects.controls[i]?.get('levelId')?.errors && tutorSubjects.controls[i]?.get('levelId')?.touched">This is a required field</span>
-                </div>
-                <i class="text-danger" (click)="removeTutorSubjects(item)" *ngIf="i > 0">x</i>
-                <i class="fas fa-plus" (click)="addTutorSubjects()" *ngIf="i == tutorSubjects.controls.length-1"></i>
-              </ng-container>
+            <div class="d-flex flex-wrap flex-container-justify-start gap-3
+            grid-gap-10 date-picker-container">
+              <ng-container *ngFor="let item of tutorSubjects.controls; let i = index">
+                <div formArrayName="tutorSubjects">
+                  <div [formGroupName]="i" class="d-flex selectRow">
 
+                    <div class="selectWrapper">
+                      <app-select
+                        [label]="'*Category'"
+                        [list]="categories$ | async"
+                        [keyName]="'categoryName'"
+                        (ngModelChange)="categoryChange($event, i)"
+                        formControlName="categoryId"
+                      >
+                      </app-select>
+                      <span class="error-message"
+                            *ngIf="tutorSubjects.controls[i]?.get('categoryId')?.errors && tutorSubjects.controls[i]?.get('categoryId')?.touched">This is a required field</span>
+                    </div>
+                    <div class="selectWrapper">
+                      <app-select
+                        [label]="'*Subject'"
+                        [list]="observables[i]?.subjects$ | async"
+                        [keyName]="'subjectName'"
+                        (ngModelChange)="subjectChange($event, i, tutorSubjects.controls[i])"
+                        formControlName="subjectId"
+                      >
+                      </app-select>
+                      <span class="error-message"
+                            *ngIf="tutorSubjects.controls[i]?.get('subjectId')?.errors && tutorSubjects.controls[i]?.get('subjectId')?.touched">This is a required field</span>
+                    </div>
+                    <div class="selectWrapper">
+                      <app-select
+                        [label]="'*Level'"
+                        [list]="observables[i]?.levels$ | async"
+                        [keyName]="'level'"
+                        formControlName="levelId"
+                      >
+                      </app-select>
+                      <span class="error-message"
+                            *ngIf="tutorSubjects.controls[i]?.get('levelId')?.errors && tutorSubjects.controls[i]?.get('levelId')?.touched">This is a required field</span>
+                    </div>
+                    <div class="flex-container grid-gap-for-icons">
+                      <div class="recycle-bin-wrapper text-danger"
+                           (click)="removeTutorSubjects(item)" *ngIf="i > 0">
+                        <img src="./assets/images/recycleBin.png" alt="recycle byn" class="trashIcon">
+                      </div>
+                      <i class="fas fa-plus" (click)="addTutorSubjects()"
+                         *ngIf="i == tutorSubjects.controls.length-1"></i>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
             </div>
           </li>
           <li class="user-sign-up-list__item">
