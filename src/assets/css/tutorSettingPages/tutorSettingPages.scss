@@ -50,4 +50,13 @@
       grid-gap: 20px;
     }
   }
+
+  .subjects-form {
+
+    .checkboxes-wrapper {
+      label {
+        margin-bottom: 0;
+      }
+    }
+  }
 }

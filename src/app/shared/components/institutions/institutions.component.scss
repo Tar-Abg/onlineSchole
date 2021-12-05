@@ -24,6 +24,32 @@
 
   .remove-icon-wrapper {
     position: absolute;
-    top: 0;
+    top: -34px;
+    left: 5px;
+    padding: 8px;
+  }
+}
+
+.subjects-form-wrapper {
+  .add {
+    margin-top: -40px;
+  }
+}
+
+.subjects-form {
+
+  .checkboxes-wrapper {
+    label {
+      margin-bottom: 0;
+    }
+  }
+
+  .formArray {
+    padding: 35px 0;
+    border-top: 1px solid #c4c4c4;
+
+    &:first-child {
+      border: 0;
+    }
   }
 }
