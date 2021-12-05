@@ -4,7 +4,7 @@
     <button class="btn-add-less flex-container-center" (click)="onAddLesson.emit()">Add Lesson</button>
   </div>
 
-  <div class="flex-container-justify-start calendar-datepicker-wrappers">
+  <form [formGroup]="form" (ngSubmit)="getSchedule()" class="flex-container-justify-start calendar-datepicker-wrappers">
     <div class="date-picker-wrapper-for-calendar">
       <h2 class="date-picker-label">From </h2>
       <mat-form-field appearance="fill"
@@ -17,7 +17,7 @@
         </mat-datepicker-toggle>
         <mat-datepicker #picker></mat-datepicker>
         <input matInput
-               [matDatepicker]="picker"
+               [matDatepicker]="picker" formControlName="date"
                (click)="picker.open()"
                placeholder="*dd/mm/yyyy"
         >
@@ -26,21 +26,21 @@
     <div class="date-picker-wrapper-for-calendar">
       <h2 class="date-picker-label">To </h2>
       <mat-form-field appearance="fill" class="date-range-wrapper
-                  custom-date-range-wrapper">
+                  custom-date-range-wrapper" >
         <mat-datepicker-toggle matSuffix [for]="picker1">
           <mat-icon matDatepickerToggleIcon>
             <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
           </mat-icon>
         </mat-datepicker-toggle>
         <mat-datepicker #picker1></mat-datepicker>
-        <input matInput [matDatepicker]="picker1"
+        <input [disabled]="true" matInput [matDatepicker]="picker1" formControlName="endDate"
                (click)="picker1.open()"
                placeholder="*dd/mm/yyyy"
         >
       </mat-form-field>
     </div>
-    <button class="button-for-show">Show</button>
-  </div>
+    <button class="button-for-show" type="submit">Show</button>
+  </form>
 
   <div class="calendar-content">
     <div class="tWrap">
@@ -49,13 +49,7 @@
           <thead>
           <tr>
             <th></th>
-            <th><h3 class="calendar-table-thead">Sun</h3></th>
-            <th><h3 class="calendar-table-thead">Mon</h3></th>
-            <th><h3 class="calendar-table-thead">Tue</h3></th>
-            <th><h3 class="calendar-table-thead">Wed</h3></th>
-            <th><h3 class="calendar-table-thead">Thu</h3></th>
-            <th><h3 class="calendar-table-thead">Fri</h3></th>
-            <th><h3 class="calendar-table-thead">Sat</h3></th>
+            <th *ngFor="let day of daysOfWeek$ | async"><h3 class="calendar-table-thead">{{day.shortName}}</h3></th>
           </tr>
           </thead>
         </table>
@@ -63,90 +57,14 @@
       <div class="tWrap__body">
         <table>
           <tbody>
-          <tr>
-            <td>12pm</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>1pm</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>2pm</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>3pm</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>4pm</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>5pm</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>6pm</td>
-            <td></td>
-            <td>
-              <p class="lesson-time">6.00-12.00</p>
-              <h2 class="main-lesson-subject">English</h2>
+          <tr *ngFor="let item of schedule">
+            <td>{{item.hour?.time}}</td>
+            <td *ngFor="let week of item.week">
+              <span class="d-block" *ngIf="week?.thisSelectedDay?.startHour">
+                {{week?.thisSelectedDay?.startHour}}-{{week?.thisSelectedDay?.endHour}}
+              </span>
+              <b>{{week?.thisSelectedDay?.subject}}</b>
             </td>
-            <td>
-              <p class="lesson-time">6.00-12.00</p>
-              <h2 class="main-lesson-subject">English</h2>
-            </td>
-            <td>
-              <p class="lesson-time">6.00-12.00</p>
-              <h2 class="main-lesson-subject">English</h2>
-            </td>
-            <td>
-              <p class="lesson-time">6.00-12.00</p>
-              <h2 class="main-lesson-subject">English</h2>
-            </td>
-            <td>
-              <p class="lesson-time">6.00-12.00</p>
-              <h2 class="main-lesson-subject">English</h2>
-            </td>
-            <td></td>
           </tr>
           </tbody>
         </table>

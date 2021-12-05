@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {Observable} from "rxjs";
 import {KeyValuePair} from "../../models/keyValuePair.model";
-import {map} from "rxjs/operators";
+import {map, shareReplay} from "rxjs/operators";
 import {ResponseModel} from "../../models/responseModel.model";
 import {
   Categories,
@@ -68,7 +68,8 @@ export class InfosService {
 
   getHoursOfDay(): Observable<HoursOfDay[]> {
     return this.http.get<ResponseModel<HoursOfDay[]>>(`${this.url}/GetHoursOfDay`).pipe(
-      map(data => data.result)
+      map(data => data.result),
+      shareReplay()
     );
   }
 
@@ -139,6 +140,15 @@ export class InfosService {
     return this.http.get<ResponseModel<TimeZones[]>>(`${this.url}/GetTimeZones`).pipe(
       map(data => data.result)
     );
+  }
+
+  getDaysOfWeekForCalendar(date: string): Observable<DaysOfWeek[]> {
+    let params = new HttpParams();
+    params = params.append('date', date)
+    return this.http.get<ResponseModel<DaysOfWeek[]>>(`${this.url}/GetDaysOfWeekForCalendar`, {params}).pipe(
+      map(data => data.result),
+      shareReplay()
+    )
   }
 
 }

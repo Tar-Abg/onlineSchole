@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {
+  SelectedDay,
   TutorAvailabilities,
   TutorBaseInfo,
   TutorCertificates,
-  TutorInstitutions, TutorRatings, TutorReviews,
+  TutorInstitutions,
+  TutorRatings,
+  TutorReviews,
   TutorSubjects
 } from "../models/tutor.model";
 import {HttpClient, HttpParams} from "@angular/common/http";
@@ -78,4 +81,12 @@ export class TutorService {
     )
   }
 
+  getCalendar(tutorId: number, date: string): Observable<SelectedDay[]> {
+    let params = new HttpParams();
+    params = params.append('userId', tutorId)
+    params = params.append('date', date)
+    return this.http.get<ResponseModel<SelectedDay[]>>(`${this.url}/GetCalendar`, {params}).pipe(
+      map(data => data.result)
+    )
+  }
 }
