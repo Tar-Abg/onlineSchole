@@ -15,10 +15,10 @@
   letter-spacing: 0.02em;
   color: #000000;
 
-  &:hover{
-  text-decoration: unset;
-  color: black;
-   }
+  &:hover {
+    text-decoration: unset;
+    color: black;
+  }
 }
 
 .login-btn {
@@ -37,17 +37,13 @@
 }
 
 .forgot-pass-link {
-  font-family: Segoe UI;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 14px;
+  display: block;
+  margin-bottom: 24px;
+  font: $type-light normal $type-smaller $Segoe-UI-sans;
   line-height: 19px;
-  /* identical to box height */
-
   letter-spacing: 0.02em;
   text-decoration-line: underline;
-
-  color: #000000;
+  color: $clr-ntrl-max;
 }
 
 

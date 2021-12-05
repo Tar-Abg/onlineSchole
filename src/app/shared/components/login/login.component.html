@@ -1,4 +1,7 @@
 <div class="login-wrapper">
+  <p class="error-notification">
+    Your email address or password was incorrect
+  </p>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <span class="text-center text-danger">{{errorMessage}}</span>
     <label for="email" class="form-label">
@@ -24,7 +27,8 @@
              formControlName="password">
       <span class="error-message" *ngIf="form.get('password')?.errors && form.get('password')?.touched">This Field Required</span>
       <span class="view-icon">
-      <img src="assets/images/" alt="">
+        <img src="assets/images/visiblePassword.svg" alt="VisiblePassword" width="27" height="17">
+<!--        <img src="assets/images/invisiblePassword.png" alt="Invisible Password" width="29" height="26">-->
     </span>
     </label>
     <a href="#" class="forgot-pass-link">Forget your password?</a>

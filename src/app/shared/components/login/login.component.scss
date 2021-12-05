@@ -1,0 +1,20 @@
+@import "src/assets/css/variables";
+
+.login-wrapper {
+  .error-notification {
+    margin: -40px 0 22px;
+    font: $type-light normal $type-small $Segoe-UI-sans;
+    text-align: center;
+    line-height: 18px;
+    letter-spacing: 0.02em;
+    color: $danger-color;
+  }
+
+  .view-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translate(-15px, -50%);
+    cursor: pointer;
+  }
+}

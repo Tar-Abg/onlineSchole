@@ -3,7 +3,7 @@
 }
 
 .register-step-form {
-  grid-gap: 84px;
+  grid-gap: 24px 84px;
 
   .flex-item {
     width: 418px;
@@ -38,11 +38,23 @@
 
 .subjects-form {
 
+  .formArray {
+    padding: 35px 0;
+    border-top: 1px solid #c4c4c4;
+
+    &:first-child {
+      border: 0;
+    }
+  }
+
   .checkboxes-wrapper {
     label {
       margin-bottom: 0;
     }
   }
+}
+
+.multiple-form {
 
   .formArray {
     padding: 35px 0;
