@@ -41,7 +41,15 @@
       padding: 29px 60px 45px;
 
       .grid-gap-152 {
-        grid-gap: 152px;
+        grid-gap: 54px 152px;
+        flex-wrap: wrap;
+      }
+
+      .grid-wrapper {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        flex-wrap: wrap;
+        width: 60%;
       }
 
       .grid-gap-54 {
@@ -315,8 +323,8 @@
 
     &-table {
       width: 407px;
-      table-layout: fixed;
       margin: 0 0 161px 64px;
+      border-spacing: 25px;
 
       &--row {
         height: 45px;
@@ -357,5 +365,11 @@
         }
       }
     }
+  }
+}
+
+.calendar-datepicker-wrappers {
+  .mat-form-field-underline {
+    display: none;
   }
 }

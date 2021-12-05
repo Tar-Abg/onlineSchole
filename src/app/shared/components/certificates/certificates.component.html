@@ -1,7 +1,7 @@
 <div class="flex-item flex-item-step-min-length">
   <div [class.margin-left-space]="!isLoggedIn" [class.margin-left-onLogged]="isLoggedIn">
-    <form [formGroup]="form">
-      <div formArrayName="formArray" *ngFor="let item of formArray.controls; let i = index" [class.aitionalForm]="i > 0">
+    <form [formGroup]="form" class="multiple-form">
+      <div class="formArray" formArrayName="formArray" *ngFor="let item of formArray.controls; let i = index" [class.aitionalForm]="i > 0">
         <fieldset [formGroupName]="i" class="register-form">
           <div class="register-step-form">
             <label for="institution-name" class="form-label">
