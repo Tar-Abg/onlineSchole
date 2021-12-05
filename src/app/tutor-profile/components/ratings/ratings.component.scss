@@ -73,12 +73,12 @@
     }
   }
 
-  .rating-error-message {
+  .rating-notification-message {
     p {
       margin-bottom: 0;
       font: $type-light normal $type-medium-size $Segoe-UI-sans;
       letter-spacing: 0.02em;
-      color: $danger-color;
+      color: $table-titles-color;
     }
   }
 }
