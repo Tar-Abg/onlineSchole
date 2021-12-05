@@ -41,4 +41,11 @@ export class StorageService {
     localStorage.removeItem('userType');
   }
 
+  setItem(key: string, value: any): void {
+    localStorage.setItem(key, JSON.stringify(value));
+  }
+
+  getItem(keyName: string): any {
+    return localStorage.getItem(keyName);
+  }
 }
