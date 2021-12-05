@@ -40,7 +40,9 @@ export class CalendarComponent implements OnInit {
     this.form = this.fb.group({
       date: [new Date().toISOString()],
       endDate: [null],
-    })
+    });
+    this.form.get('endDate')?.disable();
+    this.setSecondDate();
   }
 
   getSchedule(): void {
@@ -66,5 +68,13 @@ export class CalendarComponent implements OnInit {
     this.daysOfWeek$ = this.infoService.getDaysOfWeekForCalendar( new Date(this.form.value?.date).toISOString());
     this.hoursOfDay$ = this.infoService.getHoursOfDay();
     this.selectedDays$ = this.form?.value.date && this.tutorService.getCalendar(this.userId, new Date(this.form.value?.date).toISOString());
+  }
+
+  setSecondDate(): void {
+    const startDate = new Date(this.form.get('date')?.value);
+    let secondDateDay = startDate.getDate();
+    secondDateDay = secondDateDay+7;
+    const secondDate = startDate.setDate(secondDateDay);
+    this.form.get('endDate')?.setValue(new Date(secondDate).toISOString());
   }
 }
