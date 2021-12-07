@@ -38,11 +38,13 @@ export interface Categories {
   id: number;
   categoryName: string;
 }
+
 export interface Subjects {
   id: number;
   subjectName: string;
   categoryId: number;
 }
+
 export interface Level {
   id: number;
   level: string;
@@ -64,4 +66,21 @@ export interface States {
 export interface TimeZones {
   id: string;
   displayName: string;
+}
+
+export interface SubjectsForTutor {
+  id: number;
+  subjectName: string;
+  categoryId: number;
+}
+
+export interface LevelForTutor {
+  id: number;
+  level: string;
+  orderNumber: number;
+}
+
+export interface Minutes {
+  id: number;
+  value: string;
 }

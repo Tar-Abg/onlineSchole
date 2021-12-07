@@ -1,16 +1,94 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {StorageService} from "../../../shared/services/storage/storage.service";
+import {Observable, Subscription} from "rxjs";
+import {Categories, HoursOfDay, LevelForTutor, Minutes, SubjectsForTutor} from "../../../shared/models/infos.model";
+import {InfosService} from "../../../shared/services/infos/infos.service";
+import {TutorService} from "../../services/tutor-service.service";
 
 @Component({
   selector: 'app-add-lesson',
   templateUrl: './add-lesson.component.html',
   styleUrls: ['./add-lesson.component.scss']
 })
-export class AddLessonComponent implements OnInit {
+export class AddLessonComponent implements OnInit, OnDestroy {
   @Output() onClose: EventEmitter<void> = new EventEmitter<void>();
+  private readonly subscription: Subscription = new Subscription();
+  hoursOfDay$: Observable<HoursOfDay[]>;
+  categories$: Observable<Categories[]>;
+  subjects$: Observable<SubjectsForTutor[]>;
+  levels$: Observable<LevelForTutor[]>;
+  minutes$: Observable<Minutes[]>;
+  form: FormGroup;
+  minDate = new Date();
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(
+    private fb: FormBuilder,
+    private storageService: StorageService,
+    private infoService: InfosService,
+    private tutorService: TutorService,
+  ) {
   }
 
+  ngOnInit(): void {
+    this.initializeForm();
+    this.hoursOfDay$ = this.infoService.getHoursOfDay();
+    this.categories$ = this.infoService.getTutorCategories(this.storageService.getUserId());
+    this.minutes$ = this.infoService.getMinutes();
+    this.getSubjects();
+    this.getLevels();
+  }
+
+  getSubjects(): void {
+    this.subscription.add(
+      this.form.get('categoryId')?.valueChanges.subscribe(categoryId => {
+        this.subjects$ = this.infoService.getSubjectsByCategoryIdForTutor(this.storageService.getUserId(), categoryId);
+      })
+    );
+  }
+
+  getLevels(): void {
+    this.subscription.add(
+      this.form.get('subjectId')?.valueChanges.subscribe(subjectId => {
+        this.levels$ = this.infoService.getLevelsBySubjectIdForTutor(this.storageService.getUserId(), subjectId);
+      })
+    );
+  }
+
+  initializeForm(): void {
+    this.form = this.fb.group({
+      tutorId: [this.storageService.getUserId(), [Validators.required]],
+      userName: [null, [Validators.required]],
+      lessonStartDate: [null, [Validators.required]],
+      hour: [null],
+      minute: [null, [Validators.required]],
+      duration: [null, [Validators.required]],
+      categoryId: [null, [Validators.required]],
+      subjectId: [null, [Validators.required]],
+      levelId: [null],
+      lessonPlan: [null, [Validators.required, Validators.maxLength(100), Validators.minLength(15)]],
+      hourlyRate: [null],
+      hourId: [null, [Validators.required]],
+    })
+  }
+
+  onSubmit(): void {
+    if (this.form.valid) {
+      this.addLesson();
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
+
+  addLesson(): void {
+    this.subscription.add(
+      this.tutorService.addLesson(this.form.value).subscribe(() => {
+        this.onClose.emit();
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 }

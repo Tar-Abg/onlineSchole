@@ -196,7 +196,7 @@
 
 <div class="add-lesson-wrapper modal-wrapper">
   <app-modal-schem *ngIf="isOpenAddLesson" (close)="isOpenAddLesson = false" [title]="'Add Lesson'">
-    <app-add-lesson></app-add-lesson>
+    <app-add-lesson (onClose)="isOpenAddLesson = false"></app-add-lesson>
   </app-modal-schem>
 </div>
 

@@ -89,4 +89,8 @@ export class TutorService {
       map(data => data.result)
     )
   }
+
+  addLesson(body: any): Observable<any> {
+    return this.http.post(`${this.url}/AddLesson`, body);
+  }
 }
