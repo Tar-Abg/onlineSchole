@@ -20,7 +20,8 @@
         </div>
         <div class="profile-cards__details--rating" *ngIf="(ratings$ | async) as ratings">
           <fieldset class="star-rates">
-            <star-rating [value]="ratings.average" [totalstars]="5"  checkedcolor="#FFC107" uncheckedcolor="#c2c2c2" size="35px" [readonly]="true"></star-rating>
+            <star-rating [value]="ratings.average" [totalstars]="5" checkedcolor="#FFC107" uncheckedcolor="#c2c2c2"
+                         size="35px" [readonly]="true"></star-rating>
           </fieldset>
           <span>{{ratings.average.toFixed(1)}}({{ratings.overallCount}})</span>
         </div>
@@ -28,7 +29,8 @@
           <img src="assets/images/hours.svg" alt="Hours" width="24" height="24">
           42 hours tutoring
         </h3>
-        <h3 class="profile-cards__details--bold">Hourly rate: <span class="light-text">${{tutorBaseInfo?.hourlyRate}}</span></h3>
+        <h3 class="profile-cards__details--bold">Hourly rate: <span
+          class="light-text">${{tutorBaseInfo?.hourlyRate}}</span></h3>
         <h3 class="profile-cards__details--bold flex-container-justify-start">
           Lesson cancellation: <span class="light-text"> {{tutorBaseInfo?.cancellation}} </span>
         </h3>
@@ -70,7 +72,8 @@
         <p class="profile-section__description">
           {{bio}}
         </p>
-        <button class="read-more" (click)="toggleContent('bio')" *ngIf="bio && bio.length > limit">{{isBioContentToggled ? 'read more' : 'read less'}}</button>
+        <button class="read-more" (click)="toggleContent('bio')"
+                *ngIf="bio && bio.length > limit">{{isBioContentToggled ? 'read more' : 'read less'}}</button>
       </div>
     </section>
     <section class="profile-section">
@@ -80,9 +83,10 @@
       </h2>
       <div class="nested-info">
         <p class="profile-section__description">
-         {{wrapUp}}
+          {{wrapUp}}
         </p>
-        <button class="read-more" (click)="toggleContent('wrapUp')" *ngIf="wrapUp && wrapUp.length > limit">{{isWrapUpContentToggled ? 'read more' : 'read less'}}</button>
+        <button class="read-more" (click)="toggleContent('wrapUp')"
+                *ngIf="wrapUp && wrapUp.length > limit">{{isWrapUpContentToggled ? 'read more' : 'read less'}}</button>
       </div>
     </section>
     <section class="profile-section" *ngIf="tutorInstitutions?.length">
@@ -148,13 +152,13 @@
         Certificates
         <hr/>
       </h2>
-      <div class="nested-info without-side-padding" >
-        <div class="flex-container flex-container-justify-start grid-gap-152 grid-wrapper" >
+      <div class="nested-info without-side-padding">
+        <div class="flex-container flex-container-justify-start grid-gap-152 grid-wrapper">
           <div class="flex-item" *ngFor="let item of tutorCertificates">
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Institution name</h2>
               <p class="profile-section--subDescription">
-               {{item?.institutionName}}
+                {{item?.institutionName}}
               </p>
             </div>
             <div class="profile-section-subItems">
@@ -190,6 +194,269 @@
       <app-calendar *ngSwitchCase="'calendar'" (onAddLesson)="isOpenAddLesson = true"></app-calendar>
       <app-ratings *ngSwitchCase="'ratings'" [ratings]="ratings$ | async"></app-ratings>
       <app-reviews *ngSwitchCase="'reviews'" [userId]="userId"></app-reviews>
+    </div>
+
+
+    <div class="message_history_wrapper">
+      <div class="flex-container">
+        <div class="flex-item">
+          <h3 class="message_history_title">Messages history</h3>
+          <div class="search-box">
+            <input type="text" placeholder="Search" class="search-chat-user-list">
+            <span class="search-box-icon">
+              <img src="assets/images/searchIcon.png" alt="Search Icon" width="26" height="24">
+            </span>
+          </div>
+          <ul class="message-users-list">
+            <li class="message-users-list__item isActive">
+              <picture class="user-image-wrapper">
+                <img src="assets/images/messageUser.png"
+                     alt="User Pic"
+                     width="80"
+                     height="80"
+                >
+              </picture>
+              <div class="message-info-wrapper">
+                <h3 class="user-name">Ann Smith</h3>
+                <p class="user-message">Okey</p>
+              </div>
+              <div class="isNewMessage">
+                <span class="message-count">1</span>
+              </div>
+            </li>
+            <li class="message-users-list__item">
+              <picture class="user-image-wrapper">
+                <img src="assets/images/messageUser.png"
+                     alt="User Pic"
+                     width="80"
+                     height="80"
+                >
+              </picture>
+              <div class="message-info-wrapper">
+                <h3 class="user-name">Ann Smith</h3>
+                <p class="user-message"></p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="flex-item chat">
+          <div class="chat-header">
+            <div class="flex-container-justify-start">
+              <div class="writer-image">
+                <img src="assets/images/messageUser.png" alt="Writer">
+              </div>
+              <h2 class="writer-name">Ann Smith</h2>
+            </div>
+          </div>
+          <div class="chat-history">
+            <!--            <div class="without-messages">-->
+            <!--              <h2>Your Messages</h2>-->
+            <!--              <img src="assets/images/paper-plane.png" alt="Paper Plane" width="101" height="101">-->
+            <!--            </div>-->
+            <div class="online-chat-wrapper">
+              <h4 class="chatting-time">16.03.2021</h4>
+              <div class="chat-wrapper">
+                <div class="message-content">
+                  <div class="received-message flex-container-justify-start">
+                    <h2 class="received-message-text">
+                      Hello ))
+                    </h2>
+                    <span class="received-message-time">
+                   14:25
+                  </span>
+                  </div>
+                  <div class="received-message flex-container-justify-start">
+                    <h2 class="received-message-text">
+                      Hello ))
+                    </h2>
+                    <span class="received-message-time">
+                   14:25
+                  </span>
+                  </div>
+                  <div class="sending-message flex-container-justify-end">
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                    <h2 class="received-message-text">
+                      Yes, of course dear.
+                    </h2>
+                  </div>
+                  <div class="received-message flex-container-justify-start">
+                    <h2 class="received-message-text">
+                      Hello ))
+                    </h2>
+                    <span class="received-message-time">
+                   14:25
+                  </span>
+                  </div>
+                  <div class="received-message flex-container-justify-start">
+                    <h2 class="received-message-text">
+                      Hello ))
+                    </h2>
+                    <span class="received-message-time">
+                   14:25
+                  </span>
+                  </div>
+                  <div class="sending-message flex-container-justify-end">
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                    <h2 class="received-message-text">
+                      Yes, of course dear.
+                    </h2>
+                  </div> <div class="received-message flex-container-justify-start">
+                  <h2 class="received-message-text">
+                    Hello ))
+                  </h2>
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                </div>
+                  <div class="received-message flex-container-justify-start">
+                    <h2 class="received-message-text">
+                      Hello ))
+                    </h2>
+                    <span class="received-message-time">
+                   14:25
+                  </span>
+                  </div>
+                  <div class="sending-message flex-container-justify-end">
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                    <h2 class="received-message-text">
+                      Yes, of course dear.
+                    </h2>
+                  </div> <div class="received-message flex-container-justify-start">
+                  <h2 class="received-message-text">
+                    Hello ))
+                  </h2>
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                </div>
+                  <div class="received-message flex-container-justify-start">
+                    <h2 class="received-message-text">
+                      Hello ))
+                    </h2>
+                    <span class="received-message-time">
+                   14:25
+                  </span>
+                  </div>
+                  <div class="sending-message flex-container-justify-end">
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                    <h2 class="received-message-text">
+                      Yes, of course dear.
+                    </h2>
+                  </div> <div class="received-message flex-container-justify-start">
+                  <h2 class="received-message-text">
+                    Hello ))
+                  </h2>
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                </div>
+                  <div class="received-message flex-container-justify-start">
+                    <h2 class="received-message-text">
+                      Hello ))
+                    </h2>
+                    <span class="received-message-time">
+                   14:25
+                  </span>
+                  </div>
+                  <div class="sending-message flex-container-justify-end">
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                    <h2 class="received-message-text">
+                      Yes, of course dear.
+                    </h2>
+                  </div> <div class="received-message flex-container-justify-start">
+                  <h2 class="received-message-text">
+                    Hello ))
+                  </h2>
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                </div>
+                  <div class="received-message flex-container-justify-start">
+                    <h2 class="received-message-text">
+                      Hello ))
+                    </h2>
+                    <span class="received-message-time">
+                   14:25
+                  </span>
+                  </div>
+                  <div class="sending-message flex-container-justify-end">
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                    <h2 class="received-message-text">
+                      Yes, of course dear.
+                    </h2>
+                  </div> <div class="received-message flex-container-justify-start">
+                  <h2 class="received-message-text">
+                    Hello ))
+                  </h2>
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                </div>
+                  <div class="received-message flex-container-justify-start">
+                    <h2 class="received-message-text">
+                      Hello ))
+                    </h2>
+                    <span class="received-message-time">
+                   14:25
+                  </span>
+                  </div>
+                  <div class="sending-message flex-container-justify-end">
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                    <h2 class="received-message-text">
+                      Yes, of course dear.
+                    </h2>
+                  </div> <div class="received-message flex-container-justify-start">
+                  <h2 class="received-message-text">
+                    Hello ))
+                  </h2>
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                </div>
+                  <div class="received-message flex-container-justify-start">
+                    <h2 class="received-message-text">
+                      Hello ))
+                    </h2>
+                    <span class="received-message-time">
+                   14:25
+                  </span>
+                  </div>
+                  <div class="sending-message flex-container-justify-end">
+                  <span class="received-message-time">
+                   14:25
+                  </span>
+                    <h2 class="received-message-text">
+                      Yes, of course dear.
+                    </h2>
+                  </div>
+                </div>
+                <div class="send-message-wrapper">
+                  <input type="text" placeholder="write a message...">
+                  <img src="assets/images/sendMessage.png"
+                       alt="Send Message Icon"
+                       width="34"
+                       height="35"
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </main>
