@@ -3,16 +3,16 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {Observable} from "rxjs";
 import {KeyValuePair} from "../../models/keyValuePair.model";
-import {map} from "rxjs/operators";
+import {map, shareReplay} from "rxjs/operators";
 import {ResponseModel} from "../../models/responseModel.model";
 import {
   Categories,
   Country,
   DaysOfWeek,
   HoursOfDay,
-  Level,
+  Level, LevelForTutor, Minutes,
   Month, States,
-  Subjects, TimeZones
+  Subjects, SubjectsForTutor, TimeZones
 } from "../../models/infos.model";
 
 @Injectable({
@@ -68,7 +68,8 @@ export class InfosService {
 
   getHoursOfDay(): Observable<HoursOfDay[]> {
     return this.http.get<ResponseModel<HoursOfDay[]>>(`${this.url}/GetHoursOfDay`).pipe(
-      map(data => data.result)
+      map(data => data.result),
+      shareReplay()
     );
   }
 
@@ -137,6 +138,47 @@ export class InfosService {
 
   getTimeZones(): Observable<TimeZones[]> {
     return this.http.get<ResponseModel<TimeZones[]>>(`${this.url}/GetTimeZones`).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getDaysOfWeekForCalendar(date: string): Observable<DaysOfWeek[]> {
+    let params = new HttpParams();
+    params = params.append('date', date)
+    return this.http.get<ResponseModel<DaysOfWeek[]>>(`${this.url}/GetDaysOfWeekForCalendar`, {params}).pipe(
+      map(data => data.result),
+      shareReplay()
+    );
+  }
+
+  getTutorCategories(tutorId: number): Observable<Categories[]> {
+    let params = new HttpParams();
+    params = params.append('tutorId', tutorId)
+    return this.http.get<ResponseModel<Categories[]>>(`${this.url}/GetTutorCategories`, {params}).pipe(
+      map(data => data.result),
+    )
+  }
+
+  getSubjectsByCategoryIdForTutor(tutorId: number, categoryId: number): Observable<SubjectsForTutor[]> {
+    let params = new HttpParams();
+    params = params.append('tutorId', tutorId)
+    params = params.append('categoryId', categoryId)
+    return this.http.get<ResponseModel<SubjectsForTutor[]>>(`${this.url}/FindAllSubjectsByCategoryIdForTutor`, {params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getLevelsBySubjectIdForTutor(tutorId: number, subjectId: number): Observable<LevelForTutor[]> {
+    let params = new HttpParams();
+    params = params.append('tutorId', tutorId)
+    params = params.append('subjectId', subjectId)
+    return this.http.get<ResponseModel<LevelForTutor[]>>(`${this.url}/GetLevelsBySubjectIdForTutor`, {params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getMinutes(): Observable<Minutes[]> {
+    return this.http.get<ResponseModel<Minutes[]>>(`${this.url}/GetMinutes`).pipe(
       map(data => data.result)
     );
   }

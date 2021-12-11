@@ -1,9 +1,8 @@
 <div class="login-wrapper">
   <p class="error-notification">
-    Your email address or password was incorrect
+    {{errorMessage}}
   </p>
   <form [formGroup]="form" (ngSubmit)="onSubmit()">
-    <span class="text-center text-danger">{{errorMessage}}</span>
     <label for="email" class="form-label">
       <input id="email"
              class="form-input"

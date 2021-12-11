@@ -18,6 +18,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {HttpRequestInterceptor} from "./interceptors/loading.interceptor";
 import {SharedModule} from "./shared/shared.module";
+import {MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 
 
 @NgModule({
@@ -25,30 +26,34 @@ import {SharedModule} from "./shared/shared.module";
     AppComponent,
     LandingComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        LayoutsModule,
-        NoopAnimationsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatRippleModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatRadioModule,
-        NgbModule,
-        SharedModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LayoutsModule,
+    NoopAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    NgbModule,
+    SharedModule
+  ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {
-      provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi:true
+      provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true
     },
+    {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}
 
   ],
-  exports: [MatInputModule],
+  exports: [
+    MatInputModule,
+    MatMomentDateModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

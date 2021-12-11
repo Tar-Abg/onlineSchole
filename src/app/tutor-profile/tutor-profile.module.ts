@@ -18,6 +18,7 @@ import {TutorSettingsModule} from "../tutor-settings/tutor-settings.module";
 import {AddLessonComponent} from './components/add-lesson/add-lesson.component';
 import {MatInputModule} from "@angular/material/input";
 import {SharedModule} from "../shared/shared.module";
+import {ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {SharedModule} from "../shared/shared.module";
         TutorSettingsModule,
         MatInputModule,
         SharedModule,
+        ReactiveFormsModule,
     ]
 })
 export class TutorProfileModule {

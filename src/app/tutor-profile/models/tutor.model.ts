@@ -81,3 +81,11 @@ export interface TutorReviews{
   authorName: string;
   review: string;
 }
+
+export interface SelectedDay{
+  dayId: number;
+  endHour: string;
+  hourId: number;
+  startHour: string;
+  subject: string;
+}
