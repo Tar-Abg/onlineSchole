@@ -1,0 +1,60 @@
+@import "src/assets/css/variables";
+
+.message-users-list {
+  height: calc(100% - 140px);
+  flex: 1;
+  padding-right: 16px;
+  overflow: auto;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    grid-gap: 32px;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.22);
+
+    .user-image-wrapper {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .message-info-wrapper {
+      justify-self: flex-start;
+      flex: 1;
+    }
+
+    .user-name {
+      margin-bottom: 17px;
+      font: $type-light normal $type-medium-size $Segoe-UI-sans;
+      line-height: 24px;
+      letter-spacing: 0.05em;
+      color: $clr-ntrl-max;
+    }
+
+    .user-message {
+      font: $type-light normal $type-smaller $Segoe-UI-sans;
+      line-height: 19px;
+      letter-spacing: 0.05em;
+      color: rgba(0, 0, 0, 0.51);
+    }
+
+    .isNewMessage {
+      justify-self: flex-end;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 23px;
+      height: 23px;
+      border-radius: $border-radius-circle;
+      background: #5DC71C;
+
+      .message-count {
+        font: $type-bold normal $type-medium-size $Segoe-UI-sans;
+        color: $clr-ntrl-min;
+      }
+    }
+  }
+}

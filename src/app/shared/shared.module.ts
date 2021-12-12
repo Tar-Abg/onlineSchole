@@ -24,6 +24,7 @@ import {ResetPasswordComponent} from './components/reset-password/reset-password
 import {ChangePasswordModalComponent} from './components/change-password-modal/change-password-modal.component';
 import {MessageModalComponent} from './components/message-modal/message-modal.component';
 import {MessageDashboardComponent} from './components/message-dashboard/message-dashboard.component';
+import { MessageUsersListComponent } from './components/message-users-list/message-users-list.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import {MessageDashboardComponent} from './components/message-dashboard/message-
     ResetPasswordComponent,
     ChangePasswordModalComponent,
     MessageModalComponent,
-    MessageDashboardComponent
+    MessageDashboardComponent,
+    MessageUsersListComponent
   ],
   imports: [
     CommonModule,
