@@ -6,8 +6,8 @@ import {Observable, Subject, Subscription} from "rxjs";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
-import {SaveInformation} from "../../../shared/models/registration.model";
 import {TimeZones} from "../../../shared/models/infos.model";
+import {MessageService} from "../../../shared/services/message/message.service";
 
 @Component({
   selector: 'app-student-first-step',
@@ -22,13 +22,15 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
   genderList$: Observable<KeyValuePair[]>;
   // private actionType: "CREATE" | "UPDATE" = "CREATE";
   emailIsExist$: Subject<boolean>;
+  usernameIsExist$: Subject<boolean>;
 
   constructor(
     private fb: FormBuilder,
     private storageService: StorageService,
     private validationService: ValidationService,
     private infosService: InfosService,
-    private registrationService: RegistrartionService
+    private registrationService: RegistrartionService,
+    private messageService: MessageService,
   ) {
   }
 
@@ -38,6 +40,7 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
     this.genderList$ = this.infosService.getGenders();
     // this.getInformationForStudent();
     this.emailIsExist$ = this.registrationService.emailIsExist$;
+    this.usernameIsExist$ = this.registrationService.usernameIsExist$;
     this.timeZones$ = this.infosService.getTimeZones();
   }
 
@@ -49,7 +52,7 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
       lastName: [null, [Validators.required]],
       userName: [null, [Validators.required]],
       preferredTimeZone: [null, [Validators.required]],
-      gender: [null],
+      gender: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern)]],
       password: [null, [Validators.required]],
       rePassword: [null, [Validators.required]],
@@ -84,9 +87,9 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
       this.registrationService.saveInformation({
         ...this.form.value,
         userType: this.storageService.getUserType()
-      }).subscribe((userId: number) => {
-        this.storageService.setUserIdInLocalStorage(userId);
-        this.next.emit();
+      }).subscribe((message: string) => {
+        this.messageService.setNewMessage(message);
+        this.messageService.setBackToMainPage(true);
       })
     );
   }

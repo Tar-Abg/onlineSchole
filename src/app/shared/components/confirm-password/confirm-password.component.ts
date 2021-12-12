@@ -14,7 +14,7 @@ export class ConfirmPasswordComponent implements OnInit, OnDestroy {
   @Input() body: any;
   private readonly subscription: Subscription = new Subscription();
   form: FormGroup;
-  isWrongPassword: boolean;
+  errorMessage: string;
 
   constructor(
     private fb: FormBuilder,
@@ -31,12 +31,12 @@ export class ConfirmPasswordComponent implements OnInit, OnDestroy {
 
   initializeSubscriptions(): void {
     this.subscription.add(
-      this.form.valueChanges.subscribe(() => this.isWrongPassword = false)
+      this.form.valueChanges.subscribe(() => this.errorMessage = '')
     );
   }
 
   onConfirm(): void {
-    this.isWrongPassword = false;
+    this.errorMessage = '';
     if (this.form.valid) {
       this.updatePersonalInformation();
     } else {
@@ -52,9 +52,7 @@ export class ConfirmPasswordComponent implements OnInit, OnDestroy {
           this.updated.emit();
         },
         (error => {
-          if (error.error.type === "Wrong password") {
-            this.isWrongPassword = true;
-          }
+          this.errorMessage = error.error.title;
         })
       )
     );

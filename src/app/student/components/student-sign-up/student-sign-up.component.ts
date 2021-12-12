@@ -5,6 +5,7 @@ import {ActivatedRoute} from "@angular/router";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {MessageService} from "../../../shared/services/message/message.service";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-sign-up',
@@ -20,6 +21,7 @@ export class StudentSignUpComponent implements OnInit {
     private storageService: StorageService,
     private registrationService: RegistrartionService,
     private messageService: MessageService,
+    private location: Location,
   ) {
   }
 
@@ -37,7 +39,8 @@ export class StudentSignUpComponent implements OnInit {
         switchMap((params) => {
           if (params.token && params.userId) {
             this.storageService.setUserIdInLocalStorage(+params.userId);
-            return this.registrationService.confirmEmail(params.userId, params.token)
+            this.location.replaceState(this.location.path().split('?')[0], '');
+            return this.registrationService.confirmEmail(params.userId, params.token);
           } else {
             return of(null)
           }

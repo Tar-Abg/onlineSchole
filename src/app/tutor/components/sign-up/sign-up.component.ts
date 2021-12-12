@@ -5,6 +5,7 @@ import {switchMap} from "rxjs/operators";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {MessageService} from "../../../shared/services/message/message.service";
+import {Location } from '@angular/common';
 
 @Component({
   selector: 'app-sign-up',
@@ -19,7 +20,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private storageService: StorageService,
     private registrationService: RegistrartionService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private location: Location,
   ) {
   }
 
@@ -37,6 +39,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
         switchMap((params) => {
           if (params.token && params.userId) {
             this.storageService.setUserIdInLocalStorage(+params.userId);
+            this.location.replaceState(this.location.path().split('?')[0], '');
             return this.registrationService.confirmEmail(params.userId, params.token)
           } else {
             return of(null)

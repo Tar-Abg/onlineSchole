@@ -9,6 +9,7 @@ import {SaveInformation} from "../../../shared/models/registration.model";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {DateService} from "../../../shared/services/date/date.service";
+import {MessageService} from "../../../shared/services/message/message.service";
 
 @Component({
   selector: 'app-step-one',
@@ -24,6 +25,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
   timeZones$: Observable<TimeZones[]>;
   yearList: KeyValuePair[];
   emailIsExist$: Subject<boolean>;
+  usernameIsExist$: Subject<boolean>;
   // private actionType: "CREATE" | "UPDATE" = "CREATE";
   userId: number;
 
@@ -33,7 +35,8 @@ export class StepOneComponent implements OnInit, OnDestroy {
     private validationService: ValidationService,
     private registrationService: RegistrartionService,
     private storageService: StorageService,
-    private dateService: DateService
+    private dateService: DateService,
+    private messageService: MessageService,
   ) {
   }
 
@@ -81,9 +84,9 @@ export class StepOneComponent implements OnInit, OnDestroy {
   }
 
   saveInformation(): void {
-    this.registrationService.saveInformation({...this.form.value, userType: 1}).subscribe((userId: number) => {
-      this.storageService.setUserIdInLocalStorage(userId);
-      this.next.emit();
+    this.registrationService.saveInformation({...this.form.value, userType: 1}).subscribe((message: string) => {
+      this.messageService.setNewMessage(message);
+      this.messageService.setBackToMainPage(true);
     });
   }
 
@@ -93,6 +96,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
     this.yearList = this.dateService.getYears(1930);
     // this.userId && this.getInformationForUser();
     this.emailIsExist$ = this.registrationService.emailIsExist$;
+    this.usernameIsExist$ = this.registrationService.usernameIsExist$;
     this.timeZones$ = this.infosService.getTimeZones();
   }
 

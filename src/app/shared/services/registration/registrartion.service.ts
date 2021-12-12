@@ -20,12 +20,13 @@ import {BasicInformation} from "../../../tutor/models/tutor.model";
 export class RegistrartionService {
   private url = `${environment.apiUrl}/Registration`;
   emailIsExist$: Subject<boolean> = new Subject<boolean>();
+  usernameIsExist$: Subject<boolean> = new Subject<boolean>();
 
   constructor(private http: HttpClient) {
   }
 
   // information
-  saveInformation(form: SaveInformation): Observable<number> {
+  saveInformation(form: SaveInformation): Observable<string> {
     delete form.rePassword;
     const body = {
       ...form,
@@ -35,13 +36,16 @@ export class RegistrartionService {
       }
     }
     delete body.password
-    return this.http.post<ResponseModel<number>>(`${this.url}/SaveInformation`, body).pipe(
+    return this.http.post<ResponseModel<string>>(`${this.url}/SaveInformation`, body).pipe(
       map(data => data.result),
       catchError(err => {
         if (err.error?.type === 'Email existence error') {
-          this.emailIsExist$.next(true)
+          this.emailIsExist$.next(true);
         }
-        throw new Error(err.error.type);
+        if (err.error?.type === 'Username existence error') {
+          this.usernameIsExist$.next(true);
+        }
+        throw new Error(err.error?.type);
       })
     );
   }
@@ -60,7 +64,10 @@ export class RegistrartionService {
       map(data => data.result),
       catchError(err => {
         if (err.error?.type === 'Email existence error') {
-          this.emailIsExist$.next(true)
+          this.emailIsExist$.next(true);
+        }
+        if (err.error?.type === 'Username existence error') {
+          this.usernameIsExist$.next(true);
         }
         throw new Error(err.error.type);
       })
