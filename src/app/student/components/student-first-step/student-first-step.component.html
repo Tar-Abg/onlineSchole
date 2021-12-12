@@ -15,7 +15,7 @@
           <label for="user-name" class="form-label">
             <input id="user-name" class="form-input" type="text" placeholder="*user name"
                    formControlName="userName">
-            <span class="error-message" *ngIf="form.get('userName')?.errors && form.get('userName')?.touched">Please fill in your last name</span>
+            <span class="error-message" *ngIf="form.get('userName')?.errors && form.get('userName')?.touched">Please fill in your username</span>
             <span class="error-message" *ngIf="usernameIsExist$ | async">This username is already registered on Sophist</span>
           </label>
           <div class="gender fixed-width form-label">
