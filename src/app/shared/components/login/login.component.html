@@ -21,13 +21,13 @@
              name="current-password"
              required
              autocomplete="current-password"
-             type="password"
+             [type]="passwordType"
              placeholder="*password"
              formControlName="password">
       <span class="error-message" *ngIf="form.get('password')?.errors && form.get('password')?.touched">This Field Required</span>
-      <span class="view-icon">
-        <img src="assets/images/visiblePassword.svg" alt="VisiblePassword" width="27" height="17">
-<!--        <img src="assets/images/invisiblePassword.png" alt="Invisible Password" width="29" height="26">-->
+      <span class="view-icon" (click)="togglePasswordVisibility()">
+        <img src="assets/images/visiblePassword.svg" *ngIf="passwordType ==='password'" alt="VisiblePassword" width="27" height="17">
+        <img src="assets/images/invisiblePassword.png" alt="Invisible Password" *ngIf="passwordType ==='text'" width="29" height="26">
     </span>
     </label>
     <a href="#" class="forgot-pass-link">Forget your password?</a>

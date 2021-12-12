@@ -19,6 +19,7 @@ import {HashLocationStrategy, LocationStrategy} from "@angular/common";
 import {HttpRequestInterceptor} from "./interceptors/loading.interceptor";
 import {SharedModule} from "./shared/shared.module";
 import {MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import {AuthInterceptor} from "./interceptors/auth.interceptor";
 
 
 @NgModule({
@@ -46,6 +47,9 @@ import {MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/mat
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {
       provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
     },
     {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}
 
