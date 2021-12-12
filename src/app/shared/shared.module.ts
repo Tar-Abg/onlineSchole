@@ -23,6 +23,7 @@ import {ModalSchemComponent} from './components/modal-schem/modal-schem.componen
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {ChangePasswordModalComponent} from './components/change-password-modal/change-password-modal.component';
 import {MessageModalComponent} from './components/message-modal/message-modal.component';
+import {MessageDashboardComponent} from './components/message-dashboard/message-dashboard.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {MessageModalComponent} from './components/message-modal/message-modal.co
     ModalSchemComponent,
     ResetPasswordComponent,
     ChangePasswordModalComponent,
-    MessageModalComponent
+    MessageModalComponent,
+    MessageDashboardComponent
   ],
   imports: [
     CommonModule,
@@ -54,21 +56,22 @@ import {MessageModalComponent} from './components/message-modal/message-modal.co
     MatCheckboxModule,
     RouterModule,
   ],
-  exports: [
-    RegisterHeaderComponent,
-    StepsComponent,
-    SelectComponent,
-    InstitutionsComponent,
-    CertificatesComponent,
-    PersonalInformationComponent,
-    PaginationComponent,
-    MessageComponent,
-    ModalSchemComponent,
-    ResetPasswordComponent,
-    ChangePasswordModalComponent,
-    MessageModalComponent,
-    LoginComponent
-  ]
+    exports: [
+        RegisterHeaderComponent,
+        StepsComponent,
+        SelectComponent,
+        InstitutionsComponent,
+        CertificatesComponent,
+        PersonalInformationComponent,
+        PaginationComponent,
+        MessageComponent,
+        ModalSchemComponent,
+        ResetPasswordComponent,
+        ChangePasswordModalComponent,
+        MessageModalComponent,
+        LoginComponent,
+        MessageDashboardComponent
+    ]
 })
 export class SharedModule {
 }
