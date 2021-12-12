@@ -187,16 +187,6 @@
       <button (click)="activeTab = 'reviews'" class="profile-tab-buttons--item flex-container-center">Reviews</button>
       <hr/>
     </div>
-
-    <div [ngSwitch]="activeTab">
-      <app-availability *ngSwitchCase="'availability'" [userId]="userId"></app-availability>
-      <app-subjects *ngSwitchCase="'subjects'" [userId]="userId"></app-subjects>
-      <app-calendar *ngSwitchCase="'calendar'" (onAddLesson)="isOpenAddLesson = true"></app-calendar>
-      <app-ratings *ngSwitchCase="'ratings'" [ratings]="ratings$ | async"></app-ratings>
-      <app-reviews *ngSwitchCase="'reviews'" [userId]="userId"></app-reviews>
-    </div>
-
-
     <div class="message_history_wrapper">
       <div class="flex-container">
         <div class="flex-item">
@@ -458,6 +448,16 @@
         </div>
       </div>
     </div>
+
+    <div [ngSwitch]="activeTab">
+      <app-availability *ngSwitchCase="'availability'" [userId]="userId"></app-availability>
+      <app-subjects *ngSwitchCase="'subjects'" [userId]="userId"></app-subjects>
+      <app-calendar *ngSwitchCase="'calendar'" (onAddLesson)="isOpenAddLesson = true"></app-calendar>
+      <app-ratings *ngSwitchCase="'ratings'" [ratings]="ratings$ | async"></app-ratings>
+      <app-reviews *ngSwitchCase="'reviews'" [userId]="userId"></app-reviews>
+    </div>
+
+
   </div>
 </main>
 
