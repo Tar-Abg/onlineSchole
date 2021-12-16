@@ -8,7 +8,7 @@
       [disabled]='disable'
     >
 <!--      <mat-option [value]="null"></mat-option>-->
-      <mat-option *ngFor="let item of list" [value]="item.id" [title]="item.description" [title]="item[keyName]">
+      <mat-option *ngFor="let item of list" [value]="item.id" [title]="item[keyName]">
         {{item[keyName]}}
       </mat-option>
     </mat-select>
