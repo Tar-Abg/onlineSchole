@@ -5,7 +5,7 @@
         <fieldset>
           <legend class="form-legend mb-15">Basic Information</legend>
           <p class="form-legend-description">Please provide the following information so we can start creating your
-            profile</p>
+            profile.</p>
           <ul class="form-wrapper student-form">
             <li class="address-form__item">
               <p class="select-label">Physical Address</p>
@@ -16,40 +16,40 @@
                   [keyName]="'nameLowerCase'"
                             formControlName="countryId"
                 ></app-select>
-                <span class="form-item-notification">Visible on the public profile</span>
-                <span class="error-message block" *ngIf="form.get('countryId')?.errors?.required && form.get('countryId')?.touched">This Field is requires</span>
+                <span class="form-item-notification">Visible in a public profile</span>
+                <span class="error-message block" *ngIf="form.get('countryId')?.errors?.required && form.get('countryId')?.touched">This is a required field</span>
               </div>
             </li>
             <li class="address-form__item">
               <label for="city" class="form-label">
                 <input id="city" class="form-input" autocomplete="city" type="text"
                        placeholder="*city" formControlName="city">
-                <span class="form-item-notification">Visible on the public profile</span>
-                <span class="error-message block" *ngIf="form.get('city')?.errors?.required && form.get('city')?.touched">This Field is requires</span>
+                <span class="form-item-notification">Visible in a public profile</span>
+                <span class="error-message block" *ngIf="form.get('city')?.errors?.required && form.get('city')?.touched">This is a required field</span>
               </label>
             </li>
             <li class="address-form__item">
               <label for="streetNumber" class="form-label">
                 <input id="streetNumber" class="form-input" autocomplete="streetNumber" type="text"
                        placeholder="*Street Number" formControlName="streetNumber">
-                <span class="form-item-notification">Visible on the public profile</span>
-                <span class="error-message block" *ngIf="form.get('streetNumber')?.errors?.required && form.get('streetNumber')?.touched">This Field is requires</span>
+                <span class="form-item-notification">Not visible in a public profile</span>
+                <span class="error-message block" *ngIf="form.get('streetNumber')?.errors?.required && form.get('streetNumber')?.touched">This is a required field</span>
               </label>
             </li>
             <li class="address-form__item">
               <label for="streetName" class="form-label">
                 <input id="streetName" class="form-input" autocomplete="streetName" type="text"
                        placeholder="*Street Name" formControlName="streetName">
-                <span class="form-item-notification">Visible on the public profile</span>
-                <span class="error-message block" *ngIf="form.get('streetName')?.errors?.required && form.get('streetName')?.touched">This Field is requires</span>
+                <span class="form-item-notification">Not visible in a public profile</span>
+                <span class="error-message block" *ngIf="form.get('streetName')?.errors?.required && form.get('streetName')?.touched">This is a required field</span>
               </label>
             </li>
             <li class="address-form__item">
               <label for="zipCode" class="form-label">
                 <input id="zipCode" class="form-input" autocomplete="zipCode" type="text"
                        placeholder="*Zip Code" formControlName="zipCode">
-                <span class="form-item-notification">Visible on the public profile</span>
-                <span class="error-message block" *ngIf="form.get('zipCode')?.errors?.required && form.get('zipCode')?.touched">This Field is requires</span>
+                <span class="form-item-notification">Not visible in a public profile</span>
+                <span class="error-message block" *ngIf="form.get('zipCode')?.errors?.required && form.get('zipCode')?.touched">This is a required field</span>
               </label>
             </li>
           </ul>

@@ -19,7 +19,7 @@
                    required
                    autocomplete="accountHolderName"
                    type="text"
-                   placeholder="*account holder’s name"
+                   placeholder="account holder’s name *"
                    formControlName="accountHolderName">
             <span class="error-message">This is a required field.</span>
           </label>
@@ -33,7 +33,7 @@
                    required
                    autocomplete="card-number"
                    type="text"
-                   placeholder="*Card Number"
+                   placeholder="Card Number*"
                    formControlName="cardNumber">
             <span class="error-message">This is a required field.</span>
           </label>
@@ -65,7 +65,7 @@
                    required
                    autocomplete="card-cvv"
                    type="text"
-                   placeholder="*CVC2/CVV2"
+                   placeholder="CVC2/CVV2*"
                    formControlName="cardCvv">
             <span class="error-message">This is a required field.</span>
           </label>
@@ -75,22 +75,22 @@
         <h3 class="tutor-settings-page-title size-mid">Billing Address</h3>
         <label for="streetNumber" class="form-label">
           <input id="streetNumber" class="form-input" autocomplete="streetNumber" type="text"
-                 placeholder="*Street Number" formControlName="streetNumber">
+                 placeholder="Street Number*" formControlName="streetNumber">
           <span class="error-message block">This Field is requires</span>
         </label>
         <label for="city" class="form-label">
           <input id="city" class="form-input" autocomplete="city" type="text"
-                 placeholder="*city" formControlName="city">
+                 placeholder="city*" formControlName="city">
           <span class="error-message block">This Field is requires</span>
         </label>
         <label class="form-label">
-          <app-select [keyName]="'name'" [label]="'*state'"
+          <app-select [keyName]="'name'" [label]="'state*'"
                       formControlName="stateId"></app-select>
           <span class="error-message block">This Field is requires</span>
         </label>
         <label for="zipCode" class="form-label">
           <input id="zipCode" class="form-input" autocomplete="zipCode"
-                 placeholder="*Zip Code" formControlName="zipCode">
+                 placeholder="Zip Code*" formControlName="zipCode">
           <span class="error-message block">This Field is requires</span>
         </label>
       </div>

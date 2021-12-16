@@ -6,7 +6,7 @@
       <fieldset>
         <ul class="user-sign-up-list">
           <li class="user-sign-up-list__item">
-            <h3 class="main-question upload-photo-title mb-15">Profile photo*</h3>
+            <h3 class="main-question upload-photo-title mb-15">Profile photo</h3>
             <div class="file-upload-wrapper">
               <div class="upload-image-box">
                 <div class="image-upload-wrap" [class.image-uploaded]="userImage">
@@ -38,7 +38,7 @@
             <h3 class="main-question">Wrap up your profile*</h3>
             <label for="bio" class="form-label form-label--textarea">
                 <textarea id="bio" class="form-textarea" type="text" rows="5" cols="3"
-                          placeholder="*a paragraph or more about yourself" formControlName="wrapUp">
+                          placeholder="a paragraph or more about yourself*" formControlName="wrapUp">
                 </textarea>
               <span class="error-message" *ngIf="form.get('wrapUp')?.errors && form.get('wrapUp')?.touched">This is a required field</span>
             </label>

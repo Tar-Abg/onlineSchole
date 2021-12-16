@@ -36,7 +36,7 @@
         </div>
         <div class="p-relative form-label">
           <app-select [label]="'*time zone'" formControlName="preferredTimeZone"  [list]="timeZones$ | async" [keyName]="'displayName'"></app-select>
-          <span class="error-message" *ngIf="form.get('preferredTimeZone')?.errors && form.get('preferredTimeZone')?.touched">This field is required</span>
+          <span class="error-message" *ngIf="form.get('preferredTimeZone')?.errors && form.get('preferredTimeZone')?.touched">This is a required field</span>
         </div>
         <label for="email" class="form-label">
           <input id="email" class="form-input" autocomplete="username" type="email"

@@ -1,15 +1,47 @@
+@import "src/assets/css/variables";
+
 .messageModal {
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0,0,0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+
   .messageContent {
-    width: 400px;
-    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 619px;
+    min-height: 262px;
+    padding: 20px 20px 42px;
+    border-radius: 25px;
+    border: 1px solid #FFE699;
+    box-sizing: border-box;
+    background: $clr-ntrl-min;
+
+    .header {
+      text-align: right;
+      align-self: flex-end;
+      font-size: 30px;
+    }
+
+    .body {
+      flex: 1;
+      display: flex;
+      height: 100%;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .message-text {
+      font: $type-regular normal $type-medium-size $Segoe-UI-sans;
+      font-size: 24px;
+      color: $clr-ntrl-max;
+    }
   }
 }
