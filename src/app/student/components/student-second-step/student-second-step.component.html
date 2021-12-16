@@ -11,7 +11,7 @@
                   <div [formGroupName]="i" class="d-flex selectRow">
                     <div class="selectWrapper">
                       <app-select
-                        [label]="'*Category'"
+                        [label]="'Category*'"
                         [keyName]="'categoryName'"
                         [list]="categories$ | async"
                         formControlName="categoryId"
@@ -23,7 +23,7 @@
                     </div>
                     <div class="selectWrapper">
                       <app-select
-                        [label]="'Subject'"
+                        [label]="'Subject*'"
                         [keyName]="'subjectName'"
                         [list]="observables[i]?.subjects$ | async"
                         (ngModelChange)="subjectChange($event, i, studentSubjects.controls[i])"
@@ -34,7 +34,7 @@
                     </div>
                     <div class="selectWrapper">
                       <app-select
-                        [label]="'What level is this for?'"
+                        [label]="'What level is this for?*'"
                         [list]="observables[i]?.levels$ | async"
                         [keyName]="'level'"
                         formControlName="levelId">
@@ -58,7 +58,7 @@
           </li>
           <li class="user-sign-up-list__item">
             <div class="mb-15">
-              <h3 class="main-question mb-15">When are you available for lesson?</h3>
+              <h3 class="main-question mb-15">When are you available for lessons?</h3>
               <table id="customers">
                 <thead>
                 <tr>
@@ -109,7 +109,7 @@
             </div>
           </li>
           <li class="user-sign-up-list__item select-wrapper-min-width">
-            <h3 class="main-question">How many tutoring sessions do you think you will need?</h3>
+            <h3 class="main-question">How many tutoring sessions do you think you will need?*</h3>
             <div class="fixed-width form-label">
               <app-select [label]="'*select'" [list]="lessonsCounts$ | async"
                           formControlName="sessionsCountId"></app-select>

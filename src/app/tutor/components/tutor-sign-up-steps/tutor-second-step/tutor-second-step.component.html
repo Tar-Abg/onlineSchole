@@ -15,8 +15,8 @@
             <label for="profile-headline" class="form-label form-label--flex-container">
                 <textarea id="profile-headline" class="form-textarea" type="text"
                           rows="5" cols="3"
-                          placeholder="*a short headline about yourself"
-                          formControlName="headline"> *a short headline about yourself
+                          placeholder="a short headline about yourself*"
+                          formControlName="headline"> a short headline about yourself*
                 </textarea>
               <span class="error-message" *ngIf="form.get('headline')?.errors && form.get('headline')?.touched">This is a required field</span>
             </label>
@@ -54,7 +54,7 @@
             <h3 class="main-question">Bio</h3>
             <label for="bio" class="form-label form-label--flex-container">
                                     <textarea id="bio" class="form-textarea" type="text" rows="5" cols="3"
-                                              placeholder="*a paragraph or more about yourself "
+                                              placeholder="a paragraph or more about yourself*"
                                               formControlName="bio"> *a paragraph or more about yourself
 
                                     </textarea>
