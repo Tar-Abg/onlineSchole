@@ -58,10 +58,10 @@ export class StudentFifthStepComponent implements OnInit, OnDestroy {
   addBillingAddress(): void {
     this.form.addControl('billingAddress', this.fb.group({
       stateId: [null, Validators.required],
-      streetNumber: [null, Validators.required],
-      apartment: [null, Validators.required],
-      zipCode: [null, Validators.required],
-      city: [null, Validators.required],
+      streetNumber: [null, Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)],
+      apartment: [null, Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)],
+      zipCode: [null, Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)],
+      city: [null, Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)],
     }))
   }
 

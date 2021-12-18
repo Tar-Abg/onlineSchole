@@ -1,3 +1,5 @@
+import {Observable} from "rxjs";
+
 export interface Month {
   id: number;
   name: string;
@@ -83,4 +85,9 @@ export interface LevelForTutor {
 export interface Minutes {
   id: number;
   value: string;
+}
+
+export interface Observables {
+  subjects$?: Observable<Subjects[]> | null;
+  levels$?: Observable<Level[]> | null;
 }

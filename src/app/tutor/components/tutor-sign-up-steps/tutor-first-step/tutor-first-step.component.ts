@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Observable, Subscription} from "rxjs";
-import {Categories, Country, Level, Subjects} from "../../../../shared/models/infos.model";
+import {Categories, Country, Level, Observables, Subjects} from "../../../../shared/models/infos.model";
 import {InfosService} from "../../../../shared/services/infos/infos.service";
 import {KeyValuePair} from "../../../../shared/models/keyValuePair.model";
 import {RegistrartionService} from "../../../../shared/services/registration/registrartion.service";
@@ -25,7 +25,7 @@ export class TutorFirstStepComponent implements OnInit, OnDestroy {
   cancelationHours$: Observable<KeyValuePair[]>;
   countries$: Observable<Country[]>;
   private actionType: "CREATE" | "UPDATE" = "CREATE";
-  observables: any = [{
+  observables: Array<Observables> = [{
     subjects$: null,
     levels$: null
   }]

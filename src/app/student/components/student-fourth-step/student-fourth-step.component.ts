@@ -37,7 +37,7 @@ export class StudentFourthStepComponent implements OnInit, OnDestroy {
       id: [null],
       userId: [this.storageService.getUserId()],
       photo: [null],
-      wrapUp: [null, [Validators.required, Validators.minLength(50)]],
+      wrapUp: [null, [Validators.required, Validators.minLength(50), Validators.maxLength(200), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       headline: [null],
       bio: [null]
     })

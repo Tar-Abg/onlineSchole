@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Categories} from "../../models/infos.model";
+import {Categories, Observables} from "../../models/infos.model";
 import {StorageService} from "../../services/storage/storage.service";
 import {InfosService} from "../../services/infos/infos.service";
 import {SettingsService} from "../../services/settings/settings.service";
@@ -13,10 +13,11 @@ import {tap} from "rxjs/operators";
   templateUrl: './subjects.component.html',
   styleUrls: ['./subjects.component.scss']
 })
+
 export class SubjectsComponent implements OnInit {
   private readonly subscription: Subscription = new Subscription();
   form: FormGroup;
-  observables: any = [{
+  observables: Array<Observables> = [{
     subjects$: null,
     levels$: null
   }];

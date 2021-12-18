@@ -37,10 +37,10 @@ export class StudentThirdStepComponent implements OnInit, OnDestroy {
       id: [null],
       userId: [this.storageService.getUserId()],
       countryId: [null, [Validators.required]],
-      city: [null, [Validators.required]],
-      streetNumber: [null, [Validators.required]],
-      streetName: [null, [Validators.required]],
-      zipCode: [null, [Validators.required]],
+      city: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      streetNumber: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      streetName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      zipCode: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
     })
   }
 

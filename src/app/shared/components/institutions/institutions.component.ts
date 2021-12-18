@@ -72,11 +72,11 @@ export class InstitutionsComponent implements OnInit, OnDestroy{
 
   createNewForm(): FormGroup {
     return this.fb.group({
-      name: [null, [Validators.required]],
+      name: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       educationalLevel: [null, [Validators.required]],
       countryId: [null, [Validators.required]],
-      city: [null, [Validators.required]],
-      major: [null, [Validators.required]],
+      city: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      major: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       startDate: [null, [Validators.required]],
       graduationDate: [null, [Validators.required]],
       degreeInProgress: [false, [Validators.required]],

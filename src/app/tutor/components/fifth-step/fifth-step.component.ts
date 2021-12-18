@@ -37,7 +37,7 @@ export class FifthStepComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       userId: [this.storageService.getUserId()],
       mobileCode: [null, [Validators.required]],
-      mobile: [null, [Validators.required]],
+      mobile: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       linkToSocialMedia: [null, [Validators.required]],
       socialMediaExistance: [false, [Validators.required]],
     })

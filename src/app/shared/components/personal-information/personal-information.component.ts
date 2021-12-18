@@ -41,16 +41,16 @@ export class PersonalInformationComponent implements OnInit, OnDestroy {
       id: [null],
       userId: [this.storageService.getUserId()],
       mobileCode: [null, [Validators.required]],
-      mobile: [null, [Validators.required]],
-      userName: [null, [Validators.required]],
+      mobile: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      userName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       preferredTimeZone: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern)]],
+      email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       userAddress: this.fb.group({
         countryId: [null, [Validators.required]],
-        city: [null, [Validators.required]],
-        streetNumber: [null, [Validators.required]],
-        streetName: [null, [Validators.required]],
-        zipCode: [null, [Validators.required]],
+        city: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+        streetNumber: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+        streetName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+        zipCode: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
         tutorBasicInformationId: [null],
       })
     });

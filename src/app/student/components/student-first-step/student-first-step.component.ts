@@ -48,14 +48,14 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       id: [null],
       userType: [this.storageService.getUserType()],
-      firstName: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
-      userName: [null, [Validators.required]],
+      firstName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      lastName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      userName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       preferredTimeZone: [null, [Validators.required]],
       gender: [null, [Validators.required]],
-      email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern)]],
-      password: [null, [Validators.required]],
-      rePassword: [null, [Validators.required]],
+      email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      password: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      rePassword: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
 
     }, {validators: this.validationService.checkPasswords})
   }

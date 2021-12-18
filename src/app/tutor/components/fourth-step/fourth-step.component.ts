@@ -118,10 +118,10 @@ export class FourthStepComponent implements OnInit, OnDestroy {
 
   newProfessionalReferencesForInstructor(): FormGroup {
     return this.fb.group({
-      name: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
-      emailAddress: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern)]],
-      mobilePhone: [null, [Validators.required]],
+      name: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      lastName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      emailAddress: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      mobilePhone: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       numberId: [null, [Validators.required]],
     });
   }
