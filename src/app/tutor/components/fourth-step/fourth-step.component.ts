@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {Observable, Subscription} from "rxjs";
@@ -18,8 +18,6 @@ import {Router} from "@angular/router";
 })
 export class FourthStepComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
-  @Output() back: EventEmitter<void> = new EventEmitter<void>();
-  @Output() next: EventEmitter<void> = new EventEmitter<void>();
   form: FormGroup;
   studentLevels: StudentLevel[];
   hoursPerWeekForTutor$: Observable<KeyValuePair[]>;

@@ -1,14 +1,15 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {Observable, Subscription} from "rxjs";
-import {Categories, StudentAvailableHours} from "../../../shared/models/infos.model";
+import {Categories, Observables, StudentAvailableHours} from "../../../shared/models/infos.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {map, tap} from "rxjs/operators";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {StudentWantedLessons} from "../../../shared/models/registration.model";
 import {MatCheckboxChange} from "@angular/material/checkbox";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-student-second-step',
@@ -18,8 +19,6 @@ import {MatCheckboxChange} from "@angular/material/checkbox";
 
 export class StudentSecondStepComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
-  @Output() back: EventEmitter<void> = new EventEmitter<void>();
-  @Output() next: EventEmitter<void> = new EventEmitter<void>();
   categories$: Observable<Categories[]>;
   lessonsCounts$: Observable<KeyValuePair[]>;
   availableHours: any[];
@@ -27,7 +26,7 @@ export class StudentSecondStepComponent implements OnInit, OnDestroy {
   isDisabledCalendar: boolean;
   private actionType: "CREATE" | "UPDATE" = "CREATE";
   form: FormGroup;
-  observables: any = [{
+  observables: Array<Observables> = [{
     subjects$: null,
     levels$: null
   }];
@@ -36,7 +35,8 @@ export class StudentSecondStepComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private storageService: StorageService,
     private infoService: InfosService,
-    private registrationService: RegistrartionService
+    private registrationService: RegistrartionService,
+    private router: Router,
   ) {
   }
 
@@ -44,6 +44,7 @@ export class StudentSecondStepComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initializeForm();
     this.initializeListeners();
+    this.registrationService.stepNumber$.next(2);
   }
 
   initializeForm(): void {
@@ -149,7 +150,7 @@ export class StudentSecondStepComponent implements OnInit, OnDestroy {
       this.registrationService.saveStudentWantedLessons({
         ...this.form.value,
         availabilities: this.selectedDays
-      }).subscribe(() => this.next.emit())
+      }).subscribe(() => this.nextStep())
     )
   }
 
@@ -158,7 +159,7 @@ export class StudentSecondStepComponent implements OnInit, OnDestroy {
       this.registrationService.updateStudentWantedLessons({
         ...this.form.value,
         availabilities: this.selectedDays
-      }).subscribe(() => this.next.emit())
+      }).subscribe(() => this.nextStep())
     )
   }
 
@@ -236,6 +237,11 @@ export class StudentSecondStepComponent implements OnInit, OnDestroy {
     } else {
       this.selectedDays.splice(this.selectedDays.indexOf(hours), 1);
     }
+  }
+
+  nextStep(): void {
+    this.registrationService.stepNumber$.next(3);
+    this.router.navigate(['student/signUp/step-three']);
   }
 
   ngOnDestroy(): void {

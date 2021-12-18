@@ -1,11 +1,11 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {Observable, Subscription} from "rxjs";
 import {Country} from "../../../shared/models/infos.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-fifth-step',
@@ -14,8 +14,6 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class FifthStepComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
-  @Output() back: EventEmitter<void> = new EventEmitter<void>();
-  @Output() next: EventEmitter<void> = new EventEmitter<void>();
   phoneCods$: Observable<Country[]>
   form: FormGroup;
   private actionType: "CREATE" | "UPDATE" = "CREATE";

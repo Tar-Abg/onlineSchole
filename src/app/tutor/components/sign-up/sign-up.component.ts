@@ -44,13 +44,15 @@ export class SignUpComponent implements OnInit, OnDestroy {
           }
         })
       ).subscribe((data) => {
-          this.registrationService.stepNumber$.next(2);
-          data && this.router.navigate(['step-two'], {relativeTo: this.route});
+          if (data) {
+            this.registrationService.stepNumber$.next(2);
+            this.router.navigate(['step-two'], {relativeTo: this.route});
+          }
         },
         (error => {
           if (error.error.type === 'Invalid token error') {
-           this.messageService.setNewMessage(error.error.title);
-           this.messageService.setBackToMainPage(true);
+            this.messageService.setNewMessage(error.error.title);
+            this.messageService.setBackToMainPage(true);
           }
         }))
     );

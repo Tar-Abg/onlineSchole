@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Observable, Subject, Subscription} from "rxjs";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
@@ -17,7 +17,6 @@ import {MessageService} from "../../../shared/services/message/message.service";
 })
 export class StepOneComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
-  @Output() next: EventEmitter<void> = new EventEmitter<void>();
   public form: FormGroup = {} as FormGroup;
   genderList$: Observable<KeyValuePair[]>;
   months$: Observable<Month[]>;

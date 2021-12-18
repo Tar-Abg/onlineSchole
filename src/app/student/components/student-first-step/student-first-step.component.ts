@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {ValidationService} from "../../../shared/services/validation/validation.service";
@@ -15,12 +15,10 @@ import {MessageService} from "../../../shared/services/message/message.service";
   styleUrls: ['./student-first-step.component.scss']
 })
 export class StudentFirstStepComponent implements OnInit, OnDestroy {
-  @Output() next: EventEmitter<void> = new EventEmitter<void>();
   private subscription: Subscription = new Subscription();
   timeZones$: Observable<TimeZones[]>;
   form: FormGroup;
   genderList$: Observable<KeyValuePair[]>;
-  // private actionType: "CREATE" | "UPDATE" = "CREATE";
   emailIsExist$: Subject<boolean>;
   usernameIsExist$: Subject<boolean>;
 
@@ -35,10 +33,10 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.registrationService.stepNumber$.next(1);
     this.storageService.setUserType(2); // will be removed
     this.initializeForm();
     this.genderList$ = this.infosService.getGenders();
-    // this.getInformationForStudent();
     this.emailIsExist$ = this.registrationService.emailIsExist$;
     this.usernameIsExist$ = this.registrationService.usernameIsExist$;
     this.timeZones$ = this.infosService.getTimeZones();
@@ -62,25 +60,11 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.form.valid) {
-      // if (this.actionType === "UPDATE") {
-      //   this.updateInformation();
-      // } else {
         this.saveInformation();
-      // }
     } else {
       this.form.markAllAsTouched();
     }
   }
-
-  // updateInformation(): void {
-  //   this.subscription.add(
-  //     this.registrationService.updateInformation({
-  //       ...this.form.value,
-  //       userType: this.storageService.getUserType(),
-  //       id: this.storageService.getUserId()
-  //     }).subscribe(() => this.next.emit())
-  //   );
-  // }
 
   saveInformation(): void {
     this.subscription.add(
@@ -93,27 +77,6 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
       })
     );
   }
-
-  // getInformationForStudent(): void {
-  //   const userId = this.storageService.getUserId();
-  //   if (userId) {
-  //     this.subscription.add(
-  //       this.registrationService.getInformationPage(userId).subscribe((user) => {
-  //         this.actionType = "UPDATE";
-  //         this.patchFormValue(user);
-  //       }, () => {
-  //         this.actionType = "CREATE";
-  //         this.storageService.clearUserId();
-  //       })
-  //     );
-  //   }
-  // }
-
-  // patchFormValue(user: SaveInformation): void {
-  //   this.form.patchValue(user);
-  //   this.form.get('password')?.setValue(user.userPassword.password);
-  //   this.form.get('rePassword')?.setValue(user.userPassword.password);
-  // }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

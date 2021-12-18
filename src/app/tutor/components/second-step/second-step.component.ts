@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 
@@ -8,7 +8,6 @@ import {RegistrartionService} from "../../../shared/services/registration/regist
   styleUrls: ['./second-step.component.scss']
 })
 export class SecondStepComponent implements OnInit{
-  @Output() next: EventEmitter<void> = new EventEmitter<void>();
 
   constructor(
       private router: Router,
