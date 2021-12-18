@@ -1,4 +1,6 @@
 import {Component, OnInit} from '@angular/core';
+import {RegistrartionService} from "../../../../shared/services/registration/registrartion.service";
+import {BehaviorSubject} from "rxjs";
 
 @Component({
   selector: 'app-tutor-sign-up',
@@ -6,15 +8,15 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./tutor-sign-up.component.scss']
 })
 export class TutorSignUpComponent implements OnInit {
-  stepNumber: number = 1;
+  stepNumber$: BehaviorSubject<number>;
 
-  constructor() {
+  constructor(
+    private registrationService: RegistrartionService
+  ) {
   }
 
   ngOnInit(): void {
+    this.stepNumber$ = this.registrationService.stepNumber$;
   }
 
-  changeStepNumber(direction: 'BACK' | "FORWARD"): void {
-    direction === "FORWARD" ? this.stepNumber++ : this.stepNumber--;
-  }
 }

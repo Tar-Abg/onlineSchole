@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Observable, Subscription} from "rxjs";
 import {Categories, Country, Level, Observables, Subjects} from "../../../../shared/models/infos.model";
@@ -8,6 +8,7 @@ import {RegistrartionService} from "../../../../shared/services/registration/reg
 import {StorageService} from "../../../../shared/services/storage/storage.service";
 import {BasicInformation} from "../../../models/tutor.model";
 import {tap} from "rxjs/operators";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tutor-first-step',
@@ -16,8 +17,6 @@ import {tap} from "rxjs/operators";
 })
 export class TutorFirstStepComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
-  @Output() back: EventEmitter<void> = new EventEmitter<void>();
-  @Output() next: EventEmitter<void> = new EventEmitter<void>();
   form: FormGroup;
   categories$: Observable<Categories[]>;
   subjects$: Observable<Subjects[]>;
@@ -34,13 +33,15 @@ export class TutorFirstStepComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private infoService: InfosService,
     private registrationService: RegistrartionService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private router: Router,
   ) {
   }
 
   ngOnInit(): void {
     this.initializeForm();
     this.initializeListeners();
+    this.registrationService.stepNumber$.next(1);
   }
 
 
@@ -142,14 +143,19 @@ export class TutorFirstStepComponent implements OnInit, OnDestroy {
 
   saveBasicInformation(): void {
     this.subscription.add(
-      this.registrationService.saveBasicInformation(this.form.value).subscribe(() => this.next.emit())
+      this.registrationService.saveBasicInformation(this.form.value).subscribe(() => this.nextStep())
     );
   }
 
   updateBasicInformation(): void {
     this.subscription.add(
-      this.registrationService.updateBasicInformation(this.form.value).subscribe(() => this.next.emit())
+      this.registrationService.updateBasicInformation(this.form.value).subscribe(() => this.nextStep())
     );
+  }
+
+  nextStep(): void {
+    this.registrationService.stepNumber$.next(2);
+    this.router.navigate(['tutor/profileDetails/step-two']);
   }
 
   categoryChange(event: any, index: number) {
