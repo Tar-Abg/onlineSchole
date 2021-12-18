@@ -1,4 +1,4 @@
 <div class="flex-item flex-item-step-min-length">
   <legend class="form-legend margin-left-space">Certificates/Qualification</legend>
-  <app-certificates [isLoggedIn]="false" (next)="next.emit()" (back)="back.emit()"></app-certificates>
+  <app-certificates [isLoggedIn]="false" (next)="nextStep()" (back)="previousStep()"></app-certificates>
 </div>

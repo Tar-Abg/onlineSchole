@@ -1,11 +1,11 @@
-import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {of, Subscription} from "rxjs";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
+import {BehaviorSubject, of, Subscription} from "rxjs";
 import {switchMap} from "rxjs/operators";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {MessageService} from "../../../shared/services/message/message.service";
-import {Location } from '@angular/common';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-sign-up',
@@ -14,10 +14,11 @@ import {Location } from '@angular/common';
 })
 export class SignUpComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
-  stepNumber: number = 1;
+  stepNumber$: BehaviorSubject<number>;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private storageService: StorageService,
     private registrationService: RegistrartionService,
     private messageService: MessageService,
@@ -27,10 +28,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscribeOnRouterChange();
-  }
-
-  changeStepNumber(direction: 'BACK' | "FORWARD"): void {
-    direction === "FORWARD" ? this.stepNumber++ : this.stepNumber--;
+    this.stepNumber$ = this.registrationService.stepNumber$;
   }
 
   subscribeOnRouterChange(): void {
@@ -46,9 +44,8 @@ export class SignUpComponent implements OnInit, OnDestroy {
           }
         })
       ).subscribe((data) => {
-          if (data) {
-            this.stepNumber = 2;
-          }
+          this.registrationService.stepNumber$.next(2);
+          data && this.router.navigate(['step-two'], {relativeTo: this.route});
         },
         (error => {
           if (error.error.type === 'Invalid token error') {

@@ -2,10 +2,23 @@ import {NgModule} from "@angular/core";
 import {RouterModule, Routes} from "@angular/router";
 import {SignUpComponent} from "./components/sign-up/sign-up.component";
 import {TutorSignUpComponent} from "./components/tutor-sign-up-steps/tutor-sign-up/tutor-sign-up.component";
-import {AuthGuardService as AuthGuard} from "../shared/guards/auth-guard.guard";
+import {StepOneComponent} from "./components/step-one/step-one.component";
+import {SecondStepComponent} from "./components/second-step/second-step.component";
+import {ThirdStepComponent} from "./components/third-step/third-step.component";
+import {FourthStepComponent} from "./components/fourth-step/fourth-step.component";
+import {FifthStepComponent} from "./components/fifth-step/fifth-step.component";
 
 const routes: Routes = [
-  {path: 'signUp', component: SignUpComponent},
+  {path: 'signUp', component: SignUpComponent,
+    children: [
+      {path: 'step-one', component: StepOneComponent},
+      {path: 'step-two', component: SecondStepComponent},
+      {path: 'step-three', component: ThirdStepComponent},
+      {path: 'step-four', component: FourthStepComponent},
+      {path: 'step-five', component: FifthStepComponent},
+      {path: '', redirectTo: 'step-one'},
+    ]
+  },
   {path: 'profileDetails', component: TutorSignUpComponent},
   // {path: 'settings', loadChildren: () => import('../tutor-settings/tutor-settings.module').then(m => m.TutorSettingsModule), canActivate: [AuthGuard]},
   {path: 'settings', loadChildren: () => import('../tutor-settings/tutor-settings.module').then(m => m.TutorSettingsModule)},

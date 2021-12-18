@@ -5,6 +5,7 @@ import {Observable, Subscription} from "rxjs";
 import {Country} from "../../../shared/models/infos.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-fifth-step',
@@ -23,14 +24,15 @@ export class FifthStepComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private registrationService: RegistrartionService,
     private infoService: InfosService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private router: Router,
   ) {
   }
 
   ngOnInit(): void {
     this.formInitialization();
     this.initializeSubscriptions();
-
+    this.registrationService.stepNumber$.next(5);
   }
 
   formInitialization(): void {
@@ -99,6 +101,11 @@ export class FifthStepComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.registrationService.updateContacts(this.form.value).subscribe()
     );
+  }
+
+  previousStep(): void {
+    this.registrationService.stepNumber$.next(4);
+    this.router.navigate(['tutor/signUp/step-four']);
   }
 
   ngOnDestroy(): void {
