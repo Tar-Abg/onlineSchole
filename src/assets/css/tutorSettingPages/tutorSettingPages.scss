@@ -60,3 +60,130 @@
     }
   }
 }
+
+
+@import "src/assets/css/variables";
+
+.calendar-wrapper {
+  margin-bottom: 160px;
+
+  .calendar-datepicker-wrappers {
+    grid-gap: 25px;
+    margin-bottom: 15px;
+
+    .button-for-show {
+      width: 82px;
+      height: 33px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-end;
+      font: $type-regular normal $type-small $Segoe-UI-sans;
+      letter-spacing: 0.05em;
+      line-height: 21px;
+      text-transform: uppercase;
+      color: #4E9651;
+      background: rgba(204, 255, 199, 0.04);
+      border: 1px solid rgba(164, 217, 166, 0.58);
+      box-sizing: border-box;
+      border-radius: 10px;
+    }
+
+    .date-picker-wrapper-for-calendar {
+      position: relative;
+    }
+  }
+
+  .add-calendar-wrapper {
+    margin-bottom: 6px;
+
+    .calendar-warning {
+      font: $type-regular normal $type-small $Segoe-UI-sans;
+      line-height: 25px;
+      color: #DE9300;
+    }
+  }
+
+  .calendar-datepicker-wrappers {
+    margin-bottom: 15px;
+  }
+
+  .date-picker-label {
+    margin-bottom: -8px;
+  }
+}
+
+.calendar-content {
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background: $clr-ntrl-min;
+  }
+
+  th, td {
+    border: 1px solid #C0C0C0;
+    vertical-align: middle;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+
+    &:first-child {
+      width: 68px;
+      font: $type-light normal $type-small $Segoe-UI-sans;
+      line-height: 25px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: $clr-ntrl-max;
+      background: rgba(192, 192, 192, 0.13);
+    }
+  }
+
+  th {
+    height: 50px;
+    border-bottom: 0;
+
+    &:first-child {
+      background: rgba(192, 192, 192, 0.13);
+    }
+
+
+    .calendar-table-thead {
+      font: $type-bold normal $type-medium-size $Segoe-UI-sans;
+      letter-spacing: 0.02em;
+      color: $clr-ntrl-max;
+      margin: 0;
+    }
+  }
+
+  td {
+    height: 61px;
+  }
+
+  .lesson-time {
+    margin: 0;
+    line-height: 30px;
+    font: $type-light normal $type-small $Roboto-sans;
+    letter-spacing: 0.03em;
+    color: $clr-ntrl-max;
+  }
+
+  .main-lesson-subject {
+    margin: 0;
+    font: $type-bold normal $type-small $Roboto-sans;
+    line-height: 30px;
+    letter-spacing: 0.03em;
+    color: $clr-ntrl-max;
+  }
+
+  .tWrap__head {
+    padding-right: 10px;
+  }
+
+  .tWrap__body {
+    max-height: 305px;
+    overflow: auto;
+    padding: 0;
+  }
+}
