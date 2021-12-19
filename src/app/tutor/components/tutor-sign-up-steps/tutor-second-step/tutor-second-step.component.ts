@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../../shared/services/storage/storage.service";
 import {RegistrartionService} from "../../../../shared/services/registration/registrartion.service";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
+import {ValidationService} from "../../../../shared/services/validation/validation.service";
 
 @Component({
   selector: 'app-tutor-second-step',
@@ -15,12 +16,15 @@ export class TutorSecondStepComponent implements OnInit, OnDestroy {
   form: FormGroup;
   userImage: ArrayBuffer | null | string;
   private actionType: "CREATE" | "UPDATE" = "CREATE";
+  isSmallSizeForImage: boolean;
 
   constructor(
     private fb: FormBuilder,
     private storageService: StorageService,
     private registrationService: RegistrartionService,
+    private validationService: ValidationService,
     private router: Router,
+    private cd: ChangeDetectorRef,
   ) {
   }
 
@@ -68,10 +72,23 @@ export class TutorSecondStepComponent implements OnInit, OnDestroy {
   selectFile(event: any) {
     const reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (_event) => {
-      this.userImage = reader.result;
-      this.form.get('photo')?.setValue(true);
+    if (event.target.files[0]) {
+      reader.onload = (_event) => {
+        this.checkImageSizes(reader.result as string);
+      }
     }
+  }
+
+  checkImageSizes(image: string): void {
+    this.validationService.checkImageSizes(image).then((image) => {
+      if (image) {
+        this.userImage = image;
+        this.isSmallSizeForImage = false;
+      } else {
+        this.isSmallSizeForImage = true;
+      }
+      this.cd.detectChanges();
+    })
   }
 
   getWrapUpProfile(): void {

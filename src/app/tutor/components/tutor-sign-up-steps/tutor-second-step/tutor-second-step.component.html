@@ -42,7 +42,7 @@
                 <span class="error-message" *ngIf="form.get('photo')?.errors && form.get('photo')?.touched">This is a required field</span>
               </div>
               <div class="upload-image-requirement">
-                <p class="form-item-notification">Minimum size 200 x 200 pixels.</p>
+                <p class="form-item-notification" [class.text-danger]="isSmallSizeForImage">Minimum size 200 x 200 pixels.</p>
                 <p class="form-item-notification">Tutuors with a profile photo receive three
                   times more business than tutors with one.</p>
                 <p class="form-item-notification">You can upload a photo later or change your

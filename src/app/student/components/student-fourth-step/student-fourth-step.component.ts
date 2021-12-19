@@ -4,6 +4,7 @@ import {StorageService} from "../../../shared/services/storage/storage.service";
 import {Subscription} from "rxjs";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {Router} from "@angular/router";
+import {ValidationService} from "../../../shared/services/validation/validation.service";
 
 @Component({
   selector: 'app-student-fourth-step',
@@ -15,11 +16,13 @@ export class StudentFourthStepComponent implements OnInit, OnDestroy {
   form: FormGroup;
   userImage: ArrayBuffer | null | string;
   private actionType: "CREATE" | "UPDATE" = "CREATE";
+  isSmallSizeForImage: boolean;
 
   constructor(
     private fb: FormBuilder,
     private storageService: StorageService,
     private registrationService: RegistrartionService,
+    private validationService: ValidationService,
     private cd: ChangeDetectorRef,
     private router: Router,
   ) {
@@ -82,11 +85,23 @@ export class StudentFourthStepComponent implements OnInit, OnDestroy {
   selectFile(event: any) {
     const reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (_event) => {
-      this.userImage = reader.result;
-      this.cd.detectChanges()
-      this.form.get('photo')?.setValue(true);
+    if (event.target.files[0]) {
+      reader.onload = (_event) => {
+        this.checkImageSizes(reader.result as string)
+      }
     }
+  }
+
+  checkImageSizes(image: string): void {
+    this.validationService.checkImageSizes(image).then((image) => {
+      if (image) {
+        this.userImage = image;
+        this.isSmallSizeForImage = false;
+      } else {
+        this.isSmallSizeForImage = true;
+      }
+      this.cd.detectChanges();
+    })
   }
 
   nextStep(): void {

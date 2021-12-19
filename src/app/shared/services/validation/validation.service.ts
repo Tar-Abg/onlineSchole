@@ -14,4 +14,20 @@ export class ValidationService {
     let confirmPass = group.get('rePassword')?.value
     return pass === confirmPass ? null : { notSame: true }
   }
+
+  checkImageSizes(image: string): Promise<string | null> {
+    const img = new Image();
+    img.src = image;
+    return new Promise(function(resolve, reject) {
+      img.onload = () => {
+        const height = img.naturalHeight;
+        const width = img.naturalWidth;
+        if (height >= 200 && width >=200) {
+          resolve(image);
+        } else  {
+          resolve(null);
+        }
+      };
+    });
+  }
 }
