@@ -235,6 +235,10 @@
             >
           </mat-form-field>
         </div>
+        <div class="p-relative">
+          <app-select [label]="'*status'" formControlName="preferredTimeZone"></app-select>
+          <span class="error-message">This is a required field</span>
+        </div>
         <button class="button-for-show" type="submit">Show</button>
       </form>
       <button class="btn-add-less flex-container-center">Add Lesson</button>
