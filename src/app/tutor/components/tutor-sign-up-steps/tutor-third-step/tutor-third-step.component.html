@@ -72,7 +72,7 @@
     </div>
   </form>
   <div class="flex-container-center button-wrapper col-md-12 col-lg-12 col-xs-12">
-    <button class="sophist-btn flex-container-center" (click)="back.emit()">PREVIOUS</button>
+    <button class="sophist-btn flex-container-center" (click)="previousStep()">PREVIOUS</button>
     <button class="sophist-btn flex-container-center" [disabled]="!agree.checked || !termsAndCondition.checked || !security.checked" (click)="onSubmit()" >NEXT</button>
   </div>
 </section>

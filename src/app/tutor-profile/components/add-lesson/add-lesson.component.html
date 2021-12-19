@@ -102,6 +102,7 @@
                     [keyName]="'level'"
                     formControlName="levelId"
                     [list]="levels$ | async"
+                    [disable]="!(levels$ | async)?.length"
                   >
                   </app-select>
                   <span class="error-message"

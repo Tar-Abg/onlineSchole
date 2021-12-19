@@ -48,8 +48,8 @@ export class CertificatesComponent implements OnInit {
 
   createNewForm(): FormGroup {
     return this.fb.group({
-      institutionName: [null, [Validators.required]],
-      qualification: [null, [Validators.required]],
+      institutionName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      qualification: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       date: [null, [Validators.required]],
       userId:[this.storageService.getUserId()],
       id: []

@@ -1,10 +1,11 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {Observable, Subscription} from "rxjs";
 import {Country} from "../../../shared/models/infos.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-fifth-step',
@@ -13,8 +14,6 @@ import {StorageService} from "../../../shared/services/storage/storage.service";
 })
 export class FifthStepComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
-  @Output() back: EventEmitter<void> = new EventEmitter<void>();
-  @Output() next: EventEmitter<void> = new EventEmitter<void>();
   phoneCods$: Observable<Country[]>
   form: FormGroup;
   private actionType: "CREATE" | "UPDATE" = "CREATE";
@@ -23,21 +22,22 @@ export class FifthStepComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private registrationService: RegistrartionService,
     private infoService: InfosService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private router: Router,
   ) {
   }
 
   ngOnInit(): void {
     this.formInitialization();
     this.initializeSubscriptions();
-
+    this.registrationService.stepNumber$.next(5);
   }
 
   formInitialization(): void {
     this.form = this.fb.group({
       userId: [this.storageService.getUserId()],
       mobileCode: [null, [Validators.required]],
-      mobile: [null, [Validators.required]],
+      mobile: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       linkToSocialMedia: [null, [Validators.required]],
       socialMediaExistance: [false, [Validators.required]],
     })
@@ -99,6 +99,11 @@ export class FifthStepComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.registrationService.updateContacts(this.form.value).subscribe()
     );
+  }
+
+  previousStep(): void {
+    this.registrationService.stepNumber$.next(4);
+    this.router.navigate(['tutor/signUp/step-four']);
   }
 
   ngOnDestroy(): void {

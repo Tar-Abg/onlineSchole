@@ -58,7 +58,7 @@ export class AddLessonComponent implements OnInit, OnDestroy {
   initializeForm(): void {
     this.form = this.fb.group({
       tutorId: [this.storageService.getUserId(), [Validators.required]],
-      userName: [null, [Validators.required]],
+      userName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       lessonStartDate: [null, [Validators.required]],
       hour: [null],
       minute: [null, [Validators.required]],
@@ -66,7 +66,7 @@ export class AddLessonComponent implements OnInit, OnDestroy {
       categoryId: [null, [Validators.required]],
       subjectId: [null, [Validators.required]],
       levelId: [null],
-      lessonPlan: [null, [Validators.required, Validators.maxLength(100), Validators.minLength(15)]],
+      lessonPlan: [null, [Validators.required, Validators.maxLength(100), Validators.minLength(15), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       hourlyRate: [null],
       hourId: [null, [Validators.required]],
     })

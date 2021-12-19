@@ -48,6 +48,7 @@
                         [label]="'*Level'"
                         [list]="observables[i]?.levels$ | async"
                         [keyName]="'level'"
+                        [disable]="!(observables[i]?.levels$ | async)?.length"
                         formControlName="levelId"
                       >
                       </app-select>
@@ -181,7 +182,6 @@
       </fieldset>
     </form>
     <div class="flex-container-center button-wrapper button-wrapper__mt">
-      <button class="sophist-btn flex-container-center" (click)="back.emit()">PREVIOUS</button>
       <button type="submit" class="sophist-btn flex-container-center next-btn" (click)="onSubmit()">NEXT</button>
     </div>
   </div>

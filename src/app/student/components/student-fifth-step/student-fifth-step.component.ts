@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {Observable, Subscription} from "rxjs";
@@ -8,6 +8,7 @@ import {DateService} from "../../../shared/services/date/date.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {tap} from "rxjs/operators";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-student-fifth-step',
@@ -15,8 +16,6 @@ import {RegistrartionService} from "../../../shared/services/registration/regist
   styleUrls: ['./student-fifth-step.component.scss']
 })
 export class StudentFifthStepComponent implements OnInit, OnDestroy {
-  @Output() back: EventEmitter<void> = new EventEmitter<void>();
-  @Output() next: EventEmitter<void> = new EventEmitter<void>();
   private readonly subscription: Subscription = new Subscription();
   form: FormGroup;
   isUserFromUS$: Observable<boolean>;
@@ -29,11 +28,13 @@ export class StudentFifthStepComponent implements OnInit, OnDestroy {
     private infoService: InfosService,
     private dateService: DateService,
     private storageService: StorageService,
-    private registrationService: RegistrartionService
+    private registrationService: RegistrartionService,
+    private router: Router,
   ) {
   }
 
   ngOnInit(): void {
+    this.registrationService.stepNumber$.next(5);
     this.initializeForm();
     this.initializeListeners();
   }
@@ -58,10 +59,10 @@ export class StudentFifthStepComponent implements OnInit, OnDestroy {
   addBillingAddress(): void {
     this.form.addControl('billingAddress', this.fb.group({
       stateId: [null, Validators.required],
-      streetNumber: [null, Validators.required],
-      apartment: [null, Validators.required],
-      zipCode: [null, Validators.required],
-      city: [null, Validators.required],
+      streetNumber: [null, Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)],
+      apartment: [null, Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)],
+      zipCode: [null, Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)],
+      city: [null, Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)],
     }))
   }
 
@@ -88,6 +89,11 @@ export class StudentFifthStepComponent implements OnInit, OnDestroy {
 
   get billingAddress(): FormGroup {
     return this.form.get('billingAddress') as FormGroup;
+  }
+
+  previousStep(): void {
+    this.registrationService.stepNumber$.next(4);
+    this.router.navigate(['student/signUp/step-four']);
   }
 
   ngOnDestroy(): void {

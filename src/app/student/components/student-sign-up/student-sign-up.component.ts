@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {switchMap} from "rxjs/operators";
-import {of, Subscription} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
+import {BehaviorSubject, of, Subscription} from "rxjs";
+import {ActivatedRoute, Router} from "@angular/router";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {MessageService} from "../../../shared/services/message/message.service";
@@ -14,10 +14,11 @@ import {Location} from "@angular/common";
 })
 export class StudentSignUpComponent implements OnInit {
   private readonly subscription: Subscription = new Subscription();
-  stepNumber: number = 1;
+  stepNumber$: BehaviorSubject<number>;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private storageService: StorageService,
     private registrationService: RegistrartionService,
     private messageService: MessageService,
@@ -27,11 +28,9 @@ export class StudentSignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscribeOnRouterChange();
+    this.stepNumber$ = this.registrationService.stepNumber$;
   }
 
-  changeStepNumber(direction: 'BACK' | "FORWARD"): void {
-    direction === "FORWARD" ? this.stepNumber++ : this.stepNumber--;
-  }
 
   subscribeOnRouterChange(): void {
     this.subscription.add(
@@ -47,7 +46,8 @@ export class StudentSignUpComponent implements OnInit {
         })
       ).subscribe((data) => {
           if (data) {
-            this.stepNumber = 2;
+            this.registrationService.stepNumber$.next(2);
+            this.router.navigate(['step-two'], {relativeTo: this.route});
           }
         },
         (error => {

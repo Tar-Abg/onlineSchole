@@ -9,28 +9,14 @@
           <h2 class="register-form-wrapper__title">
             Tutor sign up steps
           </h2>
-          <app-steps [stepNumber]="stepNumber" [stepCount]="3"></app-steps>
+          <app-steps [stepNumber]="(stepNumber$ | async) || 1" [stepCount]="3"></app-steps>
         </div>
       </section>
       <!--================ Section Tutor Register Form Step Area End ================-->
 
       <div class="flex-container-center">
         <div class="flex-item ">
-          <ng-container [ngSwitch]="stepNumber">
-            <app-tutor-first-step
-              *ngSwitchCase="1"
-              (next)="changeStepNumber('FORWARD')">
-            </app-tutor-first-step>
-            <app-tutor-second-step
-              *ngSwitchCase="2"
-              (back)="changeStepNumber('BACK')"
-              (next)="changeStepNumber('FORWARD')">
-            </app-tutor-second-step>
-            <app-tutor-third-step
-              *ngSwitchCase="3"
-              (back)="changeStepNumber('BACK')">
-            </app-tutor-third-step>
-          </ng-container>
+          <router-outlet></router-outlet>
         </div>
       </div>
     </section>

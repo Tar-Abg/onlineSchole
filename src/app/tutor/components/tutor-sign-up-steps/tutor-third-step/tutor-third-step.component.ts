@@ -1,8 +1,9 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../../shared/services/storage/storage.service";
 import {RegistrartionService} from "../../../../shared/services/registration/registrartion.service";
 import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tutor-third-step',
@@ -11,17 +12,20 @@ import {Subscription} from "rxjs";
 })
 export class TutorThirdStepComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
-  @Output() back: EventEmitter<void> = new EventEmitter<void>();
   form: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private storageService: StorageService,
-    private registrationService: RegistrartionService
+    private registrationService: RegistrartionService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.initializeForm();
+    setTimeout(() => {
+      this.registrationService.stepNumber$.next(3); //will be improved
+    })
   }
 
   initializeForm(): void {
@@ -41,6 +45,11 @@ export class TutorThirdStepComponent implements OnInit, OnDestroy {
     } else {
       this.form.markAllAsTouched();
     }
+  }
+
+  previousStep(): void {
+    this.registrationService.stepNumber$.next(2);
+    this.router.navigate(['tutor/profileDetails/step-two']);
   }
 
   ngOnDestroy(): void {

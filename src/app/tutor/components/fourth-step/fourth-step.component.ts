@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {Observable, Subscription} from "rxjs";
@@ -9,6 +9,7 @@ import {ValidationService} from "../../../shared/services/validation/validation.
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {tap} from "rxjs/operators";
 import {Preferences} from "../../../shared/models/registration.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-fourth-step',
@@ -17,8 +18,6 @@ import {Preferences} from "../../../shared/models/registration.model";
 })
 export class FourthStepComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
-  @Output() back: EventEmitter<void> = new EventEmitter<void>();
-  @Output() next: EventEmitter<void> = new EventEmitter<void>();
   form: FormGroup;
   studentLevels: StudentLevel[];
   hoursPerWeekForTutor$: Observable<KeyValuePair[]>;
@@ -34,13 +33,15 @@ export class FourthStepComponent implements OnInit, OnDestroy {
     private infoService: InfosService,
     private registrationService: RegistrartionService,
     private validationService: ValidationService,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private router: Router,
   ) {
   }
 
   ngOnInit(): void {
     this.formInitialization();
     this.initializeListeners();
+    this.registrationService.stepNumber$.next(4);
   }
 
   formInitialization(): void {
@@ -118,10 +119,10 @@ export class FourthStepComponent implements OnInit, OnDestroy {
 
   newProfessionalReferencesForInstructor(): FormGroup {
     return this.fb.group({
-      name: [null, [Validators.required]],
-      lastName: [null, [Validators.required]],
-      emailAddress: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern)]],
-      mobilePhone: [null, [Validators.required]],
+      name: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      lastName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      emailAddress: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      mobilePhone: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       numberId: [null, [Validators.required]],
     });
   }
@@ -150,7 +151,7 @@ export class FourthStepComponent implements OnInit, OnDestroy {
         ...this.form.value,
         workHistory: this.form.value.wantToBeInstructor ? this.form.value.workHistory : null,
         linkTutorAndStudentTypes: studentsLevel
-      }).subscribe(() => this.next.emit())
+      }).subscribe(() => this.nextStep())
     );
   }
 
@@ -160,7 +161,7 @@ export class FourthStepComponent implements OnInit, OnDestroy {
         ...this.form.value,
         workHistory: this.form.value.wantToBeInstructor ? this.form.value.workHistory : null,
         linkTutorAndStudentTypes: studentsLevel
-      }).subscribe(() => this.next.emit())
+      }).subscribe(() => this.nextStep())
     )
   }
 
@@ -349,6 +350,16 @@ export class FourthStepComponent implements OnInit, OnDestroy {
         form.get('endYear')?.updateValueAndValidity();
       })
     );
+  }
+
+  nextStep(): void {
+    this.registrationService.stepNumber$.next(5);
+    this.router.navigate(['tutor/signUp/step-five']);
+  }
+
+  previousStep(): void {
+    this.registrationService.stepNumber$.next(3);
+    this.router.navigate(['tutor/signUp/step-three']);
   }
 
   ngOnDestroy(): void {

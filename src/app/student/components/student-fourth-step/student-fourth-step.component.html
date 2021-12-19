@@ -40,14 +40,14 @@
                 <textarea id="bio" class="form-textarea" type="text" rows="5" cols="3"
                           placeholder="a paragraph or more about yourself*" formControlName="wrapUp">
                 </textarea>
-              <span class="error-message" *ngIf="form.get('wrapUp')?.errors && form.get('wrapUp')?.touched">This is a required field</span>
+              <span class="error-message" *ngIf="form.get('wrapUp')?.errors?.required && form.get('wrapUp')?.touched">This is a required field</span>
             </label>
             <p class="form-item-notification">Briefly describe what you need help with.</p>
-            <p class="form-item-notification">Your free response must be between 50 and 2000 characters. </p>
+            <p class="form-item-notification" [class.text-danger]="(form.get('wrapUp')?.errors?.minlength || form.get('wrapUp')?.errors?.maxlength) && form.get('wrapUp')?.touched">Your free response must be between 50 and 2000 characters. </p>
           </li>
         </ul>
         <div class="flex-container-center button-wrapper button-wrapper__mt">
-          <button class="sophist-btn flex-container-center" (click)="back.emit()">PREVIOUS</button>
+          <button type="button" class="sophist-btn flex-container-center" (click)="previousStep()">PREVIOUS</button>
           <button type="submit" class="sophist-btn flex-container-center next-btn">NEXT</button>
         </div>
       </fieldset>

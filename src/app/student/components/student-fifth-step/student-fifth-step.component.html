@@ -94,7 +94,7 @@
     </div>
   </div>
   <div class="flex-container-center button-wrapper button-wrapper__mt">
-    <button class="sophist-btn flex-container-center" (click)="back.emit()">PREVIOUS</button>
+    <button type="button" class="sophist-btn flex-container-center" (click)="previousStep()">PREVIOUS</button>
     <button type="submit" class="sophist-btn flex-container-center next-btn" (click)="onSubmit()" [disabled]="!paymentPolicies.checked">Sign</button>
   </div>
 </div>

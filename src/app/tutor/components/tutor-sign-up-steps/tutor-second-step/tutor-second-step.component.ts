@@ -1,8 +1,9 @@
-import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../../shared/services/storage/storage.service";
 import {RegistrartionService} from "../../../../shared/services/registration/registrartion.service";
 import {Subscription} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tutor-second-step',
@@ -11,8 +12,6 @@ import {Subscription} from "rxjs";
 })
 export class TutorSecondStepComponent implements OnInit, OnDestroy {
   private subscription: Subscription = new Subscription();
-  @Output() back: EventEmitter<void> = new EventEmitter<void>();
-  @Output() next: EventEmitter<void> = new EventEmitter<void>();
   form: FormGroup;
   userImage: ArrayBuffer | null | string;
   private actionType: "CREATE" | "UPDATE" = "CREATE";
@@ -20,13 +19,15 @@ export class TutorSecondStepComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private storageService: StorageService,
-    private registrationService: RegistrartionService
+    private registrationService: RegistrartionService,
+    private router: Router,
   ) {
   }
 
   ngOnInit(): void {
     this.initializeForm();
     this.getWrapUpProfile();
+    this.registrationService.stepNumber$.next(2);
   }
 
   initializeForm(): void {
@@ -54,13 +55,13 @@ export class TutorSecondStepComponent implements OnInit, OnDestroy {
 
   saveWrapUpProfile(): void {
     this.subscription.add(
-      this.registrationService.saveWrapUpProfile({...this.form.value, photo: this.userImage}).subscribe(() => this.next.emit())
+      this.registrationService.saveWrapUpProfile({...this.form.value, photo: this.userImage}).subscribe(() => this.nextStep())
     );
   }
 
   updateWrapUpProfile(): void {
     this.subscription.add(
-      this.registrationService.updateWrapUpProfile({...this.form.value, photo: this.userImage}).subscribe(() => this.next.emit())
+      this.registrationService.updateWrapUpProfile({...this.form.value, photo: this.userImage}).subscribe(() => this.nextStep())
     )
   }
 
@@ -85,6 +86,16 @@ export class TutorSecondStepComponent implements OnInit, OnDestroy {
         }
       })
     );
+  }
+
+  nextStep(): void {
+    this.registrationService.stepNumber$.next(3);
+    this.router.navigate(['tutor/profileDetails/step-three']);
+  }
+
+  previousStep(): void {
+    this.registrationService.stepNumber$.next(1);
+    this.router.navigate(['tutor/profileDetails/step-one']);
   }
 
   ngOnDestroy(): void {

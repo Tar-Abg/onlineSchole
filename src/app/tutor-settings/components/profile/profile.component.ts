@@ -58,7 +58,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       userId: [this.storageService.getUserId()],
       headline: [null],
       photo: [null],
-      bio: [null, [Validators.required, Validators.minLength(100)]],
+      bio: [null, [Validators.required, Validators.minLength(100), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       wrapUp: [null],
     })
   }

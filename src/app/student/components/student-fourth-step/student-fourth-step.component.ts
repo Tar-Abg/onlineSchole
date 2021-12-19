@@ -1,8 +1,9 @@
-import {ChangeDetectorRef, Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {Subscription} from "rxjs";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-student-fourth-step',
@@ -10,8 +11,6 @@ import {RegistrartionService} from "../../../shared/services/registration/regist
   styleUrls: ['./student-fourth-step.component.scss']
 })
 export class StudentFourthStepComponent implements OnInit, OnDestroy {
-  @Output() back: EventEmitter<void> = new EventEmitter<void>();
-  @Output() next: EventEmitter<void> = new EventEmitter<void>();
   private subscription: Subscription = new Subscription();
   form: FormGroup;
   userImage: ArrayBuffer | null | string;
@@ -21,13 +20,13 @@ export class StudentFourthStepComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private storageService: StorageService,
     private registrationService: RegistrartionService,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private router: Router,
   ) {
   }
 
-
-
   ngOnInit(): void {
+    this.registrationService.stepNumber$.next(4);
     this.initializeForm();
     this.getWrapUpProfile();
   }
@@ -37,7 +36,7 @@ export class StudentFourthStepComponent implements OnInit, OnDestroy {
       id: [null],
       userId: [this.storageService.getUserId()],
       photo: [null],
-      wrapUp: [null, [Validators.required, Validators.minLength(50)]],
+      wrapUp: [null, [Validators.required, Validators.minLength(50), Validators.maxLength(200), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       headline: [null],
       bio: [null]
     })
@@ -56,13 +55,13 @@ export class StudentFourthStepComponent implements OnInit, OnDestroy {
   }
   saveWrapUpProfile(): void {
     this.subscription.add(
-      this.registrationService.saveWrapUpProfile({...this.form.value, photo: this.userImage}).subscribe(() => this.next.emit())
+      this.registrationService.saveWrapUpProfile({...this.form.value, photo: this.userImage}).subscribe(() => this.nextStep())
     );
   }
 
   updateWrapUpProfile(): void {
     this.subscription.add(
-      this.registrationService.updateWrapUpProfile({...this.form.value, photo: this.userImage}).subscribe(() => this.next.emit())
+      this.registrationService.updateWrapUpProfile({...this.form.value, photo: this.userImage}).subscribe(() => this.nextStep())
     )
   }
 
@@ -88,6 +87,16 @@ export class StudentFourthStepComponent implements OnInit, OnDestroy {
       this.cd.detectChanges()
       this.form.get('photo')?.setValue(true);
     }
+  }
+
+  nextStep(): void {
+    this.registrationService.stepNumber$.next(5);
+    this.router.navigate(['student/signUp/step-five']);
+  }
+
+  previousStep(): void {
+    this.registrationService.stepNumber$.next(2);
+    this.router.navigate(['student/signUp/step-three']);
   }
 
 

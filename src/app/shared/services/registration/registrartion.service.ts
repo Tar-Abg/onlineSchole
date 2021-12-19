@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {Observable, of, Subject} from "rxjs";
+import {BehaviorSubject, Observable, Subject} from "rxjs";
 import {
   Address, CardDetails,
   Preferences,
@@ -21,6 +21,7 @@ export class RegistrartionService {
   private url = `${environment.apiUrl}/Registration`;
   emailIsExist$: Subject<boolean> = new Subject<boolean>();
   usernameIsExist$: Subject<boolean> = new Subject<boolean>();
+  stepNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(1);
 
   constructor(private http: HttpClient) {
   }
