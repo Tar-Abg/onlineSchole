@@ -19,6 +19,9 @@ import {AddLessonComponent} from './components/add-lesson/add-lesson.component';
 import {MatInputModule} from "@angular/material/input";
 import {SharedModule} from "../shared/shared.module";
 import {ReactiveFormsModule} from "@angular/forms";
+import {StartLessonComponent} from './components/start-lesson/start-lesson.component';
+import {EndLessonModalComponent} from './components/end-lesson-modal/end-lesson-modal.component';
+import {CancelLessonModalComponent} from './components/cancel-lesson-modal/cancel-lesson-modal.component';
 
 
 @NgModule({
@@ -29,7 +32,10 @@ import {ReactiveFormsModule} from "@angular/forms";
     CalendarComponent,
     RatingsComponent,
     ReviewsComponent,
-    AddLessonComponent
+    AddLessonComponent,
+    StartLessonComponent,
+    EndLessonModalComponent,
+    CancelLessonModalComponent
   ],
     imports: [
         CommonModule,
