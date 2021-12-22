@@ -22,7 +22,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {StartLessonComponent} from './components/start-lesson/start-lesson.component';
 import {EndLessonModalComponent} from './components/end-lesson-modal/end-lesson-modal.component';
 import {CancelLessonModalComponent} from './components/cancel-lesson-modal/cancel-lesson-modal.component';
-
+import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +35,8 @@ import {CancelLessonModalComponent} from './components/cancel-lesson-modal/cance
     AddLessonComponent,
     StartLessonComponent,
     EndLessonModalComponent,
-    CancelLessonModalComponent
+    CancelLessonModalComponent,
+    ProfileInfoComponent
   ],
     imports: [
         CommonModule,

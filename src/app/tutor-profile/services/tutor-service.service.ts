@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {
+  LessonSchedule,
   SelectedDay,
   TutorAvailabilities,
   TutorBaseInfo,
@@ -86,6 +87,16 @@ export class TutorService {
     params = params.append('userId', tutorId)
     params = params.append('date', date)
     return this.http.get<ResponseModel<SelectedDay[]>>(`${this.url}/GetCalendar`, {params}).pipe(
+      map(data => data.result)
+    )
+  }
+
+  getLessons(tutorId: number, date: string, statusId: number): Observable<LessonSchedule[]> {
+    let params = new HttpParams();
+    params = params.append('userId', tutorId)
+    params = params.append('date', date)
+    params = params.append('statusId', statusId)
+    return this.http.get<ResponseModel<LessonSchedule[]>>(`${this.url}/GetLessons`, {params}).pipe(
       map(data => data.result)
     )
   }

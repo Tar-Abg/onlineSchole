@@ -1,0 +1,137 @@
+<section class="profile-section">
+  <h2 class="profile-section__title">
+    Bio
+    <hr/>
+  </h2>
+  <div class="nested-info">
+    <p class="profile-section__description">
+      {{bio}}
+    </p>
+    <button class="read-more" (click)="toggleContent('bio')"
+            *ngIf="bio && bio.length > limit">{{isBioContentToggled ? 'read more' : 'read less'}}</button>
+  </div>
+</section>
+<section class="profile-section">
+  <h2 class="profile-section__title">
+    Wrap up your profile
+    <hr/>
+  </h2>
+  <div class="nested-info">
+    <p class="profile-section__description">
+      {{wrapUp}}
+    </p>
+    <button class="read-more" (click)="toggleContent('wrapUp')"
+            *ngIf="wrapUp && wrapUp.length > limit">{{isWrapUpContentToggled ? 'read more' : 'read less'}}</button>
+  </div>
+</section>
+<section class="profile-section" *ngIf="tutorInstitutions?.length">
+  <h2 class="profile-section__title">
+    Education
+    <hr/>
+  </h2>
+  <div class="nested-info without-side-padding" *ngFor="let item of tutorInstitutions">
+    <div class="flex-container-justify-start grid-gap-54 grid-wrapper">
+      <div class="flex-item large-mr">
+        <div class="profile-section-subItems">
+          <h2 class="profile-section--subtitle">Institution name</h2>
+          <p class="profile-section--subDescription">
+            {{item.name}}
+          </p>
+        </div>
+        <div class="profile-section-subItems">
+          <h2 class="profile-section--subtitle">Education level</h2>
+          <p class="profile-section--subDescription">
+            {{item.level}}
+          </p>
+        </div>
+        <div class="profile-section-subItems">
+          <h2 class="profile-section--subtitle">Major</h2>
+          <p class="profile-section--subDescription">
+            {{item.major}}
+          </p>
+        </div>
+      </div>
+      <div class="flex-item">
+        <div class="profile-section-subItems">
+          <h2 class="profile-section--subtitle">Country</h2>
+          <p class="profile-section--subDescription">
+            {{item.country}}
+          </p>
+        </div>
+        <div class="profile-section-subItems">
+          <h2 class="profile-section--subtitle">City</h2>
+          <p class="profile-section--subDescription">
+            {{item.city}}
+          </p>
+        </div>
+        <div class="profile-section-subItems">
+          <h2 class="profile-section--subtitle">Date</h2>
+          <p class="profile-section--subDescription">
+            <span>{{item.startDate | date : 'shortDate'}} </span>
+            <span *ngIf="item.graduationDate">- {{item.graduationDate | date: 'shortDate'}} </span>
+          </p>
+        </div>
+      </div>
+      <div class="flex-item align-self-end" *ngIf="item.degreeInProgress">
+        <div class="checkboxes-wrapper">
+          <mat-checkbox formControlName="degreeInProgress" [checked]="item.degreeInProgress">
+            Degree in progress
+          </mat-checkbox>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="profile-section" *ngIf="tutorCertificates?.length">
+  <h2 class="profile-section__title">
+    Certificates
+    <hr/>
+  </h2>
+  <div class="nested-info without-side-padding">
+    <div class="flex-container flex-container-justify-start grid-gap-152 grid-wrapper">
+      <div class="flex-item" *ngFor="let item of tutorCertificates">
+        <div class="profile-section-subItems">
+          <h2 class="profile-section--subtitle">Institution name</h2>
+          <p class="profile-section--subDescription">
+            {{item?.institutionName}}
+          </p>
+        </div>
+        <div class="profile-section-subItems">
+          <h2 class="profile-section--subtitle">Qualification</h2>
+          <p class="profile-section--subDescription">
+            {{item?.qualification}}
+          </p>
+        </div>
+        <div class="profile-section-subItems">
+          <h2 class="profile-section--subtitle">Date</h2>
+          <p class="profile-section--subDescription">
+            {{item?.date | date: 'shortDate'}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="profile-tab-buttons">
+  <button (click)="activeTab = 'availability'" class="profile-tab-buttons--item flex-container-center">
+    Availability
+  </button>
+  <button (click)="activeTab = 'subjects'" class="profile-tab-buttons--item flex-container-center">SUBJECTS</button>
+  <button (click)="activeTab = 'calendar'" class="profile-tab-buttons--item flex-container-center">Calendar</button>
+  <button (click)="activeTab = 'ratings'" class="profile-tab-buttons--item flex-container-center">Ratings</button>
+  <button (click)="activeTab = 'reviews'" class="profile-tab-buttons--item flex-container-center">Reviews</button>
+  <hr/>
+</div>
+<div [ngSwitch]="activeTab">
+  <app-availability *ngSwitchCase="'availability'" [userId]="userId"></app-availability>
+  <app-subjects *ngSwitchCase="'subjects'" [userId]="userId"></app-subjects>
+  <app-calendar *ngSwitchCase="'calendar'" (onAddLesson)="isOpenAddLesson = true"></app-calendar>
+  <app-ratings *ngSwitchCase="'ratings'" [ratings]="ratings"></app-ratings>
+  <app-reviews *ngSwitchCase="'reviews'" [userId]="userId"></app-reviews>
+</div>
+
+<div class="add-lesson-wrapper modal-wrapper">
+  <app-modal-schem *ngIf="isOpenAddLesson" (close)="isOpenAddLesson = false" [title]="'Add Lesson'">
+    <app-add-lesson (onClose)="isOpenAddLesson = false"></app-add-lesson>
+  </app-modal-schem>
+</div>

@@ -89,3 +89,20 @@ export interface SelectedDay{
   startHour: string;
   subject: string;
 }
+
+export interface LessonSchedule {
+  actualDuration: string;
+  cancel: boolean;
+  duration: string;
+  end: boolean;
+  hourlyRate: number;
+  id: number;
+  lessonDate: string;
+  lessonInterval: string;
+  lessonPlan: string;
+  start: boolean;
+  status: string;
+  student: string;
+  subject: string;
+  tutorId: number;
+}

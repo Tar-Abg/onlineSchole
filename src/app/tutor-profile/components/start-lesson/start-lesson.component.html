@@ -1,7 +1,7 @@
 <section class="calendar-wrapper start-lesson-wrapper">
   <h3 class="lessons-table-title">Entered lesson</h3>
   <div class="flex-container">
-    <form class="flex-container-justify-start calendar-datepicker-wrappers">
+    <form class="flex-container-justify-start calendar-datepicker-wrappers" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="date-picker-wrapper-for-calendar">
         <h2 class="date-picker-label">From </h2>
         <mat-form-field appearance="fill"
@@ -14,7 +14,7 @@
           </mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <input matInput
-                 [matDatepicker]="picker" formControlName="date"
+                 [matDatepicker]="picker" formControlName="startDate"
                  (click)="picker.open()"
                  placeholder="*dd/mm/yyyy"
           >
@@ -37,12 +37,11 @@
         </mat-form-field>
       </div>
       <div class="p-relative">
-        <app-select [label]="'*status'" formControlName="preferredTimeZone"></app-select>
-        <span class="error-message">This is a required field</span>
+        <app-select [label]="'*status'" formControlName="statusId"></app-select>
       </div>
       <button class="button-for-show" type="submit">Show</button>
     </form>
-    <button class="btn-add-less flex-container-center">Add Lesson</button>
+    <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true">Add Lesson</button>
   </div>
 
   <div class="calendar-content">
@@ -108,73 +107,15 @@
       <div class="tWrap__body">
         <table>
           <tbody>
-          <tr>
+          <tr *ngFor="let lesson of (lessonSchedule$ | async)">
             <td>
               <p class="tbody-text">
-                Ann Smith
+                {{lesson.student}}
               </p>
             </td>
             <td>
               <p class="tbody-text">
-                $25
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                <img
-                  src="assets/images/calendar.png"
-                  alt="Calendar"
-                  width="26"
-                  height="28"
-                >
-                01.01.2020
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                11:00 - 12:00 AM
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                11 min
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                Math
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                California
-                Baptist University
-
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                Planned
-
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                60 min
-              </p>
-            </td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p class="tbody-text">
-                Ann Smith
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                $25
+                ${{lesson.hourlyRate}}
               </p>
             </td>
             <td>
@@ -185,294 +126,48 @@
                   width="26"
                   height="28"
                 >
-                01.01.2020
+                {{lesson.lessonDate | date : 'shortDate'}}
               </p>
             </td>
             <td>
               <p class="tbody-text">
-                11:00 - 12:00 AM
+                {{lesson.lessonInterval}}
               </p>
             </td>
             <td>
               <p class="tbody-text">
-                11 min
+                {{lesson.duration}}
               </p>
             </td>
             <td>
               <p class="tbody-text">
-                Math
+                {{lesson.subject}}
               </p>
             </td>
             <td>
               <p class="tbody-text">
-                California
-                Baptist University
-
+                {{lesson.lessonPlan}}
               </p>
             </td>
             <td>
               <p class="tbody-text">
-                Planned
-
+                {{lesson.status}}
               </p>
             </td>
             <td>
               <p class="tbody-text">
-                60 min
-              </p>
-            </td>
-            <td>
-              <button class="lesson-status-btn lesson-status-btn__end" (click)="isOpenEndLesson = true">
-                End
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p class="tbody-text">
-                Ann Smith
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                $25
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                <img
-                  src="assets/images/calendar.png"
-                  alt="Calendar"
-                  width="26"
-                  height="28"
-                >
-                01.01.2020
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                11:00 - 12:00 AM
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                11 min
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                Math
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                California
-                Baptist University
-
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                Planned
-
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                60 min
+                {{lesson.actualDuration}}
               </p>
             </td>
             <td>
               <div class="lessons-table-btn-wrapper">
-                <button class="lesson-status-btn lesson-status-btn__start">
+                <button class="lesson-status-btn lesson-status-btn__start" *ngIf="lesson.start">
                   Start
                 </button>
-                <button class="lesson-status-btn lesson-status-btn__cancel" (click)="isOpenCancelLesson = true">
-                  Cancel
+                <button class="lesson-status-btn lesson-status-btn__end" (click)="isOpenEndLesson = true" *ngIf="lesson.end">
+                  End
                 </button>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p class="tbody-text">
-                Ann Smith
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                $25
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                <img
-                  src="assets/images/calendar.png"
-                  alt="Calendar"
-                  width="26"
-                  height="28"
-                >
-                01.01.2020
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                11:00 - 12:00 AM
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                11 min
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                Math
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                California
-                Baptist University
-
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                Planned
-
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                60 min
-              </p>
-            </td>
-            <td>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p class="tbody-text">
-                Ann Smith
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                $25
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                <img
-                  src="assets/images/calendar.png"
-                  alt="Calendar"
-                  width="26"
-                  height="28"
-                >
-                01.01.2020
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                11:00 - 12:00 AM
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                11 min
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                Math
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                California
-                Baptist University
-
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                Planned
-
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                60 min
-              </p>
-            </td>
-            <td>
-              <button class="lesson-status-btn lesson-status-btn__end" (click)="isOpenEndLesson = true">
-                End
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <p class="tbody-text">
-                Ann Smith
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                $25
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                <img
-                  src="assets/images/calendar.png"
-                  alt="Calendar"
-                  width="26"
-                  height="28"
-                >
-                01.01.2020
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                11:00 - 12:00 AM
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                11 min
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                Math
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                California
-                Baptist University
-
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                Planned
-
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                60 min
-              </p>
-            </td>
-            <td>
-              <div class="lessons-table-btn-wrapper">
-                <button class="lesson-status-btn lesson-status-btn__start">
-                  Start
-                </button>
-                <button class="lesson-status-btn lesson-status-btn__cancel" (click)="isOpenCancelLesson = true">
+                <button class="lesson-status-btn lesson-status-btn__cancel" (click)="isOpenCancelLesson = true" *ngIf="lesson.cancel">
                   Cancel
                 </button>
               </div>
@@ -486,3 +181,9 @@
 </section>
 <app-end-lesson-modal *ngIf="isOpenEndLesson" (onCloe)="isOpenEndLesson = false"></app-end-lesson-modal>
 <app-cancel-lesson-modal *ngIf="isOpenCancelLesson" (onCloe)="isOpenCancelLesson = false"></app-cancel-lesson-modal>
+
+<div class="add-lesson-wrapper modal-wrapper">
+  <app-modal-schem *ngIf="isOpenAddLesson" (close)="isOpenAddLesson = false" [title]="'Add Lesson'">
+    <app-add-lesson (onClose)="isOpenAddLesson = false"></app-add-lesson>
+  </app-modal-schem>
+</div>
