@@ -70,11 +70,11 @@
         Lesson history
       </button>
     </section>
-  </div>
-  <div [ngSwitch]="activeTab">
-    <app-profile-info *ngSwitchCase="'PROFILE'" [userId]="userId" [ratings]="ratings$ | async"
-                      [tutorBaseInfo]="tutorBaseInfo"></app-profile-info>
-    <app-start-lesson *ngSwitchCase="'START_LESSON'"></app-start-lesson>
+    <div [ngSwitch]="activeTab">
+      <app-profile-info *ngSwitchCase="'PROFILE'" [userId]="userId" [ratings]="ratings$ | async"
+                        [tutorBaseInfo]="tutorBaseInfo"></app-profile-info>
+      <app-start-lesson *ngSwitchCase="'START_LESSON'"></app-start-lesson>
+    </div>
   </div>
 </main>
 

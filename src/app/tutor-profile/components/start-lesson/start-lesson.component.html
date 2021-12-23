@@ -43,7 +43,6 @@
     </form>
     <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true">Add Lesson</button>
   </div>
-
   <div class="calendar-content">
     <div class="tWrap">
       <div class="tWrap__head">
@@ -107,9 +106,14 @@
       <div class="tWrap__body">
         <table>
           <tbody>
+<!--          <tr class="without-data">-->
+<!--            <td>-->
+<!--              <h3>No data</h3>-->
+<!--            </td>-->
+<!--          </tr>-->
           <tr *ngFor="let lesson of (lessonSchedule$ | async)">
             <td>
-              <p class="tbody-text">
+              <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.student}}">
                 {{lesson.student}}
               </p>
             </td>
@@ -140,17 +144,17 @@
               </p>
             </td>
             <td>
-              <p class="tbody-text">
+              <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.subject}}">
                 {{lesson.subject}}
               </p>
             </td>
             <td>
-              <p class="tbody-text">
+              <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.lessonPlan}}">
                 {{lesson.lessonPlan}}
               </p>
             </td>
             <td>
-              <p class="tbody-text">
+              <p class="tbody-text" data-placement="top" title="${{lesson.status}}">
                 {{lesson.status}}
               </p>
             </td>
@@ -164,10 +168,12 @@
                 <button class="lesson-status-btn lesson-status-btn__start" *ngIf="lesson.start">
                   Start
                 </button>
-                <button class="lesson-status-btn lesson-status-btn__end" (click)="isOpenEndLesson = true" *ngIf="lesson.end">
+                <button class="lesson-status-btn lesson-status-btn__end" (click)="isOpenEndLesson = true"
+                        *ngIf="lesson.end">
                   End
                 </button>
-                <button class="lesson-status-btn lesson-status-btn__cancel" (click)="isOpenCancelLesson = true" *ngIf="lesson.cancel">
+                <button class="lesson-status-btn lesson-status-btn__cancel" (click)="isOpenCancelLesson = true"
+                        *ngIf="lesson.cancel">
                   Cancel
                 </button>
               </div>

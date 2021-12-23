@@ -1,7 +1,7 @@
 @import "src/assets/css/variables";
 
 .start-lesson-wrapper {
-  margin: 18px 0 160px 140px;
+  margin: 18px 0 160px 0;
 
   .lessons-table-title {
     margin-bottom: 30px;
@@ -52,11 +52,11 @@
       }
 
       .tbody-text {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        white-space: pre-wrap;
         margin: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding: 0 10px;
 
         img {
           width: 26px;
