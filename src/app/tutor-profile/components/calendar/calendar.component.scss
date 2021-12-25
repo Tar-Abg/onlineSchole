@@ -120,6 +120,7 @@
   .tWrap__body {
     max-height: 305px;
     overflow: auto;
+    overflow-x: hidden;
     padding: 0;
   }
 }
