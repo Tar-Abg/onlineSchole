@@ -183,4 +183,10 @@ export class InfosService {
     );
   }
 
+  getLessonStatuses(): Observable<KeyValuePair[]> {
+    return this.http.get<ResponseModel<KeyValuePair[]>>(`${this.url}/GetLessonStatuses`).pipe(
+      map(data => data.result)
+    );
+  }
+
 }

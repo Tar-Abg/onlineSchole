@@ -3,7 +3,7 @@
   <div class="flex-container">
     <form class="flex-container-justify-start calendar-datepicker-wrappers" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="date-picker-wrapper-for-calendar">
-        <h2 class="date-picker-label">From </h2>
+        <h2 class="date-picker-label">From</h2>
         <mat-form-field appearance="fill"
                         class="date-range-wrapper
                   custom-date-range-wrapper">
@@ -14,7 +14,7 @@
           </mat-datepicker-toggle>
           <mat-datepicker #picker></mat-datepicker>
           <input matInput
-                 [matDatepicker]="picker" formControlName="startDate"
+                 [matDatepicker]="picker" formControlName="from"
                  (click)="picker.open()"
                  placeholder="*dd/mm/yyyy"
           >
@@ -30,14 +30,14 @@
             </mat-icon>
           </mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
-          <input matInput [matDatepicker]="picker1" formControlName="endDate"
+          <input matInput [matDatepicker]="picker1" formControlName="to"
                  (click)="picker1.open()"
                  placeholder="*dd/mm/yyyy"
           >
         </mat-form-field>
       </div>
       <div class="p-relative">
-        <app-select [label]="'*status'" formControlName="statusId"></app-select>
+        <app-select [label]="'*status'" formControlName="statusId" [list]="lessonStatuses$ | async"></app-select>
       </div>
       <button class="button-for-show" type="submit">Show</button>
     </form>

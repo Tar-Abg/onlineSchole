@@ -106,3 +106,9 @@ export interface LessonSchedule {
   subject: string;
   tutorId: number;
 }
+
+export interface LessonRequest {
+  statusId: number;
+  from: string;
+  to: string;
+}
