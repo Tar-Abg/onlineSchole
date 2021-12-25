@@ -5,7 +5,7 @@
       <label for="hourlyRate" class="form-label">
         <input id="hourlyRate"
                class="form-input"
-               type="text"
+               type="number"
                formControlName="hourlyRate"
         >
         <span class="error-message" *ngIf="form.get('hourlyRate')?.errors?.required && form.get('hourlyRate')?.touched">This is a required field</span>

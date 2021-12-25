@@ -18,10 +18,10 @@
                           placeholder="a short headline about yourself*"
                           formControlName="headline"> a short headline about yourself*
                 </textarea>
-              <span class="error-message" *ngIf="form.get('headline')?.errors && form.get('headline')?.touched">This is a required field</span>
+              <span class="error-message" *ngIf="form.get('headline')?.errors?.required && form.get('headline')?.touched">This is a required field</span>
             </label>
             <p class="form-item-notification">This will appear at the top of your profile.</p>
-            <p class="form-item-notification">Your profile headline must be between 15 and 100
+            <p class="form-item-notification" [class.text-danger]="form.get('headline')?.errors?.minlength || form.get('headline')?.errors?.maxlength">Your profile headline must be between 15 and 100
               characters.
             </p>
           </li>
@@ -58,13 +58,13 @@
                                               formControlName="bio"> *a paragraph or more about yourself
 
                                     </textarea>
-              <span class="error-message" *ngIf="form.get('bio')?.errors && form.get('bio')?.touched">This is a required field</span>
+              <span class="error-message" *ngIf="form.get('bio')?.errors?.required && form.get('bio')?.touched">This is a required field</span>
             </label>
             <p class="form-item-notification">Help students get to know you.</p>
             <p class="form-item-notification">Do you have experience tutoring or teaching? What do
               you love about tutoring.
             </p>
-            <p class="form-item-notification">Your free response must be between 100 and 2000
+            <p class="form-item-notification" [class.text-danger]="form.get('bio')?.errors?.minlength || form.get('bio')?.errors?.maxlength">Your free response must be between 100 and 2000
               characters.
             </p>
           </li>

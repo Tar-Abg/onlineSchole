@@ -29,7 +29,8 @@
                   placeholder="a short headline about yourself*"
                   formControlName="headline">a short headline about yourself*
         </textarea>
-        <span class="form-item-notification">Your profile headline must be between 15 and 75 characters.</span>
+        <span class="error-message" *ngIf="form.get('headline')?.errors?.required && form.get('headline')?.touched">This is a required field</span>
+        <span class="form-item-notification" [class.text-danger]="form.get('headline')?.errors?.minlength || form.get('headline')?.errors?.maxlength">Your profile headline must be between 15 and 75 characters.</span>
       </label>
     </li>
     <li class="user-sign-up-list__item large-size">
@@ -42,9 +43,9 @@
       >a short headline about yourself*
                 </textarea>
         <span class="error-message"
-              *ngIf="form.get('bio')?.errors && form.get('bio')?.touched">This is a required field</span>
+              *ngIf="form.get('bio')?.errors?.required && form.get('bio')?.touched">This is a required field</span>
       </label>
-      <p class="form-item-notification">Your free response must be between 100 and 2000 characters.</p>
+      <p class="form-item-notification" [class.text-danger]="form.get('bio')?.errors?.minlength || form.get('bio')?.errors?.maxlength">Your free response must be between 100 and 2000 characters.</p>
     </li>
     <li class="user-sign-up-list__item large-size">
       <h3 class="form-item-label">Wrap up your profile</h3>

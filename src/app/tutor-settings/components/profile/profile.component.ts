@@ -69,9 +69,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       id: [null],
       userId: [this.storageService.getUserId()],
-      headline: [null],
+      headline: [null, [Validators.required, Validators.minLength(15), Validators.maxLength(75), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       photo: [null],
-      bio: [null, [Validators.required, Validators.minLength(100), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      bio: [null, [Validators.required, Validators.minLength(100), Validators.maxLength(2000), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       wrapUp: [null],
     })
   }
