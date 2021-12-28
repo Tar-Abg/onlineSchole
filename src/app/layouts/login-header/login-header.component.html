@@ -34,5 +34,7 @@
         </a>
       </li>
     </ul>
+
+    <button *ngIf="isLoggedIn$ | async" (click)="signOut()">log out</button>
   </div>
 </header>

@@ -6,9 +6,7 @@ import {
 } from '../shared/guards/auth-guard.guard';
 
 const routes: Routes = [
-  {path: '', component: TutorProfileComponent}
-
-  // {path: '', component: TutorProfileComponent, canActivate: [AuthGuard]},
+  {path: '', component: TutorProfileComponent, canActivate: [AuthGuard]},
 ];
 
 @NgModule({

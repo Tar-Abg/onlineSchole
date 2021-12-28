@@ -55,7 +55,7 @@ export class AuthInterceptor implements HttpInterceptor {
   }
 
   private logoutAndRedirect(err: any): Observable<HttpEvent<any>> {
-    this.authService.signOut();
+    this.authService.signOut().subscribe();
     this.router.navigateByUrl('/');
 
     return throwError(err);

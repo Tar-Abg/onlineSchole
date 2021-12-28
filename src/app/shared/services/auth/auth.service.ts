@@ -1,21 +1,25 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {Login, User, UserAuthInfo} from "../../models/auth.model";
 import {tap} from "rxjs/operators";
 import {StorageService} from "../storage/storage.service";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private readonly url = `${environment.apiUrl}/User`;
+  isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private http: HttpClient,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private router: Router,
   ) {
+    this.isAuthenticated() ? this.isLoggedIn$.next(true) : this.isLoggedIn$.next(false);
   }
 
   login(body: Login): Observable<User> {
@@ -33,6 +37,7 @@ export class AuthService {
     this.storageService.setItem('auth_token', user.token);
     this.storageService.setItem('refresh_token', user.refreshToken);
     this.storageService.setItem('expirationTime', user.refreshTokenExpiration);
+    this.isLoggedIn$.next(true);
   }
 
   checkUserRole(user: User): void {
@@ -78,8 +83,17 @@ export class AuthService {
     return this.storageService.getItem('auth_token');
   }
 
-  signOut(): void {
-    localStorage.clear();
+  signOut(): Observable<any> {
+    const body = {
+      refreshToken: JSON.parse(this.storageService.getItem('refresh_token'))
+    }
+    return this.http.post(`${this.url}/Logout`, body).pipe(
+      tap(() => {
+        this.isLoggedIn$.next(false);
+        this.router.navigate(['/']);
+        localStorage.clear();
+      })
+    )
   }
 
   // for test
