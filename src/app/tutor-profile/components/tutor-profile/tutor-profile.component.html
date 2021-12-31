@@ -1,5 +1,6 @@
 <app-login-header></app-login-header>
 <main class="user-profile-wrapper">
+  <div class="profile-gradient"></div>
   <div class="profile-container">
     <section class="profile-main-info-wrapper">
       <div class="file-upload-wrapper">
@@ -53,19 +54,19 @@
              height="55">
         Start Lesson
       </button>
-      <button class="profile-buttons--item">
+      <button class="profile-buttons--item" (click)="activeTab ='MESSAGES'">
         <img src="assets/images/message.png" alt="Messages" width="51" height="50">
         Messages
       </button>
-      <button class="profile-buttons--item">
+      <button class="profile-buttons--item" (click)="activeTab ='JOBS_BOARD'">
         <img src="assets/images/analyst.png" alt="Jobs Board" width="52" height="52">
         Jobs board
       </button>
-      <button class="profile-buttons--item">
+      <button class="profile-buttons--item" (click)="activeTab='PAYMENTS'">
         <img src="assets/images/cashless-payment.png" alt="payments" width="48" height="48">
         Payments
       </button>
-      <button class="profile-buttons--item">
+      <button class="profile-buttons--item" (click)="activeTab='LESSON_HISTORY'">
         <img src="assets/images/lessonHistory.png" alt="Messages" width="51" height="51">
         Lesson history
       </button>
@@ -74,6 +75,10 @@
       <app-profile-info *ngSwitchCase="'PROFILE'" [userId]="userId" [ratings]="ratings$ | async"
                         [tutorBaseInfo]="tutorBaseInfo"></app-profile-info>
       <app-start-lesson *ngSwitchCase="'START_LESSON'"></app-start-lesson>
+      <app-message-dashboard *ngSwitchCase="'MESSAGES'"></app-message-dashboard>
+      <app-jobs-board-dashboard *ngSwitchCase="'JOBS_BOARD'"></app-jobs-board-dashboard>
+      <app-payment-dashboard *ngSwitchCase="'PAYMENTS'"></app-payment-dashboard>
+      <app-lesson-history-dashboard *ngSwitchCase="'LESSON_HISTORY'"></app-lesson-history-dashboard>
     </div>
   </div>
 </main>

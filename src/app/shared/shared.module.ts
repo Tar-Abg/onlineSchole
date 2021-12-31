@@ -25,6 +25,9 @@ import {ChangePasswordModalComponent} from './components/change-password-modal/c
 import {MessageModalComponent} from './components/message-modal/message-modal.component';
 import {MessageDashboardComponent} from './components/message-dashboard/message-dashboard.component';
 import { MessageUsersListComponent } from './components/message-users-list/message-users-list.component';
+import { JobsBoardDashboardComponent } from './components/jobs-board-dashboard/jobs-board-dashboard.component';
+import { PaymentDashboardComponent } from './components/payment-dashboard/payment-dashboard.component';
+import { LessonHistoryDashboardComponent } from './components/lesson-history-dashboard/lesson-history-dashboard.component';
 
 
 @NgModule({
@@ -46,7 +49,10 @@ import { MessageUsersListComponent } from './components/message-users-list/messa
     ChangePasswordModalComponent,
     MessageModalComponent,
     MessageDashboardComponent,
-    MessageUsersListComponent
+    MessageUsersListComponent,
+    JobsBoardDashboardComponent,
+    PaymentDashboardComponent,
+    LessonHistoryDashboardComponent
   ],
   imports: [
     CommonModule,
@@ -58,22 +64,25 @@ import { MessageUsersListComponent } from './components/message-users-list/messa
     MatCheckboxModule,
     RouterModule,
   ],
-    exports: [
-        RegisterHeaderComponent,
-        StepsComponent,
-        SelectComponent,
-        InstitutionsComponent,
-        CertificatesComponent,
-        PersonalInformationComponent,
-        PaginationComponent,
-        MessageComponent,
-        ModalSchemComponent,
-        ResetPasswordComponent,
-        ChangePasswordModalComponent,
-        MessageModalComponent,
-        LoginComponent,
-        MessageDashboardComponent
-    ]
+  exports: [
+    RegisterHeaderComponent,
+    StepsComponent,
+    SelectComponent,
+    InstitutionsComponent,
+    CertificatesComponent,
+    PersonalInformationComponent,
+    PaginationComponent,
+    MessageComponent,
+    ModalSchemComponent,
+    ResetPasswordComponent,
+    ChangePasswordModalComponent,
+    MessageModalComponent,
+    LoginComponent,
+    MessageDashboardComponent,
+    JobsBoardDashboardComponent,
+    PaymentDashboardComponent,
+    LessonHistoryDashboardComponent
+  ]
 })
 export class SharedModule {
 }

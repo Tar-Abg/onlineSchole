@@ -21,7 +21,7 @@
 
                     <div class="selectWrapper">
                       <app-select
-                        [label]="'*Category'"
+                        [label]="'Category*'"
                         [list]="categories$ | async"
                         [keyName]="'categoryName'"
                         (ngModelChange)="categoryChange($event, i)"
@@ -33,7 +33,7 @@
                     </div>
                     <div class="selectWrapper">
                       <app-select
-                        [label]="'*Subject'"
+                        [label]="'Subject*'"
                         [list]="observables[i]?.subjects$ | async"
                         [keyName]="'subjectName'"
                         (ngModelChange)="subjectChange($event, i, tutorSubjects.controls[i])"
@@ -45,7 +45,7 @@
                     </div>
                     <div class="selectWrapper">
                       <app-select
-                        [label]="'*Level'"
+                        [label]="'Level*'"
                         [list]="observables[i]?.levels$ | async"
                         [keyName]="'level'"
                         [disable]="!(observables[i]?.levels$ | async)?.length"
@@ -93,7 +93,7 @@
             <div class="form-label">
               <div class="dropdown-menu-with-selected-icon">
                 <app-select
-                  [label]="'*None'"
+                  [label]="'None*'"
                   [list]="cancelationHours$ | async"
                   formControlName="cancellationId"
                 >
@@ -116,7 +116,7 @@
             <li class="address-form__item">
               <div class="form-label">
                 <app-select
-                  [label]="'*Country'"
+                  [label]="'Country*'"
                   [list]="countries$ | async"
                   [keyName]="'nameLowerCase'"
                   formControlName="countryId"

@@ -25,7 +25,7 @@
           </div>
           <label for="phone-number" class="form-label phone-number-label phone-number-label-input">
             <input id="phone-number" class="form-input" autocomplete="phone-number" type="tel"
-                   placeholder="*Phone number"
+                   placeholder="Phone number*"
                    formControlName="mobile">
           </label>
           <span class="error-message"
@@ -37,7 +37,7 @@
         <h3 class="form-item-label">User Name*</h3>
         <div class="d-flex position-relative">
           <label for="user-name" class="form-label">
-            <input id="user-name" class="form-input" type="text" placeholder="*user name"
+            <input id="user-name" class="form-input" type="text" placeholder="user name*"
                    formControlName="userName">
             <span class="error-message" *ngIf="form.get('userName')?.errors && form.get('userName')?.touched">Please fill in your last name</span>
           </label>
@@ -48,7 +48,7 @@
         <h3 class="form-item-label">Preferred Time Zone*</h3>
         <div class="d-flex position-relative">
           <div class="p-relative form-label">
-            <app-select [disable]="form.disabled" [label]="'*time zone'" formControlName="preferredTimeZone" [list]="timeZones$ | async" [keyName]="'displayName'"></app-select>
+            <app-select [disable]="form.disabled" [label]="'time zone*'" formControlName="preferredTimeZone" [list]="timeZones$ | async" [keyName]="'displayName'"></app-select>
             <span class="error-message" *ngIf="form.get('preferredTimeZone')?.errors && form.get('preferredTimeZone')?.touched">Please specify month of your  birth</span>
           </div>
         </div>
@@ -60,7 +60,7 @@
           <h3 class="form-item-label">Country*</h3>
           <label for="country" class="form-label">
             <app-select
-              [label]="'*country'"
+              [label]="'country*'"
               id="country"
               [keyName]="'nameLowerCase'"
               [list]="countries$ | async"

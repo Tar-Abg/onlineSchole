@@ -5,7 +5,7 @@
         <div [formGroupName]="i" class="d-flex selectRow">
           <div class="form-label fixed-width">
             <app-select
-              [label]="'*Category'"
+              [label]="'Category*'"
               [keyName]="'categoryName'"
               formControlName="categoryId"
               [list]="categories$ | async"
@@ -14,7 +14,7 @@
           </div>
           <div class="form-label fixed-width">
             <app-select
-              [label]="'*Subject'"
+              [label]="'Subject*'"
               [keyName]="'subjectName'"
               [list]="observables[i]?.subjects$ | async"
               formControlName="subjectId"
@@ -23,7 +23,7 @@
           </div>
           <div class="form-label fixed-width">
             <app-select
-              [label]="'*Level'"
+              [label]="'Level*'"
               [list]="observables[i]?.levels$ | async"
               [keyName]="'level'"
               [disable]="!(observables[i]?.levels$ | async)?.length"

@@ -19,11 +19,11 @@
             <span class="error-message" *ngIf="usernameIsExist$ | async">This username is already registered on Sophist</span>
           </label>
           <div class="gender fixed-width form-label">
-            <app-select [label]="'*gender'" [list]="genderList$ | async" formControlName="gender"></app-select>
+            <app-select [label]="'gender*'" [list]="genderList$ | async" formControlName="gender"></app-select>
             <span class="error-message" *ngIf="form.get('gender')?.errors && form.get('gender')?.touched">Please specify your gender</span>
           </div>
           <div class="p-relative form-label">
-            <app-select [label]="'*time zone'" formControlName="preferredTimeZone" [list]="timeZones$ | async" [keyName]="'displayName'"></app-select>
+            <app-select [label]="'time zone*'" formControlName="preferredTimeZone" [list]="timeZones$ | async" [keyName]="'displayName'"></app-select>
             <span class="error-message" *ngIf="form.get('preferredTimeZone')?.errors && form.get('preferredTimeZone')?.touched">This is a required field</span>
           </div>
           <label for="email" class="form-label">

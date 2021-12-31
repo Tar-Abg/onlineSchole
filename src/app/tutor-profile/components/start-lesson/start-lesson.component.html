@@ -1,5 +1,5 @@
 <section class="calendar-wrapper start-lesson-wrapper">
-  <h3 class="lessons-table-title">Entered lesson</h3>
+  <h3 class="section-subtitle">Entered lesson</h3>
   <div class="flex-container">
     <form class="flex-container-justify-start calendar-datepicker-wrappers" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="date-picker-wrapper-for-calendar">
@@ -37,9 +37,9 @@
         </mat-form-field>
       </div>
       <div class="p-relative">
-        <app-select [label]="'*status'" formControlName="statusId" [list]="lessonStatuses$ | async"></app-select>
+        <app-select [label]="'status*'" formControlName="statusId" [list]="lessonStatuses$ | async"></app-select>
       </div>
-      <button class="button-for-show" type="submit">Show</button>
+      <button class="button-for-show flex-container-center" type="submit">Show</button>
     </form>
     <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true">Add Lesson</button>
   </div>
@@ -106,11 +106,11 @@
       <div class="tWrap__body">
         <table>
           <tbody>
-<!--          <tr class="without-data">-->
-<!--            <td>-->
-<!--              <h3>No data</h3>-->
-<!--            </td>-->
-<!--          </tr>-->
+          <!--          <tr class="without-data">-->
+          <!--            <td>-->
+          <!--              <h3>No data</h3>-->
+          <!--            </td>-->
+          <!--          </tr>-->
           <tr *ngFor="let lesson of (lessonSchedule$ | async)">
             <td>
               <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.student}}">
@@ -185,9 +185,18 @@
     </div>
   </div>
 </section>
-<app-end-lesson-modal *ngIf="isOpenEndLesson" (onCloe)="isOpenEndLesson = false"></app-end-lesson-modal>
-<app-cancel-lesson-modal *ngIf="isOpenCancelLesson" (onCloe)="isOpenCancelLesson = false"></app-cancel-lesson-modal>
 
+<!-- Start Lessons Wrapper -->
+<div class="add-lesson-wrapper modal-wrapper end-lesson-modal">
+  <app-modal-schem *ngIf="isOpenEndLesson" (close)="isOpenEndLesson = false" [title]="'End Lesson'">
+    <app-end-lesson-modal (onCloe)="isOpenEndLesson = false"></app-end-lesson-modal>
+  </app-modal-schem>
+</div>
+<div class="add-lesson-wrapper modal-wrapper end-lesson-modal">
+  <app-modal-schem *ngIf="isOpenCancelLesson" (close)="isOpenCancelLesson = false" [title]="'End Lesson'">
+    <app-cancel-lesson-modal (onCloe)="isOpenCancelLesson = false"></app-cancel-lesson-modal>
+  </app-modal-schem>
+</div>
 <div class="add-lesson-wrapper modal-wrapper">
   <app-modal-schem *ngIf="isOpenAddLesson" (close)="isOpenAddLesson = false" [title]="'Add Lesson'">
     <app-add-lesson (onClose)="isOpenAddLesson = false"></app-add-lesson>

@@ -45,6 +45,7 @@ $school-theme: mat.define-light-theme((
 @import "assets/css/components/dropdown";
 @import "assets/css/components/modal";
 @import "assets/css/components/upload-file";
+@import "assets/css/searchableItem/searchableItem";
 @import "assets/css/tutor-sign-up";
 @import "assets/css/layouts/login";
 @import "assets/css/tutorSettingPages/tutorSettingPages";
@@ -78,18 +79,22 @@ app-select {
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
 
-.btn-blue {
-  background: #1E81CE;
-  border-radius: 15px;
-  font-family: Segoe UI;
-  font-style: normal;
+.btn-blue, .btn-green {
   width: auto;
+  height: 45px;
   padding: 13px 16px;
-  font-weight: 600;
-  font-size: 18px;
+  border-radius: 15px;
+  border: 0;
+  font: $type-bold normal $type-medium-size $Segoe-UI-sans;
   line-height: 24px;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #FFFFFF !important;
+  text-transform: capitalize;
   white-space: nowrap;
+  color: $clr-ntrl-min !important;
+  background: #1E81CE;
+}
+
+.btn-green {
+  background-color: #68EE8D;
+  color: $clr-ntrl-min;
 }

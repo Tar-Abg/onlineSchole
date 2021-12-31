@@ -44,7 +44,7 @@
             <div class="d-flex position-relative selects-wrapper">
               <div class="modal-select-width position-relative">
                 <app-select
-                  [label]="'*time'"
+                  [label]="'time*'"
                   formControlName="hourId"
                   [list]="hoursOfDay$ | async"
                   [keyName]="'time'"
@@ -53,7 +53,7 @@
               </div>
               <div class="modal-select-width position-relative">
                 <app-select
-                  [label]="'*minutes'"
+                  [label]="'minutes*'"
                   formControlName="minute"
                   [keyName]="'value'"
                   [list]="minutes$ | async"
@@ -76,7 +76,7 @@
               <div class="d-flex selectRow">
                 <div class="selectWrapper">
                   <app-select
-                    [label]="'*Category'"
+                    [label]="'Category*'"
                     [keyName]="'categoryName'"
                     formControlName="categoryId"
                     [list]="categories$ | async"
@@ -87,7 +87,7 @@
                 </div>
                 <div class="selectWrapper position-relative">
                   <app-select
-                    [label]="'*Subject'"
+                    [label]="'Subject*'"
                     [keyName]="'subjectName'"
                     formControlName="subjectId"
                     [list]="subjects$ | async"
@@ -98,7 +98,7 @@
                 </div>
                 <div class="selectWrapper position-relative">
                   <app-select
-                    [label]="'*Level'"
+                    [label]="'Level*'"
                     [keyName]="'level'"
                     formControlName="levelId"
                     [list]="levels$ | async"

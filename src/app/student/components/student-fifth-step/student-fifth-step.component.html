@@ -58,7 +58,7 @@
           <span class="error-message block" *ngIf="billingAddress.get('apartment')?.errors?.required && billingAddress.get('apartment')?.touched">This Field is requires</span>
         </label>
         <label class="form-label">
-          <app-select [list]="states$ | async" [keyName]="'name'" [label]="'*state'" formControlName="stateId"></app-select>
+          <app-select [list]="states$ | async" [keyName]="'name'" [label]="'state*'" formControlName="stateId"></app-select>
           <span class="error-message block" *ngIf="billingAddress.get('stateId')?.errors?.required && billingAddress.get('stateId')?.touched">This Field is requires</span>
         </label>
         <label for="zipCode" class="form-label">

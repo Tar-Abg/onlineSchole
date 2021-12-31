@@ -30,7 +30,8 @@ import { AddLessonModalComponent } from './components/add-lesson-modal/add-lesso
 
     ],
     exports: [
-        AddLessonModalComponent
+        AddLessonModalComponent,
+        PaymentComponent
     ],
     imports: [
         CommonModule,

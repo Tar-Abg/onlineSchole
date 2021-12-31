@@ -1,2 +1,102 @@
-<p>cancel-lesson-modal works!</p>
-<b (click)="onCloe.emit()">x</b>
+<div class="end-lesson-wrapper">
+  <table class="end-lesson-table">
+    <tbody>
+    <tr>
+      <td>
+        <div class="end-lesson-table-row">
+          <h2 class="end-lesson-table-row-label">
+            Lesson start time*
+          </h2>
+          <div class="end-lesson-table-row-input">
+            <label for="lesson-start-time" class="form-label">
+              <input id="lesson-start-time"
+                     class="form-input"
+                     name="lesson-start-time"
+                     required
+                     autocomplete="lessonStartTime"
+                     type="text"
+                     placeholder="11: 00 AM"
+                     formControlName="lessonStartTime">
+<!--              <span class="error-message">This is a required field</span>-->
+            </label>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="end-lesson-table-row">
+          <h2 class="end-lesson-table-row-label">
+            Lesson end time*
+          </h2>
+          <div class="end-lesson-table-row-input">
+            <label for="lesson-end-time" class="form-label">
+              <input id="lesson-end-time"
+                     class="form-input"
+                     name="lesson-end-time"
+                     required
+                     autocomplete="lessonEndTime"
+                     type="text"
+                     placeholder="11: 00 AM"
+                     formControlName="lessonEndTime">
+<!--              <span class="error-message">This is a required field</span>-->
+            </label>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="end-lesson-table-row">
+          <h2 class="end-lesson-table-row-label error-label">
+            Lesson duration*
+          </h2>
+          <div class="end-lesson-table-row-input">
+            <label for="lesson-duration" class="form-label">
+              <input id="lesson-duration"
+                     class="form-input"
+                     name="lesson-duration"
+                     required
+                     autocomplete="lessonDuration"
+                     type="text"
+                     placeholder="11: 00 AM"
+                     formControlName="lessonEndTime">
+              <span class="error-message">This is a required field</span>
+            </label>
+          </div>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="end-lesson-table-row">
+          <h2 class="end-lesson-table-row-label">
+            Total earning*
+          </h2>
+          <div class="end-lesson-table-row-input">
+            <label for="total-earning" class="form-label">
+              <input id="total-earning"
+                     class="form-input"
+                     name="total-earning"
+                     required
+                     autocomplete="totalEarning"
+                     type="text"
+                     placeholder="15$"
+                     formControlName="totalEarning">
+<!--              <span class="error-message">This is a required field</span>-->
+            </label>
+          </div>
+        </div>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="flex-container-center">
+    <button class="end-lesson-btn">
+      Ok
+    </button>
+  </div>
+  <div class="end-lesson-modal-image">
+    <img src="assets/images/endLessonPic.png" alt="End Lesson" width="266" height="175">
+  </div>
+</div>
