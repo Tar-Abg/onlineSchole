@@ -10,6 +10,7 @@ export interface User {
   refreshTokenExpiration: string;
   roles: string[];
   token: string;
+  refreshToken: string;
   userName: string;
 }
 

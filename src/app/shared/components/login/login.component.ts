@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ValidationService} from "../../services/validation/validation.service";
 import {AuthService} from "../../services/auth/auth.service";
@@ -12,7 +12,7 @@ import {Subscription} from "rxjs";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
   form: FormGroup;
   errorMessage: string;
@@ -23,7 +23,6 @@ export class LoginComponent implements OnInit {
     private validationService: ValidationService,
     private authService: AuthService,
     private router: Router,
-    private storageService: StorageService,
   ) {
   }
 
@@ -52,19 +51,9 @@ export class LoginComponent implements OnInit {
         if (!user.token) {
           this.errorMessage = user.message;
         } else {
-          const loggedUser = this.authService.parseToken(user.token);
-          loggedUser.roles === 'Tutor' ? this.storageService.setItem('userRole', 1) : this.storageService.setItem('userRole', 2);
-          this.storageService.setItem('userId', +loggedUser.UserId)
-          // this.authService.getTutorSecuredData().subscribe()
-          // this.router.navigate([`${UserRole[this.storageService.getItem('userRole')]}/profile`]);
-          // this.authService.getRefreshTokens(+loggedUser.UserId).subscribe((data) => {
-          //   console.log(data[data.length - 1].token);
-          //   this.storageService.setItem('refreshToken', data[data.length - 1].token);
-          //   this.authService.refreshToken(data[data.length - 1].token).subscribe()
-          //
-          //   //   this.storageService.setItem('auth_token', data[0].token)
-          //   //
-          // })
+          const loggedUser= this.authService.extractUserFromToken(user.token);
+          this.authService.setUserId(+loggedUser.UserId);
+          this.router.navigate([`${user.roles[0].toLowerCase()}/profile`]);
         }
       })
     );
@@ -72,6 +61,10 @@ export class LoginComponent implements OnInit {
 
   togglePasswordVisibility(): void {
     this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
 }

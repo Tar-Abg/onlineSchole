@@ -10,6 +10,7 @@ import {FifthStepComponent} from "./components/fifth-step/fifth-step.component";
 import {TutorFirstStepComponent} from "./components/tutor-sign-up-steps/tutor-first-step/tutor-first-step.component";
 import {TutorSecondStepComponent} from "./components/tutor-sign-up-steps/tutor-second-step/tutor-second-step.component";
 import {TutorThirdStepComponent} from "./components/tutor-sign-up-steps/tutor-third-step/tutor-third-step.component";
+import {AuthGuardService as AuthGuard} from "../shared/guards/auth-guard.guard";
 
 const routes: Routes = [
   {
@@ -32,16 +33,8 @@ const routes: Routes = [
       {path: '', redirectTo: 'step-one'},
     ]
   },
-  // {path: 'settings', loadChildren: () => import('../tutor-settings/tutor-settings.module').then(m => m.TutorSettingsModule), canActivate: [AuthGuard]},
-  {
-    path: 'settings',
-    loadChildren: () => import('../tutor-settings/tutor-settings.module').then(m => m.TutorSettingsModule)
-  },
-  {
-    path: 'profile',
-    loadChildren: () => import('../tutor-profile/tutor-profile.module').then(m => m.TutorProfileModule)
-  },
-  // {path: 'profile', loadChildren: () => import('../tutor-profile/tutor-profile.module').then(m => m.TutorProfileModule), canActivate: [AuthGuard] },
+  {path: 'settings', loadChildren: () => import('../tutor-settings/tutor-settings.module').then(m => m.TutorSettingsModule), canActivate: [AuthGuard]},
+  {path: 'profile', loadChildren: () => import('../tutor-profile/tutor-profile.module').then(m => m.TutorProfileModule), canActivate: [AuthGuard] },
 ]
 
 @NgModule({
