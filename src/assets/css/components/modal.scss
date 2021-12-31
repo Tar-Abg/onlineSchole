@@ -1,48 +1,47 @@
 .modal-content {
-    height: 440px;
-    min-width: 897px;
-    border: 2px solid rgba(143, 181, 252, 0.31);
-    box-sizing: border-box;
-    border-radius: 15px;
-    padding-bottom: 58px;
+  height: 440px;
+  min-width: 897px;
+  border: 2px solid rgba(143, 181, 252, 0.31);
+  box-sizing: border-box;
+  border-radius: 15px;
+  padding-bottom: 58px;
 }
 
 .modal-body {
-    padding: 58px 76px;
-    color: black;
+  padding: 58px 76px;
+  color: black;
 }
 
 .register-confirmation-text {
-    position: relative;
-    width: 94%;
-    z-index: 9;
-    font-size: $type-base;
+  position: relative;
+  width: 94%;
+  z-index: 9;
+  font-size: $type-base;
 }
 
 .register-confirmation-pic {
-    position: absolute;
-    bottom: -98px;
-    right: 0;
-    width: auto;
-    height: auto;
+  position: absolute;
+  bottom: -98px;
+  right: 0;
+  width: auto;
+  height: auto;
 }
 
 .modal-close-btn {
-    position: absolute;
-    right: 0;
-    z-index: 999;
-    padding: 26px 28px 0 0;
-    background: unset;
-    border: unset;
-    font-size: 31px;
-    text-align: right;
+  position: absolute;
+  right: 0;
+  z-index: 999;
+  padding: 26px 28px 0 0;
+  background: unset;
+  border: unset;
+  font-size: 31px;
+  text-align: right;
 }
 
 .modal-close-btn:focus {
-    outline: none;
-    border: none;
+  outline: none;
+  border: none;
 }
-
 
 .modal-wrapper {
   .modal-scheme {
@@ -94,7 +93,6 @@
 }
 
 .add-lesson-wrapper {
-
   .mat-form-field {
     background-color: transparent;
   }
@@ -159,7 +157,8 @@
 
 }
 
-.end-lesson-modal {
+.end-lesson-modal,
+.cancel-lesson-modal {
   .modal-content {
     width: 647px !important;
     min-width: auto;
@@ -171,5 +170,11 @@
     span {
       color: #DA8DF1;
     }
+  }
+}
+
+.cancel-lesson-modal {
+  .modal-body {
+    margin: 0 40px;
   }
 }

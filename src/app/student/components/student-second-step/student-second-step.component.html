@@ -112,8 +112,10 @@
           <li class="user-sign-up-list__item select-wrapper-min-width">
             <h3 class="main-question">How many tutoring sessions do you think you will need?*</h3>
             <div class="fixed-width form-label">
-              <app-select [label]="'select*'" [list]="lessonsCounts$ | async"
-                          formControlName="sessionsCountId"></app-select>
+              <app-select [label]="'Select*'"
+                          [list]="lessonsCounts$ | async"
+                          formControlName="sessionsCountId">
+              </app-select>
             </div>
           </li>
         </ul>

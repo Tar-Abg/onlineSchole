@@ -1,66 +1,20 @@
 @import "src/assets/css/variables";
 
-.end-lesson {
-
-  &-table {
-    margin: 0 auto;
-
-    tr {
-      margin-bottom: 0;
-    }
-
-    &-row {
-      display: flex;
-      align-items: center;
-      grid-gap: 84px;
-
-      &-label {
-        margin: 0;
-        min-width: 180px;
-        font: $type-semi-bold normal $type-medium-size $Segoe-UI-sans;
-        color: $clr-ntrl-max;
-      }
-
-      .error-label {
-        color: #FF0000;
-      }
-
-      &-input {
-        .form-input {
-          width: 129px;
-          height: 30px;
-          border: 0;
-          border-bottom: 1px solid #E9E9E9;
-          border-radius: 0;
-          box-shadow: unset;
-          font: $type-light normal $type-small $Roboto-sans;
-          color: $clr-ntrl-max;
-
-          &:focus {
-            border-bottom: 1px solid $clr-ntrl-max;
-          }
-        }
-      }
-    }
+.cancel-lesson-modal-wrapper {
+  textarea {
+    width: 100%;
   }
 
-  &-modal-image {
-    margin: -28px -60px;
-
-    img {
-      width: auto;
-    }
+  .main-question {
+    font: $type-regular normal $type-medium-size $Segoe-UI-sans;
   }
 
-  &-btn {
-    width: 82px;
-    height: 38px;
-    margin-top: 38px;
-    border-radius: 10px;
-    border: 0;
-    font: $type-semi-bold normal $type-medium-size $Segoe-UI-sans;
-    text-transform: uppercase;
-    color: $clr-ntrl-min;
-    background-color: #DA8DF1;
+  .form-input {
+    width: 133px;
+    text-align: left;
+
+    &::-webkit-input-placeholder {
+      text-align: right;
+    }
   }
 }

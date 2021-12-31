@@ -16,7 +16,7 @@
           <input matInput
                  [matDatepicker]="picker" formControlName="from"
                  (click)="picker.open()"
-                 placeholder="*dd/mm/yyyy"
+                 placeholder="dd/mm/yyyy*"
           >
         </mat-form-field>
       </div>
@@ -32,7 +32,7 @@
           <mat-datepicker #picker1></mat-datepicker>
           <input matInput [matDatepicker]="picker1" formControlName="to"
                  (click)="picker1.open()"
-                 placeholder="*dd/mm/yyyy"
+                 placeholder="dd/mm/yyyy*"
           >
         </mat-form-field>
       </div>
@@ -192,8 +192,8 @@
     <app-end-lesson-modal (onCloe)="isOpenEndLesson = false"></app-end-lesson-modal>
   </app-modal-schem>
 </div>
-<div class="add-lesson-wrapper modal-wrapper end-lesson-modal">
-  <app-modal-schem *ngIf="isOpenCancelLesson" (close)="isOpenCancelLesson = false" [title]="'End Lesson'">
+<div class="add-lesson-wrapper modal-wrapper cancel-lesson-modal">
+  <app-modal-schem *ngIf="isOpenCancelLesson" (close)="isOpenCancelLesson = false">
     <app-cancel-lesson-modal (onCloe)="isOpenCancelLesson = false"></app-cancel-lesson-modal>
   </app-modal-schem>
 </div>

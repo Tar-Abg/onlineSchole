@@ -1,102 +1,31 @@
-<div class="end-lesson-wrapper">
-  <table class="end-lesson-table">
-    <tbody>
-    <tr>
-      <td>
-        <div class="end-lesson-table-row">
-          <h2 class="end-lesson-table-row-label">
-            Lesson start time*
-          </h2>
-          <div class="end-lesson-table-row-input">
-            <label for="lesson-start-time" class="form-label">
-              <input id="lesson-start-time"
-                     class="form-input"
-                     name="lesson-start-time"
-                     required
-                     autocomplete="lessonStartTime"
-                     type="text"
-                     placeholder="11: 00 AM"
-                     formControlName="lessonStartTime">
-<!--              <span class="error-message">This is a required field</span>-->
-            </label>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="end-lesson-table-row">
-          <h2 class="end-lesson-table-row-label">
-            Lesson end time*
-          </h2>
-          <div class="end-lesson-table-row-input">
-            <label for="lesson-end-time" class="form-label">
-              <input id="lesson-end-time"
-                     class="form-input"
-                     name="lesson-end-time"
-                     required
-                     autocomplete="lessonEndTime"
-                     type="text"
-                     placeholder="11: 00 AM"
-                     formControlName="lessonEndTime">
-<!--              <span class="error-message">This is a required field</span>-->
-            </label>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="end-lesson-table-row">
-          <h2 class="end-lesson-table-row-label error-label">
-            Lesson duration*
-          </h2>
-          <div class="end-lesson-table-row-input">
-            <label for="lesson-duration" class="form-label">
-              <input id="lesson-duration"
-                     class="form-input"
-                     name="lesson-duration"
-                     required
-                     autocomplete="lessonDuration"
-                     type="text"
-                     placeholder="11: 00 AM"
-                     formControlName="lessonEndTime">
-              <span class="error-message">This is a required field</span>
-            </label>
-          </div>
-        </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div class="end-lesson-table-row">
-          <h2 class="end-lesson-table-row-label">
-            Total earning*
-          </h2>
-          <div class="end-lesson-table-row-input">
-            <label for="total-earning" class="form-label">
-              <input id="total-earning"
-                     class="form-input"
-                     name="total-earning"
-                     required
-                     autocomplete="totalEarning"
-                     type="text"
-                     placeholder="15$"
-                     formControlName="totalEarning">
-<!--              <span class="error-message">This is a required field</span>-->
-            </label>
-          </div>
-        </div>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-  <div class="flex-container-center">
-    <button class="end-lesson-btn">
-      Ok
-    </button>
-  </div>
-  <div class="end-lesson-modal-image">
-    <img src="assets/images/endLessonPic.png" alt="End Lesson" width="266" height="175">
-  </div>
+<div class="cancel-lesson-modal-wrapper">
+  <form action="">
+    <div>
+      <h3 class="main-question">Write the reason for cancelling the lesson.*</h3>
+      <label for="cancel-reason" class="form-label form-label--flex-container">
+                <textarea id="cancel-reason"
+                          class="form-textarea" type="text"
+                          rows="5" cols="3"
+                          placeholder="write a lesson cancellation reason."
+                          formControlName="cancelReason">
+                </textarea>
+        <span class="error-message">This is a required field</span>
+      </label>
+    </div>
+    <div>
+      <h3 class="main-question">Cancellation fee.*</h3>
+      <label for="cancellation-fee" class="form-label form-label--flex-container">
+        <input id="cancellation-fee"
+               class="form-input" type="text"
+               placeholder="%"
+               formControlName="cancellationFee"/>
+        <span class="error-message">This is a required field</span>
+      </label>
+    </div>
+    <p class="form-item-notification">Please indicate the cancellation fee amount that will be charged from student.</p>
+    <p class="form-item-notification">The fee must be between 0 and 100%.</p>
+    <div class="flex-container-center">
+      <button class="settings-form-button settings-form-button__with-border button-border--green">Save</button>
+    </div>
+  </form>
 </div>

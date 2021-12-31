@@ -48,14 +48,14 @@
         </label>
         <label for="password" class="form-label">
           <input id="password" class="form-input" autocomplete="new-password" type="password"
-                 placeholder="*password"
+                 placeholder="password*"
                  formControlName="password">
           <span class="error-message" *ngIf="form.get('password')?.errors && form.get('password')?.touched">Please create your password</span>
         </label>
         <label for="re-enter-password" class="form-label">
           <input id="re-enter-password" class="form-input" autocomplete="new-password"
                  type="password"
-                 placeholder="*re-enter password" formControlName="rePassword">
+                 placeholder="re-enter password*" formControlName="rePassword">
           <span class="error-message"
                 *ngIf="form.get('rePassword')?.errors?.required && form.get('rePassword')?.touched">Please create your password</span>
           <span class="error-message"
