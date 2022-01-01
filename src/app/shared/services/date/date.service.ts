@@ -22,12 +22,12 @@ export class DateService {
   getYearsForCard(): KeyValuePair[] {
     let yearList: KeyValuePair[] = [];
     const thisYear = new Date().getFullYear();
-    let year = thisYear-10;
-    while (year <= thisYear ) {
-      yearList.push({id: year, description: year.toString()});
-      year++
+    let year = thisYear + 10;
+    while (year >= thisYear ) {
+      yearList.unshift({id: year, description: year.toString()});
+      year--;
     }
-    return yearList
+    return yearList;
   }
 
 }
