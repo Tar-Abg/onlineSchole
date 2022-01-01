@@ -18,12 +18,14 @@ export class InstitutionsComponent implements OnInit, OnDestroy{
   private readonly subscription: Subscription = new Subscription();
   @Output() back: EventEmitter<void> = new EventEmitter<void>();
   @Output() next: EventEmitter<void> = new EventEmitter<void>();
+  @Input() isLoggedIn: boolean = true;
+  @Input() showPrevious: boolean = true;
   form: FormGroup;
   countries$: Observable<Country[]>;
   institutionalLevels$: Observable<KeyValuePair[]>;
+  todayDate = new Date();
   private actionType: "CREATE" | "UPDATE" = "CREATE";
-  @Input() isLoggedIn: boolean = true;
-  @Input() showPrevious: boolean = true;
+
 
 
   constructor(

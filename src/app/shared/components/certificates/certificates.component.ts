@@ -12,11 +12,12 @@ import {SaveCertificates} from "../../models/registration.model";
 })
 export class CertificatesComponent implements OnInit {
   private readonly subscription: Subscription = new Subscription();
-  form: FormGroup;
   @Output() back: EventEmitter<void> = new EventEmitter<void>();
   @Output() next: EventEmitter<void> = new EventEmitter<void>();
-  private actionType: "CREATE" | "UPDATE" = "CREATE";
   @Input() isLoggedIn: boolean = true;
+  form: FormGroup;
+  private actionType: "CREATE" | "UPDATE" = "CREATE";
+  todayDate = new Date();
 
   constructor(
     private fb: FormBuilder,
@@ -109,6 +110,7 @@ export class CertificatesComponent implements OnInit {
       const isEmpty = Object.values(copyForm).every(x => (x === null || x === ''));
       isEmpty ? formArray = formArray.filter((item: any) => item !== form): formArray = formArray;
     });
+    formArray = !formArray.length ? [this.formArray.value[0]] : formArray;
     return formArray;
   }
 
