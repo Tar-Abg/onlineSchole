@@ -39,7 +39,12 @@
       <div class="p-relative">
         <app-select [label]="'status*'" formControlName="statusId" [list]="lessonStatuses$ | async"></app-select>
       </div>
-      <button class="button-for-show flex-container-center" type="submit">Show</button>
+      <button class="
+      settings-form-button__with-border
+      button-border--green
+      flex-container-center" type="submit">
+        Show
+      </button>
     </form>
     <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true">Add Lesson</button>
   </div>
@@ -165,14 +170,16 @@
             </td>
             <td>
               <div class="lessons-table-btn-wrapper">
-                <button class="lesson-status-btn lesson-status-btn__start" *ngIf="lesson.start">
+                <button class="lesson-status-btn  lesson-status-btn__start flex-container-center" *ngIf="lesson.start">
                   Start
                 </button>
-                <button class="lesson-status-btn lesson-status-btn__end" (click)="isOpenEndLesson = true"
+                <button class="lesson-status-btn lesson-status-btn__end flex-container-center"
+                        (click)="isOpenEndLesson = true"
                         *ngIf="lesson.end">
                   End
                 </button>
-                <button class="lesson-status-btn lesson-status-btn__cancel" (click)="isOpenCancelLesson = true"
+                <button class="lesson-status-btn lesson-status-btn__cancel flex-container-center"
+                        (click)="isOpenCancelLesson = true"
                         *ngIf="lesson.cancel">
                   Cancel
                 </button>

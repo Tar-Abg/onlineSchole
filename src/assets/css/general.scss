@@ -267,7 +267,7 @@ img {
   .mat-datepicker-input {
     height: 37px;
     border: 0;
-    border-bottom: 1px solid #8fb5fc;
+    border-bottom: 1px solid $secondary-brand-color;
   }
 
   .mat-form-field {
@@ -277,7 +277,7 @@ img {
 
   .form-control.select {
     border: 0;
-    border-bottom: 1px solid #8fb5fc;
+    border-bottom: 1px solid $secondary-brand-color;
     border-radius: 0;
     box-shadow: unset;
   }

@@ -8,11 +8,14 @@
       <div class="p-relative">
         <app-select [label]="'Sort by*'" formControlName="sortBy"></app-select>
       </div>
-      <button class="button-for-show flex-container-center" type="submit">Show</button>
+      <button class="
+      settings-form-button__with-border
+      button-border--green
+      flex-container-center" type="submit">Show</button>
     </form>
   </div>
   <div class="jobs-wrapper">
-    <ul class="jobs-list">
+    <ul class="blue-bg jobs-list">
       <li class="jobs-list__item">
         <figure class="search-cards-item">
           <div class="search-cards-item-for-image">
@@ -28,7 +31,10 @@
             <time class="profile-cards__Info--time">03.21.2020</time>
           </figcaption>
           <div class="profile-cards__buttons-wrapper">
-            <button class="btn-blue sophist-btn flex-container-center">
+            <button class="
+             settings-form-button
+             settings-form-button--blue
+             flex-container-center">
               Apply
             </button>
           </div>
@@ -65,10 +71,11 @@
               </div>
               <div class="p-relative">
                 <h2 class="form-label-text">Time zone</h2>
-                <app-select [label]="'time zone*'" formControlName="preferredTimeZone" [keyName]="'displayName'"></app-select>
+                <app-select [label]="'time zone*'" formControlName="preferredTimeZone"
+                            [keyName]="'displayName'"></app-select>
               </div>
             </div>
-            <button class="btn-green flex-container-center">
+            <button class="settings-form-button settings-form-button--green flex-container-center">
               Show Details
             </button>
           </form>
@@ -89,10 +96,10 @@
             <time class="profile-cards__Info--time">03.21.2020</time>
           </figcaption>
           <div class="profile-cards__buttons-wrapper">
-            <button class="btn-blue sophist-btn flex-container-center">
+            <button class="settings-form-button settings-form-button--blue flex-container-center">
               Apply
             </button>
-            <button class="btn-green flex-container-center">
+            <button class="settings-form-button settings-form-button--green flex-container-center">
               Show Details
             </button>
           </div>

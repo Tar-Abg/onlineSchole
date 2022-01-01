@@ -51,6 +51,7 @@ $school-theme: mat.define-light-theme((
 @import "assets/css/tutorSettingPages/tutorSettingPages";
 @import "assets/css/userSetting/userSetting";
 @import "assets/css/userSetting/profile/profile";
+@import "assets/css/userSetting/tutor-profile-tab/tutor-profile-tab";
 @import "assets/css/userSetting/personalInfo/personalInfo";
 @import "assets/css/userSetting/subjects/subjects";
 @import "assets/css/userSetting/paymentMethod/paymentMethod";
@@ -78,23 +79,3 @@ app-select {
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
-
-.btn-blue, .btn-green {
-  width: auto;
-  height: 45px;
-  padding: 13px 16px;
-  border-radius: 15px;
-  border: 0;
-  font: $type-bold normal $type-medium-size $Segoe-UI-sans;
-  line-height: 24px;
-  letter-spacing: 0.08em;
-  text-transform: capitalize;
-  white-space: nowrap;
-  color: $clr-ntrl-min !important;
-  background: #1E81CE;
-}
-
-.btn-green {
-  background-color: #68EE8D;
-  color: $clr-ntrl-min;
-}
