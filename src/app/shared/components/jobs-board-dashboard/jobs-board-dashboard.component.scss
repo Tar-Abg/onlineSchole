@@ -1,0 +1,66 @@
+@import "src/assets/css/variables";
+
+.jobs {
+
+  &-wrapper {
+    margin: 14px 0 200px;
+  }
+
+  &-list {
+
+    &__item {
+      margin-bottom: 20px;
+
+      .search-cards-item {
+        align-items: center;
+        width: 100%;
+        padding: 20px 18px 20px 70px;
+        border-radius: $border-radius-base;
+        background-color: $clr-ntrl-min;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+
+        &-for-image {
+          border: 1px solid #C4C4C4;
+          width: 115px;
+          height: 115px;
+          flex: 0 0 115px;
+        }
+
+        .profile-cards__Info {
+          width: 68%;
+          max-width: 68%;
+        }
+      }
+
+      .nested-form-wrapper {
+        grid-gap: 42px;
+      }
+
+      .collapsed-info {
+        display: inline-flex;
+        width: auto;
+        margin: 0;
+      }
+
+      .collapsed-info-form-container {
+        grid-gap: 35px;
+      }
+
+      .form-label-text {
+        margin-bottom: 9px;
+        font: $type-regular normal $type-medium-size $Roboto-sans;
+        color: $clr-ntrl-max;
+      }
+
+      .availability-wrapper {
+        display: flex;
+        flex-direction: column;
+        grid-gap: 5px;
+
+        label {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

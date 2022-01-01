@@ -10,7 +10,7 @@
              required
              autocomplete="email"
              type="email"
-             placeholder="*email address"
+             placeholder="email address*"
              formControlName="email">
       <span class="error-message" *ngIf="form.get('email')?.errors?.required && form.get('email')?.touched">This Field Required</span>
       <span class="error-message" *ngIf="form.get('email')?.errors?.pattern && form.get('email')?.touched">Please provide a valid email address</span>
@@ -22,7 +22,7 @@
              required
              autocomplete="current-password"
              [type]="passwordType"
-             placeholder="*password"
+             placeholder="password*"
              formControlName="password">
       <span class="error-message" *ngIf="form.get('password')?.errors && form.get('password')?.touched">This Field Required</span>
       <span class="view-icon" (click)="togglePasswordVisibility()">

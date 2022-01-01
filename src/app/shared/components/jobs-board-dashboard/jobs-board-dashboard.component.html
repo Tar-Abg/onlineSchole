@@ -1,0 +1,110 @@
+<section class="jobs-board-wrapper">
+  <div class="section-filter flex-container-justify-start">
+    <h2 class="section-subtitle without-margin">Tutoring jobs</h2>
+    <form class="flex-container-justify-start section-filter-form">
+      <div class="p-relative">
+        <app-select [label]="'Subject*'" formControlName="subject"></app-select>
+      </div>
+      <div class="p-relative">
+        <app-select [label]="'Sort by*'" formControlName="sortBy"></app-select>
+      </div>
+      <button class="
+      settings-form-button__with-border
+      button-border--green
+      flex-container-center" type="submit">Show</button>
+    </form>
+  </div>
+  <div class="jobs-wrapper">
+    <ul class="blue-bg jobs-list">
+      <li class="jobs-list__item">
+        <figure class="search-cards-item">
+          <div class="search-cards-item-for-image">
+            <img src="assets/images/messageUser.png" alt="Tutor Image" width="80" height="80">
+          </div>
+          <figcaption class="profile-cards__Info">
+            <h2 class="profile-cards__Info--title">Ann Smith</h2>
+            <p class="profile-cards__Info--description">
+              As a former college math professor, you might expect that I always liked math. However, my passion for
+              mathematics actually began when I was in 11th grade.As a former college math professor.
+            </p>
+            <a class="profile-cards__Info--subject"> Chemistry </a>
+            <time class="profile-cards__Info--time">03.21.2020</time>
+          </figcaption>
+          <div class="profile-cards__buttons-wrapper">
+            <button class="
+             settings-form-button
+             settings-form-button--blue
+             flex-container-center">
+              Apply
+            </button>
+          </div>
+        </figure>
+        <div class="collapsed-info search-cards-item">
+          <form class="flex-container-justify-start nested-form-wrapper">
+            <div class="flex-container-justify-start collapsed-info-form-container">
+              <div class="p-relative">
+                <h2 class="form-label-text">Subject</h2>
+                <app-select [label]="'Subject*'" formControlName="subject"></app-select>
+              </div>
+              <div class="p-relative">
+                <h2 class="form-label-text">Subject grade level</h2>
+                <app-select [label]="'Subject grade level*'" formControlName="subjectGradeLevel"></app-select>
+              </div>
+              <div>
+                <h2 class="form-label-text">Availability</h2>
+                <div class="availability-wrapper">
+                  <label for="weekDay1" class="form-label confirm-content-label">
+                    <input type="text"
+                           formControlName="weekDay1"
+                           class="form-input"
+                           placeholder="Monday(morning)" id="weekDay1">
+                  </label>
+                  <label for="weekDay2" class="form-label confirm-content-label">
+                    <input type="text"
+                           formControlName="weekDay1"
+                           class="form-input"
+                           placeholder="Wednesday (evening)" id="weekDay2">
+                    <span class="error-message"></span>
+                  </label>
+
+                </div>
+              </div>
+              <div class="p-relative">
+                <h2 class="form-label-text">Time zone</h2>
+                <app-select [label]="'time zone*'" formControlName="preferredTimeZone"
+                            [keyName]="'displayName'"></app-select>
+              </div>
+            </div>
+            <button class="settings-form-button settings-form-button--green flex-container-center">
+              Show Details
+            </button>
+          </form>
+        </div>
+      </li>
+      <li class="jobs-list__item">
+        <figure class="search-cards-item">
+          <div class="search-cards-item-for-image">
+            <img src="assets/images/messageUser.png" alt="Tutor Image" width="80" height="80">
+          </div>
+          <figcaption class="profile-cards__Info">
+            <h2 class="profile-cards__Info--title">Ann Smith</h2>
+            <p class="profile-cards__Info--description">
+              As a former college math professor, you might expect that I always liked math. However, my passion for
+              mathematics actually began when I was in 11th grade.As a former college math professor.
+            </p>
+            <a class="profile-cards__Info--subject"> Chemistry </a>
+            <time class="profile-cards__Info--time">03.21.2020</time>
+          </figcaption>
+          <div class="profile-cards__buttons-wrapper">
+            <button class="settings-form-button settings-form-button--blue flex-container-center">
+              Apply
+            </button>
+            <button class="settings-form-button settings-form-button--green flex-container-center">
+              Show Details
+            </button>
+          </div>
+        </figure>
+      </li>
+    </ul>
+  </div>
+</section>

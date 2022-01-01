@@ -1,44 +1,180 @@
 .modal-content {
-    height: 440px;
-    min-width: 897px;
-    border: 2px solid rgba(143, 181, 252, 0.31);
-    box-sizing: border-box;
-    border-radius: 15px;
-    padding-bottom: 58px;
+  height: 440px;
+  min-width: 897px;
+  border: 2px solid rgba(143, 181, 252, 0.31);
+  box-sizing: border-box;
+  border-radius: 15px;
+  padding-bottom: 58px;
 }
 
 .modal-body {
-    padding: 58px 76px;
-    color: black;
+  padding: 58px 76px;
+  color: black;
 }
 
 .register-confirmation-text {
-    position: relative;
-    width: 94%;
-    z-index: 9;
-    font-size: $type-base;
+  position: relative;
+  width: 94%;
+  z-index: 9;
+  font-size: $type-base;
 }
 
 .register-confirmation-pic {
-    position: absolute;
-    bottom: -98px;
-    right: 0;
-    width: auto;
-    height: auto;
+  position: absolute;
+  bottom: -98px;
+  right: 0;
+  width: auto;
+  height: auto;
 }
 
 .modal-close-btn {
-    position: absolute;
-    right: 0;
-    z-index: 999;
-    padding: 26px 28px 0 0;
-    background: unset;
-    border: unset;
-    font-size: 31px;
-    text-align: right;
+  position: absolute;
+  right: 0;
+  z-index: 999;
+  padding: 26px 28px 0 0;
+  background: unset;
+  border: unset;
+  font-size: 31px;
+  text-align: right;
 }
 
 .modal-close-btn:focus {
-    outline: none;
-    border: none;
+  outline: none;
+  border: none;
+}
+
+.modal-wrapper {
+  .modal-scheme {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+  }
+
+  .modal-content {
+    min-height: auto;
+    height: auto;
+    padding-bottom: 48px;
+    background: $clr-ntrl-min;
+    border: 2px solid rgba(143, 181, 252, 0.31) !important;
+    box-sizing: border-box;
+    border-radius: 15px !important;
+  }
+
+  .modal-header {
+    justify-content: center !important;
+    border: 0;
+    padding: 25px 0 50px;
+
+    span {
+      font: $type-bold normal $type-large $Segoe-UI-sans;
+      line-height: 32px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: $secondary-brand-color;
+
+      &:last-child {
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+        color: #343434 !important;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .modal-body {
+    width: 476px;
+    margin: 0 auto;
+    padding: 0;
+  }
+}
+
+.add-lesson-wrapper {
+  .mat-form-field {
+    background-color: transparent;
+  }
+
+  .modal-body {
+    width: auto;
+    margin: 0 57px;
+
+    .add-lesson-list--item__fixed-width {
+      width: 418px;
+    }
+
+    .date-wrapper {
+      position: relative;
+      width: 192px;
+      margin-bottom: 20px;
+    }
+
+    .modal-select-width {
+      width: 207px;
+
+      &__min-width {
+        width: 72px;
+      }
+    }
+
+    .lesson-plan-label {
+      flex-direction: column;
+    }
+
+    .selects-wrapper {
+      grid-gap: 20px;
+    }
+
+    .selects-fixed-width {
+      width: 178px;
+    }
+
+    .label-with-minus-margin {
+      margin-bottom: -10px;
+    }
+
+    .lesson-time-wrapper {
+      display: flex;
+      flex-direction: column;
+      grid-gap: 20px;
+      margin-bottom: 20px;
+    }
+  }
+
+  .modal-content {
+    padding-bottom: 35px;
+  }
+
+  .modal-header {
+    padding: 20px 0;
+
+    span {
+      color: #FF6400;
+    }
+  }
+
+}
+
+.end-lesson-modal,
+.cancel-lesson-modal {
+  .modal-content {
+    width: 647px !important;
+    min-width: auto;
+  }
+
+  ․modal-header {
+    padding-bottom: 30px;
+
+    span {
+      color: #DA8DF1;
+    }
+  }
+}
+
+.cancel-lesson-modal {
+  .modal-body {
+    margin: 0 40px;
+  }
 }

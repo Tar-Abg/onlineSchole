@@ -1,0 +1,20 @@
+@import "src/assets/css/variables";
+
+.cancel-lesson-modal-wrapper {
+  textarea {
+    width: 100%;
+  }
+
+  .main-question {
+    font: $type-regular normal $type-medium-size $Segoe-UI-sans;
+  }
+
+  .form-input {
+    width: 133px;
+    text-align: left;
+
+    &::-webkit-input-placeholder {
+      text-align: right;
+    }
+  }
+}

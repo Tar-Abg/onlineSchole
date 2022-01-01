@@ -6,19 +6,19 @@
           <div class="flex-item">
             <label for="institution-name" class="form-label">
               <input id="institution-name" class="form-input" type="text"
-                     placeholder="*institution name"
+                     placeholder="institution name*"
                      formControlName="name">
               <span class="error-message"
                     *ngIf="formArray.controls[i]?.get('name')?.errors && formArray.controls[i]?.get('name')?.touched">This is a required field </span>
             </label>
             <div class="form-label fixed-width">
-              <app-select [label]="'*education level'" [list]="institutionalLevels$ | async"
+              <app-select [label]="'education level*'" [list]="institutionalLevels$ | async"
                           formControlName="educationalLevel"></app-select>
               <span class="error-message block"
                     *ngIf="formArray.controls[i]?.get('educationalLevel')?.errors && formArray.controls[i]?.get('educationalLevel')?.touched">This is a required field </span>
             </div>
             <label for="major" class="form-label">
-              <input id="major" class="form-input" type="text" placeholder="*major"
+              <input id="major" class="form-input" type="text" placeholder="major*"
                      formControlName="major">
               <span class="error-message"
                     *ngIf="formArray.controls[i]?.get('major')?.errors && formArray.controls[i]?.get('major')?.touched">This is a required field</span>
@@ -53,13 +53,13 @@
           </div>
           <div class="flex-item">
             <div class="form-label fixed-width">
-              <app-select [label]="'*country'" [list]="countries$ | async" [keyName]="'nameLowerCase'"
+              <app-select [label]="'country*'" [list]="countries$ | async" [keyName]="'nameLowerCase'"
                           formControlName="countryId"></app-select>
               <span class="error-message block"
                     *ngIf="formArray.controls[i]?.get('countryId')?.errors && formArray.controls[i]?.get('countryId')?.touched">This is a required field </span>
             </div>
             <label for="city" class="form-label">
-              <input id="city" class="form-input" type="text" placeholder="*city"
+              <input id="city" class="form-input" type="text" placeholder="city*"
                      formControlName="city">
               <span class="error-message"
                     *ngIf="formArray.controls[i]?.get('city')?.errors && formArray.controls[i]?.get('city')?.touched">This is a required field</span>
@@ -80,8 +80,8 @@
                          (click)="picker.open()"
                          formControlName="startDate"
                          [readonly]="true"
-                         placeholder="*dd/mm/yyyy"
                          [max]="formArray.controls[i]?.get('graduationDate')?.value || todayDate"
+                         placeholder="dd/mm/yyyy*"
                   >
                 </mat-form-field>
                 <span class="error-message"
@@ -118,7 +118,7 @@
       </fieldset>
     </div>
   </form>
-  <button type="button" class="add" (click)="addNewForm()"> + Add</button>
+  <button type="button" class="add flex-container-center" (click)="addNewForm()"> + Add</button>
   <div class="flex-container-center button-wrapper">
     <ng-container *ngIf="!isLoggedIn">
       <button class="sophist-btn flex-container-center previous-btn" (click)="back.emit()" *ngIf="showPrevious">PREVIOUS</button>

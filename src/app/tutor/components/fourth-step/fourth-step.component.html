@@ -81,19 +81,19 @@
               <div [formGroupName]="i" class="d-flex align-items-center gap-3 grid-gap-10">
                 <i class="fas fa-plus" (click)="addInterview()" *ngIf="i == interview.controls.length-1"></i>
                 <div class="selectWrapper">
-                  <app-select [label]="'*days of week'" [list]="daysOfWeek$ | async" [keyName]="'name'"
+                  <app-select [label]="'days of week*'" [list]="daysOfWeek$ | async" [keyName]="'name'"
                               formControlName="dayOfWeek"></app-select>
                   <span class="error-message"
                         *ngIf="interview.controls[i]?.get('dayOfWeek')?.errors && interview.controls[i]?.get('dayOfWeek')?.touched">This is a required field</span>
                 </div>
                 <div class="selectWrapper">
-                  <app-select [label]="'*hours of day'" [list]="hoursOfDay$ | async" [keyName]="'time'"
+                  <app-select [label]="'hours of day*'" [list]="hoursOfDay$ | async" [keyName]="'time'"
                               formControlName="startOfRange"></app-select>
                   <span class="error-message"
                         *ngIf="interview.controls[i]?.get('startOfRange')?.errors && interview.controls[i]?.get('startOfRange')?.touched">This is a required field</span>
                 </div>
                 <div class="selectWrapper">
-                  <app-select [label]="'*hours of day'" [list]="hoursOfDay$ | async" [keyName]="'time'"
+                  <app-select [label]="'hours of day*'" [list]="hoursOfDay$ | async" [keyName]="'time'"
                               formControlName="endOfRange"></app-select>
                   <span class="error-message"
                         *ngIf="interview.controls[i]?.get('endOfRange')?.errors && interview.controls[i]?.get('endOfRange')?.touched">This is a required field</span>
@@ -203,7 +203,7 @@
               </label>
               <label for="email" class="form-label">
                 <input id="email" class="form-input" autocomplete="username" type="email"
-                       placeholder="*email address"
+                       placeholder="email address*"
                        formControlName="emailAddress">
                 <span class="error-message"
                       *ngIf="professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.errors?.required && professionalReferencesForInstructor.controls[i]?.get('emailAddress')?.touched">This is a required field</span>
@@ -231,7 +231,7 @@
             </div>
           </div>
         </div>
-        <button (click)="addProfessionalReferencesForInstructor()" class="add">+ Add</button>
+        <button (click)="addProfessionalReferencesForInstructor()" class="add flex-container-center">+ Add</button>
       </div>
     </fieldset>
   </form>

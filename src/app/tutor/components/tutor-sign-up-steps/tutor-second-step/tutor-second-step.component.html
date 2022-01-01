@@ -55,9 +55,7 @@
             <label for="bio" class="form-label form-label--flex-container">
                                     <textarea id="bio" class="form-textarea" type="text" rows="5" cols="3"
                                               placeholder="a paragraph or more about yourself*"
-                                              formControlName="bio"> *a paragraph or more about yourself
-
-                                    </textarea>
+                                              formControlName="bio"> a paragraph or more about yourself*                                  </textarea>
               <span class="error-message" *ngIf="form.get('bio')?.errors?.required && form.get('bio')?.touched">This is a required field</span>
             </label>
             <p class="form-item-notification">Help students get to know you.</p>

@@ -10,19 +10,19 @@
         <div formArrayName="formArray">
           <div [formGroupName]="i" class="d-flex selectRow">
             <div class="form-label fixed-width">
-              <app-select [label]="'*days of week'" [list]="daysOfWeek$ | async" [keyName]="'name'"
+              <app-select [label]="'days of week*'" [list]="daysOfWeek$ | async" [keyName]="'name'"
                           formControlName="dayId"></app-select>
               <span class="error-message"
                     *ngIf="formArray.controls[i]?.get('dayOfWeek')?.errors && formArray.controls[i]?.get('dayOfWeek')?.touched">This is a required field</span>
             </div>
             <div class="form-label fixed-width">
-              <app-select [label]="'*hours of day'" [list]="hoursOfDay$ | async" [keyName]="'time'"
+              <app-select [label]="'hours of day*'" [list]="hoursOfDay$ | async" [keyName]="'time'"
                           formControlName="startHourId"></app-select>
               <span class="error-message"
                     *ngIf="formArray.controls[i]?.get('startOfRange')?.errors && formArray.controls[i]?.get('startOfRange')?.touched">This is a required field</span>
             </div>
             <div class="form-label fixed-width">
-              <app-select [label]="'*hours of day'" [list]="hoursOfDay$ | async" [keyName]="'time'"
+              <app-select [label]="'hours of day*'" [list]="hoursOfDay$ | async" [keyName]="'time'"
                           formControlName="endHourId"></app-select>
               <span class="error-message"
                     *ngIf="formArray.controls[i]?.get('endOfRange')?.errors && formArray.controls[i]?.get('endOfRange')?.touched">This is a required field</span>

@@ -1,0 +1,271 @@
+<section class="blue-bg">
+  <ul class="count-wrapper flex-container-center">
+    <li class="count-wrapper__item">
+      <h2 class="count-wrapper__item--label">Total earnings</h2>
+      <h6 class="count-wrapper__item--info">$0,00</h6>
+    </li>
+    <li class="count-wrapper__item">
+      <h2 class="count-wrapper__item--label">Amount paid</h2>
+      <h6 class="count-wrapper__item--info">$0,00</h6>
+    </li>
+    <li class="count-wrapper__item">
+      <h2 class="count-wrapper__item--label">Amount owed</h2>
+      <h6 class="count-wrapper__item--info">$0,00</h6>
+    </li>
+    <li class="count-wrapper__item">
+      <h2 class="count-wrapper__item--label">Pay percent</h2>
+      <h6 class="count-wrapper__item--info">$0,00</h6>
+    </li>
+  </ul>
+  <button class="settings-form-button">Payment history</button>
+  <div class="profile-table-wrapper">
+    <div>
+      <h2 class="section-subtitle">Recent payment.</h2>
+      <div class="profile-table-container min-width-table">
+        <table>
+          <thead>
+          <tr>
+            <th>
+              <h3 class="thead-title">Date</h3>
+            </th>
+            <th>
+              <h3 class="thead-title">Amount</h3>
+            </th>
+            <th>
+              <h3 class="thead-title">Number of lesson</h3>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>
+              <h4 class="tbody-info flex-container-center">Apr 24</h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">30.00</h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                1
+              </h4>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                Apr 24
+              </h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                30.00
+              </h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                1
+              </h4>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                Apr 24
+              </h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                30.00
+              </h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                1
+              </h4>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                Apr 24
+              </h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                30.00
+              </h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                1
+              </h4>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="profile-table__items">
+      <h2 class="section-subtitle">Recent history.</h2>
+      <div class="profile-table-filter-container calendar-wrapper">
+        <form class="
+      flex-container-justify-start
+      calendar-datepicker-wrappers
+      ">
+          <div class="date-picker-wrapper-for-calendar">
+            <h2 class="date-picker-label">From</h2>
+            <mat-form-field appearance="fill"
+                            class="date-range-wrapper
+                  custom-date-range-wrapper">
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>
+                  <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+                </mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <input matInput
+                     [matDatepicker]="picker" formControlName="from"
+                     (click)="picker.open()"
+                     placeholder="dd/mm/yyyy*"
+              >
+            </mat-form-field>
+          </div>
+          <div class="date-picker-wrapper-for-calendar">
+            <h2 class="date-picker-label">To </h2>
+            <mat-form-field appearance="fill" class="date-range-wrapper
+                  custom-date-range-wrapper">
+              <mat-datepicker-toggle matSuffix [for]="picker1">
+                <mat-icon matDatepickerToggleIcon>
+                  <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+                </mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker1></mat-datepicker>
+              <input matInput [matDatepicker]="picker1" formControlName="to"
+                     (click)="picker1.open()"
+                     placeholder="dd/mm/yyyy*"
+              >
+            </mat-form-field>
+          </div>
+          <button class="btn-add-less flex-container-center">Filter</button>
+        </form>
+        <ul class="total-info">
+          <li class="flex-container-justify-start">
+            <h2 class="total-info__label"> Total Payments </h2>
+            <span class="total-info__info">85 </span>
+          </li>
+          <li class="flex-container-justify-start">
+            <h2 class="total-info__label"> Total Paid </h2>
+            <span class="total-info__info">8,645.40 $ </span>
+          </li>
+        </ul>
+      </div>
+      <div class="profile-table-container">
+        <table>
+          <thead>
+          <tr>
+            <th>
+              <h3 class="thead-title">ID</h3>
+            </th>
+            <th>
+              <h3 class="thead-title">Date </h3>
+            </th>
+            <th>
+              <h3 class="thead-title">Payment type</h3>
+            </th>
+            <th>
+              <h3 class="thead-title">Total </h3>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                <a href="" class="link">4516235</a>
+              </h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">01.01.2020</h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                Direct deposit to Tatevik Hovhannisyan via Wells fargo</h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">$30,00</h4>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                <a href="" class="link">4516235</a>
+              </h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">01.01.2020</h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                Direct deposit to Tatevik Hovhannisyan via Wells fargo</h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">$30,00</h4>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                <a href="" class="link">4516235</a>
+              </h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">01.01.2020</h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">
+                Direct deposit to Tatevik Hovhannisyan via Wells fargo</h4>
+            </td>
+            <td>
+              <h4 class="tbody-info flex-container-center">$30,00</h4>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4 class="tbody-info">
+                <a href="" class="link">4516235</a>
+              </h4>
+            </td>
+            <td>
+              <h4 class="tbody-info">01.01.2020</h4>
+            </td>
+            <td>
+              <h4 class="tbody-info">
+                Direct deposit to Tatevik Hovhannisyan via Wells fargo</h4>
+            </td>
+            <td>
+              <h4 class="tbody-info">$30,00</h4>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <h4 class="tbody-info">
+                <a href="" class="link">4516235</a>
+              </h4>
+            </td>
+            <td>
+              <h4 class="tbody-info">01.01.2020</h4>
+            </td>
+            <td>
+              <h4 class="tbody-info">
+                Direct deposit to Tatevik Hovhannisyan via Wells fargo</h4>
+            </td>
+            <td>
+              <h4 class="tbody-info">$30,00</h4>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>

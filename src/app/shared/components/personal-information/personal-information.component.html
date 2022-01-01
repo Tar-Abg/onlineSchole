@@ -25,7 +25,7 @@
           </div>
           <label for="phone-number" class="form-label phone-number-label phone-number-label-input">
             <input id="phone-number" class="form-input" autocomplete="phone-number" type="tel"
-                   placeholder="*Phone number"
+                   placeholder="Phone number*"
                    formControlName="mobile">
           </label>
           <span class="error-message"
@@ -37,7 +37,7 @@
         <h3 class="form-item-label">User Name*</h3>
         <div class="d-flex position-relative">
           <label for="user-name" class="form-label">
-            <input id="user-name" class="form-input" type="text" placeholder="*user name"
+            <input id="user-name" class="form-input" type="text" placeholder="user name*"
                    formControlName="userName">
             <span class="error-message" *ngIf="form.get('userName')?.errors && form.get('userName')?.touched">Please fill in your last name</span>
           </label>
@@ -48,7 +48,7 @@
         <h3 class="form-item-label">Preferred Time Zone*</h3>
         <div class="d-flex position-relative">
           <div class="p-relative form-label">
-            <app-select [disable]="form.disabled" [label]="'*time zone'" formControlName="preferredTimeZone" [list]="timeZones$ | async" [keyName]="'displayName'"></app-select>
+            <app-select [disable]="form.disabled" [label]="'time zone*'" formControlName="preferredTimeZone" [list]="timeZones$ | async" [keyName]="'displayName'"></app-select>
             <span class="error-message" *ngIf="form.get('preferredTimeZone')?.errors && form.get('preferredTimeZone')?.touched">Please specify month of your  birth</span>
           </div>
         </div>
@@ -60,7 +60,7 @@
           <h3 class="form-item-label">Country*</h3>
           <label for="country" class="form-label">
             <app-select
-              [label]="'*country'"
+              [label]="'country*'"
               id="country"
               [keyName]="'nameLowerCase'"
               [list]="countries$ | async"
@@ -86,7 +86,7 @@
           <h3 class="form-item-label">Street Number*</h3>
           <label for="streetNumber" class="form-label">
             <input id="streetNumber" class="form-input" autocomplete="streetNumber" type="text"
-                   placeholder="*Street Number" formControlName="streetNumber">
+                   placeholder="Street Number*" formControlName="streetNumber">
             <span class="form-item-notification">Not visible on the public profile</span>
             <span class="error-message block"
                   *ngIf="userAddress.get('streetNumber')?.errors?.required && userAddress.get('streetNumber')?.touched"> This Field is requires</span>
@@ -96,7 +96,7 @@
           <h3 class="form-item-label">Street Name*</h3>
           <label for="streetName" class="form-label">
             <input id="streetName" class="form-input" autocomplete="streetName" type="text"
-                   placeholder="*Street Name" formControlName="streetName">
+                   placeholder="Street Name*" formControlName="streetName">
             <span class="form-item-notification">Not visible on the public profile</span>
             <span class="error-message block"
                   *ngIf="userAddress.get('streetName')?.errors?.required && userAddress.get('streetName')?.touched">This Field is requires</span>

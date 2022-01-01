@@ -4,7 +4,7 @@
     <div class="form-group">
       <h3 class="filter-field-label">I need help with</h3>
       <app-select
-        [label]="'*Select'"
+        [label]="'Select*'"
         formControlName="categoryId"
         [list]="categories$ | async"
         [keyName]="'categoryName'"
@@ -15,7 +15,7 @@
     <div class="form-group">
       <h3 class="filter-field-label">Subject</h3>
       <app-select
-        [label]="'*Select'"
+        [label]="'Select*'"
         formControlName="subjectId"
         [list]="subjects$ | async"
         [keyName]="'subjectName'"
@@ -32,7 +32,7 @@
     <div class="form-group">
       <h3 class="filter-field-label">Tutor gender</h3>
       <app-select
-        [label]="'*Select'"
+        [label]="'Select*'"
         formControlName="genderId"
         [list]="genderList$ | async"
       ></app-select>
@@ -50,7 +50,7 @@
     <div class="form-group">
       <h3 class="filter-field-label">Student’s level</h3>
       <app-select
-        [label]="'*Select'"
+        [label]="'Select*'"
         [list]="studentLevels$ | async"
         formControlName="studentLevelId"
       ></app-select>
@@ -58,7 +58,7 @@
     <div class="form-group">
       <h3 class="filter-field-label">Sort</h3>
       <app-select
-        [label]="'*Select'"
+        [label]="'Select*'"
         formControlName="sortId"
         [list]="sortForTutorSearch$ | async"
       ></app-select>

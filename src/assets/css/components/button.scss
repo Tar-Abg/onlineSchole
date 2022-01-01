@@ -62,38 +62,33 @@
 }
 
 .add {
-  background: #FFFFFF;
-  border: 1px solid #8FB5FC;
-  box-sizing: border-box;
-  box-shadow: 0 2px 3px rgba(143, 181, 252, 0.25);
-  border-radius: 12px;
   width: 100px;
   height: 39px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-left: auto;
-  font-family: Segoe UI;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 16px;
-  line-height: 21px;
-  color: #8FB5FC;
+  border: 1px solid $secondary-brand-color;
+  border-radius: 12px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 3px rgba(143, 181, 252, 0.25);
+  font: $type-regular normal $type-small $Segoe-UI-sans;
+  color: $secondary-brand-color;
+  background: $clr-ntrl-min;
 }
 
 /* End Button style */
 .settings-form-button {
-  height: 50px;
   align-self: center;
+  height: 50px;
+  width: auto;
   padding: 13px 16px;
-  margin-top: 40px;
   border-radius: 15px;
   border: 0;
+  margin-top: 40px;
   font: $type-regular normal $type-medium-size $Segoe-UI-sans;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  white-space: nowrap;
   color: $clr-ntrl-min;
-  background: #1e81ce;
+  background: $dark-blue-color;
 
   &__with-border {
     height: 50px;
@@ -106,18 +101,33 @@
 
     &.button-border--blue {
       padding: 0 34px;
-      border: 1px solid #1E81CE;
+      border: 1px solid $dark-blue-color;
       font-weight: $type-bold;
-      color: #1E81CE;
+      color: $dark-blue-color;
     }
 
     &.button-border--green {
       padding: 0 46px;
       border: 1px solid rgba(164, 217, 166, 0.58);
-      box-sizing: border-box;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
       color: #4E9651;
     }
+  }
+
+  &--green {
+    height: 45px;
+    margin: 0;
+    font-weight: $type-bold;
+    text-transform: capitalize;
+    background-color: #68EE8D;
+    color: $clr-ntrl-min;
+  }
+
+  &--blue {
+    height: 45px;
+    margin: 0;
+    font-weight: $type-bold;
+    text-transform: capitalize;
   }
 }
 
@@ -155,4 +165,35 @@
   text-transform: uppercase;
   color: $clr-ntrl-min;
   background: #FF6400;
+}
+
+.lesson-status-btn {
+  width: 70px;
+  height: 35px;
+  border-radius: 8px;
+  border: 0;
+  font: $type-light normal $type-small $Roboto-sans;
+
+  &.lesson-status-btn__start {
+    background-color: #7CED80;
+    color: $clr-ntrl-max;
+  }
+
+  &.lesson-status-btn__end {
+    background-color: #FF2929;
+    color: $clr-ntrl-min;
+  }
+
+  &.lesson-status-btn__cancel {
+    background-color: #A8A8A8;
+    color: $clr-ntrl-min;
+  }
+}
+
+.button-wrapper {
+  .next-btn,
+  .sophist-btn,
+  .previous-btn {
+    color: black;
+  }
 }

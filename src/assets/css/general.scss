@@ -9,7 +9,7 @@ html {
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
   line-height: 1.4;
-  color: $clr-ntrl-min;
+  //color: $clr-ntrl-min;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -100,9 +100,9 @@ img {
   padding: 0;
 }
 
-
 .fa-plus {
   color: #FFB519;
+  cursor: pointer;
 }
 
 .margin-left-space {
@@ -137,6 +137,10 @@ img {
 
 .mb-15 {
   margin-bottom: 15px;
+}
+
+.selectRow {
+  gap: 24px;
 }
 
 /* OverWrite Material css*/
@@ -263,7 +267,7 @@ img {
   .mat-datepicker-input {
     height: 37px;
     border: 0;
-    border-bottom: 1px solid #8fb5fc;
+    border-bottom: 1px solid $secondary-brand-color;
   }
 
   .mat-form-field {
@@ -273,7 +277,7 @@ img {
 
   .form-control.select {
     border: 0;
-    border-bottom: 1px solid #8fb5fc;
+    border-bottom: 1px solid $secondary-brand-color;
     border-radius: 0;
     box-shadow: unset;
   }
@@ -305,127 +309,4 @@ img {
   .mat-form-field-appearance-fill:not(.mat-form-field-disabled) .mat-form-field-flex:hover ~ .mat-form-field-underline .mat-form-field-ripple {
     display: none;
   }
-}
-
-.fa-plus {
-  cursor: pointer;
-}
-
-.modal-wrapper {
-  .modal-scheme {
-    position: fixed !important;
-    top: 0;
-    left: 0;
-  }
-
-  .modal-content {
-    min-height: auto;
-    height: auto;
-    padding-bottom: 48px;
-    background: $clr-ntrl-min;
-    border: 2px solid rgba(143, 181, 252, 0.31) !important;
-    box-sizing: border-box;
-    border-radius: 15px !important;
-  }
-
-  .modal-header {
-    justify-content: center !important;
-    border: 0;
-    padding: 25px 0 50px;
-
-    span {
-      font: $type-bold normal $type-large $Segoe-UI-sans;
-      line-height: 32px;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: #8FB5FC;
-
-      &:last-child {
-        position: absolute;
-        right: 20px;
-        top: 15px;
-        width: 16px;
-        height: 16px;
-        font-size: 16px;
-        color: #343434 !important;
-        cursor: pointer;
-      }
-    }
-  }
-
-  .modal-body {
-    width: 476px;
-    margin: 0 auto;
-    padding: 0;
-  }
-}
-
-
-.add-lesson-wrapper {
-
-  .mat-form-field {
-    background-color: transparent;
-  }
-
-  .modal-body {
-    width: auto;
-    margin: 0 57px;
-
-    .add-lesson-list--item__fixed-width {
-      width: 418px;
-    }
-
-    .date-wrapper {
-      position: relative;
-      width: 192px;
-      margin-bottom: 20px;
-    }
-
-    .modal-select-width {
-      width: 207px;
-
-      &__min-width {
-        width: 72px;
-      }
-    }
-
-    .lesson-plan-label {
-      flex-direction: column;
-    }
-
-    .selects-wrapper {
-      grid-gap: 20px;
-    }
-
-    .selects-fixed-width {
-      width: 178px;
-    }
-
-    .label-with-minus-margin {
-      margin-bottom: -10px;
-    }
-
-    .lesson-time-wrapper {
-      display: flex;
-      flex-direction: column;
-      grid-gap: 20px;
-      margin-bottom: 20px;
-    }
-  }
-
-  .modal-content {
-    padding-bottom: 35px;
-  }
-
-  .modal-header {
-    padding: 20px 0;
-
-    span {
-      color: #FF6400;
-    }
-  }
-}
-
-.selectRow {
-  gap: 24px;
 }

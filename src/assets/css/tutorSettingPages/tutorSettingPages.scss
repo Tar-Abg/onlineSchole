@@ -1,3 +1,5 @@
+@import "src/assets/css/variables";
+
 .tutor-settings-nested-page {
   display: flex;
   flex-direction: column;
@@ -61,33 +63,12 @@
   }
 }
 
-
-@import "src/assets/css/variables";
-
 .calendar-wrapper {
   margin-bottom: 160px;
 
   .calendar-datepicker-wrappers {
     grid-gap: 25px;
     margin-bottom: 15px;
-
-    .button-for-show {
-      width: 82px;
-      height: 33px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      align-self: flex-end;
-      font: $type-regular normal $type-small $Segoe-UI-sans;
-      letter-spacing: 0.05em;
-      line-height: 21px;
-      text-transform: uppercase;
-      color: #4E9651;
-      background: rgba(204, 255, 199, 0.04);
-      border: 1px solid rgba(164, 217, 166, 0.58);
-      box-sizing: border-box;
-      border-radius: 10px;
-    }
 
     .date-picker-wrapper-for-calendar {
       position: relative;
@@ -114,7 +95,6 @@
 }
 
 .calendar-content {
-
   table {
     width: 100%;
     border-collapse: collapse;
@@ -148,12 +128,12 @@
       background: rgba(192, 192, 192, 0.13);
     }
 
-
     .calendar-table-thead {
       font: $type-bold normal $type-medium-size $Segoe-UI-sans;
       letter-spacing: 0.02em;
       color: $clr-ntrl-max;
       margin: 0;
+      text-transform: capitalize;
     }
   }
 

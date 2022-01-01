@@ -3,12 +3,6 @@
 .start-lesson-wrapper {
   margin: 18px 0 160px 0;
 
-  .lessons-table-title {
-    margin-bottom: 30px;
-    font: $type-regular normal $type-base $Roboto-sans;
-    color: #26BC00;
-  }
-
   .date-picker-label {
     margin-bottom: 0;
   }
@@ -69,32 +63,6 @@
     .lessons-table-btn-wrapper {
       display: flex;
       grid-gap: 18px;
-    }
-
-    .lesson-status-btn {
-      width: 70px;
-      height: 35px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 8px;
-      border: 0;
-      font: $type-light normal $type-small $Roboto-sans;
-
-      &.lesson-status-btn__start {
-        background-color: #7CED80;
-        color: $clr-ntrl-max;
-      }
-
-      &.lesson-status-btn__end {
-        background-color: #FF2929;
-        color: $clr-ntrl-min;
-      }
-
-      &.lesson-status-btn__cancel {
-        background-color: #A8A8A8;
-        color: $clr-ntrl-min;
-      }
     }
   }
 }

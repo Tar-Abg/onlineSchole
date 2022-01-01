@@ -21,6 +21,7 @@
 }
 
 .profile {
+
   &-section {
     &__title {
       display: flex;
@@ -34,7 +35,7 @@
 
     hr {
       width: 100%;
-      background-color: #8FB5FC;
+      background-color: $secondary-brand-color;
     }
 
     .nested-info {
@@ -156,6 +157,19 @@
         color: $clr-ntrl-max;
         margin-bottom: -5px;
       }
+
+      &--subject {
+        display: inline-block;
+        margin: 5px 0;
+        font: $type-regular normal $type-medium-size $Roboto-sans;
+        color: $dark-blue-color;
+      }
+
+      &--time {
+        font: $type-light normal $type-medium-size $Roboto-sans;
+        color: $clr-ntrl-max;
+        display: block;
+      }
     }
 
     &__details {
@@ -247,122 +261,16 @@
         }
       }
     }
-  }
 
-  &-buttons {
-    margin: 57px 0 40px;
-    display: flex;
-    grid-gap: 54px;
-
-    &--item {
-      position: relative;
+    &__buttons-wrapper {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 181px;
-      height: 40px;
-      border: 1px solid rgba(38, 188, 0, 0.48);
-      box-sizing: border-box;
-      filter: drop-shadow(0px 2px 3px rgba(0, 0, 0, 0.25));
-      border-radius: 15px;
-      white-space: nowrap;
-      font: $type-regular normal $type-medium-size $Roboto-sans;
-      line-height: 21px;
-      letter-spacing: 0.02em;
-      color: $clr-ntrl-max;
+      flex-direction: column;
+      grid-gap: 14px;
 
-      img {
-        position: absolute;
-        left: -24px;
-        width: auto;
-        height: auto;
-      }
-    }
-  }
-
-  &-tab-buttons {
-    display: flex;
-    grid-gap: 32px;
-    margin: 40px 0 27px;
-
-    &--item {
-      height: 45px;
-      min-width: 150px;
-      border: 1px solid #FFCB2D;
-      box-sizing: border-box;
-      border-radius: 15px;
-      font: $type-regular normal $type-small $Segoe-UI-sans;
-      line-height: 25px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      background-color: unset;
-      color: #FFCB2D;
-
-      &__active {
-        background: #F8D56C;
-        color: $clr-ntrl-max;
-      }
-    }
-
-    hr {
-      align-self: flex-end;
-      width: 100%;
-      margin: 0;
-      background-color: #8FB5FC;
-    }
-  }
-
-  &-tabs {
-
-    &-notification {
-      margin-bottom: 27px;
-      font: $type-regular normal $type-small $Segoe-UI-sans;
-      line-height: 25px;
-      color: $table-titles-color;
-    }
-
-    &-table {
-      width: 407px;
-      margin: 0 0 161px 64px;
-      border-spacing: 25px;
-
-      &--row {
-        height: 45px;
-
-        td {
-          vertical-align: bottom;
-          border-bottom: 1px solid $border-color;
-        }
-
-        &__description {
-          margin-bottom: 0;
-          font: $type-light normal $type-small $Roboto-sans;
-          letter-spacing: 0.03em;
-          line-height: 30px;
-          color: $clr-ntrl-max;
-        }
-
-        &__title {
-          font: $type-bold normal $type-small $Roboto-sans;
-          letter-spacing: 0.03em;
-          color: $clr-ntrl-max;
-        }
-      }
-
-      &.table-with-pt {
-        width: 447px;
-
-        td {
-          padding-top: 15px;
-        }
-
-        tr {
-          &:first-child {
-            td {
-              padding-top: 0;
-            }
-          }
-        }
+      button {
+        width: 158px;
+        text-transform: capitalize;
+        color: white;
       }
     }
   }

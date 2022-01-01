@@ -44,7 +44,7 @@
         <h3 class="main-question">Billing Address</h3>
         <label for="streetNumber" class="form-label">
           <input id="streetNumber" class="form-input" autocomplete="streetNumber" type="text"
-                 placeholder="*Street Number" formControlName="streetNumber">
+                 placeholder="Street Number*" formControlName="streetNumber">
           <span class="error-message block" *ngIf="billingAddress.get('streetNumber')?.errors?.required && billingAddress.get('streetNumber')?.touched">This Field is requires</span>
         </label>
         <label for="city" class="form-label">
@@ -58,7 +58,7 @@
           <span class="error-message block" *ngIf="billingAddress.get('apartment')?.errors?.required && billingAddress.get('apartment')?.touched">This Field is requires</span>
         </label>
         <label class="form-label">
-          <app-select [list]="states$ | async" [keyName]="'name'" [label]="'*state'" formControlName="stateId"></app-select>
+          <app-select [list]="states$ | async" [keyName]="'name'" [label]="'state*'" formControlName="stateId"></app-select>
           <span class="error-message block" *ngIf="billingAddress.get('stateId')?.errors?.required && billingAddress.get('stateId')?.touched">This Field is requires</span>
         </label>
         <label for="zipCode" class="form-label">
@@ -70,26 +70,26 @@
     </fieldset>
   </form>
   <div class="main-convenient">
-    <h3 class="main-question">Convenient , cashless payments</h3>
+    <h3 class="main-question">Convenient, cashless payments</h3>
     <ul class="main-convenient-list">
       <li class="main-convenient-list__item">
         <img src="assets/images/checked.png" alt="Checked" width="26" height="26">
-        Pay only once your lesson’s complete
+        Pay only once your lesson’s complete.
       </li>
       <li class="main-convenient-list__item">
         <img src="assets/images/checked.png" alt="Checked" width="26" height="26">
-        Lessons are changed by each tutor’s hourly rate
+        Lessons are charged by each tutor’s hourly rate.
       </li>
       <li class="main-convenient-list__item">
         <img src="assets/images/checked.png" alt="Checked" width="26" height="26">
         It is your responsibility to notify the tutor about the cancelation of the class. Please read the
-        cancelation policy of your tutor prior to scheduling the class. The tutor may charge you for the late
+        cancellation policy of your tutor prior to scheduling the class. The tutor may charge you for the late
         notice.
       </li>
     </ul>
     <div class="checkboxes-wrapper">
       <mat-checkbox #paymentPolicies>
-        <p class="checkbox-text">I have read and agree to the to the <a href="">Payment Policies</a></p>
+        <p class="checkbox-text">I have read and agree to the <a href="">Payment Policies.*</a></p>
       </mat-checkbox>
     </div>
   </div>
