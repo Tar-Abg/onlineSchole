@@ -26,6 +26,7 @@ export class FourthStepComponent implements OnInit, OnDestroy {
   tutorExperiences$: Observable<KeyValuePair[]>;
   phoneCods$: Observable<Country[]>
   private actionType: "CREATE" | "UPDATE" = "CREATE";
+  todayDate = new Date();
 
 
   constructor(
@@ -122,8 +123,8 @@ export class FourthStepComponent implements OnInit, OnDestroy {
       name: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       lastName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       emailAddress: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
-      mobilePhone: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
-      numberId: [null, [Validators.required]],
+      mobilePhone: [null],
+      numberId: [null],
     });
   }
 

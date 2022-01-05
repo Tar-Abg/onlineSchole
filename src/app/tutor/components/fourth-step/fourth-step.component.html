@@ -141,6 +141,7 @@
                         <input matInput [matDatepicker]="picker" (click)="picker.open()" formControlName="startYear"
                                [readonly]="true"
                                placeholder="*mm/dd/yyyy"
+                               [max]="workHistory.controls[i]?.get('endYear')?.value || todayDate"
                         >
                       </mat-form-field>
                       <span class="error-message"
@@ -156,6 +157,8 @@
                         </mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
                         <input matInput [matDatepicker]="picker1" (click)="picker1.open()" formControlName="endYear"
+                               [max]="todayDate"
+                               [min]="workHistory.controls[i]?.get('startYear')?.value"
                                [readonly]="true" placeholder="*mm/dd/yyyy">
                       </mat-form-field>
                       <span class="error-message"
@@ -186,7 +189,7 @@
             <i class="text-danger" (click)="removeReferencesForInstructor(item)"
                *ngIf="i > 1">x</i>
             <div class="">
-              <h2 class="form-title"> Professional reference 1 </h2>
+              <h2 class="form-title">Professional reference {{i + 1}} </h2>
               <label for="first-name" class="form-label">
                 <input id="first-name" class="form-input" type="text"
                        placeholder="*first name"
@@ -212,7 +215,8 @@
               </label>
               <div>
                 <div>
-                  <app-select [list]="phoneCods$ | async" [label]="'+374'" [keyName]="'phoneCode'" [optionName]="'iso3'"
+                  <app-select [list]="phoneCods$ | async" [label]="'+374'" [keyName]="'numCodeForView'"
+                              [optionName]="'iso3'"
                               formControlName="numberId"></app-select>
                   <span class="error-message"
                         *ngIf="professionalReferencesForInstructor.controls[i]?.get('numberId')?.errors && professionalReferencesForInstructor.controls[i]?.get('numberId')?.touched">This is a required field</span>
@@ -221,7 +225,7 @@
                   <label for="phone-number" class="form-label phone-number-label p-relative">
                     <input id="phone-number" class="form-input" autocomplete="phone-number"
                            type="tel"
-                           placeholder="*Phone number"
+                           placeholder="Mobile phone"
                            formControlName="mobilePhone">
                     <span class="error-message"
                           *ngIf="professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.errors && professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.touched">This is a required field</span>

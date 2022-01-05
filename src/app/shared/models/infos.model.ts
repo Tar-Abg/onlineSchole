@@ -17,6 +17,7 @@ export interface Country {
   iso3: string;
   numCode: number;
   phoneCode: number;
+  numCodeForView: string;
 }
 
 export interface DaysOfWeek {
