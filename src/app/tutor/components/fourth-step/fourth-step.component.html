@@ -216,7 +216,6 @@
               <div>
                 <div>
                   <app-select [list]="phoneCods$ | async" [label]="'+374'" [keyName]="'numCodeForView'"
-                              [optionName]="'iso3'"
                               formControlName="numberId"></app-select>
                   <span class="error-message"
                         *ngIf="professionalReferencesForInstructor.controls[i]?.get('numberId')?.errors && professionalReferencesForInstructor.controls[i]?.get('numberId')?.touched">This is a required field</span>

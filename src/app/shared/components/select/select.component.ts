@@ -31,7 +31,6 @@ export class SelectComponent implements ControlValueAccessor {
   @Input() error: boolean = false;
   @Input() disable = false;
   @Input() keyName: string = 'description';
-  @Input() optionName: string = 'description';
   @Input() set value(val: number | string) {
     this.matSelect.value = val;
   }
