@@ -20,7 +20,7 @@
         <h3 class="form-item-label">Mobile phone*</h3>
         <div class="d-flex position-relative">
           <div class="form-label phone-number-label form-label--min-width w-25">
-            <app-select [disable]="form.disabled" [list]="countries$ | async" [label]="'+374'" [keyName]="'phoneCode'" [optionName]="'iso3'"
+            <app-select [disable]="form.disabled" [list]="countries$ | async" [label]="'+374'" [keyName]="'numCodeForView'"
                         formControlName="mobileCode"></app-select>
           </div>
           <label for="phone-number" class="form-label phone-number-label phone-number-label-input">

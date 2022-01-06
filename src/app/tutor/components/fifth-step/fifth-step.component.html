@@ -6,7 +6,7 @@
         <div class="w-30 tutor-contact wrapper-for-contact">
           <div class="d-flex position-relative">
             <div class="form-label phone-number-label form-label--min-width w-25">
-              <app-select [list]="phoneCods$ | async" [label]="'+374'" [keyName]="'phoneCode'" [optionName]="'iso3'"
+              <app-select [list]="phoneCods$ | async" [label]="'+374'" [keyName]="'phoneCode'"
                           formControlName="mobileCode"></app-select>
               <span class="error-message" *ngIf="form.get('mobileCode')?.errors && form.get('mobileCode')?.touched">This is a required field</span>
             </div>

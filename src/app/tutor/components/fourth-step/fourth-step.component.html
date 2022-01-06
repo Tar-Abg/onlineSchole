@@ -166,6 +166,7 @@
                                    formControlName="startYear"
                                    [readonly]="true"
                                    placeholder="mm/dd/yyyy*"
+                                   [max]="workHistory.controls[i]?.get('endYear')?.value || todayDate"
                             >
                           </mat-form-field>
                           <span class="error-message"
@@ -181,8 +182,14 @@
                               </mat-icon>
                             </mat-datepicker-toggle>
                             <mat-datepicker #picker1></mat-datepicker>
-                            <input matInput [matDatepicker]="picker1" (click)="picker1.open()" formControlName="endYear"
-                                   [readonly]="true" placeholder="*mm/dd/yyyy">
+
+                            <input matInput
+                                   [matDatepicker]="picker1"
+                                   (click)="picker1.open()"
+                                   formControlName="endYear"
+                                   [max]="todayDate"
+                                   [min]="workHistory.controls[i]?.get('startYear')?.value"
+                                   [readonly]="true" placeholder="mm/dd/yyyy*">
                           </mat-form-field>
                           <span class="error-message"
                                 *ngIf="workHistory.controls[i]?.get('endYear')?.errors && workHistory.controls[i]?.get('endYear')?.touched">This is a required field</span>
@@ -196,8 +203,7 @@
                         </div>
                       </div>
                       <div class="flex-container grid-gap-for-icons">
-                        <i class="fas fa-plus" (click)="addWorkHistory()"
-                           *ngIf="i == workHistory.controls.length-1"></i>
+                        <i class="fas fa-plus" (click)="addWorkHistory()" *ngIf="i == workHistory.controls.length-1"></i>
                         <div class="recycle-bin-wrapper" (click)="removeWorkHistory(item)" *ngIf="i > 0">
                           <img src="./assets/images/recycleBin.png" alt="recycle byn" class="trashIcon">
                         </div>
@@ -219,7 +225,7 @@
           <div [formGroupName]="i">
             <div class="">
               <div class="flex-container justify-content-between mb-20">
-                <h2 class="form-title m-0">Professional reference 1</h2>
+                <h2 class="form-title m-0">Professional reference {{i + 1}}</h2>
                 <div class="recycle-bin-wrapper"
                      (click)="removeReferencesForInstructor(item)"
                      *ngIf="i > 1">
@@ -252,8 +258,7 @@
               <div class="tutor-contact wrapper-for-contact">
                 <div class="d-flex position-relative">
                   <div class="form-label phone-number-label form-label--min-width w-25">
-                    <app-select [list]="phoneCods$ | async" [label]="'+374'" [keyName]="'phoneCode'"
-                                [optionName]="'iso3'"
+                    <app-select [list]="phoneCods$ | async" [label]="'+374'" [keyName]="'numCodeForView'"
                                 formControlName="numberId"></app-select>
                     <span class="error-message"
                           *ngIf="professionalReferencesForInstructor.controls[i]?.get('numberId')?.errors && professionalReferencesForInstructor.controls[i]?.get('numberId')?.touched">This is a required field</span>
@@ -261,7 +266,7 @@
                   <label for="phone-number" class="form-label phone-number-label phone-number-label-input">
                     <input id="phone-number" class="form-input" autocomplete="phone-number"
                            type="tel"
-                           placeholder="Phone Number*"
+                           placeholder="Mobile phone"
                            formControlName="mobilePhone">
                     <span class="error-message"
                           *ngIf="professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.errors && professionalReferencesForInstructor.controls[i]?.get('mobilePhone')?.touched">This is a required field</span>
