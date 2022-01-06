@@ -1,5 +1,5 @@
 <form [formGroup]="form">
-  <div class="d-flex personal-info-wrapper">
+  <div class="d-flex personal-info-wrapper wrapper-for-contact">
     <ul class="flex-item-for-info address-form">
       <li class="form-item-with-notification">
         <h3 class="form-item-label">Primary email*</h3>
@@ -89,7 +89,7 @@
                    placeholder="Street Number*" formControlName="streetNumber">
             <span class="form-item-notification">Not visible on the public profile</span>
             <span class="error-message block"
-                  *ngIf="userAddress.get('streetNumber')?.errors?.required && userAddress.get('streetNumber')?.touched"> This Field is requires</span>
+                  *ngIf="userAddress.get('streetNumber')?.errors?.required && userAddress.get('streetNumber')?.touched"> This is a required field</span>
           </label>
         </li>
         <li class="form-item-with-notification">
@@ -99,7 +99,7 @@
                    placeholder="Street Name*" formControlName="streetName">
             <span class="form-item-notification">Not visible on the public profile</span>
             <span class="error-message block"
-                  *ngIf="userAddress.get('streetName')?.errors?.required && userAddress.get('streetName')?.touched">This Field is requires</span>
+                  *ngIf="userAddress.get('streetName')?.errors?.required && userAddress.get('streetName')?.touched">This is a required field</span>
           </label>
         </li>
         <li class="form-item-with-notification">
@@ -109,7 +109,7 @@
                    placeholder="*Zip Code" formControlName="zipCode">
             <span class="form-item-notification">Not visible on the public profile</span>
             <span class="error-message block"
-                  *ngIf="userAddress.get('zipCode')?.errors?.required && userAddress.get('zipCode')?.touched">This Field is requires</span>
+                  *ngIf="userAddress.get('zipCode')?.errors?.required && userAddress.get('zipCode')?.touched">This is a required field</span>
           </label>
         </li>
       </ul>

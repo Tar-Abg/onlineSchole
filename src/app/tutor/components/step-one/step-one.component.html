@@ -4,17 +4,17 @@
       <fieldset>
         <legend class="form-legend">Enter your information</legend>
         <label for="first-name" class="form-label">
-          <input id="first-name" class="form-input" type="text" placeholder="*first name"
+          <input id="first-name" class="form-input" type="text" placeholder="first name*"
                  formControlName="firstName">
           <span class="error-message" *ngIf="form.get('firstName')?.errors && form.get('firstName')?.touched">Please fill in your first name</span>
         </label>
         <label for="last-name" class="form-label">
-          <input id="last-name" class="form-input" type="text" placeholder="*last name"
+          <input id="last-name" class="form-input" type="text" placeholder="last name*"
                  formControlName="lastName">
           <span class="error-message" *ngIf="form.get('lastName')?.errors && form.get('lastName')?.touched">Please fill in your last name</span>
         </label>
         <label for="user-name" class="form-label">
-          <input id="user-name" class="form-input" type="text" placeholder="*user name"
+          <input id="user-name" class="form-input" type="text" placeholder="user name*"
                  formControlName="userName">
           <span class="error-message" *ngIf="form.get('userName')?.errors && form.get('userName')?.touched">Please fill in your username</span>
           <span class="error-message" *ngIf="usernameIsExist$ | async">This username is already registered on Sophist</span>

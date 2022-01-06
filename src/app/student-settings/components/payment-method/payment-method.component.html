@@ -76,22 +76,22 @@
         <label for="streetNumber" class="form-label">
           <input id="streetNumber" class="form-input" autocomplete="streetNumber" type="text"
                  placeholder="Street Number*" formControlName="streetNumber">
-          <span class="error-message block">This Field is requires</span>
+          <span class="error-message block">This is a required field</span>
         </label>
         <label for="city" class="form-label">
           <input id="city" class="form-input" autocomplete="city" type="text"
                  placeholder="city*" formControlName="city">
-          <span class="error-message block">This Field is requires</span>
+          <span class="error-message block">This is a required field</span>
         </label>
         <label class="form-label">
           <app-select [keyName]="'name'" [label]="'state*'"
                       formControlName="stateId"></app-select>
-          <span class="error-message block">This Field is requires</span>
+          <span class="error-message block">This is a required field</span>
         </label>
         <label for="zipCode" class="form-label">
           <input id="zipCode" class="form-input" autocomplete="zipCode"
                  placeholder="Zip Code*" formControlName="zipCode">
-          <span class="error-message block">This Field is requires</span>
+          <span class="error-message block">This is a required field</span>
         </label>
       </div>
     </fieldset>

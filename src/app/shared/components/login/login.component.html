@@ -12,7 +12,7 @@
              type="email"
              placeholder="email address*"
              formControlName="email">
-      <span class="error-message" *ngIf="form.get('email')?.errors?.required && form.get('email')?.touched">This Field Required</span>
+      <span class="error-message" *ngIf="form.get('email')?.errors?.required && form.get('email')?.touched">This is a required field</span>
       <span class="error-message" *ngIf="form.get('email')?.errors?.pattern && form.get('email')?.touched">Please provide a valid email address</span>
     </label>
     <label for="password" class="form-label">
@@ -24,7 +24,7 @@
              [type]="passwordType"
              placeholder="password*"
              formControlName="password">
-      <span class="error-message" *ngIf="form.get('password')?.errors && form.get('password')?.touched">This Field Required</span>
+      <span class="error-message" *ngIf="form.get('password')?.errors && form.get('password')?.touched">This is a required field</span>
       <span class="view-icon" (click)="togglePasswordVisibility()">
         <img src="assets/images/visiblePassword.svg" *ngIf="passwordType ==='password'" alt="VisiblePassword" width="27" height="17">
         <img src="assets/images/invisiblePassword.png" alt="Invisible Password" *ngIf="passwordType ==='text'" width="29" height="26">

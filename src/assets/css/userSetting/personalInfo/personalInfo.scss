@@ -6,6 +6,10 @@
     width: 418px;
   }
 
+}
+
+.wrapper-for-contact {
+
   .phone-number-label {
     z-index: 99;
   }
@@ -17,6 +21,16 @@
 
     .form-input {
       padding: 0 40px;
+    }
+  }
+}
+
+.tutor-contact {
+  .phone-number-label-input {
+    width: 100%;
+
+    .error-message {
+      left: 30px;
     }
   }
 }

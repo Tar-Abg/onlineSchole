@@ -29,7 +29,7 @@
                        formControlName="date"
                        [readonly]="true"
                        [max]="todayDate"
-                       placeholder="dd/mm/yyyy*"
+                       placeholder="dd/mm/yyyy"
                 >
               </mat-form-field>
             </div>
@@ -42,7 +42,7 @@
         </fieldset>
       </div>
     </form>
-    <button type="button" class="add flex-container-center" id="add" (click)="addNewForm()"> + Add</button>
+    <button type="button" class="add flex-container-center" id="add" (click)="addNewForm()"> + Add more</button>
     <div class="flex-container-center button-wrapper">
       <ng-container *ngIf="!isLoggedIn">
         <button class="sophist-btn flex-container-center previous-btn" (click)="back.emit()">PREVIOUS</button>
