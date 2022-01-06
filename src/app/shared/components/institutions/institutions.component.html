@@ -82,7 +82,7 @@
                          formControlName="startDate"
                          [readonly]="true"
                          [max]="formArray.controls[i]?.get('graduationDate')?.value || todayDate"
-                         placeholder="dd/mm/yyyy*"
+                         placeholder="MM/dd/yyyy*"
                   >
                 </mat-form-field>
                 <span class="error-message"
@@ -104,7 +104,7 @@
                          [max]="todayDate"
                          [min]="formArray.controls[i]?.get('startDate')?.value"
                          [readonly]="true" [disabled]="item.get('degreeInProgress')?.value === true"
-                         placeholder="dd/mm/yyyy*">
+                         placeholder="MM/dd/yyyy*">
                 </mat-form-field>
                 <span class="error-message"
                       *ngIf="formArray.controls[i]?.get('graduationDate')?.errors && formArray.controls[i]?.get('graduationDate')?.touched">This is a required field</span>
