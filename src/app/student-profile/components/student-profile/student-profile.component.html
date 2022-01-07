@@ -1,0 +1,209 @@
+<!--<app-login-header></app-login-header>-->
+<main class="user-profile-wrapper">
+  <div class="profile-gradient"></div>
+  <div class="profile-container">
+    <section class="profile-main-info-wrapper">
+      <div class="file-upload-wrapper">
+        <div class="upload-image-box">
+          <div class="image-upload-wrap">
+            <div class="drag-text">
+              <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
+                   width="33" height="33">
+            </div>
+            <!--            <img src="" alt="Upload Photo">-->
+          </div>
+        </div>
+      </div>
+      <div class="profile-cards">
+        <h2 class="profile-cards__Info--title">Ann Smith </h2>
+      </div>
+    </section>
+    <section class="profile-buttons">
+      <button class="profile-buttons--item" (click)="activeTab = 'PROFILE'">
+        <img src="assets/images/profile.png"
+             alt="Profile"
+             width="55"
+             height="55">
+        profile
+      </button>
+      <button class="profile-buttons--item" (click)="activeTab = 'START_LESSON'">
+        <img src="assets/images/online-learning.png"
+             alt="Start Lesson"
+             width="55"
+             height="55">
+        Start Lesson
+      </button>
+      <button class="profile-buttons--item" (click)="activeTab ='MESSAGES'">
+        <img src="assets/images/message.png" alt="Messages" width="51" height="50">
+        Messages
+      </button>
+      <button class="profile-buttons--item" (click)="activeTab='PAYMENTS'">
+        <img src="assets/images/cashless-payment.png" alt="payments" width="48" height="48">
+        Payments
+      </button>
+      <button class="profile-buttons--item" (click)="activeTab='LESSON_HISTORY'">
+        <img src="assets/images/lessonHistory.png" alt="Messages" width="51" height="51">
+        Lesson history
+      </button>
+      <button class="profile-buttons--item" (click)="activeTab='FIND_TUTOR'">
+        <img src="assets/images/lessonHistory.png" alt="Messages" width="51" height="51">
+        Find Tutor
+      </button>
+    </section>
+    <div>
+      <section class="profile-section">
+        <h2 class="profile-section__title">
+          Wrap up your profile
+          <hr/>
+        </h2>
+        <div class="nested-info">
+          <p class="profile-section__description">
+            As a former college math professor, you might expect that I always liked math. However, my passion for
+            mathematics actually began when I was in 11th grade. As a homeschooled student, I had a flexible schedule
+            which allowed me to take Algebra II at my local community college. I had an amazing professor who made me
+            realize how fun math is.
+          </p>
+          <button class="read-more">Read more</button>
+        </div>
+      </section>
+      <section class="profile-section">
+        <h2 class="profile-section__title">
+          Subjects
+          <hr/>
+        </h2>
+        <div class="nested-info without-side-padding">
+          <div class="flex-container-justify-start grid-gap-54 grid-wrapper">
+            <div class="flex-item large-mr">
+              <div class="profile-section-subItems">
+                <h2 class="profile-section--subtitle">Category</h2>
+                <p class="profile-section--subDescription">
+                  Languages
+                </p>
+              </div>
+              <div class="profile-section-subItems">
+                <h2 class="profile-section--subtitle">Subject</h2>
+                <p class="profile-section--subDescription">
+                  Polish
+                </p>
+              </div>
+              <div class="profile-section-subItems">
+                <h2 class="profile-section--subtitle">Level</h2>
+                <p class="profile-section--subDescription">
+                  Intermediate
+                </p>
+              </div>
+            </div>
+            <div class="flex-item">
+              <div class="profile-section-subItems">
+                <h2 class="profile-section--subtitle">Category</h2>
+                <p class="profile-section--subDescription">
+                  Natural Sciences
+                </p>
+              </div>
+              <div class="profile-section-subItems">
+                <h2 class="profile-section--subtitle">Subject</h2>
+                <p class="profile-section--subDescription">
+                  Biology
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="profile-section">
+        <h2 class="profile-section__title">
+          My Tutors
+          <hr/>
+        </h2>
+        <div class="nested-info without-side-padding">
+          <ul class="tutors-wrapper">
+            <li class="tutors-wrapper__item">
+              <figure class="tutors-wrapper__item-info">
+                <div class="tutors-wrapper__item-logo-wrapper">
+                  <img src="assets/images/messageUser.png" class="tutor-pic" alt="Tutor image" width="80" height="80">
+                  <!--                  <div class="message-tutor">-->
+                  <!--                    <img src="assets/images/message.png" alt="Message Icon" width="51" height="50">-->
+                  <!--                  </div>-->
+                </div>
+                <figcaption>
+                  <h2 class="tutors-wrapper__item-info-name">
+                    Danielle M.
+                  </h2>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="tutors-wrapper__item">
+              <figure class="tutors-wrapper__item-info">
+                <div class="tutors-wrapper__item-logo-wrapper">
+                  <img src="assets/images/messageUser.png" class="tutor-pic" alt="Tutor image" width="80" height="80">
+                  <!--                  <div class="message-tutor">-->
+                  <!--                    <img src="assets/images/message.png" alt="Message Icon" width="51" height="50">-->
+                  <!--                  </div>-->
+                </div>
+                <figcaption>
+                  <h2 class="tutors-wrapper__item-info-name">
+                    Danielle M.
+                  </h2>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="tutors-wrapper__item">
+              <figure class="tutors-wrapper__item-info">
+                <div class="tutors-wrapper__item-logo-wrapper">
+                  <img src="assets/images/messageUser.png" class="tutor-pic" alt="Tutor image" width="80" height="80">
+                  <!--                  <div class="message-tutor">-->
+                  <!--                    <img src="assets/images/message.png" alt="Message Icon" width="51" height="50">-->
+                  <!--                  </div>-->
+                </div>
+                <figcaption>
+                  <h2 class="tutors-wrapper__item-info-name">
+                    Danielle M.
+                  </h2>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="tutors-wrapper__item">
+              <figure class="tutors-wrapper__item-info">
+                <div class="tutors-wrapper__item-logo-wrapper">
+                  <img src="assets/images/messageUser.png" class="tutor-pic" alt="Tutor image" width="80" height="80">
+                  <!--                  <div class="message-tutor">-->
+                  <!--                    <img src="assets/images/message.png" alt="Message Icon" width="51" height="50">-->
+                  <!--                  </div>-->
+                </div>
+                <figcaption>
+                  <h2 class="tutors-wrapper__item-info-name">
+                    Danielle M.
+                  </h2>
+                </figcaption>
+              </figure>
+            </li>
+            <li class="tutors-wrapper__item">
+              <figure class="tutors-wrapper__item-info">
+                <div class="tutors-wrapper__item-logo-wrapper">
+                  <img src="assets/images/messageUser.png" class="tutor-pic" alt="Tutor image" width="80" height="80">
+                  <!--                  <div class="message-tutor">-->
+                  <!--                    <img src="assets/images/message.png" alt="Message Icon" width="51" height="50">-->
+                  <!--                  </div>-->
+                </div>
+                <figcaption>
+                  <h2 class="tutors-wrapper__item-info-name">
+                    Danielle M.
+                  </h2>
+                </figcaption>
+              </figure>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!--      <app-profile-info *ngSwitchCase="'PROFILE'"></app-profile-info>-->
+      <!--      <app-message-dashboard *ngSwitchCase="'MESSAGES'"></app-message-dashboard>-->
+      <!--      <app-payment-dashboard *ngSwitchCase="'PAYMENTS'"></app-payment-dashboard>-->
+      <!--      <app-lesson-history-dashboard *ngSwitchCase="'LESSON_HISTORY'"></app-lesson-history-dashboard>-->
+    </div>
+  </div>
+</main>
+
+
+
+
+
