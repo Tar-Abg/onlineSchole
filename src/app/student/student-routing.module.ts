@@ -6,7 +6,6 @@ import {StudentSecondStepComponent} from "./components/student-second-step/stude
 import {StudentThirdStepComponent} from "./components/student-third-step/student-third-step.component";
 import {StudentFourthStepComponent} from "./components/student-fourth-step/student-fourth-step.component";
 import {StudentFifthStepComponent} from "./components/student-fifth-step/student-fifth-step.component";
-import {StudentProfileComponent} from "../student-profile/components/student-profile/student-profile.component";
 
 const routes: Routes = [
   {
@@ -20,7 +19,7 @@ const routes: Routes = [
     ]
   },
   {path: 'StudentProfileDetails', component: StudentSignUpComponent},
-  {path: 'profile', component: StudentProfileComponent},
+  {path: 'profile', loadChildren: () => import('../student-profile/student-profile.module').then(m => m.StudentProfileModule)},
   {
     path: 'settings',
     loadChildren: () => import('../student-settings/student-settings.module').then(m => m.StudentSettingsModule)
