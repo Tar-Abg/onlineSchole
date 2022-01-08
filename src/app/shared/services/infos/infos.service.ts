@@ -10,9 +10,14 @@ import {
   Country,
   DaysOfWeek,
   HoursOfDay,
-  Level, LevelForTutor, Minutes,
-  Month, States,
-  Subjects, SubjectsForTutor, TimeZones
+  Level,
+  LevelForTutor,
+  Minutes,
+  Month,
+  States,
+  Subjects,
+  SubjectsForTutor,
+  TimeZones
 } from "../../models/infos.model";
 
 @Injectable({
@@ -185,6 +190,12 @@ export class InfosService {
 
   getLessonStatuses(): Observable<KeyValuePair[]> {
     return this.http.get<ResponseModel<KeyValuePair[]>>(`${this.url}/GetLessonStatuses`).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getSortForStudentSearch(): Observable<KeyValuePair[]> {
+    return this.http.get<ResponseModel<KeyValuePair[]>>(`${this.url}/GetSortForStudentSearch`).pipe(
       map(data => data.result)
     );
   }

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {
   LessonRequest,
-  LessonSchedule,
+  LessonSchedule, SearchTutor,
   SelectedDay,
   TutorAvailabilities,
   TutorBaseInfo,
@@ -105,5 +105,20 @@ export class TutorService {
 
   addLesson(body: any): Observable<any> {
     return this.http.post(`${this.url}/AddLesson`, body);
+  }
+
+  getStudents(body: any): Observable<SearchTutor[]> {
+    let params = new HttpParams();
+    params = params.append('subjectId', body.subjectId);
+    params = params.append('sortId',  body.sortId);
+    return this.http.post<ResponseModel<SearchTutor[]>>(`${environment.apiUrl}/SearchUser/GetStudents`, null, {params}).pipe(
+      map(data => data.result),
+      map(students => {
+        return students.map(student => {
+          student.isOpenDetail = false;
+          return student
+        })
+      }),
+    )
   }
 }

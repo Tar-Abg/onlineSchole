@@ -112,3 +112,16 @@ export interface LessonRequest {
   from: string;
   to: string;
 }
+
+export interface SearchTutor {
+  availabilities: string[];
+  fullName: string;
+  level: string;
+  photo: string;
+  preferredTimeZone: string;
+  registrationDate: string;
+  studentId: number;
+  subject: string;
+  wrapUp: string;
+  isOpenDetail?: boolean;
+}

@@ -1,109 +1,77 @@
 <section class="jobs-board-wrapper">
   <div class="section-filter flex-container-justify-start">
     <h2 class="section-subtitle without-margin">Tutoring jobs</h2>
-    <form class="flex-container-justify-start section-filter-form">
+    <form [formGroup]="form" class="flex-container-justify-start section-filter-form" (ngSubmit)="onSubmit()">
       <div class="p-relative">
-        <app-select [label]="'Subject*'" formControlName="subject"></app-select>
+        <app-select [label]="'Subject*'" formControlName="subjectId"></app-select>
       </div>
       <div class="p-relative">
-        <app-select [label]="'Sort by*'" formControlName="sortBy"></app-select>
+        <app-select [label]="'Sort by*'" formControlName="sortId" [list]="sortForStudentSearch$ | async"></app-select>
       </div>
-      <button class="
+      <button [disabled]="form.invalid" class="
       settings-form-button__with-border
       button-border--green
       flex-container-center" type="submit">Show</button>
     </form>
   </div>
   <div class="jobs-wrapper">
-    <ul class="blue-bg jobs-list">
-      <li class="jobs-list__item">
+    <ul class="blue-bg jobs-list" *ngIf="(students$ | async) as students">
+      <li class="jobs-list__item" *ngFor="let student of students">
         <figure class="search-cards-item">
           <div class="search-cards-item-for-image">
-            <img src="assets/images/messageUser.png" alt="Tutor Image" width="80" height="80">
+            <img [src]="student.photo" alt="Tutor Image" width="80" height="80">
           </div>
           <figcaption class="profile-cards__Info">
-            <h2 class="profile-cards__Info--title">Ann Smith</h2>
+            <h2 class="profile-cards__Info--title">{{student.fullName}}</h2>
             <p class="profile-cards__Info--description">
-              As a former college math professor, you might expect that I always liked math. However, my passion for
-              mathematics actually began when I was in 11th grade.As a former college math professor.
+              {{student.wrapUp}}
             </p>
-            <a class="profile-cards__Info--subject"> Chemistry </a>
-            <time class="profile-cards__Info--time">03.21.2020</time>
+            <a class="profile-cards__Info--subject">{{student.subject}}</a>
+            <time class="profile-cards__Info--time">{{student.registrationDate | date : 'shortDate' }}</time>
           </figcaption>
           <div class="profile-cards__buttons-wrapper">
-            <button class="
+            <button type="button" class="
              settings-form-button
              settings-form-button--blue
              flex-container-center">
               Apply
             </button>
+            <button type="button" *ngIf="!student.isOpenDetail" (click)="student.isOpenDetail = true" class="settings-form-button settings-form-button--green flex-container-center">
+              Show Details
+            </button>
           </div>
         </figure>
-        <div class="collapsed-info search-cards-item">
+        <div class="collapsed-info search-cards-item" *ngIf="student.isOpenDetail">
           <form class="flex-container-justify-start nested-form-wrapper">
             <div class="flex-container-justify-start collapsed-info-form-container">
               <div class="p-relative">
                 <h2 class="form-label-text">Subject</h2>
-                <app-select [label]="'Subject*'" formControlName="subject"></app-select>
+                <input type="text" placeholder="Subject*" class="form-input" [value]="student.subject" disabled>
               </div>
               <div class="p-relative">
                 <h2 class="form-label-text">Subject grade level</h2>
-                <app-select [label]="'Subject grade level*'" formControlName="subjectGradeLevel"></app-select>
+                <input type="text" placeholder="'Subject grade level*'" class="form-input" [value]="student.level" disabled>
               </div>
               <div>
                 <h2 class="form-label-text">Availability</h2>
                 <div class="availability-wrapper">
-                  <label for="weekDay1" class="form-label confirm-content-label">
+                  <label for="weekDay1" class="form-label confirm-content-label" *ngFor="let item of student.availabilities">
                     <input type="text"
-                           formControlName="weekDay1"
-                           class="form-input"
-                           placeholder="Monday(morning)" id="weekDay1">
+                           class="form-input" disabled
+                           placeholder="Monday(morning)" id="weekDay1" [value]="item" disabled>
                   </label>
-                  <label for="weekDay2" class="form-label confirm-content-label">
-                    <input type="text"
-                           formControlName="weekDay1"
-                           class="form-input"
-                           placeholder="Wednesday (evening)" id="weekDay2">
-                    <span class="error-message"></span>
-                  </label>
-
                 </div>
               </div>
               <div class="p-relative">
                 <h2 class="form-label-text">Time zone</h2>
-                <app-select [label]="'time zone*'" formControlName="preferredTimeZone"
-                            [keyName]="'displayName'"></app-select>
+                <input type="text" class="form-input" placeholder="'time zone*'" [value]="student.preferredTimeZone" disabled>
               </div>
             </div>
-            <button class="settings-form-button settings-form-button--green flex-container-center">
-              Show Details
+            <button type="button" (click)="student.isOpenDetail = false" class="settings-form-button settings-form-button--green flex-container-center">
+              Hide details
             </button>
           </form>
         </div>
-      </li>
-      <li class="jobs-list__item">
-        <figure class="search-cards-item">
-          <div class="search-cards-item-for-image">
-            <img src="assets/images/messageUser.png" alt="Tutor Image" width="80" height="80">
-          </div>
-          <figcaption class="profile-cards__Info">
-            <h2 class="profile-cards__Info--title">Ann Smith</h2>
-            <p class="profile-cards__Info--description">
-              As a former college math professor, you might expect that I always liked math. However, my passion for
-              mathematics actually began when I was in 11th grade.As a former college math professor.
-            </p>
-            <a class="profile-cards__Info--subject"> Chemistry </a>
-            <time class="profile-cards__Info--time">03.21.2020</time>
-          </figcaption>
-          <div class="profile-cards__buttons-wrapper">
-            <button class="settings-form-button settings-form-button--blue flex-container-center">
-              Apply
-            </button>
-            <button class="settings-form-button settings-form-button--green flex-container-center">
-              Show Details
-            </button>
-          </div>
-        </figure>
       </li>
     </ul>
   </div>
