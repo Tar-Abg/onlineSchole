@@ -19,7 +19,7 @@
         <input matInput
                [matDatepicker]="picker" formControlName="date"
                (click)="picker.open()"
-               placeholder="*dd/mm/yyyy"
+               placeholder="*MM/dd/yyyy"
                (dateChange)="setSecondDate()"
         >
       </mat-form-field>
@@ -36,7 +36,7 @@
         <mat-datepicker #picker1></mat-datepicker>
         <input matInput [matDatepicker]="picker1" formControlName="endDate"
                (click)="picker1.open()"
-               placeholder="*dd/mm/yyyy"
+               placeholder="*MM/dd/yyyy"
         >
       </mat-form-field>
     </div>

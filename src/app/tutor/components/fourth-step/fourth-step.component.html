@@ -15,7 +15,7 @@
             </div>
             <ol>
               <li class="nested" *ngIf="form.get('everTutored')?.value">
-                <h3 class="main-question">1.1 How many years of experience do you have as a tutor? </h3>
+                <h3 class="main-question">1.1. How many years of experience do you have as a tutor? </h3>
                 <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
                   <mat-radio-group name="experienceYears" class="everTutored" formControlName="experienceYears">
                     <mat-radio-button [value]="item.id"
@@ -40,24 +40,14 @@
             </div>
             <ol>
               <li class="nested" *ngIf="form.get('everTutoredOnline')?.value">
-                <h3 class="main-question">2.1 Please choose all that apply</h3>
-                <div>
-                  <div class="checkboxes-wrapper-flex grid-1-template checkboxes-wrapper-flex-with-min-width">
-                    <mat-radio-group name="allToApply " class="allToApply" formControlName="allToApply">
-                      <mat-radio-button [value]="true">Online platforms</mat-radio-button>
-                      <mat-radio-button [value]="false">Other</mat-radio-button>
-                    </mat-radio-group>
-                    <span class="error-message"
-                          *ngIf="form.get('everTutoredOnline')?.errors && form.get('everTutoredOnline')?.touched">This is a required field</span>
-                  </div>
-                  <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
-                    <input type="text"
-                           formControlName="onlineTutoringVariant"
-                           placeholder="Enter the option"
-                           class="form-input">
-                    <span class="error-message"
-                          *ngIf="form.get('onlineTutoringVariant')?.errors && form.get('onlineTutoringVariant')?.touched">This is a required field</span>
-                  </div>
+                <h3 class="main-question">2.1. Please choose all that apply</h3>
+                <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
+                  <input type="text"
+                         formControlName="onlineTutoringVariant"
+                         placeholder="Enter the option"
+                         class="form-input">
+                  <span class="error-message"
+                        *ngIf="form.get('onlineTutoringVariant')?.errors && form.get('onlineTutoringVariant')?.touched">This is a required field</span>
                 </div>
               </li>
             </ol>
@@ -165,7 +155,7 @@
                                    (click)="picker.open()"
                                    formControlName="startYear"
                                    [readonly]="true"
-                                   placeholder="mm/dd/yyyy*"
+                                   placeholder="MM/dd/yyyy*"
                                    [max]="workHistory.controls[i]?.get('endYear')?.value || todayDate"
                             >
                           </mat-form-field>
@@ -189,7 +179,7 @@
                                    formControlName="endYear"
                                    [max]="todayDate"
                                    [min]="workHistory.controls[i]?.get('startYear')?.value"
-                                   [readonly]="true" placeholder="mm/dd/yyyy*">
+                                   [readonly]="true" placeholder="MM/dd/yyyy*">
                           </mat-form-field>
                           <span class="error-message"
                                 *ngIf="workHistory.controls[i]?.get('endYear')?.errors && workHistory.controls[i]?.get('endYear')?.touched">This is a required field</span>
@@ -203,7 +193,8 @@
                         </div>
                       </div>
                       <div class="flex-container grid-gap-for-icons">
-                        <i class="fas fa-plus" (click)="addWorkHistory()" *ngIf="i == workHistory.controls.length-1"></i>
+                        <i class="fas fa-plus" (click)="addWorkHistory()"
+                           *ngIf="i == workHistory.controls.length-1"></i>
                         <div class="recycle-bin-wrapper" (click)="removeWorkHistory(item)" *ngIf="i > 0">
                           <img src="./assets/images/recycleBin.png" alt="recycle byn" class="trashIcon">
                         </div>
