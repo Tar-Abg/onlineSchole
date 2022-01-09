@@ -3,7 +3,7 @@
     <h2 class="section-subtitle without-margin">Tutoring jobs</h2>
     <form [formGroup]="form" class="flex-container-justify-start section-filter-form" (ngSubmit)="onSubmit()">
       <div class="p-relative">
-        <app-select [label]="'Subject*'" formControlName="subjectId"></app-select>
+        <app-select [label]="'Subject*'" formControlName="subjectId" [list]="subjects$ | async" [keyName]="'subjectName'"></app-select>
       </div>
       <div class="p-relative">
         <app-select [label]="'Sort by*'" formControlName="sortId" [list]="sortForStudentSearch$ | async"></app-select>

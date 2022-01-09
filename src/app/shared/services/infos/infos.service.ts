@@ -200,4 +200,12 @@ export class InfosService {
     );
   }
 
+  findAllSubjectsForTutor(tutorId: number): Observable<Subjects[]> {
+    let params = new HttpParams();
+    params = params.append('tutorId', tutorId)
+    return this.http.get<ResponseModel<Subjects[]>>(`${this.url}/FindAllSubjectsForTutor`, {params}).pipe(
+      map(data => data.result)
+    );
+  }
+
 }

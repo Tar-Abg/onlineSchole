@@ -5,6 +5,8 @@ import {Observable} from "rxjs";
 import {KeyValuePair} from "../../models/keyValuePair.model";
 import {TutorService} from "../../../tutor-profile/services/tutor-service.service";
 import {SearchTutor} from "../../../tutor-profile/models/tutor.model";
+import {Subjects} from "../../models/infos.model";
+import {StorageService} from "../../services/storage/storage.service";
 
 @Component({
   selector: 'app-jobs-board-dashboard',
@@ -14,25 +16,35 @@ import {SearchTutor} from "../../../tutor-profile/models/tutor.model";
 export class JobsBoardDashboardComponent implements OnInit {
   students$: Observable<SearchTutor[]>;
   sortForStudentSearch$: Observable<KeyValuePair[]>;
+  subjects$: Observable<Subjects[]>;
   form: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private infoService: InfosService,
     private tutorService: TutorService,
+    private storageService: StorageService,
   ) {
   }
 
   ngOnInit(): void {
+    this.initializeForm();
+    this.initializeListeners();
+  }
+
+  initializeForm(): void {
     this.form = this.fb.group({
-      subjectId: [2, [Validators.required]],
-      sortId: [],
+      subjectId: [null, [Validators.required]],
+      sortId: [null],
     });
+  }
+
+  initializeListeners(): void {
     this.sortForStudentSearch$ = this.infoService.getSortForStudentSearch();
+    this.subjects$ = this.infoService.findAllSubjectsForTutor(this.storageService.getUserId());
   }
 
   onSubmit(): void {
-    console.log(this.form.value);
     this.form.valid && (this.students$ = this.tutorService.getStudents(this.form.value));
   }
 }
