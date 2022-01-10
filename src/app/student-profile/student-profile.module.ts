@@ -5,6 +5,7 @@ import {LayoutsModule} from "../layouts/layouts.module";
 import {SharedModule} from "../shared/shared.module";
 import {ProfileInfoComponent} from './components/profile-info/profile-info.component';
 import {StudentProfileRoutingModule} from "./student-profile-routing.module";
+import {SearchTutorModule} from "../search-tutor/search-tutor.module";
 
 
 @NgModule({
@@ -12,11 +13,12 @@ import {StudentProfileRoutingModule} from "./student-profile-routing.module";
     StudentProfileComponent,
     ProfileInfoComponent,
   ],
-  imports: [
-    CommonModule,
-    LayoutsModule,
-    SharedModule,
-    StudentProfileRoutingModule
-  ]
+    imports: [
+        CommonModule,
+        LayoutsModule,
+        SharedModule,
+        StudentProfileRoutingModule,
+        SearchTutorModule
+    ]
 })
 export class StudentProfileModule { }

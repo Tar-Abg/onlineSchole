@@ -1,4 +1,4 @@
-<figure class="search-cards-item">
+<figure class="search-cards-item" [class.large_width]="isStudentPage">
   <div class="search-cards-item-for-image">
     <img [src]="tutor.photo" alt="Tutor Image" width="166" height="167">
   </div>
@@ -6,7 +6,9 @@
     <h2 class="profile-cards__Info--title">{{tutor.fullName}}</h2>
     <p class="profile-cards__Info--description">
       {{tutor.profileHeadline}}
-      <button class="read-more d-block" (click)="toggleContent()" *ngIf="tutor.profileHeadline.length > limit">{{isContentToggled ? 'read more' : 'read less'}}</button>
+      <ng-container *ngIf="tutor.profileHeadline">
+        <button class="read-more d-block" (click)="toggleContent()" *ngIf="tutor.profileHeadline.length > limit">{{isContentToggled ? 'read more' : 'read less'}}</button>
+      </ng-container>
     </p>
   </figcaption>
   <div class="profile-cards__details">

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {SearchTutorService} from "../../services/search-tutor.service";
 import {BehaviorSubject, Observable} from "rxjs";
 import {map, tap} from "rxjs/operators";
@@ -10,10 +10,10 @@ import {SearchResultForTutor} from "../../models/search.model";
   styleUrls: ['./search-tutor.component.scss']
 })
 export class SearchTutorComponent implements OnInit {
+  @Input() isOnStudentPage = false;
   tutorList$: Observable<SearchResultForTutor[] | undefined>;
   pagesCount: number;
   currentPage$: BehaviorSubject<number>;
-
 
   constructor(
     private searchTutorService: SearchTutorService

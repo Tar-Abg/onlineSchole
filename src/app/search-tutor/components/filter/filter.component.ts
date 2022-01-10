@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {Observable} from "rxjs";
 import {Categories, DaysOfWeek, Subjects} from "../../../shared/models/infos.model";
@@ -14,6 +14,7 @@ import {SearchTutorService} from "../../services/search-tutor.service";
   styleUrls: ['./filter.component.scss']
 })
 export class FilterComponent implements OnInit {
+  @Input() showFilterTitle = true;
   categories$: Observable<Categories[]>;
   subjects$: Observable<Subjects[]>;
   availableHours$: Observable<DaysOfWeek[]>;

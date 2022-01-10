@@ -7,6 +7,7 @@ import {SearchResultForTutor} from "../../models/search.model";
   styleUrls: ['./tutor-card.component.scss']
 })
 export class TutorCardComponent implements OnInit {
+  @Input() isStudentPage = false;
   @Input() set tutor(value: SearchResultForTutor) {
     this._tutor = value;
     this.originalContent = this._tutor.profileHeadline;
@@ -33,7 +34,7 @@ export class TutorCardComponent implements OnInit {
 
   formatContent(content: string) {
     if (!this.isContentToggled) {
-      if (content.length > this.limit) {
+      if (content?.length > this.limit) {
         this.isContentToggled = true;
         return `${content.substr(0, this.limit)}...`;
       } else  {

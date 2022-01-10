@@ -13,13 +13,15 @@ import {MatSelectModule} from "@angular/material/select";
 import {ReactiveFormsModule} from "@angular/forms";
 import {RatingModule} from "ng-starrating";
 
-
 @NgModule({
-  declarations: [
-    SearchTutorComponent,
-    FilterComponent,
-    TutorCardComponent
-  ],
+    declarations: [
+        SearchTutorComponent,
+        FilterComponent,
+        TutorCardComponent
+    ],
+    exports: [
+        SearchTutorComponent
+    ],
     imports: [
         CommonModule,
         SearchTutorRoutingModule,
