@@ -1,4 +1,4 @@
-<!--<app-login-header></app-login-header>-->
+<app-login-header></app-login-header>
 <main class="user-profile-wrapper">
   <div class="profile-gradient"></div>
   <div class="profile-container">
@@ -6,16 +6,21 @@
       <div class="file-upload-wrapper">
         <div class="upload-image-box">
           <div class="image-upload-wrap">
-            <div class="drag-text">
-              <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
-                   width="33" height="33">
-            </div>
-            <!--            <img src="" alt="Upload Photo">-->
+            <div *ngIf="!profileInfo?.photo;then emptyImage else studentPhoto"></div>
+            <ng-template #emptyImage>
+              <div class="drag-text">
+                <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
+                     width="33" height="33">
+              </div>
+              </ng-template>
+            <ng-template #studentPhoto>
+              <img [src]="profileInfo?.photo" alt="student photo">
+            </ng-template>
           </div>
         </div>
       </div>
       <div class="profile-cards">
-        <h2 class="profile-cards__Info--title">Ann Smith </h2>
+        <h2 class="profile-cards__Info--title">{{profileInfo?.fullName}}</h2>
       </div>
     </section>
     <section class="profile-buttons">
@@ -51,7 +56,7 @@
       </button>
     </section>
       <div [ngSwitch]="activeTab">
-        <app-profile-info *ngSwitchCase="'PROFILE'"></app-profile-info>
+        <app-profile-info *ngSwitchCase="'PROFILE'" [wrapUp]="profileInfo?.wrapUp"></app-profile-info>
         <app-message-dashboard *ngSwitchCase="'MESSAGES'"></app-message-dashboard>
         <app-payment-dashboard *ngSwitchCase="'PAYMENTS'"></app-payment-dashboard>
         <app-lesson-history-dashboard *ngSwitchCase="'LESSON_HISTORY'"></app-lesson-history-dashboard>

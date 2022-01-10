@@ -3,9 +3,10 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {Login, User, UserAuthInfo} from "../../models/auth.model";
-import {tap} from "rxjs/operators";
+import {map, tap} from "rxjs/operators";
 import {StorageService} from "../storage/storage.service";
 import {Router} from "@angular/router";
+import {ResponseModel} from "../../models/responseModel.model";
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,8 @@ export class AuthService {
   }
 
   login(body: Login): Observable<User> {
-    return this.http.post<User>(`${this.url}/Login`, body).pipe(
+    return this.http.post<ResponseModel<User>>(`${this.url}/Login`, body).pipe(
+      map(data => data.result),
       tap(user => {
         if (user.token) {
           this.setSessions(user);

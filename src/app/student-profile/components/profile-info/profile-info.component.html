@@ -1,16 +1,13 @@
-<section class="profile-section">
+<section class="profile-section" *ngIf="_wrapUp">
   <h2 class="profile-section__title">
     Wrap up your profile
     <hr/>
   </h2>
   <div class="nested-info">
     <p class="profile-section__description">
-      As a former college math professor, you might expect that I always liked math. However, my passion for
-      mathematics actually began when I was in 11th grade. As a homeschooled student, I had a flexible schedule
-      which allowed me to take Algebra II at my local community college. I had an amazing professor who made me
-      realize how fun math is.
+      {{_wrapUp}}
     </p>
-    <button class="read-more">Read more</button>
+    <button class="read-more" (click)="toggleContent()" *ngIf="_wrapUp.length > limit">{{isContentToggled ? 'Read more' : 'Read less'}}</button>
   </div>
 </section>
 <section class="profile-section">
@@ -20,125 +17,50 @@
   </h2>
   <div class="nested-info without-side-padding">
     <div class="flex-container-justify-start grid-gap-54 grid-wrapper">
-      <div class="flex-item large-mr">
-        <div class="profile-section-subItems">
+      <div class="flex-item large-mr" *ngFor="let subject of subjects$ | async">
+        <div class="profile-section-subItems" *ngIf="subject?.category">
           <h2 class="profile-section--subtitle">Category</h2>
           <p class="profile-section--subDescription">
-            Languages
+            {{subject.category}}
           </p>
         </div>
-        <div class="profile-section-subItems">
+        <div class="profile-section-subItems" *ngIf="subject?.subject">
           <h2 class="profile-section--subtitle">Subject</h2>
           <p class="profile-section--subDescription">
-            Polish
+            {{subject.subject}}
           </p>
         </div>
-        <div class="profile-section-subItems">
+        <div class="profile-section-subItems" *ngIf="subject?.level">
           <h2 class="profile-section--subtitle">Level</h2>
           <p class="profile-section--subDescription">
-            Intermediate
+            {{subject.level}}
           </p>
         </div>
-      </div>
-      <div class="flex-item">
-        <div class="profile-section-subItems">
-          <h2 class="profile-section--subtitle">Category</h2>
-          <p class="profile-section--subDescription">
-            Natural Sciences
-          </p>
-        </div>
-        <div class="profile-section-subItems">
-          <h2 class="profile-section--subtitle">Subject</h2>
-          <p class="profile-section--subDescription">
-            Biology
-          </p>
-        </div>
-      </div>
+      </div >
     </div>
   </div>
 </section>
-<section class="profile-section">
-  <h2 class="profile-section__title">
-    My Tutors
-    <hr/>
-  </h2>
-  <div class="nested-info without-side-padding">
-    <ul class="tutors-wrapper">
-      <li class="tutors-wrapper__item">
-        <figure class="tutors-wrapper__item-info">
-          <div class="tutors-wrapper__item-logo-wrapper">
-            <img src="assets/images/messageUser.png" class="tutor-pic" alt="Tutor image" width="80" height="80">
-            <!--                  <div class="message-tutor">-->
-            <!--                    <img src="assets/images/message.png" alt="Message Icon" width="51" height="50">-->
-            <!--                  </div>-->
-          </div>
-          <figcaption>
-            <h2 class="tutors-wrapper__item-info-name">
-              Danielle M.
-            </h2>
-          </figcaption>
-        </figure>
-      </li>
-      <li class="tutors-wrapper__item">
-        <figure class="tutors-wrapper__item-info">
-          <div class="tutors-wrapper__item-logo-wrapper">
-            <img src="assets/images/messageUser.png" class="tutor-pic" alt="Tutor image" width="80" height="80">
-            <!--                  <div class="message-tutor">-->
-            <!--                    <img src="assets/images/message.png" alt="Message Icon" width="51" height="50">-->
-            <!--                  </div>-->
-          </div>
-          <figcaption>
-            <h2 class="tutors-wrapper__item-info-name">
-              Danielle M.
-            </h2>
-          </figcaption>
-        </figure>
-      </li>
-      <li class="tutors-wrapper__item">
-        <figure class="tutors-wrapper__item-info">
-          <div class="tutors-wrapper__item-logo-wrapper">
-            <img src="assets/images/messageUser.png" class="tutor-pic" alt="Tutor image" width="80" height="80">
-            <!--                  <div class="message-tutor">-->
-            <!--                    <img src="assets/images/message.png" alt="Message Icon" width="51" height="50">-->
-            <!--                  </div>-->
-          </div>
-          <figcaption>
-            <h2 class="tutors-wrapper__item-info-name">
-              Danielle M.
-            </h2>
-          </figcaption>
-        </figure>
-      </li>
-      <li class="tutors-wrapper__item">
-        <figure class="tutors-wrapper__item-info">
-          <div class="tutors-wrapper__item-logo-wrapper">
-            <img src="assets/images/messageUser.png" class="tutor-pic" alt="Tutor image" width="80" height="80">
-            <!--                  <div class="message-tutor">-->
-            <!--                    <img src="assets/images/message.png" alt="Message Icon" width="51" height="50">-->
-            <!--                  </div>-->
-          </div>
-          <figcaption>
-            <h2 class="tutors-wrapper__item-info-name">
-              Danielle M.
-            </h2>
-          </figcaption>
-        </figure>
-      </li>
-      <li class="tutors-wrapper__item">
-        <figure class="tutors-wrapper__item-info">
-          <div class="tutors-wrapper__item-logo-wrapper">
-            <img src="assets/images/messageUser.png" class="tutor-pic" alt="Tutor image" width="80" height="80">
-            <!--                  <div class="message-tutor">-->
-            <!--                    <img src="assets/images/message.png" alt="Message Icon" width="51" height="50">-->
-            <!--                  </div>-->
-          </div>
-          <figcaption>
-            <h2 class="tutors-wrapper__item-info-name">
-              Danielle M.
-            </h2>
-          </figcaption>
-        </figure>
-      </li>
-    </ul>
-  </div>
+<section class="profile-section" *ngIf="(studentTutors$ | async) as studentTutors">
+  <ng-template *ngIf="studentTutors?.length">
+    <h2 class="profile-section__title">
+      My Tutors
+      <hr/>
+    </h2>
+    <div class="nested-info without-side-padding">
+      <ul class="tutors-wrapper">
+        <li class="tutors-wrapper__item" *ngFor="let tutor of studentTutors">
+          <figure class="tutors-wrapper__item-info">
+            <div class="tutors-wrapper__item-logo-wrapper">
+              <img [src]="tutor.photo" class="tutor-pic" alt="Tutor image" width="80" height="80">
+            </div>
+            <figcaption>
+              <h2 class="tutors-wrapper__item-info-name">
+                {{tutor.fullname}}
+              </h2>
+            </figcaption>
+          </figure>
+        </li>
+      </ul>
+    </div>
+  </ng-template>
 </section>
