@@ -48,9 +48,9 @@ export class StepOneComponent implements OnInit, OnDestroy {
   formInitialization(): void {
     this.form = this.fb.group({
       userType: [this.storageService.getUserType()],
-      firstName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
-      lastName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
-      userName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      firstName: [null, [Validators.required, Validators.maxLength(100), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      lastName: [null, [Validators.required, Validators.maxLength(100), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      userName: [null, [Validators.required, Validators.maxLength(100), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       preferredTimeZone: [null, [Validators.required]],
       gender: [null, [Validators.required]],
       monthOfBirth: [null, [Validators.required]],
