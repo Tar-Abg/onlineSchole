@@ -156,12 +156,15 @@ export class InstitutionsComponent implements OnInit, OnDestroy{
   fileUploaded(event: any, formGroup: any) {
     let reader = new FileReader();
     let file = event.files[0];
-    reader.readAsDataURL(file)
-    formGroup.get('pdfName')?.setValue(file.name);
-    reader.onload = () => {
-      formGroup.get('pdfFromInstitution')?.setValue(reader.result);
-      this.formArray.updateValueAndValidity();
-    };
+    const fileType = file.type.split("/").pop();
+    if (fileType === 'pdf') {
+      reader.readAsDataURL(file)
+      formGroup.get('pdfName')?.setValue(file.name);
+      reader.onload = () => {
+        formGroup.get('pdfFromInstitution')?.setValue(reader.result);
+        this.formArray.updateValueAndValidity();
+      }
+    }
   }
 
   degreeInProgressChanged(form: FormGroup): void {
