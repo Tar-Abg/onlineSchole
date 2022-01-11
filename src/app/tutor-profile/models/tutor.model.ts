@@ -113,6 +113,12 @@ export interface LessonRequest {
   to: string;
 }
 
+export interface LessonCancelRequest {
+  lessonId: number;
+  cancelationDescription: string;
+  cancelationFee: number;
+}
+
 export interface SearchTutor {
   availabilities: string[];
   fullName: string;

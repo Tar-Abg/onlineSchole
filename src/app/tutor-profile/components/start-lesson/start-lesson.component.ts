@@ -20,6 +20,7 @@ export class StartLessonComponent implements OnInit {
   isOpenAddLesson: boolean;
   form: FormGroup;
   userId: number;
+  selectedLessonId: number;
 
   constructor(
     private fb: FormBuilder,
@@ -46,4 +47,8 @@ export class StartLessonComponent implements OnInit {
     this.lessonSchedule$ = this.tutorService.getLessons(this.userId, this.form.value);
   }
 
+  openCancelLessonModal(lessonId: number): void {
+    this.isOpenCancelLesson = true;
+    this.selectedLessonId = lessonId;
+  }
 }

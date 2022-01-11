@@ -83,7 +83,7 @@ export class ProfileInfoComponent implements OnInit, OnDestroy {
 
   formatBioContent(content: string, originalContent: string): string {
     if (!this.isBioContentToggled) {
-      if (content.length > this.limit) {
+      if (content?.length > this.limit) {
         this.isBioContentToggled = true;
         return `${content.substr(0, this.limit)}...`;
       } else {

@@ -58,10 +58,14 @@ export class AuthService {
     const body = {
       refreshToken: token
     }
-    return this.http.post<User>(`${this.url}/RefreshToken`, body).pipe(
+    return this.http.post<ResponseModel<User>>(`${this.url}/RefreshToken`, body).pipe(
+      map(data => data.result),
       tap(user => {
         if (user.token) {
           this.setSessions(user);
+        } else {
+          localStorage.clear();
+          this.router.navigate(['/']);
         }
       })
     )
