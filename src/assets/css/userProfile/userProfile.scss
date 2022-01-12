@@ -41,3 +41,14 @@
     color: $clr-ntrl-max;
   }
 }
+
+.without-data {
+  height: 200px;
+
+  .no-data-message {
+    font: $type-regular normal $type-medium-size $Roboto-sans;
+    line-height: 21px;
+    color: $danger-color;
+    text-transform: initial;
+  }
+}

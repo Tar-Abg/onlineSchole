@@ -1,5 +1,5 @@
 <section class="calendar-wrapper start-lesson-wrapper">
-  <h3 class="section-subtitle">Entered lesson</h3>
+  <h3 class="section-subtitle">{{title}}</h3>
   <div class="flex-container">
     <form class="flex-container-justify-start calendar-datepicker-wrappers" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="date-picker-wrapper-for-calendar">
@@ -111,11 +111,6 @@
       <div class="tWrap__body">
         <table>
           <tbody>
-          <!--          <tr class="without-data">-->
-          <!--            <td>-->
-          <!--              <h3>No data</h3>-->
-          <!--            </td>-->
-          <!--          </tr>-->
           <tr *ngFor="let lesson of (lessonSchedule$ | async)">
             <td>
               <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.student}}">
@@ -170,12 +165,12 @@
             </td>
             <td>
               <div class="lessons-table-btn-wrapper">
-                <button class="lesson-status-btn  lesson-status-btn__start flex-container-center" *ngIf="lesson.start">
+                <button class="lesson-status-btn  lesson-status-btn__start flex-container-center"
+                        *ngIf="lesson.start">
                   Start
                 </button>
                 <button class="lesson-status-btn lesson-status-btn__end flex-container-center"
-                        (click)="isOpenEndLesson = true"
-                        *ngIf="lesson.end">
+                        (click)="isOpenEndLesson = true" *ngIf="lesson.end">
                   End
                 </button>
                 <button class="lesson-status-btn lesson-status-btn__cancel flex-container-center"
@@ -186,6 +181,14 @@
               </div>
             </td>
           </tr>
+          <!-- In case the data is missing-->
+          <tr class="without-data">
+            <td>
+              <h3 class="no-data-message">
+                Sorry, there are no lessons matching the search criteria
+              </h3>
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -194,17 +197,18 @@
 </section>
 
 <!-- Start Lessons Wrapper -->
-<div class="add-lesson-wrapper modal-wrapper end-lesson-modal">
+<div class="lessons-modal-container modal--large-width modal-wrapper">
   <app-modal-schem *ngIf="isOpenEndLesson" (close)="isOpenEndLesson = false" [title]="'End Lesson'">
     <app-end-lesson-modal (onCloe)="isOpenEndLesson = false"></app-end-lesson-modal>
   </app-modal-schem>
 </div>
-<div class="add-lesson-wrapper modal-wrapper cancel-lesson-modal">
+<div class="lessons-modal-container modal--middle-width modal-wrapper ">
   <app-modal-schem *ngIf="isOpenCancelLesson" (close)="isOpenCancelLesson = false">
-    <app-cancel-lesson-modal (onCloe)="isOpenCancelLesson = false" [lessonId]="selectedLessonId"></app-cancel-lesson-modal>
+    <app-cancel-lesson-modal (onCloe)="isOpenCancelLesson = false"
+                             [lessonId]="selectedLessonId"></app-cancel-lesson-modal>
   </app-modal-schem>
 </div>
-<div class="add-lesson-wrapper modal-wrapper">
+<div class="lessons-modal-container modal-wrapper">
   <app-modal-schem *ngIf="isOpenAddLesson" (close)="isOpenAddLesson = false" [title]="'Add Lesson'">
     <app-add-lesson (onClose)="isOpenAddLesson = false"></app-add-lesson>
   </app-modal-schem>

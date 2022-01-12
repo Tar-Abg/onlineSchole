@@ -31,3 +31,30 @@
     font: $type-regular normal $type-base $Roboto-sans;
   }
 }
+
+.profile-section {
+  .profile-tabs-table {
+    margin: 0 0 50px 0;
+    width: auto;
+
+    tr {
+      h2 {
+        margin-top: 25px;
+      }
+
+      td {
+        padding-right: 35px;
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+
+      &:first-child {
+        h2 {
+          margin: 0;
+        }
+      }
+    }
+  }
+}

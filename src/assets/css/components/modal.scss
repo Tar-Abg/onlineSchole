@@ -1,6 +1,6 @@
 .modal-content {
+  min-width: 820px;
   height: 440px;
-  min-width: 897px;
   border: 2px solid rgba(143, 181, 252, 0.31);
   box-sizing: border-box;
   border-radius: 15px;
@@ -36,14 +36,15 @@
   border: unset;
   font-size: 31px;
   text-align: right;
-}
 
-.modal-close-btn:focus {
-  outline: none;
-  border: none;
+  &:focus {
+    outline: none;
+    border: none;
+  }
 }
 
 .modal-wrapper {
+
   .modal-scheme {
     position: fixed !important;
     top: 0;
@@ -92,7 +93,8 @@
   }
 }
 
-.add-lesson-wrapper {
+.lessons-modal-container {
+
   .mat-form-field {
     background-color: transparent;
   }
@@ -155,26 +157,43 @@
     }
   }
 
+  .modal-vector-image {
+    img {
+      width: auto;
+    }
+  }
 }
 
-.end-lesson-modal,
-.cancel-lesson-modal {
+.modal-wrapper.modal--middle-width {
   .modal-content {
     width: 647px !important;
     min-width: auto;
+    border-radius: 25px;
   }
 
-  ․modal-header {
+  .modal-body {
+    margin: 0 40px;
+  }
+
+  .modal-header {
     padding-bottom: 30px;
 
     span {
+      letter-spacing: 2px;
+      font-size: $type-base;
       color: #DA8DF1;
     }
   }
 }
 
-.cancel-lesson-modal {
-  .modal-body {
-    margin: 0 40px;
+.modal-wrapper.modal--large-width {
+  width: 860px;
+
+  .modal-header {
+    padding-bottom: 30px;
+
+    span {
+      color: #DA8DF1;
+    }
   }
 }

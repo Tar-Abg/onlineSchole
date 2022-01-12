@@ -34,7 +34,12 @@
       line-height: 21px;
       letter-spacing: 0.08em;
       color: $placeholder-color;
-      text-transform: capitalize;
+      display: block;
+      //text-transform: capitalize;
+      &::first-line {
+        color: red;
+        text-transform: capitalize
+      }
     }
   }
 
@@ -121,6 +126,38 @@
         appearance: none;
         margin: 0;
       }
+    }
+  }
+}
+
+/* Rates */
+.star-rates {
+  position: relative;
+  display: flex;
+  border: none;
+  grid-gap: 14px;
+
+  .star-input {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+
+    &:checked ~ label ~ label {
+      color: #cccccc;
+    }
+  }
+
+  .star-label {
+    color: #FFC107;
+    font-size: 21px;
+    margin-bottom: 0;
+
+    &:after {
+      content: "\2605";
     }
   }
 }

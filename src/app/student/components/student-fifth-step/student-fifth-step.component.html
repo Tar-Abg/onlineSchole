@@ -12,7 +12,7 @@
           </label>
           <label for="cardName" class="form-group form-label flex-column">
             <span class="card-input-label"> Insert your name as it appears on the card </span>
-            <input id="cardName" class="card-field" autocomplete="cardName" type="text" placeholder="*name on  card" formControlName="name">
+            <input id="cardName" class="card-field" autocomplete="cardName" type="text" placeholder="name on  card*" formControlName="name">
             <span class="error-message" *ngIf="form.get('name')?.errors?.required && form.get('name')?.touched">This is a required field</span>
           </label>
           <span class="card-input-label">Card expiration date*</span>
@@ -49,7 +49,7 @@
         </label>
         <label for="city" class="form-label">
           <input id="city" class="form-input" autocomplete="city" type="text"
-                 placeholder="*city" formControlName="city">
+                 placeholder="city*" formControlName="city">
           <span class="error-message block" *ngIf="billingAddress.get('city')?.errors?.required && billingAddress.get('city')?.touched">This is a required field</span>
         </label>
         <label for="apartmentOrSuite" class="form-label">
@@ -63,7 +63,7 @@
         </label>
         <label for="zipCode" class="form-label">
           <input id="zipCode" class="form-input" autocomplete="zipCode"
-                 placeholder="*Zip Code" formControlName="zipCode">
+                 placeholder="Zip Code*" formControlName="zipCode">
           <span class="error-message block" *ngIf="billingAddress.get('zipCode')?.errors?.required && billingAddress.get('zipCode')?.touched">This is a required field</span>
         </label>
       </div>

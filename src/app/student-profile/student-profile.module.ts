@@ -5,6 +5,7 @@ import {LayoutsModule} from "../layouts/layouts.module";
 import {SharedModule} from "../shared/shared.module";
 import {ProfileInfoComponent} from './components/profile-info/profile-info.component';
 import {StudentProfileRoutingModule} from "./student-profile-routing.module";
+import {TutorProfileModule} from "../tutor-profile/tutor-profile.module";
 import {SearchTutorModule} from "../search-tutor/search-tutor.module";
 
 
@@ -18,6 +19,7 @@ import {SearchTutorModule} from "../search-tutor/search-tutor.module";
         LayoutsModule,
         SharedModule,
         StudentProfileRoutingModule,
+        TutorProfileModule,
         SearchTutorModule
     ]
 })

@@ -2,7 +2,22 @@
 
 .end-lesson {
 
+  &-wrapper {
+    .modal-vector-image {
+      margin: -28px -60px;
+
+      img {
+        width: auto;
+      }
+    }
+
+    .form-textarea {
+      width: auto;
+    }
+  }
+
   &-table {
+    width: 75%;
     margin: 0 auto;
 
     tr {
@@ -16,39 +31,29 @@
 
       &-label {
         margin: 0;
-        min-width: 180px;
+        min-width: 130px;
         font: $type-semi-bold normal $type-medium-size $Segoe-UI-sans;
         color: $clr-ntrl-max;
-      }
 
-      .error-label {
-        color: #FF0000;
-      }
-
-      &-input {
-        .form-input {
-          width: 129px;
-          height: 30px;
-          border: 0;
-          border-bottom: 1px solid #E9E9E9;
-          border-radius: 0;
-          box-shadow: unset;
-          font: $type-light normal $type-small $Roboto-sans;
-          color: $clr-ntrl-max;
-
-          &:focus {
-            border-bottom: 1px solid $clr-ntrl-max;
-          }
+        &.error-label {
+          color: #FF0000;
         }
       }
     }
-  }
 
-  &-modal-image {
-    margin: -28px -60px;
+    .form-input {
+      width: 129px;
+      height: 30px;
+      border: 0;
+      border-bottom: 1px solid #E9E9E9;
+      border-radius: 0;
+      box-shadow: unset;
+      font: $type-light normal $type-small $Roboto-sans;
+      color: $clr-ntrl-max;
 
-    img {
-      width: auto;
+      &:focus {
+        border-bottom: 1px solid $clr-ntrl-max;
+      }
     }
   }
 

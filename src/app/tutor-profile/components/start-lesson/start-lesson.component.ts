@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, Input} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {TutorService} from "../../services/tutor-service.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
@@ -13,6 +13,7 @@ import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
   styleUrls: ['./start-lesson.component.scss']
 })
 export class StartLessonComponent implements OnInit {
+  @Input() title: string = 'Entered lesson';
   lessonSchedule$: Observable<LessonSchedule[]>;
   lessonStatuses$: Observable<KeyValuePair[]>;
   isOpenEndLesson: boolean;

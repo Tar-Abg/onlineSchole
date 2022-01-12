@@ -17,26 +17,29 @@
   </h2>
   <div class="nested-info without-side-padding">
     <div class="flex-container-justify-start grid-gap-54 grid-wrapper">
-      <div class="flex-item large-mr" *ngFor="let subject of subjects$ | async">
-        <div class="profile-section-subItems" *ngIf="subject?.category">
-          <h2 class="profile-section--subtitle">Category</h2>
-          <p class="profile-section--subDescription">
-            {{subject.category}}
-          </p>
-        </div>
-        <div class="profile-section-subItems" *ngIf="subject?.subject">
-          <h2 class="profile-section--subtitle">Subject</h2>
-          <p class="profile-section--subDescription">
-            {{subject.subject}}
-          </p>
-        </div>
-        <div class="profile-section-subItems" *ngIf="subject?.level">
-          <h2 class="profile-section--subtitle">Level</h2>
-          <p class="profile-section--subDescription">
-            {{subject.level}}
-          </p>
-        </div>
-      </div >
+      <table class="profile-tabs-table">
+        <tbody>
+        <tr class="profile-tabs-table--row" *ngFor="let subject of subjects$ | async">
+          <td *ngIf="subject?.category">
+            <h2 class="profile-section--subtitle">Category</h2>
+            <p class="profile-section--subDescription">
+              {{subject.category}}
+            </p>
+          </td>
+          <td *ngIf="subject?.subject">
+            <h2 class="profile-section--subtitle">Subject</h2>
+            <p class="profile-section--subDescription">
+              {{subject.subject}}
+            </p>
+          </td>
+          <td *ngIf="subject?.level"><h2 class="profile-section--subtitle">Level</h2>
+            <p class="profile-section--subDescription">
+              {{subject.level}}
+            </p>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>

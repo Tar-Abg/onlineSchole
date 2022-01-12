@@ -18,14 +18,14 @@
                    type="text"
                    placeholder="11: 00 AM"
                    formControlName="lessonStartTime">
-            <span class="error-message">This is a required field</span>
+<!--            <span class="error-message">This is a required field</span>-->
           </label>
         </div>
       </td>
     </tr>
     <tr>
       <td>
-        <h2 class="end-lesson-table-row-label">
+        <h2 class="end-lesson-table-row-label error-label">
           Lesson end time*
         </h2>
       </td>
@@ -62,7 +62,7 @@
                    type="text"
                    placeholder="11: 00 AM"
                    formControlName="lessonEndTime">
-            <span class="error-message">This is a required field</span>
+<!--            <span class="error-message">This is a required field</span>-->
           </label>
         </div>
       </td>
@@ -84,8 +84,44 @@
                    type="text"
                    placeholder="15$"
                    formControlName="totalEarning">
-            <span class="error-message">This is a required field</span>
+<!--            <span class="error-message">This is a required field</span>-->
           </label>
+        </div>
+      </td>
+    </tr>
+
+   <!-- Student End Lesson fields-->
+    <tr>
+      <td>
+        <h2 class="end-lesson-table-row-label">
+         Review
+        </h2>
+      </td>
+      <td>
+        <div>
+          <label for="review" class="form-label form-label--flex-container">
+                <textarea id="review"
+                          class="form-textarea" type="text"
+                          rows="5" cols="3"
+                          placeholder="start typing..."
+                          formControlName="review">
+                </textarea>
+<!--            <span class="error-message">This is a required field</span>-->
+          </label>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h2 class="end-lesson-table-row-label">
+          Rate*
+        </h2>
+      </td>
+      <td>
+        <div>
+          <fieldset class="star-rates">
+            <star-rating checkedcolor="#FFC107" uncheckedcolor="#c2c2c2" size="24px"></star-rating>
+          </fieldset>
         </div>
       </td>
     </tr>
@@ -96,7 +132,7 @@
       Ok
     </button>
   </div>
-  <div>
+  <div class="modal-vector-image">
     <img src="assets/images/endLessonPic.png" alt="End Lesson" width="266" height="175">
   </div>
 </div>

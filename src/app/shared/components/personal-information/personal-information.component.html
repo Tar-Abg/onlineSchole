@@ -75,7 +75,7 @@
         <li class="form-item-with-notification">
           <h3 class="form-item-label">City*</h3>
           <label for="city" class="form-label">
-            <input id="city" class="form-input" type="text" placeholder="*city"
+            <input id="city" class="form-input" type="text" placeholder="city*"
                    formControlName="city">
             <span class="form-item-notification">Not visible on the public profile</span>
             <span class="error-message"
@@ -106,7 +106,7 @@
           <h3 class="form-item-label">Zip Code*</h3>
           <label for="zipCode" class="form-label">
             <input id="zipCode" class="form-input" autocomplete="zipCode"
-                   placeholder="*Zip Code" formControlName="zipCode">
+                   placeholder="Zip Code*" formControlName="zipCode">
             <span class="form-item-notification">Not visible on the public profile</span>
             <span class="error-message block"
                   *ngIf="userAddress.get('zipCode')?.errors?.required && userAddress.get('zipCode')?.touched">This is a required field</span>

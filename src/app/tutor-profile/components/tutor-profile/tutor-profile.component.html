@@ -40,33 +40,39 @@
       </div>
     </section>
     <section class="profile-buttons">
-      <button class="profile-buttons--item" (click)="activeTab = 'PROFILE'">
+      <button class="profile-buttons--item flex-container-center" (click)="activeTab = 'PROFILE'"
+              [ngClass]="{ 'active':activeTab==='PROFILE'}">
         <img src="assets/images/profile.png"
              alt="Profile"
              width="55"
              height="55">
         profile
       </button>
-      <button class="profile-buttons--item" (click)="activeTab = 'START_LESSON'">
+      <button class="profile-buttons--item flex-container-center" (click)="activeTab = 'START_LESSON'"
+              [ngClass]="{ 'active':activeTab==='START_LESSON'}">
         <img src="assets/images/online-learning.png"
              alt="Start Lesson"
              width="55"
              height="55">
         Start Lesson
       </button>
-      <button class="profile-buttons--item" (click)="activeTab ='MESSAGES'">
+      <button class="profile-buttons--item flex-container-center" (click)="activeTab ='MESSAGES'"
+      [ngClass]="{ 'active':activeTab==='MESSAGES'}">
         <img src="assets/images/message.png" alt="Messages" width="51" height="50">
         Messages
       </button>
-      <button class="profile-buttons--item" (click)="activeTab ='JOBS_BOARD'">
+      <button class="profile-buttons--item flex-container-center" (click)="activeTab ='JOBS_BOARD'"
+      [ngClass]="{ 'active':activeTab==='JOBS_BOARD'}">
         <img src="assets/images/analyst.png" alt="Jobs Board" width="52" height="52">
         Jobs board
       </button>
-      <button class="profile-buttons--item" (click)="activeTab='PAYMENTS'">
+      <button class="profile-buttons--item flex-container-center" (click)="activeTab='PAYMENTS'"
+      [ngClass]="{ 'active':activeTab==='PAYMENTS'}">
         <img src="assets/images/cashless-payment.png" alt="payments" width="48" height="48">
         Payments
       </button>
-      <button class="profile-buttons--item" (click)="activeTab='LESSON_HISTORY'">
+      <button class="profile-buttons--item flex-container-center" (click)="activeTab='LESSON_HISTORY'"
+      [ngClass]="{ 'active':activeTab==='LESSON_HISTORY'}">
         <img src="assets/images/lessonHistory.png" alt="Messages" width="51" height="51">
         Lesson history
       </button>

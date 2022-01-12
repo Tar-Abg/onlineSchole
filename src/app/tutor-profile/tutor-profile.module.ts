@@ -38,20 +38,23 @@ import { ProfileInfoComponent } from './components/profile-info/profile-info.com
     CancelLessonModalComponent,
     ProfileInfoComponent
   ],
-    imports: [
-        CommonModule,
-        TutorProfileRoutingModule,
-        LayoutsModule,
-        MatCheckboxModule,
-        MatFormFieldModule,
-        MatDatepickerModule,
-        MatIconModule,
-        RatingModule,
-        TutorSettingsModule,
-        MatInputModule,
-        SharedModule,
-        ReactiveFormsModule,
-    ]
+  exports: [
+    StartLessonComponent
+  ],
+  imports: [
+    CommonModule,
+    TutorProfileRoutingModule,
+    LayoutsModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    MatDatepickerModule,
+    MatIconModule,
+    RatingModule,
+    TutorSettingsModule,
+    MatInputModule,
+    SharedModule,
+    ReactiveFormsModule,
+  ]
 })
 export class TutorProfileModule {
 }
