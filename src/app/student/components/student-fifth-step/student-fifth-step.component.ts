@@ -9,6 +9,7 @@ import {StorageService} from "../../../shared/services/storage/storage.service";
 import {tap} from "rxjs/operators";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../shared/services/auth/auth.service";
 
 @Component({
   selector: 'app-student-fifth-step',
@@ -29,6 +30,7 @@ export class StudentFifthStepComponent implements OnInit, OnDestroy {
     private dateService: DateService,
     private storageService: StorageService,
     private registrationService: RegistrartionService,
+    private authService: AuthService,
     private router: Router,
   ) {
   }
@@ -80,7 +82,13 @@ export class StudentFifthStepComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.form.valid) {
       this.subscription.add(
-        this.registrationService.saveCardDetails(this.form.value).subscribe()
+        this.registrationService.saveCardDetails(this.form.value).subscribe(user => {
+          if (user.token) {
+            this.authService.setSessions(user);
+            this.storageService.setItem('userType', 2);
+            this.router.navigate([`student/profile`]);
+          }
+        })
       )
     } else {
       this.form.markAllAsTouched();
