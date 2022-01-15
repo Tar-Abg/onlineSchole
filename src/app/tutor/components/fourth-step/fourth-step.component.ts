@@ -72,7 +72,6 @@ export class FourthStepComponent implements OnInit, OnDestroy {
       ])
     })
     this.wantToBeInstructorChanged(workHistory);
-
   }
 
   get interview(): FormArray {
@@ -327,10 +326,10 @@ export class FourthStepComponent implements OnInit, OnDestroy {
           item.get('startYear')?.updateValueAndValidity();
           item.get('schoolOrInstitutionName')?.clearValidators();
           item.get('schoolOrInstitutionName')?.updateValueAndValidity();
-          item.get('endYear')?.clearValidators();
-          item.get('endYear')?.updateValueAndValidity();
           item.get('current')?.clearValidators();
           item.get('current')?.updateValueAndValidity();
+          item.get('endYear')?.clearValidators();
+          item.get('endYear')?.updateValueAndValidity();
         })
       }
     });
@@ -350,7 +349,7 @@ export class FourthStepComponent implements OnInit, OnDestroy {
         }
         form.get('endYear')?.updateValueAndValidity();
       })
-    );
+  );
   }
 
   nextStep(): void {
