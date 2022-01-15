@@ -51,7 +51,7 @@
       <button type="button" class="sophist-btn flex-container-center previous-btn" (click)="previousStep()">PREVIOUS
       </button>
       <button type="submit" class="sophist-btn flex-container-center next-btn" (click)="accept.checked && onSubmit()"
-              [disabled]="!accept.checked">Register
+              [disabled]="!accept.checked || form.invalid">Register
       </button>
     </div>
   </div>

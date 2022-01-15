@@ -13,6 +13,7 @@ import {
 import {catchError, map} from "rxjs/operators";
 import {ResponseModel} from "../../models/responseModel.model";
 import {BasicInformation} from "../../../tutor/models/tutor.model";
+import {User} from "../../models/auth.model";
 
 @Injectable({
   providedIn: 'root'
@@ -50,40 +51,6 @@ export class RegistrartionService {
       })
     );
   }
-
-  updateInformation(form: SaveInformation): Observable<number> {
-    delete form.rePassword;
-    const body = {
-      ...form,
-      userPassword: {
-        password: form.password,
-        email: form.email
-      }
-    }
-    delete body.password
-    return this.http.put<ResponseModel<number>>(`${this.url}/UpdateInformation`, body).pipe(
-      map(data => data.result),
-      catchError(err => {
-        if (err.error?.type === 'Email existence error') {
-          this.emailIsExist$.next(true);
-        }
-        if (err.error?.type === 'Username existence error') {
-          this.usernameIsExist$.next(true);
-        }
-        throw new Error(err.error.type);
-      })
-    );
-  }
-
-  getInformationPage(userId: number): Observable<SaveInformation> {
-    let params = new HttpParams();
-    params = params.append('id', userId);
-    return this.http.get<ResponseModel<SaveInformation>>(`${this.url}/GetInformationPage`, {params: params}).pipe(
-      map(data => data.result)
-    );
-  }
-
-  // information end
 
   // Institutions
   saveInstitutions(body: SaveInstitutions[]): Observable<any> {
@@ -239,8 +206,10 @@ export class RegistrartionService {
     );
   }
 
-  saveCardDetails(body: CardDetails): Observable<any> {
-    return this.http.post<ResponseModel<any>>(`${this.url}/SaveCardDetails`, body);
+  saveCardDetails(body: CardDetails): Observable<User> {
+    return this.http.post<ResponseModel<User>>(`${this.url}/SaveCardDetails`, body).pipe(
+      map(data => data.result)
+    );
   }
 
 }
