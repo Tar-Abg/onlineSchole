@@ -60,11 +60,11 @@
           <h3 class="form-item-label">CVC2/CVV2* </h3>
           <label for="cvv" class="form-label">
             <input id="cvv"
-                   class="form-input"
+                   class="form-input cvv"
                    name="cvv"
                    required
                    autocomplete="card-cvv"
-                   type="text"
+                   type="number"
                    placeholder="CVC2/CVV2*"
                    formControlName="cardCvv">
             <span class="error-message">This is a required field.</span>
@@ -80,7 +80,7 @@
         </label>
         <label for="city" class="form-label">
           <input id="city" class="form-input" autocomplete="city" type="text"
-                 placeholder="city*" formControlName="city">
+                 placeholder="City*" formControlName="city">
           <span class="error-message block">This is a required field</span>
         </label>
         <label class="form-label">

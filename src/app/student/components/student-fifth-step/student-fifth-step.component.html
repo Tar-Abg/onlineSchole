@@ -31,7 +31,7 @@
             </div>
             <label for="cvv" class="form-group form-label flex-column cvv-label">
               <span class="card-input-label"> CVC2/CVV2* </span>
-              <input id="cvv" class="card-field" autocomplete="cvv" type="text" placeholder="" maxlength="3" formControlName="cvv">
+              <input id="cvv" class="card-field cvv" autocomplete="cvv" type="number" placeholder="" maxlength="3" formControlName="cvv">
               <span class="error-message" *ngIf="form.get('cvv')?.errors?.required && form.get('cvv')?.touched">This is a required field</span>
             </label>
           </div>
@@ -49,12 +49,12 @@
         </label>
         <label for="city" class="form-label">
           <input id="city" class="form-input" autocomplete="city" type="text"
-                 placeholder="city*" formControlName="city">
+                 placeholder="City*" formControlName="city">
           <span class="error-message block" *ngIf="billingAddress.get('city')?.errors?.required && billingAddress.get('city')?.touched">This is a required field</span>
         </label>
         <label for="apartmentOrSuite" class="form-label">
           <input id="apartmentOrSuite" class="form-input" autocomplete="apartmentOrSuite" type="text"
-                 placeholder="*apartment or suite" formControlName="apartment">
+                 placeholder="apartment or suite*" formControlName="apartment">
           <span class="error-message block" *ngIf="billingAddress.get('apartment')?.errors?.required && billingAddress.get('apartment')?.touched">This is a required field</span>
         </label>
         <label class="form-label">

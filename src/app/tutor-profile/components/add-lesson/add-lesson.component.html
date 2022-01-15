@@ -9,7 +9,7 @@
                    class="form-input"
                    autocomplete="studentName"
                    type="text"
-                   placeholder="*type a student’s name"
+                   placeholder="type a student’s name*"
                    formControlName="userName"
             >
             <span class="error-message" *ngIf="form.get('userName')?.errors?.required && form.get('userName')?.touched">This is a required field</span>
@@ -120,7 +120,7 @@
                    type="number"
                    min="0"
                    formControlName="hourlyRate"
-                   placeholder="*the minimum hourly rate is $20"
+                   placeholder="the minimum hourly rate is $20 *"
             >
             <!--            <span class="error-message">You cannot enter anything below $20</span>-->
           </label>
@@ -132,7 +132,7 @@
                    class="form-input"
                    autocomplete="lessonPlan"
                    type="text"
-                   placeholder="*write a lesson plan"
+                   placeholder="write a lesson plan*"
                    formControlName="lessonPlan"
             >
             <span class="error-message"

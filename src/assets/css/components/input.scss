@@ -161,3 +161,16 @@
     }
   }
 }
+
+.cvv {
+  -webkit-text-security: disc;
+  -moz-text-security: disc;
+  text-security: disc;
+  -moz-appearance: textfield;
+
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}

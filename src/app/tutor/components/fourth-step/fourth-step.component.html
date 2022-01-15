@@ -184,7 +184,7 @@
                           <span class="error-message"
                                 *ngIf="workHistory.controls[i]?.get('endYear')?.errors && workHistory.controls[i]?.get('endYear')?.touched">This is a required field</span>
                         </div>
-                        <div class="p-relative">
+                        <div class="p-relative select-current-date-checkbox">
                           <mat-checkbox class="checkbox-wrapper" formControlName="current">
                             current
                           </mat-checkbox>

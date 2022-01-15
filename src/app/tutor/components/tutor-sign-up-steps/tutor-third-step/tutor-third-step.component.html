@@ -51,13 +51,13 @@
           <div class="flex-container-start grid-gap-30">
             <label for="legal-first-name" class="form-label">
               <input id="legal-first-name" class="form-input" type="text"
-                     placeholder="*legal first name"
+                     placeholder="legal first name*"
                      formControlName="legalFirstName">
               <span class="error-message" *ngIf="form.get('legalFirstName')?.errors && form.get('legalFirstName')?.touched">This is a required field</span>
             </label>
             <label for="legal-last-name" class="form-label">
               <input id="legal-last-name" class="form-input" type="text"
-                     placeholder="*legal last name"
+                     placeholder="legal last name*"
                      formControlName="legalLastName">
               <span class="error-message" *ngIf="form.get('legalLastName')?.errors && form.get('legalLastName')?.touched" >This is a required field</span>
             </label>

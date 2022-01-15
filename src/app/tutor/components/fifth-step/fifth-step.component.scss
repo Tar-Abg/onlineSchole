@@ -1,3 +1,25 @@
+@import "src/assets/css/variables";
+
 .w-30 {
   width: 450px;
+}
+
+.checkboxes-wrapper {
+  width: 84%;
+}
+
+::ng-deep .mat-checkbox-label {
+  margin-left: 10px;
+  font: $type-regular normal $type-small $Segoe-UI-sans;
+}
+
+.checkbox-label--gray-color {
+  ::ng-deep .mat-checkbox-label {
+    color: #737373;
+  }
+}
+
+.checkbox-divider-line {
+  border: 1px solid #E9E9E9;
+  margin: 25px 0;
 }

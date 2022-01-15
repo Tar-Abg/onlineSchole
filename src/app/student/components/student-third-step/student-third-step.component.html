@@ -23,7 +23,7 @@
             <li class="address-form__item">
               <label for="city" class="form-label">
                 <input id="city" class="form-input" autocomplete="city" type="text"
-                       placeholder="city*" formControlName="city">
+                       placeholder="City*" formControlName="city">
                 <span class="form-item-notification">Visible in a public profile</span>
                 <span class="error-message block" *ngIf="form.get('city')?.errors?.required && form.get('city')?.touched">This is a required field</span>
               </label>

@@ -18,17 +18,18 @@
               <span class="error-message" *ngIf="form.get('mobile')?.errors && form.get('mobile')?.touched">This is a required field</span>
             </label>
           </div>
+
           <label for="link-to-social-media" class="form-label form-label--min-width">
             <input id="link-to-social-media" class="form-input"
                    autocomplete="link-to-social-media" type="text"
-                   placeholder="*link to the social media profile"
+                   placeholder="link to the social media profile"
                    formControlName="linkToSocialMedia">
             <span class="error-message"
                   *ngIf="form.get('linkToSocialMedia')?.errors && form.get('linkToSocialMedia')?.touched">This is a required field</span>
           </label>
         </div>
         <div class="checkboxes-wrapper">
-          <mat-checkbox formControlName="socialMediaExistance">
+          <mat-checkbox formControlName="socialMediaExistance" class="checkbox-label--gray-color">
             I do not have a social media profile
           </mat-checkbox>
           <div class="checkbox-divider-line"></div>

@@ -72,7 +72,7 @@
             <h3 class="main-question">Please enter hourly rate</h3>
             <label for="hourly-rate" class="form-label form-label--flex-container">
               <input id="hourly-rate" class="form-input" type="text"
-                     placeholder="*the minimum hourly rate is $20"
+                     placeholder="the minimum hourly rate is $20*"
                      formControlName="hourlyRate">
               <span class="error-message"
                     *ngIf="form.get('hourlyRate')?.errors?.min && form.get('hourlyRate')?.touched">You cannot enter anything below $20</span>
@@ -129,18 +129,19 @@
             </li>
             <li class="address-form__item">
               <div *ngIf="userAddress.get('countryId')?.value === 226">
+                <h3 class="label-text">Social Security Number*</h3>
                 <label class="form-label label-for-security-number">
-                  Social Security Number*
+                  <input mask="000-00-0000" name="securityNumber" class="form-input" type="text"
+                         formControlName="socialSecurityNumber" [innerHTML]="'123456789' | slice:0:3">
+                  <span class="form-item-notification">Not visible on the public profile</span>
+                  <span class="error-message block"
+                        *ngIf="userAddress.get('socialSecurityNumber')?.errors?.required && userAddress.get('socialSecurityNumber')?.touched">This is a required field</span>
                 </label>
-                <input mask="000-00-0000" name="securityNumber" class="form-input" type="text"
-                       formControlName="socialSecurityNumber" [innerHTML]="'123456789' | slice:0:3">
-                <span class="error-message block"
-                      *ngIf="userAddress.get('socialSecurityNumber')?.errors?.required && userAddress.get('socialSecurityNumber')?.touched">This is a required field</span>
               </div>
             </li>
             <li class="address-form__item">
               <label for="city" class="form-label">
-                <input id="city" name="city" class="form-input" type="text" placeholder="city*"
+                <input id="city" name="city" class="form-input" type="text" placeholder="City*"
                        formControlName="city">
                 <span class="form-item-notification">Not visible on the public profile</span>
                 <span class="error-message block"
