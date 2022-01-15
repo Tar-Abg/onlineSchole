@@ -68,8 +68,10 @@ export class FifthStepComponent implements OnInit, OnDestroy {
         if (value) {
           this.form.get('linkToSocialMedia')?.removeValidators(Validators.required);
           this.form.get('linkToSocialMedia')?.reset();
+          this.form.get('linkToSocialMedia')?.disable();
           this.form.get('linkToSocialMedia')?.updateValueAndValidity()
         } else {
+          this.form.get('linkToSocialMedia')?.enable();
           this.form.get('linkToSocialMedia')?.setValidators(Validators.required);
           this.form.get('linkToSocialMedia')?.updateValueAndValidity()
         }
@@ -91,13 +93,13 @@ export class FifthStepComponent implements OnInit, OnDestroy {
 
   saveContacts(): void {
     this.subscription.add(
-      this.registrationService.saveContacts(this.form.value).subscribe()
+      this.registrationService.saveContacts(this.form.getRawValue()).subscribe()
     );
   }
 
   updateContacts(): void {
     this.subscription.add(
-      this.registrationService.updateContacts(this.form.value).subscribe()
+      this.registrationService.updateContacts(this.form.getRawValue()).subscribe()
     );
   }
 
