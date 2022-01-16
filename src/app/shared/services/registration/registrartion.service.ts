@@ -161,8 +161,10 @@ export class RegistrartionService {
     return this.http.put<ResponseModel<any>>(`${this.url}/UpdateWrapUpProfile`, body);
   }
 
-  saveTermsForTutor(body: SaveTermsForTutor): Observable<any> {
-    return this.http.post<ResponseModel<any>>(`${this.url}/SaveTermsForTutor`, body);
+  saveTermsForTutor(body: SaveTermsForTutor): Observable<User> {
+    return this.http.post<ResponseModel<User>>(`${this.url}/SaveTermsForTutor`, body).pipe(
+      map(data => data.result)
+    );
   }
 
   saveStudentAddress(body: Address): Observable<any> {

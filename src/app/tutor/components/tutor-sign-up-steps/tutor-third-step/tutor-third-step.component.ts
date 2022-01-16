@@ -4,6 +4,7 @@ import {StorageService} from "../../../../shared/services/storage/storage.servic
 import {RegistrartionService} from "../../../../shared/services/registration/registrartion.service";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../../shared/services/auth/auth.service";
 
 @Component({
   selector: 'app-tutor-third-step',
@@ -18,6 +19,7 @@ export class TutorThirdStepComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private storageService: StorageService,
     private registrationService: RegistrartionService,
+    private authService: AuthService,
     private router: Router,
   ) { }
 
@@ -40,7 +42,13 @@ export class TutorThirdStepComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if(this.form.valid) {
       this.subscription.add(
-        this.registrationService.saveTermsForTutor(this.form.value).subscribe()
+        this.registrationService.saveTermsForTutor(this.form.value).subscribe(user => {
+          if (user.token) {
+            this.authService.setSessions(user);
+            this.storageService.setItem('userType', 2);
+            this.router.navigate([`tutor/profile`]);
+          }
+        })
       );
     } else {
       this.form.markAllAsTouched();
