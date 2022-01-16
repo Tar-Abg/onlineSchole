@@ -110,6 +110,7 @@ export class TutorFirstStepComponent implements OnInit, OnDestroy {
     this.cancelationHours$ = this.infoService.getCancelationHours();
     this.countries$ = this.infoService.getCountries();
     this.getBasicInformation();
+    this.listenCountryChanges();
   }
 
   get tutorSubjects(): FormArray {
@@ -127,6 +128,21 @@ export class TutorFirstStepComponent implements OnInit, OnDestroy {
   removeTutorSubjects(item: AbstractControl): void {
     this.tutorSubjects.controls = this.tutorSubjects.controls.filter(control => control != item);
     this.tutorSubjects.updateValueAndValidity();
+  }
+
+  listenCountryChanges(): void {
+    this.subscription.add(
+      this.userAddress.get('countryId')?.valueChanges.subscribe(value => {
+        // country code of US
+        if (value === 226) {
+          this.userAddress.get('socialSecurityNumber')?.setValidators(Validators.required);
+          this.userAddress.get('socialSecurityNumber')?.updateValueAndValidity();
+        } else {
+          this.userAddress.get('socialSecurityNumber')?.removeValidators(Validators.required);
+          this.userAddress.get('socialSecurityNumber')?.updateValueAndValidity()
+        }
+      })
+    );
   }
 
   onSubmit(): void {

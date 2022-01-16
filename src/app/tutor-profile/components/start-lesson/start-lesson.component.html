@@ -46,7 +46,7 @@
         Show
       </button>
     </form>
-    <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true">Add Lesson</button>
+    <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true" *ngIf="userType === 'tutor'">Add Lesson</button>
   </div>
   <div class="calendar-content">
     <div class="tWrap">
@@ -56,7 +56,7 @@
           <tr>
             <th>
               <h3 class="calendar-table-thead">
-                Student
+                {{userType === 'tutor' ? 'Student' : 'Tutor' }}
               </h3>
             </th>
             <th>
@@ -114,7 +114,7 @@
           <tr *ngFor="let lesson of (lessonSchedule$ | async)">
             <td>
               <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.student}}">
-                {{lesson.student}}
+                {{userType === 'tutor' ? lesson.student : lesson.tutor }}
               </p>
             </td>
             <td>
@@ -167,7 +167,7 @@
               <div class="lessons-table-btn-wrapper">
                 <button class="lesson-status-btn  lesson-status-btn__start flex-container-center"
                         *ngIf="lesson.start">
-                  Start
+                  {{userType === 'tutor' ? 'Start' : 'Join' }}
                 </button>
                 <button class="lesson-status-btn lesson-status-btn__end flex-container-center"
                         (click)="isOpenEndLesson = true" *ngIf="lesson.end">
@@ -182,7 +182,7 @@
             </td>
           </tr>
           <!-- In case the data is missing-->
-          <tr class="without-data">
+          <tr class="without-data" *ngIf="!(lessonSchedule$ | async)?.length && formSubmitted">
             <td>
               <h3 class="no-data-message">
                 Sorry, there are no lessons matching the search criteria
