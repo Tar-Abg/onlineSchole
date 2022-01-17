@@ -103,6 +103,7 @@ export interface LessonSchedule {
   start: boolean;
   status: string;
   student: string;
+  tutor: string;
   subject: string;
   tutorId: number;
 }

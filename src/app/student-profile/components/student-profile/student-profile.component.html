@@ -63,7 +63,7 @@
     </section>
       <div [ngSwitch]="activeTab">
         <app-profile-info *ngSwitchCase="'PROFILE'" [wrapUp]="profileInfo?.wrapUp"></app-profile-info>
-        <app-start-lesson *ngSwitchCase="'START_LESSON'" [title]="''"></app-start-lesson>
+        <app-start-lesson *ngSwitchCase="'START_LESSON'" [title]="''" [userType]="'student'"></app-start-lesson>
         <app-message-dashboard *ngSwitchCase="'MESSAGES'"></app-message-dashboard>
         <app-payment-dashboard *ngSwitchCase="'PAYMENTS'"></app-payment-dashboard>
         <app-lesson-history-dashboard *ngSwitchCase="'LESSON_HISTORY'"></app-lesson-history-dashboard>

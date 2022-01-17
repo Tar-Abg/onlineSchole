@@ -5,6 +5,7 @@ import {ResponseModel} from "../../shared/models/responseModel.model";
 import {map} from "rxjs/operators";
 import {Student, StudentSubject, StudentTutors} from "../models/student-profile.model";
 import {environment} from "../../../environments/environment";
+import {LessonRequest, LessonSchedule} from "../../tutor-profile/models/tutor.model";
 
 @Injectable({
   providedIn: 'root'
@@ -38,5 +39,17 @@ export class StudentProfileService {
     return this.http.get<ResponseModel<StudentTutors[]>>(`${this.url}/GetStudentTotors`, {params}).pipe(
       map(data => data.result)
     );
+  }
+
+  getLessons(tutorId: number, data: LessonRequest): Observable<LessonSchedule[]> {
+    const body = {
+      userId: tutorId,
+      from: new Date(data.from).toISOString(),
+      to: new Date(data.to).toISOString(),
+      statusId: data.statusId
+    }
+    return this.http.post<ResponseModel<LessonSchedule[]>>(`${this.url}/GetLessons`, body).pipe(
+      map(data => data.result)
+    )
   }
 }
