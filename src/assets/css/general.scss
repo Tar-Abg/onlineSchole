@@ -317,3 +317,13 @@ img {
   color: $placeholder-color !important;
   text-transform: capitalize;
 }
+
+.no-data {
+  padding-top: 100px;
+  text-align: center;
+
+  &-message {
+    font: $type-light normal $type-medium-size $Segoe-UI-sans;
+    color: $danger-color;
+  }
+}

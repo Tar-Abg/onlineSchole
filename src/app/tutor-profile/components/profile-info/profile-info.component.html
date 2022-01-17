@@ -113,13 +113,13 @@
   </div>
 </section>
 <div class="profile-tab-buttons">
-  <button (click)="activeTab = 'availability'" class="profile-tab-buttons--item flex-container-center">
+  <button (click)="activeTab = 'availability'" [ngClass]="{ 'active':activeTab==='availability'}" class="profile-tab-buttons--item flex-container-center">
     Availability
   </button>
-  <button (click)="activeTab = 'subjects'" class="profile-tab-buttons--item flex-container-center">SUBJECTS</button>
-  <button (click)="activeTab = 'calendar'" class="profile-tab-buttons--item flex-container-center">Calendar</button>
-  <button (click)="activeTab = 'ratings'" class="profile-tab-buttons--item flex-container-center">Ratings</button>
-  <button (click)="activeTab = 'reviews'" class="profile-tab-buttons--item flex-container-center">Reviews</button>
+  <button (click)="activeTab = 'subjects'" [ngClass]="{ 'active':activeTab==='subjects'}" class="profile-tab-buttons--item flex-container-center">SUBJECTS</button>
+  <button (click)="activeTab = 'calendar'" [ngClass]="{ 'active':activeTab==='calendar'}" class="profile-tab-buttons--item flex-container-center">Calendar</button>
+  <button (click)="activeTab = 'ratings'" [ngClass]="{ 'active':activeTab==='ratings'}" class="profile-tab-buttons--item flex-container-center">Ratings</button>
+  <button (click)="activeTab = 'reviews'" [ngClass]="{ 'active':activeTab==='reviews'}" class="profile-tab-buttons--item flex-container-center">Reviews</button>
   <hr/>
 </div>
 <div [ngSwitch]="activeTab">
@@ -130,7 +130,7 @@
   <app-reviews *ngSwitchCase="'reviews'" [userId]="userId"></app-reviews>
 </div>
 
-<div class="add-lesson-wrapper modal-wrapper">
+<div class="lessons-modal-container modal-wrapper">
   <app-modal-schem *ngIf="isOpenAddLesson" (close)="isOpenAddLesson = false" [title]="'Add Lesson'">
     <app-add-lesson (onClose)="isOpenAddLesson = false"></app-add-lesson>
   </app-modal-schem>

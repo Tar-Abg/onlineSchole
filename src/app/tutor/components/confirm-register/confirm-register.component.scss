@@ -1,0 +1,51 @@
+@import "src/assets/css/variables";
+
+.modal-content {
+  height: 440px;
+  min-width: 897px;
+  border: 2px solid rgba(143, 181, 252, 0.31);
+  box-sizing: border-box;
+  border-radius: 15px;
+  padding-bottom: 58px;
+}
+
+.register-confirmation {
+
+  &-wrapper {
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &-text {
+    position: relative;
+    width: 94%;
+    text-align: left;
+    z-index: 9;
+    font: $type-regular normal $type-base $Segoe-UI-sans;
+  }
+
+  &-pic {
+    position: absolute;
+    bottom: 0;
+    right: -76px;
+    width: auto;
+    height: auto;
+  }
+
+  &-btn {
+    width: 160px;
+    height: 50px;
+    background-color: unset;
+    border-radius: $border-radius-base;
+    border: 1px solid rgba(69, 63, 102, 0.15);
+    font: $type-regular normal $type-base $Segoe-UI-sans;
+    text-transform: uppercase;
+    color: #453F66;
+    box-shadow: 0 3px rgba(69, 63, 102, 0.3);
+    margin-bottom: 58px;
+    z-index: 9999;
+  }
+}

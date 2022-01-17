@@ -3,7 +3,8 @@
     <h2 class="section-subtitle without-margin">Tutoring jobs</h2>
     <form [formGroup]="form" class="flex-container-justify-start section-filter-form" (ngSubmit)="onSubmit()">
       <div class="p-relative">
-        <app-select [label]="'Subject*'" formControlName="subjectId" [list]="subjects$ | async" [keyName]="'subjectName'"></app-select>
+        <app-select [label]="'Subject*'" formControlName="subjectId" [list]="subjects$ | async"
+                    [keyName]="'subjectName'"></app-select>
       </div>
       <div class="p-relative">
         <app-select [label]="'Sort by*'" formControlName="sortId" [list]="sortForStudentSearch$ | async"></app-select>
@@ -11,7 +12,8 @@
       <button [disabled]="form.invalid" class="
       settings-form-button__with-border
       button-border--green
-      flex-container-center" type="submit">Show</button>
+      flex-container-center" type="submit">Show
+      </button>
     </form>
   </div>
   <div class="jobs-wrapper">
@@ -36,7 +38,8 @@
              flex-container-center">
               Apply
             </button>
-            <button type="button" *ngIf="!student.isOpenDetail" (click)="student.isOpenDetail = true" class="settings-form-button settings-form-button--green flex-container-center">
+            <button type="button" *ngIf="!student.isOpenDetail" (click)="student.isOpenDetail = true"
+                    class="settings-form-button settings-form-button--green flex-container-center">
               Show Details
             </button>
           </div>
@@ -50,12 +53,14 @@
               </div>
               <div class="p-relative">
                 <h2 class="form-label-text">Subject grade level</h2>
-                <input type="text" placeholder="'Subject grade level*'" class="form-input" [value]="student.level" disabled>
+                <input type="text" placeholder="'Subject grade level*'" class="form-input" [value]="student.level"
+                       disabled>
               </div>
               <div>
                 <h2 class="form-label-text">Availability</h2>
                 <div class="availability-wrapper">
-                  <label for="weekDay1" class="form-label confirm-content-label" *ngFor="let item of student.availabilities">
+                  <label for="weekDay1" class="form-label confirm-content-label"
+                         *ngFor="let item of student.availabilities">
                     <input type="text"
                            class="form-input" disabled
                            placeholder="Monday(morning)" id="weekDay1" [value]="item" disabled>
@@ -64,15 +69,20 @@
               </div>
               <div class="p-relative">
                 <h2 class="form-label-text">Time zone</h2>
-                <input type="text" class="form-input" placeholder="'time zone*'" [value]="student.preferredTimeZone" disabled>
+                <input type="text" class="form-input" placeholder="'time zone*'" [value]="student.preferredTimeZone"
+                       disabled>
               </div>
             </div>
-            <button type="button" (click)="student.isOpenDetail = false" class="settings-form-button settings-form-button--green flex-container-center">
+            <button type="button" (click)="student.isOpenDetail = false"
+                    class="settings-form-button settings-form-button--green flex-container-center">
               Hide details
             </button>
           </form>
         </div>
       </li>
     </ul>
+    <div class="no-data blue-bg">
+      <h3 class="no-data-message">Sorry, there are no jobs matching the search criteria</h3>
+    </div>
   </div>
 </section>

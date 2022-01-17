@@ -96,6 +96,11 @@
   .cvv-label {
     width: 110px;
     margin-left: 33px;
+
+    span {
+      margin: -24px 0 0;
+      line-height: normal;
+    }
   }
 }
 
@@ -106,4 +111,8 @@
 select {
   border: none;
   background-color: transparent;
+}
+
+.select-with-border {
+  border-bottom: 1px solid #8FB5FC;
 }

@@ -78,7 +78,7 @@
       background-color: unset;
       color: #FFCB2D;
 
-      &__active {
+      &.active {
         background: #F8D56C;
         color: $clr-ntrl-max;
       }

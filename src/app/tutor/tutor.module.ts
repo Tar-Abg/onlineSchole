@@ -22,6 +22,7 @@ import {TutorFirstStepComponent} from './components/tutor-sign-up-steps/tutor-fi
 import {TutorSecondStepComponent} from './components/tutor-sign-up-steps/tutor-second-step/tutor-second-step.component';
 import {TutorThirdStepComponent} from './components/tutor-sign-up-steps/tutor-third-step/tutor-third-step.component';
 import {NgxMaskModule} from 'ngx-mask';
+import { ConfirmRegisterComponent } from './components/confirm-register/confirm-register.component';
 
 
 @NgModule({
@@ -37,6 +38,7 @@ import {NgxMaskModule} from 'ngx-mask';
     TutorFirstStepComponent,
     TutorSecondStepComponent,
     TutorThirdStepComponent,
+    ConfirmRegisterComponent,
   ],
   imports: [
     CommonModule,
