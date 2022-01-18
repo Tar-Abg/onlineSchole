@@ -58,8 +58,8 @@
 </div>
 
 
-<div class="modal-wrapper confirmation-dialog">
-  <app-modal-schem>
-    <app-confirm-register></app-confirm-register>
+<div class="modal-wrapper confirmation-dialog" *ngIf="showConfirmRegister" >
+  <app-modal-schem (close)="showConfirmRegister = false">
+    <app-confirm-register (submit)="register()"></app-confirm-register>
   </app-modal-schem>
 </div>
