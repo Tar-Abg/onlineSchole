@@ -2,6 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {TutorService} from "../../services/tutor-service.service";
 import {Observable, Subscription} from "rxjs";
 import {TutorBaseInfo, TutorRatings} from "../../models/tutor.model";
+import {StorageService} from "../../../shared/services/storage/storage.service";
 
 @Component({
   selector: 'app-tutor-profile',
@@ -11,17 +12,19 @@ import {TutorBaseInfo, TutorRatings} from "../../models/tutor.model";
 export class TutorProfileComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
   ratings$: Observable<TutorRatings>;
-  userId: number = 67; //will be removed
+  userId: number;
   activeTab: "PROFILE" | "START_LESSON" | "MESSAGES" | "JOBS_BOARD" | "PAYMENTS" | "LESSON_HISTORY" = "PROFILE";
   tutorBaseInfo: TutorBaseInfo;
 
 
   constructor(
-    private tutorService: TutorService
+    private tutorService: TutorService,
+    private storageService: StorageService,
   ) {
   }
 
   ngOnInit(): void {
+    this.userId = this.storageService.getUserId();
     this.initializeSubscriptions();
   }
 
