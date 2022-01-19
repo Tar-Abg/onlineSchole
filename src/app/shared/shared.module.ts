@@ -23,11 +23,9 @@ import {ModalSchemComponent} from './components/modal-schem/modal-schem.componen
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {ChangePasswordModalComponent} from './components/change-password-modal/change-password-modal.component';
 import {MessageModalComponent} from './components/message-modal/message-modal.component';
-import {MessageDashboardComponent} from './components/message-dashboard/message-dashboard.component';
-import { MessageUsersListComponent } from './components/message-users-list/message-users-list.component';
-import { JobsBoardDashboardComponent } from './components/jobs-board-dashboard/jobs-board-dashboard.component';
-import { PaymentDashboardComponent } from './components/payment-dashboard/payment-dashboard.component';
-import { LessonHistoryDashboardComponent } from './components/lesson-history-dashboard/lesson-history-dashboard.component';
+import {JobsBoardDashboardComponent} from './components/jobs-board-dashboard/jobs-board-dashboard.component';
+import {PaymentDashboardComponent} from './components/payment-dashboard/payment-dashboard.component';
+import {LessonHistoryDashboardComponent} from './components/lesson-history-dashboard/lesson-history-dashboard.component';
 
 
 @NgModule({
@@ -48,8 +46,6 @@ import { LessonHistoryDashboardComponent } from './components/lesson-history-das
     ResetPasswordComponent,
     ChangePasswordModalComponent,
     MessageModalComponent,
-    MessageDashboardComponent,
-    MessageUsersListComponent,
     JobsBoardDashboardComponent,
     PaymentDashboardComponent,
     LessonHistoryDashboardComponent
@@ -78,7 +74,6 @@ import { LessonHistoryDashboardComponent } from './components/lesson-history-das
     ChangePasswordModalComponent,
     MessageModalComponent,
     LoginComponent,
-    MessageDashboardComponent,
     JobsBoardDashboardComponent,
     PaymentDashboardComponent,
     LessonHistoryDashboardComponent

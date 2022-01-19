@@ -23,6 +23,7 @@ import {StartLessonComponent} from './components/start-lesson/start-lesson.compo
 import {EndLessonModalComponent} from './components/end-lesson-modal/end-lesson-modal.component';
 import {CancelLessonModalComponent} from './components/cancel-lesson-modal/cancel-lesson-modal.component';
 import { ProfileInfoComponent } from './components/profile-info/profile-info.component';
+import {StudentSettingsModule} from "../chat/chat.module";
 
 @NgModule({
   declarations: [
@@ -41,20 +42,21 @@ import { ProfileInfoComponent } from './components/profile-info/profile-info.com
   exports: [
     StartLessonComponent
   ],
-  imports: [
-    CommonModule,
-    TutorProfileRoutingModule,
-    LayoutsModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatDatepickerModule,
-    MatIconModule,
-    RatingModule,
-    TutorSettingsModule,
-    MatInputModule,
-    SharedModule,
-    ReactiveFormsModule,
-  ]
+    imports: [
+        CommonModule,
+        TutorProfileRoutingModule,
+        LayoutsModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatDatepickerModule,
+        MatIconModule,
+        RatingModule,
+        TutorSettingsModule,
+        MatInputModule,
+        SharedModule,
+        ReactiveFormsModule,
+        StudentSettingsModule,
+    ]
 })
 export class TutorProfileModule {
 }
