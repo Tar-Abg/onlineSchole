@@ -42,8 +42,8 @@ export enum RegistrationSteps {
 }
 
 export enum TutorFinaleSteps {
-  'step-two' = 8,
-  'step-three' = 9,
-  'step-four' = 10,
+  'step-one' = 8,
+  'step-two' = 9,
+  'step-three' = 10,
 }
 
