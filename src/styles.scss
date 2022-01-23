@@ -36,6 +36,8 @@ $school-theme: mat.define-light-theme((
 @import "assets/css/normalize";
 @import "assets/css/reset";
 @import "assets/css/animation";
+@import "assets/css/mixins";
+@import "assets/css/functions";
 @import "assets/css/layouts/header";
 @import "assets/css/general";
 @import "assets/css/components/button";
@@ -57,6 +59,7 @@ $school-theme: mat.define-light-theme((
 @import "assets/css/userSetting/paymentMethod/paymentMethod";
 @import "assets/css/userProfile/userProfile";
 @import "assets/css/register";
+@import "assets/css/pages/home";
 
 
 @font-face {

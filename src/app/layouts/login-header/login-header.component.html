@@ -1,40 +1,19 @@
 <header class="header-wrapper">
   <div class="flex-container">
     <a [routerLink]="''" class="header-logo-link">
-      <img class="header-logo"
-           src="assets/images/logo.png"
-           alt="Sophist Logo"
-           width="100"
-           height="100"
-      >
+      <img class="header-logo" src="assets/images/logo.png" alt="Sophist Logo" width="100" height="100">
     </a>
     <ul>
       <li>
-        <a href="">
-          How It Works
-          <span>
-
-          </span>
-        </a>
+        <a href=""> How It Works</a>
       </li>
       <li>
-        <a href="">
-          Start Tutoring
-          <span>
-
-          </span>
-        </a>
+        <a href="">Start Tutoring</a>
       </li>
       <li>
-        <a href="">
-          About us
-          <span>
-
-          </span>
-        </a>
+        <a href="">About us </a>
       </li>
     </ul>
-
     <button *ngIf="isLoggedIn$ | async" (click)="signOut()">log out</button>
   </div>
 </header>

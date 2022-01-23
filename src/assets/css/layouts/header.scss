@@ -1,10 +1,29 @@
+@import "src/assets/css/variables";
+
 /*!********* Header Are Start ***************!*/
 .header {
   &-wrapper {
     grid-area: header;
     height: 181px;
-    padding: 0 140px;
     margin-bottom: 4px;
+
+    .header-list {
+      display: flex;
+      grid-gap: 40px;
+
+      &__item {
+        height: 31px;
+        font: $type-light normal $type-base $Roboto-sans;
+        color: $clr-ntrl-max;
+        text-decoration: unset;
+      }
+
+      &__item--active {
+        width: 161px;
+        border-radius: 50%;
+        background: #EEF4FF;
+      }
+    }
   }
 
   &-logo {

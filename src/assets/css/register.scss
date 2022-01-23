@@ -1,11 +1,11 @@
 .register-form {
 
   &-steps-wrapper {
-    margin-bottom: 48px;
+    margin-bottom: rem(48px);
   }
 
   &-wrapper {
-    padding-bottom: 206px;
+    padding-bottom: rem(206px);
 
     &__title {
       font: $type-bold normal 22px/29px $Segoe-UI-sans;
@@ -22,7 +22,7 @@
   &-legend {
     font: $type-bold normal 24px/32px $Segoe-UI-sans;
     color: $title-color;
-    margin-bottom: 25px;
+    margin-bottom: rem(25px);
   }
 
   &-item-label {
@@ -36,7 +36,7 @@
     font: $type-regular normal 18px/ 24px $Segoe-UI-sans;
     letter-spacing: 0.03em;
     color: $title-color;
-    margin-bottom: 20px;
+    margin-bottom: rem(20px);
   }
 
   &-item-notification {
@@ -49,8 +49,8 @@
 
 .register-step-form-border {
   border-bottom: 1px solid #C4C4C4;
-  margin-bottom: 35px;
-  padding-bottom: 35px;
+  margin-bottom: rem(35px);
+  padding-bottom: rem(35px);
 
   &:last-child {
     border: 0;
@@ -64,7 +64,7 @@
 }
 
 .double-calendar {
-  grid-gap: 34px;
+  grid-gap: rem(34px);
 }
 
 .phone {
@@ -72,8 +72,8 @@
     position: absolute;
     display: flex;
     align-items: center;
-    width: 125px;
-    height: 50px;
+    width: rem(125px);
+    height: rem(50px);
     border: 1px solid #E9E9E9;
     box-sizing: border-box;
     border-radius: $border-radius-small;
@@ -96,20 +96,20 @@
 }
 
 .flag {
-  width: 39px;
-  height: 26px;
+  width: rem(39px);
+  height: rem(26px);
 }
 
 .question-list {
   color: black;
 
   &__item {
-    margin-bottom: 26px;
+    margin-bottom: rem(26px);
 
     .checkboxes-wrapper-flex {
       grid-gap: 15px 0;
       flex-wrap: wrap;
-      margin-left: 47px;
+      margin-left: rem(47px);
     }
   }
 
@@ -139,7 +139,7 @@
 }
 
 .user-sign-up-list__item {
-  margin-bottom: 30px;
+  margin-bottom: rem(30px);
   font: $type-light normal $type-small $Roboto-sans;
   line-height: $type-base;
 }
@@ -154,7 +154,7 @@
   margin: 0;
 
   &__item, .form-item-with-notification {
-    margin-bottom: 45px;
+    margin-bottom: rem(45px);
     display: flex;
     flex-direction: column;
 
@@ -189,7 +189,7 @@
   }
 
   .form-input {
-    width: 89px;
-    height: 38px;
+    width: rem(89px);
+    height: rem(38px);
   }
 }

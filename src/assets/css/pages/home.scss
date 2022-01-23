@@ -1,0 +1,47 @@
+.page-container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.container {
+  &:not(.is-fluid) {
+    margin: 0 auto;
+
+    @each $bp, $container-size in $container-sizes {
+      @include min(#{bp(#{$bp})}) {
+        width: 100%;
+        max-width: container(#{$bp});
+      }
+    }
+  }
+}
+
+.circle-vector {
+  position: relative;
+
+  &:before, &:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: '';
+    display: block;
+    background: linear-gradient(142.05deg, #508CFF 16.6%, rgba(210, 226, 255, 0.0711467) 84.58%, rgba(220, 232, 255, 0) 89.79%, rgba(220, 232, 255, 0) 89.8%);
+    opacity: 0.2;
+  }
+
+  &:before {
+    top: -54px;
+    left: 14px;
+    @include square(158px, $radius: 50%);
+  }
+
+  &:after {
+    top: 30%;
+    left: 56px;
+    @include square(100px, $radius: 50%);
+  }
+}
+
+.border-bottom {
+  border-bottom: 1px solid #EBEBEB;
+}

@@ -1,14 +1,15 @@
 @import "src/assets/css/variables";
+@import "src/assets/css/functions";
 
 .start-lesson-wrapper {
-  margin: 18px 0 160px 0;
+  margin: rem(18px) 0 rem(160px) 0;
 
   .date-picker-label {
     margin-bottom: 0;
   }
 
   .calendar-datepicker-wrappers {
-    margin-bottom: 28px;
+    margin-bottom: rem(28px);
   }
 
   .calendar-content {
@@ -17,7 +18,7 @@
       height: 73px;
 
       &:first-child {
-        width: 150px;
+        width: rem(150px);
       }
 
       &:last-child {
@@ -34,7 +35,7 @@
       height: 71px;
 
       &:first-child {
-        width: 150px;
+        width: rem(150px);
         background-color: unset;
       }
 

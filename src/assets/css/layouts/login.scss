@@ -1,44 +1,36 @@
 .register-btn {
-  height: 48px;
-  width: 264px;
-  background: #FFFFFF;
+  height: rem(48px);
+  width: rem(264px);
+  margin-bottom: rem(20px);
+  border-radius: rem($border-radius-small);
   border: 1px solid #E9E9E9;
   box-sizing: border-box;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 10px;
-  margin-bottom: 20px;
-  font-family: Segoe UI;
-  font-style: normal;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 27px;
+  font: $type-light normal rem(20px) $Segoe-UI-sans;
   letter-spacing: 0.02em;
-  color: #000000;
+  color: $clr-ntrl-max;
+  background: $clr-ntrl-min;
 
   &:hover {
     text-decoration: unset;
-    color: black;
+    color: $clr-ntrl-max;
   }
 }
 
 .login-btn {
   width: 164px;
   height: 45px;
-  background: #9BC9FF;
-  border-radius: 10px;
-  font-family: Segoe UI;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 24px;
+  border: 0;
+  border-radius: rem($border-radius-small);
+  font: $type-regular normal rem(18px) $Segoe-UI-sans;
   letter-spacing: 0.02em;
   color: #0A0A0A;
-  border: 0;
+  background: #9BC9FF;
 }
 
 .forgot-pass-link {
   display: block;
-  margin-bottom: 24px;
+  margin-bottom: rem(24px);
   font: $type-light normal $type-smaller $Segoe-UI-sans;
   line-height: 19px;
   letter-spacing: 0.02em;

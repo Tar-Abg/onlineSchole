@@ -1,0 +1,66 @@
+@mixin flex-container-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+@mixin square($size, $radius: 0) {
+  width: $size;
+  height: $size;
+  min-width: $size;
+
+  @if $radius != 0 {
+    border-radius: $radius;
+  }
+}
+
+
+@mixin min($bp, $max: "null", $device: "screen") {
+  @if $max == "null" {
+    @media only #{$device} and (min-width: #{$bp}) {
+      @content;
+    }
+  } @else {
+    @media only #{$device} and (min-width: #{$bp}) and (max-width: #{$max}) {
+      @content;
+    }
+  }
+}
+
+$breakpoints: (
+  na: 0px,
+  // For BS grid
+  xs: 320px,
+  // Smartphone
+  sm: 600px,
+  // Tablets
+  md: 900px,
+  // Tablets Landscape and small desktops
+  lg: 1200px,
+  // Desktops
+  xl: 1800px,
+  // Large Desktop
+);
+
+$container-sizes: (
+  sm: map-get($breakpoints, sm) - 5px,
+  md: map-get($breakpoints, md) - 7px,
+  lg: map-get($breakpoints, lg) - 0px,
+  xl: map-get($breakpoints, xl) - 100px
+);
+
+@each $bp, $container-size in $container-sizes {
+  .container-#{$bp} {
+    margin: 0 auto;
+    width: 100%;
+
+    $i: index($container-sizes, $bp $container-size);
+
+    @for $j from $i through length($container-sizes) {
+      @include min(#{bp(nth(nth($container-sizes, $j), 1))}) {
+        max-width: container(#{nth(nth($container-sizes, $j), 1)});
+      }
+    }
+  }
+}

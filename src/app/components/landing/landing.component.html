@@ -1,10 +1,299 @@
-<app-header></app-header>
-<ul>
-  <li (click)="isOpenLogin = true">login</li>
-  <li (click)="isOpenResetPassword = true">reset password</li>
-  <li (click)="isOpenChangePassword = true">change password</li>
-  <li (click)="isOpenMessageModal = true">message modal</li>
-</ul>
+<main class="container page-wrapper">
+  <!--================ Header Area Start =================-->
+  <app-header></app-header>
+  <!--    <ul>-->
+  <!--      <li (click)="isOpenLogin = true">login</li>-->
+  <!--      <li (click)="isOpenResetPassword = true">reset password</li>-->
+  <!--      <li (click)="isOpenChangePassword = true">change password</li>-->
+  <!--      <li (click)="isOpenMessageModal = true">message modal</li>-->
+  <!--    </ul>-->
+  <!--================ Header Area End =================-->
+
+  <!--================ Section Hero Start ================-->
+  <section class="hero border-bottom">
+    <div class="hero-content">
+      <div class="hero-content-text text-center">
+        <h2 class="content__title circle-vector move-in-left">
+          Grow your career with quality education</h2>
+        <div class="content__desc">
+          <h3 class="move-in-left-slowly">
+            Private lessons with an expert instructor of your choice.
+          </h3>
+          <h3 class="move-in-left-slowly">
+            Decide how much you pay and who you want to work with. The choice is yours.
+          </h3>
+        </div>
+        <div class="flex-container-center hero-content-link-wrapper">
+          <a class="hero-content__link register-btn flex-container-center" href="">Browse the tutors </a>
+          <a class="hero-content__link register-btn flex-container-center" href="">Create a student account</a>
+          <a class="hero-content__link register-btn flex-container-center" href="">Apply to become a tutor</a>
+        </div>
+      </div>
+      <div class="hero-content-img move-in-right">
+        <img src="assets/images/distance-education.gif" alt="education gif" width="640" height="640">
+      </div>
+    </div>
+  </section>
+  <!--================ Section Hero End ================-->
+
+  <!--================ Section Subjects Slider Start ================-->
+  <section class="subjects-slider-wrapper border-bottom">
+    <h3 class="subjects-slider-wrapper__title">You can learn</h3>
+    <ul class="subjects-slider-list flex-container">
+      <li class="subjects-slider-list__item">
+        <h4 class="subjects-slider-list__item--title">Math</h4>
+        <img class="subjects-slider-list__item--img" src="assets/images/cubes.png" width="91" height="91" alt="Math"/>
+      </li>
+      <li class="subjects-slider-list__item">
+        <h4 class="subjects-slider-list__item-title">Natural Science</h4>
+        <img class="subjects-slider-list__item-img"
+             src="assets/images/science.png"
+             width="87"
+             height="91"
+             alt="Math"
+        />
+      </li>
+      <li class="subjects-slider-list__item">
+        <h4 class="subjects-slider-list__item-title">English</h4>
+        <img class="subjects-slider-list__item-img"
+             src="assets/images/english.png"
+             width="101"
+             height="76"
+             alt="Math"
+        />
+      </li>
+      <li class="subjects-slider-list__item">
+        <h4 class="subjects-slider-list__item-title">Language</h4>
+        <img class="subjects-slider-list__item-img"
+             src="assets/images/language.png"
+             width="91"
+             height="91"
+             alt="Math"
+        />
+      </li>
+      <li class="subjects-slider-list__item">
+        <h4 class="subjects-slider-list__item-title">Programming</h4>
+        <img class="subjects-slider-list__item-img"
+             src="assets/images/programming.png"
+             width="91"
+             height="91"
+             alt="Math"
+        />
+      </li>
+    </ul>
+  </section>
+  <!--================ Section Subjects Slider End ================-->
+
+  <!--================ Section Online Lessons Start ================-->
+  <section class="online-lessons-wrapper border-bottom">
+    <div class="text-center">
+      <h2 class="content__title circle-vector move-in-left">
+        Online lessons. Real–world results.
+      </h2>
+      <div class="content__desc">
+        <h3 class="move-in-left-slowly">
+          Get real results without ever leaving the house.
+        </h3>
+      </div>
+    </div>
+    <div class="flex-container-center result-list-wrapper">
+      <div>
+        <img src="assets/images/education-blue.gif"
+             alt="lying-businessmen-concept" width="640" height="640"
+        >
+      </div>
+      <ul class="result-list">
+        <li class="result-list__item flex-container">
+          <div class="result-list__item--image">
+            <img src="assets/images/checkedList.png"
+                 alt="Check result"
+                 width="76"
+                 height="76"
+            >
+          </div>
+          <p class="result-list__item--text">
+            Meet professional tutors from all over the world
+          </p>
+        </li>
+        <li class="result-list__item flex-container">
+          <div class="result-list__item--image">
+            <img src="assets/images/checkedList.png"
+                 alt="Check result"
+                 width="76"
+                 height="76"
+            >
+          </div>
+          <p class="result-list__item--text">
+            Save time and easily fit lessons into your schedule
+
+          </p>
+        </li>
+        <li class="result-list__item flex-container">
+          <div class="result-list__item--image">
+            <img src="assets/images/checkedList.png"
+                 alt="Check result"
+                 width="76"
+                 height="76"
+            >
+          </div>
+          <p class="result-list__item--text">
+            Facilitate your learning with our user friendly platform
+          </p>
+        </li>
+        <li class="result-list__item flex-container">
+          <div class="result-list__item--image">
+            <img src="assets/images/checkedList.png"
+                 alt="Check result"
+                 width="76"
+                 height="76"
+            >
+          </div>
+          <p class="result-list__item--text">
+            Create a customized learning environment just for you
+          </p>
+        </li>
+      </ul>
+    </div>
+    <h2 class=""></h2>
+  </section>
+  <!--================ Section Online Lessons End ================-->
+
+  <!--================ Section Testimonials Start ================-->
+  <section class="testimonials border-bottom">
+    <ul class="testimonials-list">
+      <li class="testimonials-list__item flex-container-center">
+        <div class="quotes left-quotes">
+          <img src="assets/images/quotes.png" alt="Quotes" width="145" height="127">
+        </div>
+        <div class="testimonials-list__item--review">
+          <p class="testimonials-list__item__desc">
+            Tell me and I forget. Teach me and I remember. Involve me and I learn.</p>
+          <h3 class="testimonials-list__item__person">Benjamin Franklin </h3>
+        </div>
+        <div class="quotes right-quotes">
+          <img src="assets/images/quotes.png" alt="Quotes" width="145" height="127">
+        </div>
+      </li>
+    </ul>
+    <div class="dots-wrapper">
+      <span class="dots__item dots__item--active"></span>
+      <span class="dots__item"></span>
+      <span class="dots__item"></span>
+    </div>
+    <div class="arrow">
+      <button class="arrow-btn arrow__left">
+        <img src="assets/images/vector.png" alt="back arrow">
+      </button>
+      <button class="arrow-btn arrow__right">
+        <img src="assets/images/vector.png" alt="next arrow">
+      </button>
+    </div>
+  </section>
+  <!--================ Section Testimonials End ================-->
+
+  <!--================ Section Help Start ================-->
+  <section class="find-tutor flex-container border-bottom">
+    <div class="find-tutor__info">
+      <div class="find-tutor__text-wrapper">
+        <h2 class="find-tutor__text">You’ve got this. </h2>
+        <h2 class="find-tutor__text">
+          Get expert help in any skill or subject.
+        </h2>
+      </div>
+      <button class="btn find-tutor__btn flex-container-center">
+        Find a tutor in any subject
+        <img class="link-image" src="assets/images/liner.png" alt="Liner" width="142" height="140">
+      </button>
+    </div>
+    <div>
+      <img src="assets/images/lying-businessmen-concept.gif"
+           alt="lying-businessmen-concept" width="640" height="640">
+    </div>
+  </section>
+  <!--================ Section Help End ================-->
+
+  <!--================ Section Our Tutors Start ================-->
+  <section class="tutor">
+    <h2 class="tutor__title">Our Tutors</h2>
+    <ul class="tutor-cards-list">
+      <li class="tutor-cards-list__item">
+        <figure>
+          <div class="tutor-cards-list__item--image">
+            <img src="assets/images/tutor.png"
+                 alt="Tutor"
+                 width="166"
+                 height="167"
+            >
+          </div>
+          <figcaption>
+            <h2 class="tutor-cards-list__item--name">Danielle M.</h2>
+            <h3 class="tutor-cards-list__item--subject">Chemistry</h3>
+            <div class="tutor-cards-list__item--rate">
+              rate
+            </div>
+          </figcaption>
+        </figure>
+      </li>
+      <li class="tutor-cards-list__item">
+        <figure>
+          <div class="tutor-cards-list__item--image">
+            <img src="assets/images/tutor.png"
+                 alt="Tutor"
+                 width="166"
+                 height="167"
+            >
+          </div>
+          <figcaption>
+            <h2 class="tutor-cards-list__item--name">Danielle M.</h2>
+            <h3 class="tutor-cards-list__item--subject">Chemistry</h3>
+            <div class="tutor-cards-list__item--rate">
+              rate
+            </div>
+          </figcaption>
+        </figure>
+      </li>
+      <li class="tutor-cards-list__item">
+        <figure>
+          <div class="tutor-cards-list__item--image">
+            <img src="assets/images/tutor.png"
+                 alt="Tutor"
+                 width="166"
+                 height="167"
+            >
+          </div>
+          <figcaption>
+            <h2 class="tutor-cards-list__item--name">Danielle M.</h2>
+            <h3 class="tutor-cards-list__item--subject">Chemistry</h3>
+            <div class="tutor-cards-list__item--rate">
+              rate
+            </div>
+          </figcaption>
+        </figure>
+      </li>
+      <li class="tutor-cards-list__item">
+        <figure>
+          <div class="tutor-cards-list__item--image">
+            <img src="assets/images/tutor.png"
+                 alt="Tutor"
+                 width="166"
+                 height="167"
+            >
+          </div>
+          <figcaption>
+            <h2 class="tutor-cards-list__item--name">Danielle M.</h2>
+            <h3 class="tutor-cards-list__item--subject">Chemistry</h3>
+            <div class="tutor-cards-list__item--rate">
+              rate
+            </div>
+          </figcaption>
+        </figure>
+      </li>
+    </ul>
+  </section>
+  <!--================ Section Our Tutors End ================-->
+</main>
+
+
 <div class="login-modal-wrapper modal-wrapper">
   <app-modal-schem *ngIf="isOpenLogin" (close)="isOpenLogin = false" [title]="'Welcome to sophist'">
     <app-login></app-login>
@@ -12,7 +301,7 @@
 </div>
 
 <app-modal-schem *ngIf="isOpenResetPassword" (close)="isOpenResetPassword = false" [isShowBack]="true">
-  <app-reset-password ></app-reset-password>
+  <app-reset-password></app-reset-password>
 </app-modal-schem>
 
 <app-modal-schem *ngIf="isOpenChangePassword" (close)="isOpenChangePassword = false">
