@@ -7,6 +7,7 @@ import {ProfileInfoComponent} from './components/profile-info/profile-info.compo
 import {StudentProfileRoutingModule} from "./student-profile-routing.module";
 import {TutorProfileModule} from "../tutor-profile/tutor-profile.module";
 import {SearchTutorModule} from "../search-tutor/search-tutor.module";
+import {StudentSettingsModule} from "../chat/chat.module";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {SearchTutorModule} from "../search-tutor/search-tutor.module";
         SharedModule,
         StudentProfileRoutingModule,
         TutorProfileModule,
-        SearchTutorModule
+        SearchTutorModule,
+        StudentSettingsModule
     ]
 })
 export class StudentProfileModule { }

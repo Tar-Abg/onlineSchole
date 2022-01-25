@@ -17,6 +17,7 @@ export class FifthStepComponent implements OnInit, OnDestroy {
   phoneCods$: Observable<Country[]>
   form: FormGroup;
   private actionType: "CREATE" | "UPDATE" = "CREATE";
+  showConfirmRegister = false;
 
   constructor(
     private fb: FormBuilder,
@@ -82,7 +83,7 @@ export class FifthStepComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.form.valid) {
       if (this.actionType === "CREATE") {
-        this.saveContacts();
+        this.showConfirmRegister = true;
       } else {
         this.updateContacts();
       }
@@ -91,9 +92,12 @@ export class FifthStepComponent implements OnInit, OnDestroy {
     }
   }
 
-  saveContacts(): void {
+  register(): void {
     this.subscription.add(
-      this.registrationService.saveContacts(this.form.getRawValue()).subscribe()
+      this.registrationService.saveContacts(this.form.getRawValue()).subscribe(() => {
+        this.showConfirmRegister = false;
+        this.router.navigate(['/']);
+      })
     );
   }
 
