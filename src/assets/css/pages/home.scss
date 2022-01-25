@@ -31,13 +31,13 @@
 
   &:before {
     top: -54px;
-    left: 14px;
+    left: 10%;
     @include square(158px, $radius: 50%);
   }
 
   &:after {
-    top: 30%;
-    left: 56px;
+    top: 32%;
+    left: 13%;
     @include square(100px, $radius: 50%);
   }
 }

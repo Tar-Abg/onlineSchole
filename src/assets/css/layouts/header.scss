@@ -12,16 +12,87 @@
       grid-gap: 40px;
 
       &__item {
+        position: relative;
         height: 31px;
-        font: $type-light normal $type-base $Roboto-sans;
-        color: $clr-ntrl-max;
-        text-decoration: unset;
+
+        a {
+          font: $type-light normal $type-base $Roboto-sans;
+          color: $clr-ntrl-max;
+          text-decoration: unset;
+        }
+
+        &--border {
+          height: 42px;
+          padding: 8px 20px;
+          border-radius: 10px;
+          border: 1px solid #8FB5FC;
+          font: $type-regular normal rem(20px) $Segoe-UI-sans;
+
+          a {
+            color: #8FB5FC;
+          }
+        }
       }
 
       &__item--active {
         width: 161px;
         border-radius: 50%;
         background: #EEF4FF;
+      }
+
+      .user-pic {
+        @include square(58px, 50%);
+        margin-right: 10px;
+        overflow: hidden;
+      }
+
+      .user-name {
+        font: $type-light normal rem(20px) $Roboto-sans;
+        line-height: 23px;
+        letter-spacing: 0;
+        white-space: nowrap;
+        text-align: left;
+
+        img {
+          height: 16px;
+          width: 24px;
+        }
+      }
+
+      .nested-dropdown {
+        position: absolute;
+        top: 172%;
+        padding: 16px 20px;
+        border-radius: 4px;
+        border: 1px solid #e9e9e9;
+        background-color: $clr-ntrl-min;
+        box-shadow: 0 3px rgba(0, 0, 0, 0.04);
+
+        &__item {
+          display: flex;
+          align-items: center;
+          padding: 8px 10px 8px 0;
+          border-bottom: 1px solid #e7e7e7;
+
+          &:last-child {
+            border: 0;
+          }
+
+          p {
+            margin: 0 10px 0 0;
+            font: $type-light normal rem(18px) $Roboto-sans;
+            line-height: 21px;
+            letter-spacing: 0;
+            text-align: left;
+            white-space: nowrap;
+            cursor: pointer;
+          }
+
+          img {
+            width: auto;
+            height: auto;
+          }
+        }
       }
     }
   }
