@@ -34,6 +34,10 @@ export class HeaderComponent implements OnInit {
     this.router.navigate([`${UserRole[this.userType]}/settings`]);
   }
 
+  navigateToProfile(): void {
+    this.router.navigate([`${UserRole[this.userType]}/profile`]);
+  }
+
   get userType(): number {
     return this.storageService.getItem('userRole');
   }
