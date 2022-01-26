@@ -18,11 +18,11 @@
           <li class="header-list__item flex-container-center" appClickOutside
               (clickOutside)="isOpenNestedDropdown = false">
             <div class="flex-container-center">
-              <div class="user-pic">
+              <div class="user-pic" (click)="navigateToProfile()">
                 <img src="assets/images/messageUser.png" alt="UserPic" width="80" height="80">
               </div>
               <h2 class="user-name flex-container-center">
-                Danielle M.
+                <span (click)="navigateToProfile()">Danielle M.</span>
                 <img src="assets/images/dropdown.png" alt="Drop Down" width="22" height="12" (click)="isOpenNestedDropdown = !isOpenNestedDropdown">
               </h2>
             </div>
