@@ -26,6 +26,7 @@ import {MessageModalComponent} from './components/message-modal/message-modal.co
 import {JobsBoardDashboardComponent} from './components/jobs-board-dashboard/jobs-board-dashboard.component';
 import {PaymentDashboardComponent} from './components/payment-dashboard/payment-dashboard.component';
 import {LessonHistoryDashboardComponent} from './components/lesson-history-dashboard/lesson-history-dashboard.component';
+import { ClickOutsideDirective } from './directivs/click-outside.directive';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import {LessonHistoryDashboardComponent} from './components/lesson-history-dashb
     MessageModalComponent,
     JobsBoardDashboardComponent,
     PaymentDashboardComponent,
-    LessonHistoryDashboardComponent
+    LessonHistoryDashboardComponent,
+    ClickOutsideDirective
   ],
   imports: [
     CommonModule,
@@ -76,7 +78,8 @@ import {LessonHistoryDashboardComponent} from './components/lesson-history-dashb
     LoginComponent,
     JobsBoardDashboardComponent,
     PaymentDashboardComponent,
-    LessonHistoryDashboardComponent
+    LessonHistoryDashboardComponent,
+    ClickOutsideDirective
   ]
 })
 export class SharedModule {

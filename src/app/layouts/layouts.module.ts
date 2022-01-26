@@ -5,6 +5,7 @@ import {HeaderComponent} from "./header/header.component";
 import {RouterModule} from "@angular/router";
 import {LoginHeaderComponent} from './login-header/login-header.component';
 import {LoadingComponent} from './loading/loading.component';
+import {SharedModule} from "../shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {LoadingComponent} from './loading/loading.component';
   imports: [
     CommonModule,
     RouterModule,
+    SharedModule
   ],
   exports: [
     FooterComponent,

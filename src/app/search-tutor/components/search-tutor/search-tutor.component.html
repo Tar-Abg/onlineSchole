@@ -1,4 +1,4 @@
-<app-login-header *ngIf="!isOnStudentPage"></app-login-header>
+<app-header></app-header>
 <app-filter [showFilterTitle]="!isOnStudentPage"></app-filter>
 <ng-container *ngIf="(tutorList$ | async) as tutorList">
   <div *ngFor="let tutor of tutorList">

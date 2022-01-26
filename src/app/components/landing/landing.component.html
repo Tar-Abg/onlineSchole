@@ -1,6 +1,6 @@
 <main class="container page-wrapper">
   <!--================ Header Area Start =================-->
-  <app-header></app-header>
+  <app-header (openLogin)="isOpenLogin = true"></app-header>
   <!--    <ul>-->
   <!--      <li (click)="isOpenLogin = true">login</li>-->
   <!--      <li (click)="isOpenResetPassword = true">reset password</li>-->
@@ -25,8 +25,8 @@
         </div>
         <div class="flex-container-center hero-content-link-wrapper">
           <a class="hero-content__link register-btn flex-container-center" href="">Browse the tutors </a>
-          <a class="hero-content__link register-btn flex-container-center" href="">Create a student account</a>
-          <a class="hero-content__link register-btn flex-container-center" href="">Apply to become a tutor</a>
+          <a class="hero-content__link register-btn flex-container-center" [routerLink]="'student/signUp'">Create a student account</a>
+          <a class="hero-content__link register-btn flex-container-center" [routerLink]="'tutor/signUp'">Apply to become a tutor</a>
         </div>
       </div>
       <div class="hero-content-img move-in-right">
@@ -200,7 +200,7 @@
           Get expert help in any skill or subject.
         </h2>
       </div>
-      <button class="btn find-tutor__btn flex-container-center">
+      <button class="btn find-tutor__btn flex-container-center" (click)="navigateToSearchTutor()">
         Find a tutor in any subject
         <img class="link-image" src="assets/images/liner.png" alt="Liner" width="142" height="140">
       </button>
