@@ -21,9 +21,9 @@
               <div class="user-pic">
                 <img src="assets/images/messageUser.png" alt="UserPic" width="80" height="80">
               </div>
-              <h2 class="user-name flex-container-center" (click)="isOpenNestedDropdown = !isOpenNestedDropdown">
+              <h2 class="user-name flex-container-center">
                 Danielle M.
-                <img src="assets/images/dropdown.png" alt="Drop Down" width="22" height="12">
+                <img src="assets/images/dropdown.png" alt="Drop Down" width="22" height="12" (click)="isOpenNestedDropdown = !isOpenNestedDropdown">
               </h2>
             </div>
             <ul class="nested-dropdown" *ngIf="isOpenNestedDropdown">
