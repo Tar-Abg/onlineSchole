@@ -1,0 +1,13 @@
+.register-wrapper {
+  flex-direction: column;
+  grid-gap: 22px;
+
+  .register-btn {
+    margin: 0;
+  }
+
+  .start-now {
+    box-shadow: 0 4px 4px 0 #8FB5FC;
+    font-weight: 400;
+  }
+}
