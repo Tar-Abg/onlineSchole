@@ -300,6 +300,14 @@
   </app-modal-schem>
 </div>
 
+
+<div class="modal--small-width modal-wrapper">
+  <app-modal-schem [title]="'Registration'">
+    <app-register></app-register>
+  </app-modal-schem>
+</div>
+
+
 <app-modal-schem *ngIf="isOpenResetPassword" (close)="isOpenResetPassword = false" [isShowBack]="true">
   <app-reset-password></app-reset-password>
 </app-modal-schem>

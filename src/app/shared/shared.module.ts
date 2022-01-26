@@ -27,6 +27,7 @@ import {JobsBoardDashboardComponent} from './components/jobs-board-dashboard/job
 import {PaymentDashboardComponent} from './components/payment-dashboard/payment-dashboard.component';
 import {LessonHistoryDashboardComponent} from './components/lesson-history-dashboard/lesson-history-dashboard.component';
 import { ClickOutsideDirective } from './directivs/click-outside.directive';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { ClickOutsideDirective } from './directivs/click-outside.directive';
     JobsBoardDashboardComponent,
     PaymentDashboardComponent,
     LessonHistoryDashboardComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
@@ -62,25 +64,26 @@ import { ClickOutsideDirective } from './directivs/click-outside.directive';
     MatCheckboxModule,
     RouterModule,
   ],
-  exports: [
-    RegisterHeaderComponent,
-    StepsComponent,
-    SelectComponent,
-    InstitutionsComponent,
-    CertificatesComponent,
-    PersonalInformationComponent,
-    PaginationComponent,
-    MessageComponent,
-    ModalSchemComponent,
-    ResetPasswordComponent,
-    ChangePasswordModalComponent,
-    MessageModalComponent,
-    LoginComponent,
-    JobsBoardDashboardComponent,
-    PaymentDashboardComponent,
-    LessonHistoryDashboardComponent,
-    ClickOutsideDirective
-  ]
+    exports: [
+        RegisterHeaderComponent,
+        StepsComponent,
+        SelectComponent,
+        InstitutionsComponent,
+        CertificatesComponent,
+        PersonalInformationComponent,
+        PaginationComponent,
+        MessageComponent,
+        ModalSchemComponent,
+        ResetPasswordComponent,
+        ChangePasswordModalComponent,
+        MessageModalComponent,
+        LoginComponent,
+        JobsBoardDashboardComponent,
+        PaymentDashboardComponent,
+        LessonHistoryDashboardComponent,
+        ClickOutsideDirective,
+        RegisterComponent
+    ]
 })
 export class SharedModule {
 }

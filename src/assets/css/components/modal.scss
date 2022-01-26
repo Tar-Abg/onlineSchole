@@ -168,6 +168,28 @@
   }
 }
 
+.modal-wrapper.modal--small-width {
+
+  .modal-content {
+    width: 458px;
+    min-width: 458px;
+    height: 340px;
+  }
+
+  .modal-header {
+    padding-bottom: 30px;
+
+    span {
+      font: $type-regular normal rem(22px) $Segoe-UI-sans;
+      line-height: 29px;
+      letter-spacing: 0.05em;
+      text-align: left;
+      text-transform: uppercase;
+      color: #8FB5FC;
+    }
+  }
+}
+
 .confirmation-dialog {
 
   .modal-header {
