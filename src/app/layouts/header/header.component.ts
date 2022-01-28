@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {BehaviorSubject} from "rxjs";
 import {AuthService} from "../../shared/services/auth/auth.service";
 import {Router} from "@angular/router";
-import {UserRole} from "../../shared/models/auth.model";
+import {UserAuthInfo, UserRole} from "../../shared/models/auth.model";
 import {StorageService} from "../../shared/services/storage/storage.service";
 
 @Component({
@@ -12,7 +12,9 @@ import {StorageService} from "../../shared/services/storage/storage.service";
 })
 export class HeaderComponent implements OnInit {
   @Output() openLogin: EventEmitter<void> = new EventEmitter<void>();
+  @Output() openRegister: EventEmitter<void> = new EventEmitter<void>();
   isLoggedIn$: BehaviorSubject<boolean>;
+  loggedUser$: BehaviorSubject<UserAuthInfo | null> = new BehaviorSubject<UserAuthInfo | null>(null);
   isOpenNestedDropdown: boolean;
 
 
@@ -24,10 +26,17 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn$ = this.authService.isLoggedIn$;
+    this.loggedUser$ = this.authService.loggedUser$;
+    this.getLoggedUser();
   }
 
   signOut(): void {
     this.authService.signOut().subscribe();
+  }
+
+  getLoggedUser(): void {
+    const token = this.storageService.getItem('auth_token');
+    token && this.authService.extractUserFromToken(token)
   }
 
   navigateToSettings(): void {

@@ -1,5 +1,5 @@
 <!--================ Header Area Start =================-->
-<app-header (openLogin)="isOpenLogin = true"></app-header>
+<app-header (openLogin)="isOpenLogin = true" (openRegister)="isOpenRegistration = true"></app-header>
 <!--    <ul>-->
 <!--      <li (click)="isOpenLogin = true">login</li>-->
 <!--      <li (click)="isOpenResetPassword = true">reset password</li>-->
@@ -301,8 +301,8 @@
 </div>
 
 
-<div class="modal--small-width modal-wrapper">
-  <app-modal-schem [title]="'Registration'">
+<div class="modal--small-width modal-wrapper" *ngIf="isOpenRegistration">
+  <app-modal-schem [title]="'Registration'" (close)="isOpenRegistration = false">
     <app-register></app-register>
   </app-modal-schem>
 </div>

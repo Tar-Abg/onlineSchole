@@ -11,6 +11,7 @@ export class LandingComponent implements OnInit {
   isOpenResetPassword: boolean;
   isOpenChangePassword: boolean;
   isOpenMessageModal: boolean;
+  isOpenRegistration: boolean;
 
   constructor(
     private router: Router

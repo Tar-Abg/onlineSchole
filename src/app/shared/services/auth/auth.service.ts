@@ -14,6 +14,7 @@ import {ResponseModel} from "../../models/responseModel.model";
 export class AuthService {
   private readonly url = `${environment.apiUrl}/User`;
   isLoggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  loggedUser$: BehaviorSubject<UserAuthInfo | null> = new BehaviorSubject<UserAuthInfo | null>(null);
 
   constructor(
     private http: HttpClient,
@@ -51,7 +52,10 @@ export class AuthService {
   }
 
   extractUserFromToken(token: string): UserAuthInfo {
-    return JSON.parse(atob(token.split('.')[1]));
+    console.log(2)
+    const loggedUser = JSON.parse(atob(token.split('.')[1]));
+    this.loggedUser$.next(loggedUser);
+    return loggedUser;
   }
 
   refreshTokens(token: string): Observable<User> {

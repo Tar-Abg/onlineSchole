@@ -9,7 +9,7 @@
         <ul class="header-list flex-container-center">
           <li class="header-list__item flex-container-center header-list__item--active"><a href="">About us</a></li>
           <li class="header-list__item flex-container-center" (click)="openLogin.emit()"><a>Log in</a></li>
-          <li class="header-list__item header-list__item--border flex-container-center"><a href="">Register now</a></li>
+          <li class="header-list__item header-list__item--border flex-container-center" (click)="openRegister.emit()"><a>Register now</a></li>
         </ul>
       </ng-template>
       <ng-template #loggedUser>
