@@ -16,7 +16,7 @@
           <div class="writer-image">
             <img src="assets/images/messageUser.png" alt="Writer">
           </div>
-          <h2 class="writer-name">Ann Smith</h2>
+          <h2 class="writer-name" (click)="joinRoom()">Ann Smith</h2>
         </div>
       </div>
       <div class="chat-history">
@@ -28,41 +28,13 @@
           <h4 class="chatting-time">16.03.2021</h4>
           <div class="chat-wrapper">
             <div class="message-content">
-              <div class="received-message flex-container-justify-start">
+              {{messages | json}}
+              <div class="received-message" [class.flex-container-justify-start]="userId.toString() != message.userId" [class.flex-container-justify-end]="userId.toString() == message.userId" *ngFor="let message of messages">
                 <h2 class="received-message-text">
-                  Hello ))
-                </h2>
-                <span class="received-message-time">
-                   14:25
-                  </span>
-              </div>
-              <div class="received-message flex-container-justify-start">
-                <h2 class="received-message-text">
-                  Hello ))
-                </h2>
-                <span class="received-message-time">
-                   14:25
-                  </span>
-              </div>
-              <div class="sending-message flex-container-justify-end">
-                  <span class="received-message-time">
-                   14:25
-                  </span>
-                <h2 class="received-message-text">
-                  Yes, of course dear.
-                </h2>
-              </div>
-              <div class="received-message flex-container-justify-start">
-                <h2 class="received-message-text">
-                  Hello ))
-                </h2>
-                <span class="received-message-time">
-                   14:25
-                  </span>
-              </div>
-              <div class="received-message flex-container-justify-start">
-                <h2 class="received-message-text">
-                  Hello ))
+                  {{userId.toString()}}
+                  {{ message.userId}}
+
+                  {{message.message}}
                 </h2>
                 <span class="received-message-time">
                    14:25
@@ -75,154 +47,18 @@
                 <h2 class="received-message-text">
                   Yes, of course dear.
                 </h2>
-              </div> <div class="received-message flex-container-justify-start">
-              <h2 class="received-message-text">
-                Hello ))
-              </h2>
-              <span class="received-message-time">
-                   14:25
-                  </span>
+              </div>
+
+
             </div>
-              <div class="received-message flex-container-justify-start">
-                <h2 class="received-message-text">
-                  Hello ))
-                </h2>
-                <span class="received-message-time">
-                   14:25
-                  </span>
-              </div>
-              <div class="sending-message flex-container-justify-end">
-                  <span class="received-message-time">
-                   14:25
-                  </span>
-                <h2 class="received-message-text">
-                  Yes, of course dear.
-                </h2>
-              </div> <div class="received-message flex-container-justify-start">
-              <h2 class="received-message-text">
-                Hello ))
-              </h2>
-              <span class="received-message-time">
-                   14:25
-                  </span>
-            </div>
-              <div class="received-message flex-container-justify-start">
-                <h2 class="received-message-text">
-                  Hello ))
-                </h2>
-                <span class="received-message-time">
-                   14:25
-                  </span>
-              </div>
-              <div class="sending-message flex-container-justify-end">
-                  <span class="received-message-time">
-                   14:25
-                  </span>
-                <h2 class="received-message-text">
-                  Yes, of course dear.
-                </h2>
-              </div> <div class="received-message flex-container-justify-start">
-              <h2 class="received-message-text">
-                Hello ))
-              </h2>
-              <span class="received-message-time">
-                   14:25
-                  </span>
-            </div>
-              <div class="received-message flex-container-justify-start">
-                <h2 class="received-message-text">
-                  Hello ))
-                </h2>
-                <span class="received-message-time">
-                   14:25
-                  </span>
-              </div>
-              <div class="sending-message flex-container-justify-end">
-                  <span class="received-message-time">
-                   14:25
-                  </span>
-                <h2 class="received-message-text">
-                  Yes, of course dear.
-                </h2>
-              </div> <div class="received-message flex-container-justify-start">
-              <h2 class="received-message-text">
-                Hello ))
-              </h2>
-              <span class="received-message-time">
-                   14:25
-                  </span>
-            </div>
-              <div class="received-message flex-container-justify-start">
-                <h2 class="received-message-text">
-                  Hello ))
-                </h2>
-                <span class="received-message-time">
-                   14:25
-                  </span>
-              </div>
-              <div class="sending-message flex-container-justify-end">
-                  <span class="received-message-time">
-                   14:25
-                  </span>
-                <h2 class="received-message-text">
-                  Yes, of course dear.
-                </h2>
-              </div> <div class="received-message flex-container-justify-start">
-              <h2 class="received-message-text">
-                Hello ))
-              </h2>
-              <span class="received-message-time">
-                   14:25
-                  </span>
-            </div>
-              <div class="received-message flex-container-justify-start">
-                <h2 class="received-message-text">
-                  Hello ))
-                </h2>
-                <span class="received-message-time">
-                   14:25
-                  </span>
-              </div>
-              <div class="sending-message flex-container-justify-end">
-                  <span class="received-message-time">
-                   14:25
-                  </span>
-                <h2 class="received-message-text">
-                  Yes, of course dear.
-                </h2>
-              </div> <div class="received-message flex-container-justify-start">
-              <h2 class="received-message-text">
-                Hello ))
-              </h2>
-              <span class="received-message-time">
-                   14:25
-                  </span>
-            </div>
-              <div class="received-message flex-container-justify-start">
-                <h2 class="received-message-text">
-                  Hello ))
-                </h2>
-                <span class="received-message-time">
-                   14:25
-                  </span>
-              </div>
-              <div class="sending-message flex-container-justify-end">
-                  <span class="received-message-time">
-                   14:25
-                  </span>
-                <h2 class="received-message-text">
-                  Yes, of course dear.
-                </h2>
-              </div>
-            </div>
-            <div class="send-message-wrapper">
-              <input type="text" placeholder="write a message...">
-              <img src="assets/images/sendMessage.png"
+            <form class="send-message-wrapper" [formGroup]="form">
+              <input type="text" placeholder="write a message..." formControlName="message">
+              <img src="assets/images/sendMessage.png" (click)="sendMessage()"
                    alt="Send Message Icon"
                    width="34"
                    height="35"
               >
-            </div>
+            </form>
           </div>
         </div>
       </div>

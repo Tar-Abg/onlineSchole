@@ -17,12 +17,12 @@
           <li class="header-list__item flex-container-center header-list__item--active"><a href="">About us</a></li>
           <li class="header-list__item flex-container-center" appClickOutside
               (clickOutside)="isOpenNestedDropdown = false">
-            <div class="flex-container-center">
+            <div class="flex-container-center" *ngIf="user">
               <div class="user-pic" (click)="navigateToProfile()">
-                <img src="assets/images/messageUser.png" alt="UserPic" width="80" height="80">
+                <img [src]="user?.photo" alt="UserPic" width="80" height="80">
               </div>
               <h2 class="user-name flex-container-center">
-                <span (click)="navigateToProfile()">Danielle M.</span>
+                <span (click)="navigateToProfile()">{{user.fullName}}</span>
                 <img src="assets/images/dropdown.png" alt="Drop Down" width="22" height="12" (click)="isOpenNestedDropdown = !isOpenNestedDropdown">
               </h2>
             </div>
@@ -32,7 +32,7 @@
                 <img src="assets/images/settings.svg" alt="Log Out">
               </li>
               <li class="nested-dropdown__item" (click)="signOut()">
-                <p>Log out</p>
+                <p (click)="signOut()">Log out</p>
                 <img src="assets/images/logout.svg" alt="Log Out">
               </li>
             </ul>

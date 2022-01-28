@@ -52,7 +52,6 @@ export class AuthService {
   }
 
   extractUserFromToken(token: string): UserAuthInfo {
-    console.log(2)
     const loggedUser = JSON.parse(atob(token.split('.')[1]));
     this.loggedUser$.next(loggedUser);
     return loggedUser;

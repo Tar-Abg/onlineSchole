@@ -1,42 +1,77 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {AuthService} from "../../shared/services/auth/auth.service";
 import {Router} from "@angular/router";
 import {UserAuthInfo, UserRole} from "../../shared/models/auth.model";
 import {StorageService} from "../../shared/services/storage/storage.service";
+import {StudentProfileService} from "../../student-profile/services/student-profile.service";
+import {Student} from "../../student-profile/models/student-profile.model";
+import {TutorService} from "../../tutor-profile/services/tutor-service.service";
+import {map, tap} from "rxjs/operators";
+import {TutorBaseInfo} from "../../tutor-profile/models/tutor.model";
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
+  private readonly subscription: Subscription = new Subscription();
   @Output() openLogin: EventEmitter<void> = new EventEmitter<void>();
   @Output() openRegister: EventEmitter<void> = new EventEmitter<void>();
-  isLoggedIn$: BehaviorSubject<boolean>;
+  isLoggedIn$: Observable<boolean>;
   loggedUser$: BehaviorSubject<UserAuthInfo | null> = new BehaviorSubject<UserAuthInfo | null>(null);
   isOpenNestedDropdown: boolean;
+  user: Student | TutorBaseInfo;
 
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private storageService: StorageService,
+    private studentService: StudentProfileService,
+    private tutorService: TutorService,
   ) { }
 
   ngOnInit(): void {
-    this.isLoggedIn$ = this.authService.isLoggedIn$;
+    this.isLoggedIn$ = this.authService.isLoggedIn$.pipe(
+      tap(data => data && this.getLoggedUser())
+    );
     this.loggedUser$ = this.authService.loggedUser$;
-    this.getLoggedUser();
+    this.extractUserFromToken();
   }
 
   signOut(): void {
     this.authService.signOut().subscribe();
   }
 
-  getLoggedUser(): void {
+  extractUserFromToken(): void {
     const token = this.storageService.getItem('auth_token');
-    token && this.authService.extractUserFromToken(token)
+    token && this.authService.extractUserFromToken(token);
+  }
+
+  getLoggedUser(): void {
+    if (this.authService.isLoggedIn$) {
+      const userRole = this.storageService.getItem('userRole');
+      const userId = this.storageService.getItem('userId');
+      if (userRole == UserRole.student) {
+       this.getStudent(userId);
+      } else {
+       this.getTutor(userId);
+      }
+    }
+  }
+
+  getStudent(id: number): void {
+    this.subscription.add(
+      this.studentService.getProfileInfo(id).subscribe(student => this.user = student)
+    );
+  }
+
+  getTutor(id: number): void {
+    this.subscription.add(
+      this.tutorService.getTutorBaseInfo(id).subscribe(student => this.user = student)
+    );
   }
 
   navigateToSettings(): void {
@@ -49,5 +84,9 @@ export class HeaderComponent implements OnInit {
 
   get userType(): number {
     return this.storageService.getItem('userRole');
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
