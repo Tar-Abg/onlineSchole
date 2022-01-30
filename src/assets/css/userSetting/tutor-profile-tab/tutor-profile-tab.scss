@@ -121,6 +121,7 @@
           letter-spacing: 0.03em;
           line-height: 30px;
           color: $clr-ntrl-max;
+          white-space: nowrap;
         }
 
         &__title {
@@ -134,7 +135,7 @@
         width: 447px;
 
         td {
-          padding-top: 15px;
+          padding: 15px 20px 10px 0;
         }
 
         tr {

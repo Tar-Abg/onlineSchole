@@ -14,7 +14,7 @@
       .search-cards-item {
         align-items: center;
         width: 100%;
-        padding: 20px 18px 20px 70px;
+        padding: 30px 30px 30px 70px;
         border-radius: $border-radius-base;
         background-color: $clr-ntrl-min;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
@@ -38,12 +38,13 @@
 
       .collapsed-info {
         display: inline-flex;
-        width: auto;
+        width: 90%;
         margin: 0;
       }
 
       .collapsed-info-form-container {
         grid-gap: 35px;
+        flex-wrap: wrap;
       }
 
       .form-label-text {
@@ -54,7 +55,8 @@
 
       .availability-wrapper {
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
+        //flex-direction: column;
         grid-gap: 5px;
 
         label {
