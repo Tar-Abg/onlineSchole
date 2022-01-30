@@ -26,8 +26,8 @@
                   class="form-textarea"
                   type="text"
                   rows="5" cols="100"
-                  placeholder="a short headline about yourself*"
-                  formControlName="headline">a short headline about yourself*
+                  placeholder="A short headline about yourself*"
+                  formControlName="headline">A short headline about yourself*
         </textarea>
         <span class="error-message" *ngIf="form.get('headline')?.errors?.required && form.get('headline')?.touched">This is a required field</span>
         <span class="form-item-notification" [class.text-danger]="form.get('headline')?.errors?.minlength || form.get('headline')?.errors?.maxlength">Your profile headline must be between 15 and 75 characters.</span>
@@ -38,9 +38,9 @@
       <label for="bio" class="form-label form-label--flex-container">
       <textarea id="bio" class="form-textarea" type="text"
                 rows="10" cols="10"
-                placeholder="a short headline about yourself*"
+                placeholder="A short headline about yourself*"
                 formControlName="bio"
-      >a short headline about yourself*
+      >A short headline about yourself*
                 </textarea>
         <span class="error-message"
               *ngIf="form.get('bio')?.errors?.required && form.get('bio')?.touched">This is a required field</span>
@@ -52,9 +52,9 @@
       <label for="wrapUp" class="form-label form-label--flex-container">
         <textarea id="wrapUp" class="form-textarea" type="text"
                   rows="10" cols="10"
-                  placeholder="a short headline about yourself*"
+                  placeholder="A short headline about yourself*"
                   formControlName="wrapUp"
-        > a short headline about yourself*
+        > A short headline about yourself*
                 </textarea>
       </label>
       <p class="form-item-notification">Encourage students to contact you

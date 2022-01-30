@@ -12,7 +12,7 @@
         </legend>
         <ul class="user-sign-up-list">
           <li class="user-sign-up-list__item">
-            <h3 class="main-question">Please choose your subject</h3>
+            <h3 class="main-question">Please choose your subjects</h3>
             <div class="d-flex flex-wrap flex-container-justify-start gap-3
             grid-gap-10 date-picker-container">
               <ng-container *ngFor="let item of tutorSubjects.controls; let i = index">
@@ -72,21 +72,19 @@
             <h3 class="main-question">Please enter hourly rate</h3>
             <label for="hourly-rate" class="form-label form-label--flex-container">
               <input id="hourly-rate" class="form-input" type="text"
-                     placeholder="the minimum hourly rate is $20*"
+                     placeholder="The minimum hourly rate is $20*"
                      formControlName="hourlyRate">
               <span class="error-message"
                     *ngIf="form.get('hourlyRate')?.errors?.min && form.get('hourlyRate')?.touched">You cannot enter anything below $20</span>
               <span class="error-message"
                     *ngIf="form.get('hourlyRate')?.errors?.required && form.get('hourlyRate')?.touched">This is a required field</span>
             </label>
-            <p class="input-notification">Please choose a default hourly rate.
-              Sophist’s fee is 18% of this amount</p>
-            <p class="form-item-notification">When choosing your rate, not only consider your level
-              of experience, but also the cost
-              of living in your area. Keep in mind that you can change your rate at any time and
-              that
-              you will have the ability to set online tutoring houry rates once you complete
-              registration and are certified to tutor online.</p>
+            <p class="input-notification">Please choose a default hourly rate. Sophist’s platform fee is 18% of this
+              amount. </p>
+            <p class="form-item-notification">When choosing your rate, not only consider your level of experience and
+              expertise, but also the cost of living in your area. Keep in mind that you can change your rate at any
+              time and that you will have the ability to set online tutoring hourly rates once you complete registration
+              and are certified to tutor online.</p>
           </li>
           <li class="user-sign-up-list__item">
             <h3 class="main-question">Please choose Cancellation notice</h3>

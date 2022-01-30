@@ -1,7 +1,8 @@
 <section class="rating-wrapper">
   <div class="profile-cards__details--rating">
     <fieldset class="star-rates">
-      <star-rating [value]="ratings.average" [totalstars]="5"  checkedcolor="#FFC107" uncheckedcolor="#c2c2c2" size="40px" [readonly]="true"></star-rating>
+      <star-rating [value]="ratings.average" [totalstars]="5" checkedcolor="#FFC107" uncheckedcolor="#c2c2c2"
+                   size="40px" [readonly]="true"></star-rating>
     </fieldset>
     <p class="star-rates-value">{{ratings?.average.toFixed(1)}} <span>({{ratings?.overallCount}})</span></p>
   </div>
@@ -33,8 +34,8 @@
     </div>
   </div>
   <div class="rating-notification-message">
-    <p>Your students have the opportunity to rate each lesson on a scale of 1 to 5. These ratings help promote your
-      profile and showcase your tutoring abilities to potential students, so be sure to encourage your students to leave
-      a review after you submit their lesson.</p>
+    <p>Your students have the opportunity to rate each lesson on a scale of 1 to 5. A lesson can be rated within 14 days
+      after it is submitted. These ratings help promote your profile and showcase your tutoring abilities to potential
+      students, so be sure to encourage your students to leave a review after you submit their lesson.</p>
   </div>
 </section>

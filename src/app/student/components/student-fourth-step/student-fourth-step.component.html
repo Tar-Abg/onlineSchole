@@ -38,7 +38,7 @@
             <h3 class="main-question">Wrap up your profile*</h3>
             <label for="bio" class="form-label form-label--textarea">
                 <textarea id="bio" class="form-textarea" type="text" rows="5" cols="3"
-                          placeholder="a paragraph or more about yourself*" formControlName="wrapUp">
+                          placeholder="A paragraph or more about yourself*" formControlName="wrapUp">
                 </textarea>
               <span class="error-message" *ngIf="form.get('wrapUp')?.errors?.required && form.get('wrapUp')?.touched">This is a required field</span>
             </label>

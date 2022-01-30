@@ -120,7 +120,6 @@
   <button (click)="activeTab = 'calendar'" [ngClass]="{ 'active':activeTab==='calendar'}" class="profile-tab-buttons--item flex-container-center">Calendar</button>
   <button (click)="activeTab = 'ratings'" [ngClass]="{ 'active':activeTab==='ratings'}" class="profile-tab-buttons--item flex-container-center">Ratings</button>
   <button (click)="activeTab = 'reviews'" [ngClass]="{ 'active':activeTab==='reviews'}" class="profile-tab-buttons--item flex-container-center">Reviews</button>
-  <hr/>
 </div>
 <div [ngSwitch]="activeTab">
   <app-availability *ngSwitchCase="'availability'" [userId]="userId"></app-availability>
