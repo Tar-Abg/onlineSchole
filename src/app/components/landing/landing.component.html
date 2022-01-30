@@ -11,7 +11,7 @@
 
   <!--================ Section Hero Start ================-->
   <section class="hero border-bottom">
-    <div class="hero-content">
+    <div class="hero-content flex-wrap-content">
       <div class="hero-content-text text-center">
         <h2 class="content__title circle-vector move-in-left">
           Grow your career <br> with quality education</h2>
@@ -24,9 +24,12 @@
           </h3>
         </div>
         <div class="flex-container-center hero-content-link-wrapper">
-          <a class="hero-content__link register-btn flex-container-center" [routerLink]="'searchTutor'">Browse the tutors</a>
-          <a class="hero-content__link register-btn flex-container-center" [routerLink]="'student/signUp'">Create a student account</a>
-          <a class="hero-content__link register-btn flex-container-center" [routerLink]="'tutor/signUp'">Apply to become a tutor</a>
+          <a class="hero-content__link register-btn flex-container-center" [routerLink]="'searchTutor'">Browse the
+            tutors</a>
+          <a class="hero-content__link register-btn flex-container-center" [routerLink]="'student/signUp'">Create a
+            student account</a>
+          <a class="hero-content__link register-btn flex-container-center" [routerLink]="'tutor/signUp'">Apply to become
+            a tutor</a>
         </div>
       </div>
       <div class="hero-content-img move-in-right">
@@ -96,7 +99,7 @@
         </h3>
       </div>
     </div>
-    <div class="flex-container-center result-list-wrapper">
+    <div class="flex-container-center result-list-wrapper  flex-wrap-content">
       <div class="online-lesson-gif">
         <img src="assets/images/education-blue.gif"
              alt="lying-businessmen-concept" width="640" height="640"
@@ -192,7 +195,7 @@
   <!--================ Section Testimonials End ================-->
 
   <!--================ Section Help Start ================-->
-  <section class="find-tutor flex-container border-bottom">
+  <section class="find-tutor flex-wrap-content flex-container border-bottom">
     <div class="find-tutor__info">
       <div class="find-tutor__text-wrapper">
         <h2 class="find-tutor__text">You’ve got this. </h2>
@@ -205,7 +208,7 @@
         <img class="link-image" src="assets/images/liner.png" alt="Liner" width="142" height="140">
       </button>
     </div>
-    <div>
+    <div class="find-tutor__image">
       <img src="assets/images/lying-businessmen-concept.gif"
            alt="lying-businessmen-concept" width="640" height="640">
     </div>
@@ -300,13 +303,11 @@
   </app-modal-schem>
 </div>
 
-
 <div class="modal--small-width modal-wrapper" *ngIf="isOpenRegistration">
   <app-modal-schem [title]="'Registration'" (close)="isOpenRegistration = false">
     <app-register></app-register>
   </app-modal-schem>
 </div>
-
 
 <app-modal-schem *ngIf="isOpenResetPassword" (close)="isOpenResetPassword = false" [isShowBack]="true">
   <app-reset-password></app-reset-password>

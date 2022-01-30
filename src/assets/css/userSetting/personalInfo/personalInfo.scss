@@ -1,11 +1,15 @@
 .personal-info-wrapper {
-  justify-content: space-between;
-  padding: 0 178px 0 31px;
+  justify-content: flex-start;
+  grid-gap: 100px;
+  padding: 0 40px;
 
-  .form-label {
-    width: 418px;
+  .flex-item, .flex-item-for-info {
+    width: 40%;
+
+    .form-label {
+      width: 100%;
+    }
   }
-
 }
 
 .wrapper-for-contact {
@@ -35,6 +39,18 @@
 
     .error-message {
       left: 30px;
+    }
+  }
+}
+
+
+@media screen and (max-width: 1200px) {
+  .personal-info-wrapper {
+    flex-wrap: wrap;
+    grid-gap: 50px;
+
+    .flex-item, .flex-item-for-info {
+      width: 100%;
     }
   }
 }

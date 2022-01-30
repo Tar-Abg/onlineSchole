@@ -76,9 +76,16 @@
       }
 
       &-img {
+        flex: 1 1 37%;
+        max-width: 37%;
         border-radius: 50%;
         margin-left: auto;
         overflow: hidden;
+      }
+
+      &-text {
+        flex: 1 1 60%;
+        max-width: 60%;
       }
     }
   }
@@ -87,8 +94,9 @@
   .subjects-slider {
 
     &-wrapper {
-      margin-bottom: 130px;
+      margin-bottom: rem(110px);
       padding: 0 rem(40px) rem(50px);
+      overflow: hidden;
 
       &__title {
         margin-bottom: rem(42px);
@@ -101,14 +109,14 @@
     &-list {
       width: 94%;
       margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(217px, 1fr));
+      display: flex;
       grid-gap: rem(72px);
       min-height: 246px;
       text-align: center;
 
       &__item {
-        height: 100%;
+        min-width: 238px;
+        min-height: inherit;
         @include flex-container-center;
         justify-content: space-between;
         flex-direction: column;
@@ -233,7 +241,7 @@
   .testimonials {
     position: relative;
     padding-bottom: 2.5rem;
-    margin-bottom: rem(57px);
+    margin-bottom: rem(20px);
 
     &-list {
       margin-bottom: rem(75px);
@@ -264,16 +272,20 @@
 
         .quotes {
           position: absolute;
+
+          img {
+            width: 48%;
+          }
         }
 
         .left-quotes {
-          left: -8%;
-          top: -45%;
+          left: -4%;
+          top: -16%;
         }
 
         .right-quotes {
-          right: -110px;
-          bottom: -50%;
+          right: -50px;
+          bottom: -38px;
           transform: rotate(180deg);
         }
       }
@@ -329,7 +341,7 @@
   /***** Find Tutor Area **************/
   .find-tutor {
     margin-bottom: rem(45px);
-    padding-bottom: rem(44px);
+    padding-bottom: rem(15px);
 
     &__info {
       margin: 0 auto;
@@ -348,9 +360,14 @@
       margin-bottom: 6px;
     }
 
+    &__image {
+      text-align: center;
+    }
+
     &__btn {
       position: relative;
-      height: 89px;
+      display: flex;
+      height: 90px;
       width: 442px;
       border-radius: 15px;
       border: 1px solid $secondary-brand-color;
@@ -371,7 +388,7 @@
 
   /***** Our Tutor Area **************/
   .tutor {
-    padding-bottom: rem(200px);
+    padding-bottom: rem(100px);
     text-align: center;
 
     &__title {
@@ -383,15 +400,17 @@
     }
 
     &-cards-list {
-      width: 90%;
-      margin: 0 auto;
-      display: grid;
+      display: flex;
+      justify-content: center;
       grid-gap: 68px;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      margin: 0 auto;
+      overflow: hidden;
 
       &__item {
+        @include square(17%, 50%);
+
         &--image {
-          @include square(320px, 50%);
+          border-radius: 50%;
           padding: 10px;
           margin-bottom: 8px;
           border: 1px solid $secondary-brand-color;
@@ -425,6 +444,100 @@
             transform: scale(1.2);
           }
         }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: 1800px) {
+  .page-wrapper {
+    max-width: 90%;
+  }
+}
+
+
+@media screen and (max-width: 1600px) {
+  .page-wrapper {
+    .subjects-slider {
+      &-list {
+        width: 100%;
+      }
+    }
+
+    .content__title {
+      font-size: rem(40px);
+    }
+
+    .hero-content-link-wrapper {
+      flex-wrap: wrap;
+      grid-gap: 0 30px;
+      justify-content: flex-start;
+
+      .register-btn {
+        width: auto;
+        padding: 0 10px;
+      }
+    }
+
+    .online-lessons-wrapper {
+      .result-list-wrapper {
+        grid-gap: 60px;
+      }
+
+      .online-lesson-gif {
+        width: 48%;
+        margin: 0;
+      }
+    }
+
+
+    .find-tutor {
+      &__btn {
+        height: 55px;
+        font-size: rem(20px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .page-wrapper {
+    .flex-wrap-content {
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-content {
+      grid-gap: rem(30px);
+
+      &-text {
+        max-width: 100%;
+      }
+
+      &-link-wrapper {
+        justify-content: center;
+      }
+
+      &-img {
+        margin: 0 auto;
+      }
+    }
+
+    .find-tutor {
+      img {
+        width: 60%;
+      }
+    }
+
+    .testimonials {
+      margin-bottom: rem(60px);
+    }
+
+    .online-lessons-wrapper {
+      .result-list-wrapper {
+        grid-gap: rem(30px);
       }
     }
   }

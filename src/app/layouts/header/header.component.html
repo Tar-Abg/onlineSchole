@@ -18,18 +18,22 @@
           <li class="header-list__item flex-container-center" appClickOutside
               (clickOutside)="isOpenNestedDropdown = false">
             <div class="flex-container-center" *ngIf="user">
-              <div class="user-pic" (click)="navigateToProfile()">
+              <div class="user-pic">
                 <img [src]="user?.photo" alt="UserPic" width="80" height="80">
               </div>
-              <h2 class="user-name flex-container-center">
-                <span (click)="navigateToProfile()">{{user.fullName}}</span>
-                <img src="assets/images/dropdown.png" alt="Drop Down" width="22" height="12" (click)="isOpenNestedDropdown = !isOpenNestedDropdown">
+              <h2 class="user-name flex-container-center" (click)="isOpenNestedDropdown = !isOpenNestedDropdown">
+                <span>{{user.fullName}}</span>
+                <img src="assets/images/dropdown.png" alt="Drop Down" width="22" height="12">
               </h2>
             </div>
             <ul class="nested-dropdown" *ngIf="isOpenNestedDropdown">
               <li class="nested-dropdown__item" (click)="navigateToSettings()">
-                <p>Profile settings</p>
-                <img src="assets/images/settings.svg" alt="Log Out">
+                <p>Settings</p>
+                <img src="assets/images/settings.svg" alt="Settings">
+              </li>
+              <li class="nested-dropdown__item" (click)="navigateToProfile()">
+                <p>Profile</p>
+                <img src="assets/images/account.png" alt="Profile">
               </li>
               <li class="nested-dropdown__item" (click)="signOut()">
                 <p (click)="signOut()">Log out</p>

@@ -7,14 +7,23 @@
     grid-gap: 34px 42px;
 
     .form-label {
-      flex: 1 1 363px;
-      width: 363px;
-      max-width: 363px;
+      flex: 1 1 30%;
+      width: 30%;
+      max-width: 28%;
     }
   }
 
   .selectRow {
     gap: 24px;
     flex-wrap: wrap;
+    width: 100%;
+  }
+}
+
+
+@media screen  and (max-width: 1200px){
+  .subjects-wrapper .grid-gap-space .form-label{
+    max-width: 80%;
+    width: 80%;
   }
 }

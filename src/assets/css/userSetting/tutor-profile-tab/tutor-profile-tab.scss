@@ -25,6 +25,7 @@
   &-buttons {
     margin: 57px 0 40px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     grid-gap: 54px;
 
@@ -154,13 +155,13 @@
 }
 
 .blue-bg {
-  padding: 32px 0 90px 63px;
+  padding: 40px 40px 90px;
   margin-bottom: 154px;
   border-radius: 25px;
   background-color: #F8FAFF;
 
   .count-wrapper {
-    grid-gap: 114px;
+    grid-gap: 60px;
     margin-bottom: 5px;
 
     .section-subtitle {
@@ -224,6 +225,7 @@
         background-color: $clr-ntrl-min;
 
         th {
+          padding: 0 30px;
           vertical-align: middle;
 
           &:first-child, &:last-child {
@@ -235,6 +237,7 @@
           text-align: center;
           font: $type-semi-bold normal 20px $Segoe-UI-sans;
           color: $clr-ntrl-max;
+          white-space: nowrap;
         }
       }
 
@@ -279,5 +282,34 @@
 
   &__items {
     margin-top: 50px;
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .blue-bg {
+    .count-wrapper {
+      grid-gap: 40px;
+      flex-wrap: wrap;
+
+      li {
+        &:first-child {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .profile-table-container {
+    overflow: auto;
+
+    table {
+      width: 90%;
+
+      tbody {
+        td {
+          padding: 0 16px;
+        }
+      }
+    }
   }
 }

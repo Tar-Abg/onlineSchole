@@ -5,10 +5,12 @@
       <div class="search-box">
         <input type="text" placeholder="Search" class="search-chat-user-list">
         <span class="search-box-icon">
-              <img src="assets/images/searchIcon.png" alt="Search Icon" width="26" height="24">
-            </span>
+            <img src="assets/images/searchIcon.png" alt="Search Icon" width="26" height="24">
+        </span>
       </div>
-      <app-message-users-list></app-message-users-list>
+      <div class="message-users-list-wrapper">
+        <app-message-users-list></app-message-users-list>
+      </div>
     </div>
     <div class="flex-item chat">
       <div class="chat-header">
@@ -29,35 +31,25 @@
           <div class="chat-wrapper">
             <div class="message-content">
               {{messages | json}}
-              <div class="received-message" [class.flex-container-justify-start]="userId.toString() != message.userId" [class.flex-container-justify-end]="userId.toString() == message.userId" *ngFor="let message of messages">
+              <div class="received-message" [class.flex-container-justify-start]="userId.toString() != message.userId"
+                   [class.flex-container-justify-end]="userId.toString() == message.userId"
+                   *ngFor="let message of messages">
                 <h2 class="received-message-text">
                   {{userId.toString()}}
                   {{ message.userId}}
-
                   {{message.message}}
                 </h2>
-                <span class="received-message-time">
-                   14:25
-                  </span>
+                <span class="received-message-time">14:25</span>
               </div>
               <div class="sending-message flex-container-justify-end">
-                  <span class="received-message-time">
-                   14:25
-                  </span>
-                <h2 class="received-message-text">
-                  Yes, of course dear.
-                </h2>
+                <span class="received-message-time">14:25</span>
+                <h2 class="received-message-text">Yes, of course dear.</h2>
               </div>
-
-
             </div>
             <form class="send-message-wrapper" [formGroup]="form">
               <input type="text" placeholder="write a message..." formControlName="message">
-              <img src="assets/images/sendMessage.png" (click)="sendMessage()"
-                   alt="Send Message Icon"
-                   width="34"
-                   height="35"
-              >
+              <img src="assets/images/sendMessage.png" (click)="sendMessage()" alt="Send Message Icon" width="34"
+                   height="35">
             </form>
           </div>
         </div>
