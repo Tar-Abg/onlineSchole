@@ -26,7 +26,6 @@ export class MessageDashboardComponent implements OnInit {
     });
 
     this.chatServiceService.messageReceived.subscribe(message => {
-      console.log(message);
       this.messages.push(message);
       this.cd.detectChanges()
     })
@@ -42,8 +41,4 @@ export class MessageDashboardComponent implements OnInit {
   }
 
 
-  joinRoom(): void {
-    const userId = this.storageService.getUserId();
-    this.chatServiceService.joinRoom('15', `${45}room`)
-  }
 }

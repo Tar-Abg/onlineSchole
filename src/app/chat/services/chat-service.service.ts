@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {HubConnection, HubConnectionBuilder, LogLevel} from "@aspnet/signalr";
 import {StorageService} from "../../shared/services/storage/storage.service";
 
@@ -9,54 +9,55 @@ export class ChatServiceService {
   messageReceived = new EventEmitter<any>();
   connectionEstablished = new EventEmitter<Boolean>();
 
-  private connectionIsEstablished = false;
   private _hubConnection: HubConnection;
 
   constructor(
     private storageService: StorageService
   ) {
-    this.startConnection()
+    this.createConnection();
+    this.registerOnServerEvents();
+    this.startConnection();
   }
 
 
+  private createConnection() {
+    this._hubConnection = new HubConnectionBuilder()
+      .withUrl("https://sophisteducation-001-site1.itempurl.com/chat")
+      .configureLogging(LogLevel.Information)
+      .build();
 
-  startConnection = async () => {
-    try {
-      this._hubConnection = new HubConnectionBuilder()
-        .withUrl("https://sophisteducation-001-site1.itempurl.com/chat")
-        .configureLogging(LogLevel.Information)
-        .build();
+  }
 
-      this._hubConnection.on("ReceiveMessage", (user, message) => {
-        console.log(message,user );
-        this.messageReceived.emit({message, user});
+  private startConnection(): void {
+
+    const userId = this.storageService.getUserId();
+    this._hubConnection
+      .start()
+      .then(() => {
+        console.log('Hub connection started');
+        this.connectionEstablished.emit(true);
+        this._hubConnection.invoke("JoinRoom", { user:  userId.toString(), room : 'room' });
+      })
+      .catch(err => {
+        console.log('Error while establishing connection, retrying...');
+        setTimeout(() => this.startConnection(), 5000);
       });
-
-      this._hubConnection.on("UsersInRoom", (users) => {
-        console.log(users);
-        // setUsers(users);
-      });
-
-
-      await this._hubConnection.start();
-      // await
-      // setConnection(connection);
-    } catch (e) {
-      console.log(e);
-    }
   }
 
-  joinRoom(user: string, room: string): void {
-    this._hubConnection.invoke("JoinRoom", { user, room });
+  private registerOnServerEvents(): void {
+    this._hubConnection.on('ReceiveMessage', (userId: any, message) => {
+      this.messageReceived.emit({message, userId});
+    });
+
+    this._hubConnection.on("UsersInRoom", (users) => {
+      console.log(users);
+    });
   }
 
-  sendMessage = async (message: any) => {
-    try {
-      await this._hubConnection.invoke("SendMessage", message);
-    } catch (e) {
-      console.log(e);
-    }
+  sendMessage(message: any) {
+    this._hubConnection.invoke("SendMessage", message);
   }
+
 }
 
 
