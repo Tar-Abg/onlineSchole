@@ -16,7 +16,7 @@
           <div class="writer-image">
             <img src="assets/images/messageUser.png" alt="Writer">
           </div>
-          <h2 class="writer-name" (click)="joinRoom()">Ann Smith</h2>
+          <h2 class="writer-name" >Ann Smith</h2>
         </div>
       </div>
       <div class="chat-history">
@@ -28,28 +28,14 @@
           <h4 class="chatting-time">16.03.2021</h4>
           <div class="chat-wrapper">
             <div class="message-content">
-              {{messages | json}}
-              <div class="received-message" [class.flex-container-justify-start]="userId.toString() != message.userId" [class.flex-container-justify-end]="userId.toString() == message.userId" *ngFor="let message of messages">
+              <div class="received-message" [ngClass]="userId.toString() != message.userId ? 'received-message flex-container-justify-start' : 'sending-message flex-container-justify-end'"   *ngFor="let message of messages">
                 <h2 class="received-message-text">
-                  {{userId.toString()}}
-                  {{ message.userId}}
-
                   {{message.message}}
                 </h2>
                 <span class="received-message-time">
                    14:25
                   </span>
               </div>
-              <div class="sending-message flex-container-justify-end">
-                  <span class="received-message-time">
-                   14:25
-                  </span>
-                <h2 class="received-message-text">
-                  Yes, of course dear.
-                </h2>
-              </div>
-
-
             </div>
             <form class="send-message-wrapper" [formGroup]="form">
               <input type="text" placeholder="write a message..." formControlName="message">
