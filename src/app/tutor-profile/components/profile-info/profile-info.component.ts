@@ -97,7 +97,7 @@ export class ProfileInfoComponent implements OnInit, OnDestroy {
 
   formatWrapUpContent(content: string, originalContent: string): string {
     if (!this.isWrapUpContentToggled) {
-      if (content.length > this.limit) {
+      if (content?.length > this.limit) {
         this.isWrapUpContentToggled = true;
         return `${content.substr(0, this.limit)}...`;
       } else {

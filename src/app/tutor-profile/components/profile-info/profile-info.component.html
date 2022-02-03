@@ -11,7 +11,7 @@
             *ngIf="bio && bio.length > limit">{{isBioContentToggled ? 'read more' : 'read less'}}</button>
   </div>
 </section>
-<section class="profile-section">
+<section class="profile-section" *ngIf="wrapUp">
   <h2 class="profile-section__title">
     Wrap up your profile
     <hr/>
