@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Conversation} from "../../models/chat.model";
 
 @Component({
   selector: 'app-message-users-list',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./message-users-list.component.scss']
 })
 export class MessageUsersListComponent implements OnInit {
+  @Output() selectConversation: EventEmitter<Conversation> = new EventEmitter<Conversation>();
+  @Input() conversations: Conversation[];
 
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit(): void {
   }

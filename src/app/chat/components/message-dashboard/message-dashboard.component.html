@@ -2,40 +2,36 @@
   <div class="flex-container">
     <div class="flex-item">
       <h3 class="message_history_title">Messages history</h3>
-      <div class="search-box">
-        <input type="text" placeholder="Search" class="search-chat-user-list">
+      <form class="search-box" [formGroup]="searchForm">
+        <input type="text" placeholder="Search" class="search-chat-user-list" formControlName="search">
         <span class="search-box-icon">
             <img src="assets/images/searchIcon.png" alt="Search Icon" width="26" height="24">
         </span>
-      </div>
+      </form>
       <div class="message-users-list-wrapper">
-        <app-message-users-list></app-message-users-list>
+        <app-message-users-list (selectConversation)="selectConversation($event)" [conversations]="conversations"></app-message-users-list>
       </div>
     </div>
     <div class="flex-item chat">
-      <div class="chat-header">
+      <div class="chat-header" *ngIf="selectedConversation">
         <div class="flex-container-justify-start">
           <div class="writer-image">
-            <img src="assets/images/messageUser.png" alt="Writer">
+            <img [src]="selectedConversation.image" alt="Writer">
           </div>
-          <h2 class="writer-name" >Ann Smith</h2>
+          <h2 class="writer-name">{{selectedConversation.firstName}} {{selectedConversation.lastName}}</h2>
         </div>
       </div>
       <div class="chat-history">
-        <!--            <div class="without-messages">-->
-        <!--              <h2>Your Messages</h2>-->
-        <!--              <img src="assets/images/paper-plane.png" alt="Paper Plane" width="101" height="101">-->
-        <!--            </div>-->
         <div class="online-chat-wrapper">
-          <h4 class="chatting-time">16.03.2021</h4>
           <div class="chat-wrapper">
-            <div class="message-content">
-              <div class="received-message" [ngClass]="userId.toString() != message.userId ? 'received-message flex-container-justify-start' : 'sending-message flex-container-justify-end'"   *ngFor="let message of messages">
+            <div class="message-content" *ngFor="let item of (messages$ | async)">
+              <h4 class="chatting-time">{{item.date | date : 'shortDate'}}</h4>
+              <div class="received-message" *ngFor="let message of item.messages" [ngClass]="userId != message.userId ? 'received-message flex-container-justify-start' : 'sending-message flex-container-justify-end'">
                 <h2 class="received-message-text">
                   {{message.message}}
                 </h2>
                 <span class="received-message-time">
-                   14:25
+<!--                   {{message.date}}-->
                   </span>
               </div>
             </div>
