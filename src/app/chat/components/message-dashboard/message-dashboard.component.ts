@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {ChatApiService} from "../../services/chat-api.service";
 import {Observable, Subscription} from "rxjs";
-import {Conversation, DayChat} from "../../models/chat.model";
+import {Conversation, DayChat, NewMessage} from "../../models/chat.model";
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
 
 @Component({
@@ -17,10 +17,9 @@ export class MessageDashboardComponent implements OnInit, OnDestroy {
   selectedConversation: Conversation;
   conversations: Conversation[];
   originalConversations: Conversation[];
-  messages$: Observable<DayChat[]>
+  messages: DayChat[];
   form: FormGroup;
   searchForm: FormGroup;
-  // messages: { message: string, userId: string }[] = [];
   userId: number;
 
   constructor(
@@ -41,7 +40,8 @@ export class MessageDashboardComponent implements OnInit, OnDestroy {
 
   receiveMessage(): void {
     this.subscription.add(
-      this.chatServiceService.messageReceived.subscribe(message => {
+      this.chatServiceService.messageReceived$.subscribe(message => {
+        this.messages[this.messages.length - 1].messages.push(message);
         this.cd.detectChanges()
       })
     );
@@ -59,7 +59,12 @@ export class MessageDashboardComponent implements OnInit, OnDestroy {
 
   sendMessage(): void {
     if (this.form.valid) {
-      this.chatServiceService.sendMessage(this.form.value.message);
+      const message: NewMessage = {
+        chatId: this.selectedConversation.chatId,
+        message: this.form.value.message,
+        senderId: this.storageService.getUserId()
+      }
+      this.chatServiceService.sendMessage(message);
       this.form.reset();
     }
   }
@@ -95,8 +100,31 @@ export class MessageDashboardComponent implements OnInit, OnDestroy {
 
 
   selectConversation(conversation: Conversation): void {
+    this.markAsRead(conversation);
     this.selectedConversation = conversation;
-    this.messages$ = this.chatApiService.getMessages(conversation.chatId);
+    this.getMessages(conversation.chatId);
+    const chat = {
+      chatName: conversation.chatId.toString(),
+      firstName: conversation.firstName,
+      lastName: conversation.lastName,
+    }
+    this.chatServiceService.selectConversation(chat)
+  }
+
+  getMessages(chatId: number): void {
+    this.subscription.add(
+      this.chatApiService.getMessages(chatId).subscribe(data => {
+        this.messages = data;
+      })
+    );
+  }
+
+  markAsRead(conversation: Conversation): void {
+    if (conversation.unreadMessagesCount) {
+      this.subscription.add(
+        this.chatApiService.markAsRead(conversation.chatId).subscribe()
+      );
+    }
   }
 
   ngOnDestroy(): void {

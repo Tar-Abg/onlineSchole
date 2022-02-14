@@ -17,7 +17,7 @@ import {
   States,
   Subjects,
   SubjectsForTutor,
-  TimeZones
+  TimeZones, TutorsForStudent
 } from "../../models/infos.model";
 
 @Injectable({
@@ -204,6 +204,22 @@ export class InfosService {
     let params = new HttpParams();
     params = params.append('tutorId', tutorId)
     return this.http.get<ResponseModel<Subjects[]>>(`${this.url}/FindAllSubjectsForTutor`, {params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  findAllSubjectsForStudent(studentId: number): Observable<Subjects[]> {
+    let params = new HttpParams();
+    params = params.append('studentId', studentId)
+    return this.http.get<ResponseModel<Subjects[]>>(`${this.url}/FindAllSubjectsForStudent`, {params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getTutorsForStudent(userId: number): Observable<TutorsForStudent[]> {
+    let params = new HttpParams();
+    params = params.append('userId', userId)
+    return this.http.get<ResponseModel<TutorsForStudent[]>>(`${this.url}/GetTutorsForStudent`, {params}).pipe(
       map(data => data.result)
     );
   }

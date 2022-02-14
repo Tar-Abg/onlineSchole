@@ -24,14 +24,14 @@
       <div class="chat-history">
         <div class="online-chat-wrapper">
           <div class="chat-wrapper">
-            <div class="message-content" *ngFor="let item of (messages$ | async)">
+            <div class="message-content" *ngFor="let item of messages">
               <h4 class="chatting-time">{{item.date | date : 'shortDate'}}</h4>
               <div class="received-message" *ngFor="let message of item.messages" [ngClass]="userId != message.userId ? 'received-message flex-container-justify-start' : 'sending-message flex-container-justify-end'">
                 <h2 class="received-message-text">
                   {{message.message}}
                 </h2>
                 <span class="received-message-time">
-<!--                   {{message.date}}-->
+                   {{message.messageDate | date : 'h:mm'}}
                   </span>
               </div>
             </div>

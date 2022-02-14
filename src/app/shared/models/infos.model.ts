@@ -92,3 +92,8 @@ export interface Observables {
   subjects$?: Observable<Subjects[]> | null;
   levels$?: Observable<Level[]> | null;
 }
+
+export  interface TutorsForStudent {
+  id: number;
+  fullname: string;
+}

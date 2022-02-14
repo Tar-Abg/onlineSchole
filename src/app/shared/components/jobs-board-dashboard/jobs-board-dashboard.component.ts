@@ -18,6 +18,7 @@ export class JobsBoardDashboardComponent implements OnInit {
   sortForStudentSearch$: Observable<KeyValuePair[]>;
   subjects$: Observable<Subjects[]>;
   form: FormGroup;
+  submitted: boolean;
 
   constructor(
     private fb: FormBuilder,
@@ -41,10 +42,13 @@ export class JobsBoardDashboardComponent implements OnInit {
 
   initializeListeners(): void {
     this.sortForStudentSearch$ = this.infoService.getSortForStudentSearch();
-    this.subjects$ = this.infoService.findAllSubjectsForTutor(this.storageService.getUserId());
+    this.subjects$ = this.infoService.findAllSubjectsForTutor(this.storageService.getUserId())
   }
 
   onSubmit(): void {
-    this.form.valid && (this.students$ = this.tutorService.getStudents(this.form.value));
+    if(this.form.valid) {
+      this.submitted = true;
+      this.students$ = this.tutorService.getStudents(this.form.value)
+    }
   }
 }
