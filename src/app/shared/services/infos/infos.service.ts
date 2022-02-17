@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {Observable} from "rxjs";
 import {KeyValuePair} from "../../models/keyValuePair.model";
-import {map, shareReplay} from "rxjs/operators";
+import {map, shareReplay, tap} from "rxjs/operators";
 import {ResponseModel} from "../../models/responseModel.model";
 import {
   Categories,

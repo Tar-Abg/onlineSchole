@@ -1,1 +1,267 @@
-<p>tutor-view works!</p>
+<!--================ Header Area Start =================-->
+<app-header></app-header>
+<!--================ Header Area End =================-->
+<main class="user-profile-wrapper">
+  <div class="profile-gradient"></div>
+  <div class="profile-container">
+    <section class="profile-main-info-wrapper mb-120">
+      <div class="file-upload-wrapper upload-column">
+        <div class="upload-image-box">
+          <div class="image-upload-wrap">
+            <div class="drag-text">
+              <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
+                   width="33" height="33">
+            </div>
+            <!--            <img alt="Upload Photo">-->
+          </div>
+        </div>
+        <button class="profile-buttons--item flex-container-center">
+          <img src="assets/images/message.png" alt="Messages" width="51" height="50">
+          Messages
+        </button>
+      </div>
+      <div class="profile-cards">
+        <div class="d-flex">
+          <h2 class="profile-cards__Info--title"> Test Test <span> (test1)</span>
+          </h2>
+        </div>
+        <div class="profile-cards__details--rating">
+          <fieldset class="star-rates">
+            <star-rating [totalstars]="5" checkedcolor="#FFC107" uncheckedcolor="#c2c2c2"
+                         size="35px" [readonly]="true"></star-rating>
+          </fieldset>
+          <!--          <span>1</span>-->
+        </div>
+        <h3 class="profile-cards__details--time flex-container-justify-start">
+          <img src="assets/images/hours.svg" alt="Hours" width="24" height="24">
+          42 hours tutored
+        </h3>
+        <h3 class="profile-cards__details--bold">Hourly rate: <span
+          class="light-text">$20</span></h3>
+        <h3 class="profile-cards__details--bold flex-container-justify-start">
+          Lesson cancellation: <span class="light-text"> 20 </span>
+        </h3>
+        <h1 class="profile-cards__Info--headline"> Profile Headline </h1>
+        <p class="profile-cards__Info--description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi
+          cumque deserunt esse hic ipsam iste, maiores necessitatibus quod soluta voluptates. Aspernatur dignissimos
+          eaque earum fuga in, libero quo tenetur velit!</p>
+      </div>
+    </section>
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Bio
+        <hr/>
+      </h2>
+      <div class="nested-info">
+        <p class="profile-section__description">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid commodi culpa debitis deserunt
+          dolorum incidunt ipsam magnam molestias optio perspiciatis quam qui repellat rerum saepe, similique, tempora
+          veniam voluptatem!
+        </p>
+        <button class="read-more">read more</button>
+      </div>
+    </section>
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Wrap up your profile
+        <hr/>
+      </h2>
+      <div class="nested-info">
+        <p class="profile-section__description">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit nihil soluta ut. Aspernatur, assumenda dicta
+          distinctio dolorem doloremque dolorum eum exercitationem fuga fugiat iusto molestias provident quod recusandae
+          saepe ullam.
+        </p>
+        <button class="read-more">Read More</button>
+      </div>
+    </section>
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Education
+        <hr/>
+      </h2>
+      <div class="nested-info without-side-padding">
+        <div class="flex-container-justify-start grid-gap-54 grid-wrapper">
+          <div class="flex-item large-mr">
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Institution name</h2>
+              <p class="profile-section--subDescription">
+                Institution
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Education level</h2>
+              <p class="profile-section--subDescription">
+                Education
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Major</h2>
+              <p class="profile-section--subDescription">
+                Major
+              </p>
+            </div>
+          </div>
+          <div class="flex-item">
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Country</h2>
+              <p class="profile-section--subDescription">
+                Country
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">City</h2>
+              <p class="profile-section--subDescription">
+                City
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Date</h2>
+              <p class="profile-section--subDescription">
+                <span>start date </span>
+                <span>end date </span>
+              </p>
+            </div>
+          </div>
+          <div class="flex-item align-self-end">
+            <div class="checkboxes-wrapper">
+              <mat-checkbox formControlName="degreeInProgress">
+                Degree in progress
+              </mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Certificates
+        <hr/>
+      </h2>
+      <div class="nested-info without-side-padding">
+        <div class="flex-container flex-container-justify-start grid-gap-152 grid-wrapper">
+          <div class="flex-item">
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Institution name</h2>
+              <p class="profile-section--subDescription">
+                institutionName
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Qualification</h2>
+              <p class="profile-section--subDescription">
+                qualification
+              </p>
+            </div>
+            <div class="profile-section-subItems">
+              <h2 class="profile-section--subtitle">Date</h2>
+              <p class="profile-section--subDescription">
+                date
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Availability
+        <hr/>
+      </h2>
+      <div class="profile-tabs-wrapper">
+        <table class="profile-tabs-table mb-45">
+          <tbody>
+          <tr class="profile-tabs-table--row">
+            <td><p class="profile-tabs-table--row__description">Sunday</p></td>
+            <td><p class="profile-tabs-table--row__description">11:00 AM</p></td>
+            <td><p class="profile-tabs-table--row__description">13:00 AM</p></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Subjects
+        <hr/>
+      </h2>
+      <div class="profile-tabs-wrapper ">
+        <table class="profile-tabs-table table-with-pt mb-45">
+          <tbody>
+          <tr class="profile-tabs-table--row">
+            <td>
+              <h3 class="profile-tabs-table--row__title">Category</h3>
+              <p class="profile-tabs-table--row__description">category</p>
+            </td>
+            <td>
+              <h3 class="profile-tabs-table--row__title">Subject</h3>
+              <p class="profile-tabs-table--row__description">subject</p>
+            </td>
+            <td>
+              <h3 class="profile-tabs-table--row__title">Level</h3>
+              <p class="profile-tabs-table--row__description">level</p>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Ratings
+        <hr/>
+      </h2>
+      <section class="rating-wrapper mb-45">
+        <div class="progress-container">
+          <div class="flex-container-justify-start progress-container__item">
+            <span class="star-value">5 stars</span>
+            <progress max="100"></progress>
+            <span class="rate-count">5</span>
+          </div>
+          <div class="flex-container-justify-start progress-container__item">
+            <span class="star-value">4 stars</span>
+            <progress max="100"></progress>
+            <span class="rate-count">4</span>
+          </div>
+          <div class="flex-container-justify-start progress-container__item">
+            <span class="star-value">3 stars</span>
+            <progress max="100"></progress>
+            <span class="rate-count">3</span>
+          </div>
+          <div class="flex-container-justify-start progress-container__item">
+            <span class="star-value">2 stars</span>
+            <progress max="100"></progress>
+            <span class="rate-count">2</span>
+          </div>
+          <div class="flex-container-justify-start progress-container__item">
+            <span class="star-value">1 star</span>
+            <progress max="100"></progress>
+            <span class="rate-count">1</span>
+          </div>
+        </div>
+      </section>
+    </section>
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Reviews
+        <hr/>
+      </h2>
+      <section class="profile-tabs-wrapper">
+        <div class="review-wrapper">
+          <div class="review-item">
+            <h3 class="profile-tabs-subtitle">
+              Feedbacks
+            </h3>
+            <h4 class="review-item-name">authorName</h4>
+            <p class="review-item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa eaque
+              expedita facere fugiat inventore iusto laborum maxime molestiae, mollitia placeat quibusdam quo vitae!
+              Atque mollitia perspiciatis quas quos ratione!</p>
+          </div>
+<!--          <div class="no-data">-->
+<!--            <h3 class="no-data-message"> No feedback to date.</h3>-->
+<!--          </div>-->
+        </div>
+      </section>
+    </section>
+  </div>
+</main>

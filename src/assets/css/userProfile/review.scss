@@ -1,0 +1,42 @@
+.profile-tabs {
+  &-subtitle {
+    margin: 8px 0 23px;
+    font: $type-bold normal 20px $Roboto-sans;
+    line-height: 23px;
+    letter-spacing: 0.02em;
+    color: #3B5892;
+  }
+}
+
+.review {
+  &-wrapper {
+    margin: 0 0 200px 16px;
+
+  }
+
+  &-item {
+    margin-bottom: 18px;
+    border-bottom: 1px solid rgba(30, 129, 206, 0.25);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &-name {
+      margin: 0;
+      font: $type-bold normal 20px $Roboto-sans;
+      line-height: 23px;
+      letter-spacing: 0.02em;
+      color: $clr-ntrl-max;
+    }
+
+    &-desc {
+      padding: 10px 0 16px;
+      margin: 0;
+      font: $type-light normal $type-medium-size $Roboto-sans;
+      line-height: 21px;
+      letter-spacing: 0.02em;
+      color: $clr-ntrl-max;
+    }
+  }
+}
