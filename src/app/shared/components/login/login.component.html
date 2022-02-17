@@ -30,7 +30,7 @@
         <img src="assets/images/invisiblePassword.png" alt="Invisible Password" *ngIf="passwordType ==='text'" width="29" height="26">
     </span>
     </label>
-    <a href="#" class="forgot-pass-link">Forget your password?</a>
+    <a (click)="forgotPassword.emit()" class="forgot-pass-link">Forget your password?</a>
     <div class="flex-container-center">
       <button class="login-btn flex-container-center">Login</button>
     </div>

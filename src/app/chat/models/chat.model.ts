@@ -20,4 +20,11 @@ export interface Messages {
   lastName: string;
   message: string;
   userId: number;
+  messageDate: string;
+}
+
+export interface NewMessage {
+  senderId: number;
+  chatId: number;
+  message: string;
 }

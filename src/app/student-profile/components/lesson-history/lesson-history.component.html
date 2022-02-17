@@ -1,0 +1,124 @@
+<section class="blue-bg">
+  <div class="profile-table-wrapper">
+    <div class="profile-table-filter-container calendar-wrapper">
+      <form class="
+      flex-container-justify-start
+      calendar-datepicker-wrappers" [formGroup]="form" (ngSubmit)="getHistory()">
+        <div class="date-picker-wrapper-for-calendar">
+          <h2 class="date-picker-label">From</h2>
+          <mat-form-field appearance="fill" class="date-range-wrapper
+                  custom-date-range-wrapper">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>
+                <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+              </mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <input matInput
+                   [matDatepicker]="picker" formControlName="from"
+                   (click)="picker.open()"
+                   placeholder="MM/dd/yyyy*"
+            >
+          </mat-form-field>
+        </div>
+        <div class="date-picker-wrapper-for-calendar">
+          <h2 class="date-picker-label">To </h2>
+          <mat-form-field appearance="fill" class="date-range-wrapper
+                  custom-date-range-wrapper">
+            <mat-datepicker-toggle matSuffix [for]="picker1">
+              <mat-icon matDatepickerToggleIcon>
+                <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+              </mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+            <input matInput [matDatepicker]="picker1" formControlName="to"
+                   (click)="picker1.open()"
+                   placeholder="MM/dd/yyyy*"
+            >
+          </mat-form-field>
+        </div>
+        <button class="btn-add-less flex-container-center" type="submit">Filter</button>
+        <app-select
+          [label]="'Tutor'"
+          [keyName]="'fullname'"
+          [list]="tutorsForStudent$ | async"
+          formControlName="tutorId">
+        </app-select>
+
+        <app-select
+          [label]="'Subject'"
+          [keyName]="'subjectName'"
+          [list]="subjects$ | async"
+          formControlName="subjectId">
+        </app-select>
+      </form>
+
+    </div>
+    <div class="profile-table-container" *ngIf="histories?.length">
+      <table>
+        <thead>
+        <tr>
+          <th>
+            <h3 class="thead-title">Lesson Date</h3>
+          </th>
+          <th>
+            <h3 class="thead-title">Lesson Time</h3>
+          </th>
+          <th>
+            <h3 class="thead-title">Lesson Duration</h3>
+          </th>
+          <th>
+            <h3 class="thead-title">Tutor</h3>
+          </th>
+          <th>
+            <h3 class="thead-title">Subject</h3>
+          </th>
+          <th>
+            <h3 class="thead-title">Lesson Price</h3>
+          </th>
+          <th>
+            <h3 class="thead-title">Payment Date</h3>
+          </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of histories">
+          <td>
+            <h4 class="tbody-info flex-container-center">{{item.actualStart | date : 'MM/dd/YYYY'}}</h4>
+          </td>
+          <td>
+            <h4 class="tbody-info flex-container-center">{{item.actualStart | date : 'hh:mm a'}}</h4>
+          </td>
+          <td>
+            <h4 class="tbody-info flex-container-center">{{item.duration}}</h4>
+          </td>
+          <td>
+            <h4 class="tbody-info flex-container-center">
+              {{item.fullName}}
+            </h4>
+          </td>
+          <td>
+            <h4 class="tbody-info flex-container-center">{{item.subjectName}}</h4>
+          </td>
+          <td>
+            <h4 class="tbody-info flex-container-center">{{item.price | currency}}</h4>
+          </td>
+          <td>
+            <h4 class="tbody-info flex-container-center">
+              <!--              <a href="#" class="link">-->
+              <!--                01.01.2020-->
+              <!--              </a>-->
+              {{item.paymentDate | date : 'MM/dd/YYYY'}}
+            </h4>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <h3 *ngIf="!histories?.length && submitted" class="no-data-message text-center">You have no lessons in this date range</h3>
+
+</section>
+
+

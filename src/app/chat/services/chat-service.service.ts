@@ -1,13 +1,13 @@
 import {EventEmitter, Injectable} from '@angular/core';
 import {HubConnection, HubConnectionBuilder, LogLevel} from "@aspnet/signalr";
 import {StorageService} from "../../shared/services/storage/storage.service";
+import {NewMessage} from "../models/chat.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatServiceService {
-  messageReceived = new EventEmitter<any>();
-  connectionEstablished = new EventEmitter<Boolean>();
+  messageReceived$ = new EventEmitter<any>();
 
   private _hubConnection: HubConnection;
 
@@ -16,7 +16,6 @@ export class ChatServiceService {
   ) {
     this.createConnection();
     this.registerOnServerEvents();
-    this.startConnection();
   }
 
 
@@ -25,28 +24,27 @@ export class ChatServiceService {
       .withUrl("https://sophisteducation-001-site1.itempurl.com/chat")
       .configureLogging(LogLevel.Information)
       .build();
+      this.startConnection()
 
   }
 
-  private startConnection(): void {
+  startConnection(): void {
+    this._hubConnection.start().then(() => {
+      console.log('Hub connection started');
+    }).catch(err => {
+      console.log(err)
+      // setTimeout(() => this.startConnection(), 5000);
+    });
+  }
 
-    const userId = this.storageService.getUserId();
-    this._hubConnection
-      .start()
-      .then(() => {
-        console.log('Hub connection started');
-        this.connectionEstablished.emit(true);
-        this._hubConnection.invoke("JoinRoom", { user:  userId.toString(), room : 'room' });
-      })
-      .catch(err => {
-        console.log('Error while establishing connection, retrying...');
-        setTimeout(() => this.startConnection(), 5000);
-      });
+  selectConversation(message: any): void {
+    this._hubConnection.invoke("JoinChat", { ...message});
+
   }
 
   private registerOnServerEvents(): void {
-    this._hubConnection.on('ReceiveMessage', (userId: any, message) => {
-      this.messageReceived.emit({message, userId});
+    this._hubConnection.on('ReceiveMessage', (message) => {
+      this.messageReceived$.emit(message);
     });
 
     this._hubConnection.on("UsersInRoom", (users) => {
@@ -54,7 +52,7 @@ export class ChatServiceService {
     });
   }
 
-  sendMessage(message: any) {
+  sendMessage(message: NewMessage): void {
     this._hubConnection.invoke("SendMessage", message);
   }
 

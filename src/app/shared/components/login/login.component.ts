@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ValidationService} from "../../services/validation/validation.service";
 import {AuthService} from "../../services/auth/auth.service";
@@ -15,6 +15,7 @@ import {MessageService} from "../../services/message/message.service";
 })
 export class LoginComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
+  @Output() forgotPassword: EventEmitter<void> = new EventEmitter<void>();
   form: FormGroup;
   errorMessage: string;
   passwordType: 'password' | 'text' = 'password';

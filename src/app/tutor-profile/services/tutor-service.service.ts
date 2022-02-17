@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {
   LessonCancelRequest,
+  LessonHistory,
   LessonRequest,
   LessonSchedule, SearchTutor,
   SelectedDay,
@@ -126,6 +127,12 @@ export class TutorService {
 
   cancelLesson(data: LessonCancelRequest): Observable<any> {
     return this.http.put<ResponseModel<any>>(`${this.url}/CancelLesson`, data).pipe(
+      map(data => data.result)
+    )
+  }
+
+  getTutorLessonHistory(body: any): Observable<LessonHistory> {
+    return this.http.post<ResponseModel<LessonHistory>>(`${this.url}/GetTutorLessonHistory`, body).pipe(
       map(data => data.result)
     )
   }

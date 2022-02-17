@@ -132,3 +132,21 @@ export interface SearchTutor {
   wrapUp: string;
   isOpenDetail?: boolean;
 }
+
+export interface LessonHistory {
+  lessonsList: Lesson[];
+  totalEarned: number;
+  totalTime: string;
+}
+
+export interface Lesson {
+  actualStart: string;
+  duration: number;
+  earned: number;
+  fullName: string;
+  hourlyRate: number;
+  paymentDate: string;
+  studentId: number;
+  subjectName: string;
+  price: number;
+}

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../environments/environment";
 import {Observable} from "rxjs";
@@ -10,7 +10,7 @@ import {map} from "rxjs/operators";
   providedIn: 'root'
 })
 export class ChatApiService {
-  private readonly url = `${environment.apiUrl}/Chat`
+  private readonly url = `${environment.apiUrl}/Chat`;
 
   constructor(
     private http: HttpClient
@@ -30,6 +30,13 @@ export class ChatApiService {
     return this.http.get<ResponseModel<DayChat[]>>(`${this.url}/GetMessages`, {params}).pipe(
       map(data => data.result)
     )
+  }
+
+  markAsRead(chatId: number): Observable<any> {
+    const body = {
+      chatId
+    }
+    return this.http.put<ResponseModel<any>>(`${this.url}/MarkAsRead`, body)
   }
 
 }

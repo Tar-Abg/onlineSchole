@@ -80,9 +80,8 @@
           </form>
         </div>
       </li>
+        <h3 *ngIf="!students.length && submitted" class="no-data-message text-center">Sorry, there are no jobs matching the search criteria</h3>
     </ul>
-    <div class="no-data blue-bg">
-      <h3 class="no-data-message">Sorry, there are no jobs matching the search criteria</h3>
-    </div>
+
   </div>
 </section>
