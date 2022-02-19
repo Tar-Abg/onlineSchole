@@ -92,4 +92,13 @@ export class SettingsService {
     );
   }
 
+  confirmMail(userId: number, token: string): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    params = params.append('token', token);
+    return this.http.put<ResponseModel<any>>(`${this.url}/ConfirmEmail`,  {params: params}).pipe(
+      map(data => data.result)
+    );
+  }
+
 }
