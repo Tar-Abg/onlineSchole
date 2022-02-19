@@ -204,3 +204,16 @@
   background-color: #C0CBD6;
   color: #3F3F3F;
 }
+
+.btn-for-auth-modals {
+  height: 45px;
+  padding: 0 8px;
+  margin-top: 6px;
+  border-radius: 10px;
+  font: $type-regular normal $type-medium-size $Segoe-UI-sans;
+  line-height: 24px;
+  letter-spacing: 0.02em;
+  background-color: rgba(155, 201, 255, 1);
+  color: rgba(10, 10, 10, 1);
+  text-transform: inherit;
+}

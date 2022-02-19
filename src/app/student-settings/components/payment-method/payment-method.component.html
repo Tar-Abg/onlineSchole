@@ -7,7 +7,7 @@
   <form action="" class="tutor-settings-nested-page__form tutor-settings-nested-page__form--fixed--width">
     <fieldset>
       <legend class="tutor-settings-page-legend">
-        <h3 class="form-legend-title-tab active">CREDIT CARD/DEBET CARD</h3>
+        <h3 class="form-legend-title-tab active">CREDIT CARD/DEBIT CARD</h3>
       </legend>
       <div class="setting-form-input-wrapper">
         <div>
@@ -19,7 +19,7 @@
                    required
                    autocomplete="accountHolderName"
                    type="text"
-                   placeholder="account holder’s name"
+                   placeholder="Account holder’s name"
                    formControlName="accountHolderName">
             <span class="error-message">This is a required field.</span>
           </label>
@@ -73,9 +73,9 @@
       </div>
       <div class="billing-address-container" formGroupName="billingAddress">
         <h3 class="tutor-settings-page-title size-mid">Billing Address</h3>
-        <label for="streetNumber" class="form-label">
-          <input id="streetNumber" class="form-input" autocomplete="streetNumber" type="text"
-                 placeholder="Street Number*" formControlName="streetNumber">
+        <label for="address" class="form-label">
+          <input id="address" class="form-input" autocomplete="address" type="text"
+                 placeholder="Address*" formControlName="address">
           <span class="error-message block">This is a required field</span>
         </label>
         <label for="city" class="form-label">
@@ -84,7 +84,8 @@
           <span class="error-message block">This is a required field</span>
         </label>
         <label class="form-label">
-          <app-select [keyName]="'name'" [label]="'state*'"
+          <app-select [keyName]="'name'" [label]="'State*'"
+                      aria-placeholder="State*"
                       formControlName="stateId"></app-select>
           <span class="error-message block">This is a required field</span>
         </label>

@@ -188,3 +188,32 @@
   left: 50%;
   transform: translate(-50%, 3px);
 }
+
+
+.upload-photo-btn {
+  position: absolute;
+  bottom: -16%;
+  left: 50%;
+  @include square(60px, $radius: 50%);
+  border: 0;
+  padding: 16px;
+  transform: translate(-50%, 0);
+  background-color: rgba(143, 181, 252, 0.47);
+}
+
+.white-bg {
+  position: absolute;
+  width: 80px;
+  height: 19px;
+  left: 50%;
+  bottom: -4%;
+  transform: translate(-50%, 0);
+  background: $clr-ntrl-min;
+}
+
+.upload-for-settings {
+  top: 0;
+  left: 0;
+  z-index: 999;
+  cursor: pointer;
+}

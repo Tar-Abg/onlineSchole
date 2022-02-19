@@ -4,19 +4,19 @@
       <fieldset>
         <legend class="form-legend">Enter your information</legend>
         <label for="first-name" class="form-label">
-          <input id="first-name" class="form-input" type="text" placeholder="first name*"
+          <input id="first-name" class="form-input" type="text" placeholder="First name*"
                  formControlName="firstName">
           <span class="error-message" *ngIf="(form.get('firstName')?.errors?.required || form.get('firstName')?.errors?.pattern) && form.get('firstName')?.touched">Please fill in your first name</span>
           <span class="error-message" *ngIf="form.get('firstName')?.errors?.maxlength && form.get('firstName')?.touched">Field length has exceeded the limit of 100 characters</span>
         </label>
         <label for="last-name" class="form-label">
-          <input id="last-name" class="form-input" type="text" placeholder="last name*"
+          <input id="last-name" class="form-input" type="text" placeholder="Last name*"
                  formControlName="lastName">
           <span class="error-message" *ngIf="(form.get('lastName')?.errors?.required || form.get('lastName')?.errors?.pattern) && form.get('lastName')?.touched">Please fill in your last name</span>
           <span class="error-message" *ngIf="form.get('lastName')?.errors?.maxlength && form.get('lastName')?.touched">Field length has exceeded the limit of 100 characters</span>
         </label>
         <label for="user-name" class="form-label">
-          <input id="user-name" class="form-input" type="text" placeholder="user name*"
+          <input id="user-name" class="form-input" type="text" placeholder="User name*"
                  formControlName="userName">
           <span class="error-message" *ngIf="(form.get('userName')?.errors?.required || form.get('userName')?.errors?.pattern) && form.get('userName')?.touched">Please fill in your username</span>
           <span class="error-message" *ngIf="form.get('userName')?.errors?.maxlength && form.get('userName')?.touched">Field length has exceeded the limit of 100 characters</span>

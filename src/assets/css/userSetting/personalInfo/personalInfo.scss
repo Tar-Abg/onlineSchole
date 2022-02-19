@@ -14,8 +14,16 @@
 
 .wrapper-for-contact {
 
+  .mobile-code {
+    min-width: 100px;
+  }
+
   .phone-number-label {
     z-index: 99;
+
+    .select {
+      padding: 0 6px;
+    }
   }
 
   .phone-number-label-input {
@@ -43,6 +51,9 @@
   }
 }
 
+.phone-number-wrapper {
+  z-index: 1;
+}
 
 @media screen and (max-width: 1200px) {
   .personal-info-wrapper {

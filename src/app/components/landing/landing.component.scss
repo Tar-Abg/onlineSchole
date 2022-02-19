@@ -449,13 +449,11 @@
   }
 }
 
-
 @media screen and (max-width: 1800px) {
   .page-wrapper {
     max-width: 90%;
   }
 }
-
 
 @media screen and (max-width: 1600px) {
   .page-wrapper {
@@ -472,7 +470,7 @@
     .hero-content-link-wrapper {
       flex-wrap: wrap;
       grid-gap: 0 30px;
-      justify-content: flex-start;
+      justify-content: center;
 
       .register-btn {
         width: auto;

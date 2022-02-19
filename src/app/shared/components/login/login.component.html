@@ -10,7 +10,7 @@
              required
              autocomplete="email"
              type="email"
-             placeholder="email address*"
+             placeholder="Email address*"
              formControlName="email">
       <span class="error-message" *ngIf="form.get('email')?.errors?.required && form.get('email')?.touched">This is a required field</span>
       <span class="error-message" *ngIf="form.get('email')?.errors?.pattern && form.get('email')?.touched">Please provide a valid email address</span>
