@@ -4,7 +4,7 @@
       <img class="header-logo" src="assets/images/logo.png" alt="Sophist Logo" width="240" height="181">
     </a>
     <nav class="header-nav">
-      <div *ngIf="( isLoggedIn$ | async); then loggedUser else notLoggedUser ; else notLoggedUser"></div>
+      <div *ngIf="((isLoggedIn$ | async) && user); then loggedUser else notLoggedUser ; else notLoggedUser"></div>
       <ng-template #notLoggedUser>
         <ul class="header-list flex-container-center">
           <li class="header-list__item flex-container-center header-list__item--active"><a href="">About us</a></li>

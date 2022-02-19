@@ -84,6 +84,8 @@ export class FilterComponent implements OnInit {
       ...this.form.value,
       genderId: this.form.value.genderId === 999 ? null : this.form.value.genderId,
       studentLevelId: this.form.value.studentLevelId === 999 ? null : this.form.value.studentLevelId,
+      maxHourlyRate: this.form.value.maxHourlyRate ? this.form.value.maxHourlyRate: null,
+      minHourlyRate: this.form.value.minHourlyRate ? this.form.value.minHourlyRate: null,
     }
     this.searchTutorService.formValue$.next(body);
   }

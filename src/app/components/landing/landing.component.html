@@ -316,7 +316,7 @@
     [isShowBack]="true"
     [title]="'Please enter the email address associated with your account, and we’ll send you a link to reset your password.'"
   >
-    <app-reset-password></app-reset-password>
+    <app-reset-password (openSuccessModal)="isOpenResetPassword = false; isOpenMessageModal = true"></app-reset-password>
   </app-modal-schem>
 </div>
 <div class="login-modal-wrapper modal-wrapper">
@@ -325,7 +325,7 @@
   </app-modal-schem>
 </div>
 <div class="login-modal-wrapper modal-wrapper message-wrapper-modal">
-  <app-modal-schem *ngIf="isOpenMessageModal" (close)="isOpenMessageModal = true">
+  <app-modal-schem *ngIf="isOpenMessageModal" (close)="isOpenMessageModal = false">
     <app-message-modal></app-message-modal>
   </app-modal-schem>
 </div>
