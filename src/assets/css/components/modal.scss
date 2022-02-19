@@ -61,6 +61,60 @@
     margin: 0 auto;
     padding: 0;
   }
+
+  .message-modal-wrapper {
+    .check-icon {
+      width: 163px;
+      height: 163px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+
+    .message-for-confirm-email {
+      font: $type-regular normal rem(24px) $Segoe-UI-sans;
+      line-height: 32px;
+      letter-spacing: 0.05em;
+      text-align: center;
+    }
+  }
+}
+
+.reset-password-modal.modal-wrapper {
+  .modal-header {
+    padding: 50px 0 32px;
+
+    span {
+      margin: 0;
+      font: $type-regular normal 24px $Roboto-sans;
+      letter-spacing: 0.05em;
+      text-align: center;
+      text-transform: inherit;
+
+      &:first-child {
+        display: none;
+      }
+
+      &:nth-child(2) {
+        width: 80%;
+      }
+    }
+  }
+
+  .mb-44 {
+    margin-bottom: 44px;
+  }
+}
+
+.message-wrapper-modal.modal-wrapper {
+  .modal-body {
+    width: 80%;
+
+    .message-for-confirm-email {
+      margin-bottom: 54px;
+    }
+  }
 }
 
 .lessons-modal-container {

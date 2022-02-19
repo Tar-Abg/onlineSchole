@@ -5,14 +5,18 @@
       <div class="file-upload-wrapper">
         <div class="upload-image-box">
           <div class="image-upload-wrap" [class.image-uploaded]="userImage">
-            <input class="file-upload-input" type='file' (change)="selectFile($event)"
-                   accept="image/*"/>
-            <div class="drag-text" *ngIf="!userImage">
-              <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
-                   width="33" height="33">
-            </div>
+<!--            <div class="drag-text" *ngIf="!userImage">-->
+<!--              <img src="assets/images/photo-camera%201.png" alt="Upload Photo"-->
+<!--                   width="33" height="33">-->
+<!--            </div>-->
             <img [src]="userImage" alt="Upload Photo" *ngIf="userImage?.length">
           </div>
+          <button class="upload-photo-btn">
+            <input class="file-upload-input" type='file' (change)="selectFile($event)"
+                   accept="image/*"/>
+            <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
+                 width="33" height="33">
+          </button>
         </div>
         <div class="upload-image-requirement">
           <p class="form-item-notification" [class.text-danger]="isSmallSizeForImage">Minimum size 200 x 200 pixels.</p>

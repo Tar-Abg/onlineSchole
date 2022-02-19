@@ -2,7 +2,7 @@
   <div class="d-flex personal-info-wrapper wrapper-for-contact">
     <ul class="flex-item-for-info address-form">
       <li class="form-item-with-notification">
-        <h3 class="form-item-label">Primary email*</h3>
+        <h3 class="form-item-label">Email Address*</h3>
         <label for="email" class="form-label">
           <input id="email"
                  class="form-input"
@@ -11,15 +11,15 @@
                  placeholder=""
                  formControlName="email"
           >
-          <span class="error-message" *ngIf="form.get('email')?.errors?.required && form.get('email')?.touched">Please enter your email address</span>
+          <span class="error-message" *ngIf="form.get('email')?.errors?.required && form.get('email')?.touched">This is a required field</span>
           <span class="error-message" *ngIf="form.get('email')?.errors?.pattern && form.get('email')?.touched">Please provide a valid email address</span>
           <span class="form-item-notification">Visible on the public profile</span>
         </label>
       </li>
       <li class="form-item-with-notification">
-        <h3 class="form-item-label">Mobile phone*</h3>
-        <div class="d-flex position-relative">
-          <div class="form-label phone-number-label form-label--min-width w-25">
+        <h3 class="form-item-label">Mobile phone</h3>
+        <div class="d-flex position-relative phone-number-wrapper">
+          <div class="form-label phone-number-label form-label--min-width w-25 mobile-code">
             <app-select [disable]="form.disabled" [list]="countries$ | async" [label]="'+374'" [keyName]="'numCodeForView'"
                         formControlName="mobileCode"></app-select>
           </div>
@@ -28,8 +28,8 @@
                    placeholder="Phone number*"
                    formControlName="mobile">
           </label>
-          <span class="error-message"
-                *ngIf="form.get('phoneCode')?.errors?.required && form.get('phoneCode')?.touched || form.get('mobile')?.errors?.required && form.get('mobile')?.touched">This is a required field</span>
+<!--          <span class="error-message"-->
+<!--                *ngIf="form.get('phoneCode')?.errors?.required && form.get('phoneCode')?.touched || form.get('mobile')?.errors?.required && form.get('mobile')?.touched">This is a required field</span>-->
           <span class="form-item-notification">Visible on the public profile</span>
         </div>
       </li>
@@ -37,9 +37,9 @@
         <h3 class="form-item-label">User Name*</h3>
         <div class="d-flex position-relative">
           <label for="user-name" class="form-label">
-            <input id="user-name" class="form-input" type="text" placeholder="user name*"
+            <input id="user-name" class="form-input" type="text" placeholder="User name*"
                    formControlName="userName">
-            <span class="error-message" *ngIf="form.get('userName')?.errors && form.get('userName')?.touched">Please fill in your last name</span>
+            <span class="error-message" *ngIf="form.get('userName')?.errors && form.get('userName')?.touched">This is a required field</span>
           </label>
           <span class="form-item-notification">Visible on the public profile</span>
         </div>
@@ -49,7 +49,7 @@
         <div class="d-flex position-relative">
           <div class="p-relative form-label">
             <app-select [disable]="form.disabled" [label]="'time zone*'" formControlName="preferredTimeZone" [list]="timeZones$ | async" [keyName]="'displayName'"></app-select>
-            <span class="error-message" *ngIf="form.get('preferredTimeZone')?.errors && form.get('preferredTimeZone')?.touched">Please specify month of your  birth</span>
+            <span class="error-message" *ngIf="form.get('preferredTimeZone')?.errors && form.get('preferredTimeZone')?.touched">This is a required field</span>
           </div>
         </div>
       </li>
