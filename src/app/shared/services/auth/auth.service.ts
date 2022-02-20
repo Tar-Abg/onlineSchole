@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {Login, User, UserAuthInfo} from "../../models/auth.model";
@@ -108,5 +108,13 @@ export class AuthService {
   // for test
   getSecuredData(): Observable<any> {
     return this.http.get(`${this.url}/GetTutorSecuredData`)
+  }
+
+  restorePassword(email: string): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('email', email);
+    return this.http.post<ResponseModel<any>>(`${this.url}/ForgotPassword`, null,{params}).pipe(
+      map(data => data.result)
+    )
   }
 }

@@ -1,7 +1,7 @@
 <figure class="search-cards-item" [class.large_width]="isStudentPage">
-  <div class="search-cards-item-for-image">
+  <a [routerLink]="['../tutorView', tutor.tutorId]" class="search-cards-item-for-image">
     <img [src]="tutor.photo" alt="Tutor Image" width="166" height="167">
-  </div>
+  </a>
   <figcaption class="profile-cards__Info">
     <h2 class="profile-cards__Info--title">{{tutor.fullName}}</h2>
     <p class="profile-cards__Info--description">
