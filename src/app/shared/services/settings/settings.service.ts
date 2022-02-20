@@ -96,7 +96,7 @@ export class SettingsService {
     let params = new HttpParams();
     params = params.append('userId', userId);
     params = params.append('token', token);
-    return this.http.put<ResponseModel<any>>(`${this.url}/ConfirmEmail`,  {params: params}).pipe(
+    return this.http.put<ResponseModel<any>>(`${this.url}/ConfirmEmail`,  null, {params: params}).pipe(
       map(data => data.result)
     );
   }

@@ -117,4 +117,22 @@ export class AuthService {
       map(data => data.result)
     )
   }
+
+  confirmChangePassword(userId: number, token: string): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    params = params.append('token', token);
+    return this.http.put<ResponseModel<any>>(`${this.url}/ConfirmChangePassword`, null,  {params: params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  changePassword(userId: number, password: string): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    params = params.append('password', password);
+    return this.http.put<ResponseModel<any>>(`${this.url}/ChangePassword`, null,  {params: params}).pipe(
+      map(data => data.result)
+    );
+  }
 }

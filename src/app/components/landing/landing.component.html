@@ -321,7 +321,7 @@
 </div>
 <div class="login-modal-wrapper modal-wrapper">
   <app-modal-schem *ngIf="isOpenChangePassword" (close)="isOpenChangePassword = false">
-    <app-change-password-modal></app-change-password-modal>
+    <app-change-password-modal [userId]="userIdFromUrl" (close)="isOpenChangePassword = false"></app-change-password-modal>
   </app-modal-schem>
 </div>
 <div class="login-modal-wrapper modal-wrapper message-wrapper-modal">
