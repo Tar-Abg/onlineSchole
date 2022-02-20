@@ -7,6 +7,7 @@ const routes: Routes = [
   {path: 'student', loadChildren: () => import('./student/student.module').then(m => m.StudentModule)},
   {path: 'tutor', loadChildren: () => import('./tutor/tutor.module').then(m => m.TutorModule)},
   {path: 'tutorView/:id', loadChildren: () => import('./tutor-view/tutor-view.module').then(m => m.TutorViewModule)},
+  {path: 'studentView/:id', loadChildren: () => import('./student-view/student-view.module').then(m => m.StudentViewModule)},
   {
     path: 'searchTutor',
     loadChildren: () => import('./search-tutor/search-tutor.module').then(m => m.SearchTutorModule)
