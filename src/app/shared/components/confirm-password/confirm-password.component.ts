@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SettingsService} from "../../services/settings/settings.service";
 import {Subscription} from "rxjs";
+import {MessageService} from "../../services/message/message.service";
 
 @Component({
   selector: 'app-confirm-password',
@@ -18,7 +19,8 @@ export class ConfirmPasswordComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private settingService: SettingsService
+    private settingService: SettingsService,
+    private messageService: MessageService,
   ) {
   }
 
@@ -47,9 +49,10 @@ export class ConfirmPasswordComponent implements OnInit, OnDestroy {
   updatePersonalInformation(): void {
     this.subscription.add(
       this.settingService.updatePersonalInformation(this.body, this.form.value.password).subscribe(
-        () => {
-          this.close.emit();
+        (data) => {
           this.updated.emit();
+          data.emailChangeRequest && this.messageService.setNewMessage(data.emailChangeRequest);
+          this.close.emit();
         },
         (error => {
           this.errorMessage = error.error.title;
