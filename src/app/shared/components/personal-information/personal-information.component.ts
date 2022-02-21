@@ -40,8 +40,8 @@ export class PersonalInformationComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       id: [null],
       userId: [this.storageService.getUserId()],
-      mobileCode: [null, [Validators.required]],
-      mobile: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      mobileCode: [null],
+      mobile: [null, [Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       userName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       preferredTimeZone: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],

@@ -13,7 +13,7 @@
           >
           <span class="error-message" *ngIf="form.get('email')?.errors?.required && form.get('email')?.touched">This is a required field</span>
           <span class="error-message" *ngIf="form.get('email')?.errors?.pattern && form.get('email')?.touched">Please provide a valid email address</span>
-          <span class="form-item-notification">Visible on the public profile</span>
+          <span class="form-item-notification">Not visible on the public profile</span>
         </label>
       </li>
       <li class="form-item-with-notification">
@@ -30,7 +30,7 @@
           </label>
 <!--          <span class="error-message"-->
 <!--                *ngIf="form.get('phoneCode')?.errors?.required && form.get('phoneCode')?.touched || form.get('mobile')?.errors?.required && form.get('mobile')?.touched">This is a required field</span>-->
-          <span class="form-item-notification">Visible on the public profile</span>
+          <span class="form-item-notification">Not visible on the public profile</span>
         </div>
       </li>
       <li class="form-item-with-notification">
@@ -67,7 +67,7 @@
               formControlName="countryId"
               [disable]="form.disabled">
             </app-select>
-            <span class="form-item-notification">Not visible on the public profile</span>
+            <span class="form-item-notification">Visible on the public profile</span>
             <span class="error-message block"
                   *ngIf="userAddress.get('countryId')?.errors?.required && userAddress.get('countryId')?.touched">This is a required field </span>
           </label>
@@ -77,7 +77,7 @@
           <label for="city" class="form-label">
             <input id="city" class="form-input" type="text" placeholder="City*"
                    formControlName="city">
-            <span class="form-item-notification">Not visible on the public profile</span>
+            <span class="form-item-notification">Visible on the public profile</span>
             <span class="error-message"
                   *ngIf="userAddress.get('city')?.errors?.required && userAddress.get('city')?.touched">This is a required field</span>
           </label>
