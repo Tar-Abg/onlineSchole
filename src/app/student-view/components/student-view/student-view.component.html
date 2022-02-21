@@ -2,4 +2,93 @@
 <app-header></app-header>
 <!--================ Header Area End =================-->
 
-<h1 class="text-danger text-center">studentView</h1>
+<main class="user-profile-wrapper">
+  <div class="profile-gradient"></div>
+  <div class="profile-container">
+    <section class="profile-main-info-wrapper">
+      <div class="file-upload-wrapper">
+        <div class="upload-image-box">
+          <div class="image-upload-wrap">
+            <div></div>
+<!--            <ng-template>-->
+              <div class="drag-text">
+                <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
+                     width="33" height="33">
+              </div>
+<!--            </ng-template>-->
+            <ng-template>
+              <img alt="student photo">
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <div class="profile-cards">
+        <h2 class="profile-cards__Info--title">
+          Full Name
+          <span> User Name </span>
+        </h2>
+      </div>
+    </section>
+    <section class="profile-buttons justify-content-start">
+      <button class="profile-buttons--item flex-container-center">
+        <img src="assets/images/message.png" alt="Messages" width="51" height="50">
+        Messages
+      </button>
+    </section>
+
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Wrap up your profile
+        <hr/>
+      </h2>
+      <div class="nested-info">
+        <p class="profile-section__description">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur exercitationem neque officia
+          perferendis qui, quis sequi sint veritatis. Aliquam aperiam debitis esse maiores nesciunt praesentium quidem
+          repudiandae voluptate voluptatem voluptatibus.
+        </p>
+        <button class="read-more">Read more</button>
+      </div>
+    </section>
+    <section class="profile-section">
+      <h2 class="profile-section__title">
+        Subjects
+        <hr/>
+      </h2>
+      <div class="nested-info without-side-padding">
+        <div class="flex-container-justify-start grid-gap-54 grid-wrapper">
+          <table class="profile-tabs-table">
+            <tbody>
+            <tr class="profile-tabs-table--row">
+              <td>
+                <h2 class="profile-section--subtitle">Category</h2>
+                <p class="profile-section--subDescription">
+                  category
+                </p>
+              </td>
+              <td>
+                <h2 class="profile-section--subtitle">Subject</h2>
+                <p class="profile-section--subDescription">
+                  subject
+                </p>
+              </td>
+              <td>
+                <h2 class="profile-section--subtitle">Level</h2>
+                <p class="profile-section--subDescription">
+                  level
+                </p>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+
+
+
+
+

@@ -3,7 +3,7 @@
     <div class="profile-table-filter-container calendar-wrapper">
       <form class="
       flex-container-justify-start
-      calendar-datepicker-wrappers" [formGroup]="form" (ngSubmit)="getHistory()">
+      calendar-datepicker-wrappers filter-form-wrapper" [formGroup]="form" (ngSubmit)="getHistory()">
         <div class="date-picker-wrapper-for-calendar">
           <h2 class="date-picker-label">From</h2>
           <mat-form-field appearance="fill" class="date-range-wrapper
@@ -37,20 +37,24 @@
             >
           </mat-form-field>
         </div>
-        <button class="btn-add-less flex-container-center" type="submit">Filter</button>
-        <app-select
-          [label]="'Tutor'"
-          [keyName]="'fullname'"
-          [list]="tutorsForStudent$ | async"
-          formControlName="tutorId">
-        </app-select>
+        <div>
+          <app-select
+            [label]="'Tutor'"
+            [keyName]="'fullname'"
+            [list]="tutorsForStudent$ | async"
+            formControlName="tutorId">
+          </app-select>
+        </div>
+        <div>
+          <app-select
+            [label]="'Subject'"
+            [keyName]="'subjectName'"
+            [list]="subjects$ | async"
+            formControlName="subjectId">
+          </app-select>
+        </div>
 
-        <app-select
-          [label]="'Subject'"
-          [keyName]="'subjectName'"
-          [list]="subjects$ | async"
-          formControlName="subjectId">
-        </app-select>
+        <button class="btn-add-less flex-container-center" type="submit">Filter</button>
       </form>
 
     </div>
@@ -117,7 +121,8 @@
     </div>
   </div>
 
-  <h3 *ngIf="!histories?.length && submitted" class="no-data-message text-center">You have no lessons in this date range</h3>
+  <h3 *ngIf="!histories?.length && submitted" class="no-data-message text-center">You have no lessons in this date
+    range</h3>
 
 </section>
 
