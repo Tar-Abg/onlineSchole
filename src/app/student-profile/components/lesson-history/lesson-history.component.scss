@@ -1,0 +1,11 @@
+.filter-form-wrapper {
+  flex-wrap: wrap;
+
+  ::ng-deep .mat-form-field {
+    background-color: transparent;
+  }
+
+  .select {
+    width: 80%;
+  }
+}

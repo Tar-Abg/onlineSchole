@@ -156,7 +156,8 @@
       }
 
       .chat-wrapper {
-        height: 100%;
+        height: 90%;
+        overflow: auto;
 
         .message-content {
           padding-right: 16px;

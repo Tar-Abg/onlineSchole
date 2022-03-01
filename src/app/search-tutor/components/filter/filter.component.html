@@ -21,11 +21,13 @@
         [keyName]="'subjectName'"
       ></app-select>
     </div>
-    <div class="form-group">
+    <div class="form-group availability">
       <h3 class="filter-field-label">Availability</h3>
       <mat-form-field appearance="fill">
+        <mat-label>Select*</mat-label>
         <mat-select formControlName="availabilities" multiple>
-          <mat-option *ngFor="let topping of availableHours$ | async" [value]="topping.id.toString()">{{topping.name}}</mat-option>
+          <mat-option
+            *ngFor="let topping of availableHours$ | async" [value]="topping.id.toString()">{{topping.name}}</mat-option>
         </mat-select>
       </mat-form-field>
     </div>
