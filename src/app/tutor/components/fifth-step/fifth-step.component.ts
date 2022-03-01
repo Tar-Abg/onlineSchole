@@ -82,17 +82,21 @@ export class FifthStepComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.form.valid) {
-      if (this.actionType === "CREATE") {
-        this.showConfirmRegister = true;
-      } else {
-        this.updateContacts();
-      }
+      this.showConfirmRegister = true;
     } else {
       this.form.markAllAsTouched();
     }
   }
 
   register(): void {
+    if (this.actionType === "CREATE") {
+      this.saveContacts();
+    } else {
+      this.updateContacts();
+    }
+  }
+
+  saveContacts(): void {
     this.subscription.add(
       this.registrationService.saveContacts(this.form.getRawValue()).subscribe(() => {
         this.showConfirmRegister = false;
@@ -103,7 +107,10 @@ export class FifthStepComponent implements OnInit, OnDestroy {
 
   updateContacts(): void {
     this.subscription.add(
-      this.registrationService.updateContacts(this.form.getRawValue()).subscribe()
+      this.registrationService.updateContacts(this.form.getRawValue()).subscribe(() => {
+        this.showConfirmRegister = false;
+        this.router.navigate(['/']);
+      })
     );
   }
 
