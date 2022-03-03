@@ -1,4 +1,5 @@
 import {Availabilities} from "../../shared/models/registration.model";
+import {TutorRatings, TutorReviews} from "../../tutor-profile/models/tutor.model";
 
 export interface TutorProfileInfo {
   userId: number;
@@ -70,4 +71,14 @@ export interface Subjects {
   subject: string;
   levelId: number;
   level: string;
+}
+
+export interface Reviews {
+  userId: number;
+  reviews: TutorReviews[];
+}
+
+export interface Ratings {
+  userId: number;
+  ratings: TutorRatings;
 }

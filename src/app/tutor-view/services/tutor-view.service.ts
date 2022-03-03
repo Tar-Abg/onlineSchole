@@ -8,11 +8,13 @@ import {
   Certificates,
   Institutions,
   InstitutionsResponse,
-  ProfileInfo, Subjects,
+  ProfileInfo, Ratings,
+  Reviews, Subjects,
   TutorAvailabilities,
   TutorCertificates,
   TutorProfileInfo, TutorSubjects
 } from "../models/tutor-view.model";
+import {TutorRatings, TutorReviews} from "../../tutor-profile/models/tutor.model";
 
 @Injectable({
   providedIn: 'root'
@@ -67,6 +69,24 @@ export class TutorViewService {
     params = params.append('tutorId', tutorId);
     return this.http.get<ResponseModel<TutorSubjects>>(`${this.url}/GetTutorSubjects`, {params}).pipe(
       map(data => data.result.subjects)
+    );
+  }
+
+  getReviews(userId: number, tutorId: number): Observable<TutorReviews[]> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    params = params.append('tutorId', tutorId);
+    return this.http.get<ResponseModel<Reviews>>(`${this.url}/GetReviews`, {params}).pipe(
+      map(data => data.result.reviews)
+    );
+  }
+
+  getRatings(userId: number, tutorId: number): Observable<TutorRatings> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    params = params.append('tutorId', tutorId);
+    return this.http.get<ResponseModel<Ratings>>(`${this.url}/GetRatings`, {params}).pipe(
+      map(data => data.result.ratings)
     );
   }
 }

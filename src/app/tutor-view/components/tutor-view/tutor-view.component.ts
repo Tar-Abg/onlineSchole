@@ -5,7 +5,7 @@ import {TutorViewService} from "../../services/tutor-view.service";
 import {Certificates, Institutions, ProfileInfo, Subjects, TutorAvailabilities} from "../../models/tutor-view.model";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {switchMap} from "rxjs/operators";
-import {TutorBaseInfo} from "../../../tutor-profile/models/tutor.model";
+import {TutorBaseInfo, TutorRatings, TutorReviews} from "../../../tutor-profile/models/tutor.model";
 
 @Component({
   selector: 'app-tutor-view',
@@ -19,6 +19,8 @@ export class TutorViewComponent implements OnInit, OnDestroy {
   certificates: Certificates[];
   availabilities: TutorAvailabilities;
   subjects: Subjects[];
+  reviews: TutorReviews[];
+  ratings: TutorRatings;
 
   bio: string;
   wrapUp: string;
@@ -46,6 +48,8 @@ export class TutorViewComponent implements OnInit, OnDestroy {
           this.getTutorCertificates(userId, data.id);
           this.getAvailabilities(userId, data.id);
           this.getTutorSubjects(userId, data.id);
+          this.getTutorReviews(userId, data.id);
+          this.getTutorRatings(userId, data.id);
           return this.tutorViewService.getProfileInfo(userId, data.id);
         })
       ).subscribe((tutorInfo) => {
@@ -136,6 +140,22 @@ export class TutorViewComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.tutorViewService.getTutorSubjects(userId, tutorId).subscribe(data => {
         this.subjects = data;
+      })
+    )
+  }
+
+  getTutorReviews(userId: number, tutorId: number): void {
+    this.subscription.add(
+      this.tutorViewService.getReviews(userId, tutorId).subscribe(data => {
+        this.reviews = data;
+      })
+    )
+  }
+
+  getTutorRatings(userId: number, tutorId: number): void {
+    this.subscription.add(
+      this.tutorViewService.getRatings(userId, tutorId).subscribe(data => {
+        this.ratings = data;
       })
     )
   }

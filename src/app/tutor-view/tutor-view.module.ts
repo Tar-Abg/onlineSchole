@@ -5,6 +5,7 @@ import {TutorViewRoutingModule} from "./tutor-view-routing.module";
 import {LayoutsModule} from "../layouts/layouts.module";
 import {RatingModule} from "ng-starrating";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import {TutorProfileModule} from "../tutor-profile/tutor-profile.module";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         TutorViewRoutingModule,
         LayoutsModule,
         RatingModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        TutorProfileModule
     ]
 })
 export class TutorViewModule {

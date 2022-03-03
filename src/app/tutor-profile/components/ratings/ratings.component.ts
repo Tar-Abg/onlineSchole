@@ -8,6 +8,7 @@ import {TutorRatings} from "../../models/tutor.model";
 })
 export class RatingsComponent implements OnInit {
   @Input() ratings: any;
+  @Input() showStars = true;
 
   constructor() { }
 

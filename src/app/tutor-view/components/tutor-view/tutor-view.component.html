@@ -27,7 +27,7 @@
         </div>
         <div class="profile-cards__details--rating">
           <fieldset class="star-rates">
-            <star-rating [totalstars]="5" checkedcolor="#FFC107" uncheckedcolor="#c2c2c2"
+            <star-rating [value]="ratings.average" [totalstars]="5" checkedcolor="#FFC107" uncheckedcolor="#c2c2c2"
                          size="35px" [readonly]="true"></star-rating>
           </fieldset>
           <!--          <span>1</span>-->
@@ -45,7 +45,7 @@
         <p class="profile-cards__Info--description">{{tutorInfo?.headline}}</p>
       </div>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="bio">
       <h2 class="profile-section__title">
         Bio
         <hr/>
@@ -67,7 +67,7 @@
                 *ngIf="wrapUp && wrapUp.length > limit">{{isWrapUpContentToggled ? 'read more' : 'read less'}}</button>
       </div>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="institutions?.length">
       <h2 class="profile-section__title">
         Education
         <hr/>
@@ -125,7 +125,7 @@
         </div>
       </div>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="certificates?.length">
       <h2 class="profile-section__title">
         Certificates
         <hr/>
@@ -133,19 +133,19 @@
       <div class="nested-info without-side-padding">
         <div class="flex-container flex-container-justify-start grid-gap-152 grid-wrapper">
           <div class="flex-item" *ngFor="let item of certificates">
-            <div class="profile-section-subItems">
+            <div class="profile-section-subItems" *ngIf="item?.institutionName">
               <h2 class="profile-section--subtitle">Institution name</h2>
               <p class="profile-section--subDescription">
                 {{item?.institutionName}}
               </p>
             </div>
-            <div class="profile-section-subItems">
+            <div class="profile-section-subItems" *ngIf="item?.qualification">
               <h2 class="profile-section--subtitle">Qualification</h2>
               <p class="profile-section--subDescription">
                 {{item?.qualification}}
               </p>
             </div>
-            <div class="profile-section-subItems">
+            <div class="profile-section-subItems" *ngIf="item?.date">
               <h2 class="profile-section--subtitle">Date</h2>
               <p class="profile-section--subDescription">
                 {{item?.date | date : 'MM/dd/YYYY'}}
@@ -172,7 +172,7 @@
         </table>
       </div>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="subjects?.length">
       <h2 class="profile-section__title">
         Subjects
         <hr/>
@@ -203,37 +203,9 @@
         Ratings
         <hr/>
       </h2>
-      <section class="rating-wrapper mb-45">
-        <div class="progress-container">
-          <div class="flex-container-justify-start progress-container__item">
-            <span class="star-value">5 stars</span>
-            <progress max="100"></progress>
-            <span class="rate-count">5</span>
-          </div>
-          <div class="flex-container-justify-start progress-container__item">
-            <span class="star-value">4 stars</span>
-            <progress max="100"></progress>
-            <span class="rate-count">4</span>
-          </div>
-          <div class="flex-container-justify-start progress-container__item">
-            <span class="star-value">3 stars</span>
-            <progress max="100"></progress>
-            <span class="rate-count">3</span>
-          </div>
-          <div class="flex-container-justify-start progress-container__item">
-            <span class="star-value">2 stars</span>
-            <progress max="100"></progress>
-            <span class="rate-count">2</span>
-          </div>
-          <div class="flex-container-justify-start progress-container__item">
-            <span class="star-value">1 star</span>
-            <progress max="100"></progress>
-            <span class="rate-count">1</span>
-          </div>
-        </div>
-      </section>
+      <app-ratings [showStars]="false" [ratings]="ratings"></app-ratings>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="reviews?.length">
       <h2 class="profile-section__title">
         Reviews
         <hr/>
@@ -244,14 +216,11 @@
             <h3 class="profile-tabs-subtitle">
               Feedbacks
             </h3>
-            <h4 class="review-item-name">authorName</h4>
-            <p class="review-item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa eaque
-              expedita facere fugiat inventore iusto laborum maxime molestiae, mollitia placeat quibusdam quo vitae!
-              Atque mollitia perspiciatis quas quos ratione!</p>
+            <ng-container *ngFor="let item of reviews">
+              <h4 class="review-item-name">{{item.authorName}}</h4>
+              <p class="review-item-desc">{{item.review}}</p>
+            </ng-container>
           </div>
-          <!--          <div class="no-data">-->
-          <!--            <h3 class="no-data-message"> No feedback to date.</h3>-->
-          <!--          </div>-->
         </div>
       </section>
     </section>
