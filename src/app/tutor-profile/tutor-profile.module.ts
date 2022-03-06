@@ -41,9 +41,10 @@ import {LessonHistoryComponent} from './components/lesson-history/lesson-history
     ProfileInfoComponent,
     LessonHistoryComponent
   ],
-  exports: [
-    StartLessonComponent
-  ],
+    exports: [
+        StartLessonComponent,
+        RatingsComponent
+    ],
     imports: [
         CommonModule,
         TutorProfileRoutingModule,

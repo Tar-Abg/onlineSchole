@@ -142,6 +142,9 @@ export interface Availabilities {
   dayId: number;
   partOfDayId: number;
   infoId?: number;
+  day?: string;
+  startHour?: string;
+  endHour?: string;
   infoAboutStudentWantedLessonId?: number;
 }
 

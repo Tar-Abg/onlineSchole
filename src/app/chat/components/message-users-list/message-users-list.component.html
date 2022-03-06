@@ -1,5 +1,5 @@
 <ul class="message-users-list">
-  <li class="message-users-list__item isActive" *ngFor="let item of conversations" (click)="selectConversation.emit(item)">
+  <li class="message-users-list__item isActive" [class.isActive]="item?.chatId === selectedConversation?.chatId" *ngFor="let item of conversations" (click)="onSelectConversation(item)">
     <picture class="user-image-wrapper">
       <img [src]="item.image"
            alt="User Pic"

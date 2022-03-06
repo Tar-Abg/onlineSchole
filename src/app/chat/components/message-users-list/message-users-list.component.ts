@@ -9,6 +9,8 @@ import {Conversation} from "../../models/chat.model";
 export class MessageUsersListComponent implements OnInit {
   @Output() selectConversation: EventEmitter<Conversation> = new EventEmitter<Conversation>();
   @Input() conversations: Conversation[];
+  selectedConversation: Conversation;
+
 
   constructor(
   ) { }
@@ -16,4 +18,8 @@ export class MessageUsersListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onSelectConversation(conversation: Conversation): void {
+    this.selectedConversation = conversation;
+    this.selectConversation.emit(conversation);
+  }
 }

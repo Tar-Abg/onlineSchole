@@ -9,25 +9,25 @@
         <div class="upload-image-box">
           <div class="image-upload-wrap">
             <div class="drag-text">
-              <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
+              <img *ngIf="!tutorInfo?.photo" src="assets/images/photo-camera%201.png" alt="Upload Photo"
                    width="33" height="33">
             </div>
-            <!--            <img alt="Upload Photo">-->
+            <img alt="Upload Photo" *ngIf="tutorInfo?.photo" [src]="tutorInfo?.photo">
           </div>
         </div>
         <button class="profile-buttons--item flex-container-center">
           <img src="assets/images/message.png" alt="Messages" width="51" height="50">
-          Messages
+          Message
         </button>
       </div>
       <div class="profile-cards">
         <div class="d-flex">
-          <h2 class="profile-cards__Info--title"> Test Test <span> (test1)</span>
+          <h2 class="profile-cards__Info--title"> {{tutorInfo?.fullName}} <span> ({{tutorInfo?.userName}})</span>
           </h2>
         </div>
         <div class="profile-cards__details--rating">
           <fieldset class="star-rates">
-            <star-rating [totalstars]="5" checkedcolor="#FFC107" uncheckedcolor="#c2c2c2"
+            <star-rating [value]="ratings.average" [totalstars]="5" checkedcolor="#FFC107" uncheckedcolor="#c2c2c2"
                          size="35px" [readonly]="true"></star-rating>
           </fieldset>
           <!--          <span>1</span>-->
@@ -37,68 +37,60 @@
           42 hours tutored
         </h3>
         <h3 class="profile-cards__details--bold">Hourly rate: <span
-          class="light-text">$20</span></h3>
+          class="light-text">${{tutorInfo?.hourlyRate}}</span></h3>
         <h3 class="profile-cards__details--bold flex-container-justify-start">
-          Lesson cancellation: <span class="light-text"> 20 </span>
+          Lesson cancellation: <span class="light-text"> {{tutorInfo?.cancellation}}</span>
         </h3>
         <h1 class="profile-cards__Info--headline"> Profile Headline </h1>
-        <p class="profile-cards__Info--description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi
-          cumque deserunt esse hic ipsam iste, maiores necessitatibus quod soluta voluptates. Aspernatur dignissimos
-          eaque earum fuga in, libero quo tenetur velit!</p>
+        <p class="profile-cards__Info--description">{{tutorInfo?.headline}}</p>
       </div>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="bio">
       <h2 class="profile-section__title">
         Bio
         <hr/>
       </h2>
       <div class="nested-info">
-        <p class="profile-section__description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid commodi culpa debitis deserunt
-          dolorum incidunt ipsam magnam molestias optio perspiciatis quam qui repellat rerum saepe, similique, tempora
-          veniam voluptatem!
-        </p>
-        <button class="read-more">read more</button>
+        <p class="profile-section__description">{{bio}}</p>
+        <button class="read-more" (click)="toggleContent('bio')"
+                *ngIf="bio && bio.length > limit">{{isBioContentToggled ? 'read more' : 'read less'}}</button>
       </div>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="wrapUp">
       <h2 class="profile-section__title">
         Wrap up your profile
         <hr/>
       </h2>
       <div class="nested-info">
-        <p class="profile-section__description">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit nihil soluta ut. Aspernatur, assumenda dicta
-          distinctio dolorem doloremque dolorum eum exercitationem fuga fugiat iusto molestias provident quod recusandae
-          saepe ullam.
-        </p>
-        <button class="read-more">Read More</button>
+        <p class="profile-section__description">{{wrapUp}}</p>
+        <button class="read-more" (click)="toggleContent('wrapUp')"
+                *ngIf="wrapUp && wrapUp.length > limit">{{isWrapUpContentToggled ? 'read more' : 'read less'}}</button>
       </div>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="institutions?.length">
       <h2 class="profile-section__title">
         Education
         <hr/>
       </h2>
       <div class="nested-info without-side-padding">
-        <div class="flex-container-justify-start grid-gap-54 grid-wrapper">
+        <div class="flex-container-justify-start grid-gap-54 grid-wrapper" *ngFor="let item of institutions">
           <div class="flex-item large-mr">
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Institution name</h2>
               <p class="profile-section--subDescription">
-                Institution
+                {{item?.name}}
               </p>
             </div>
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Education level</h2>
               <p class="profile-section--subDescription">
-                Education
+                {{item?.level}}
               </p>
             </div>
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Major</h2>
               <p class="profile-section--subDescription">
-                Major
+                {{item?.major}}
               </p>
             </div>
           </div>
@@ -106,26 +98,26 @@
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Country</h2>
               <p class="profile-section--subDescription">
-                Country
+                {{item?.country}}
               </p>
             </div>
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">City</h2>
               <p class="profile-section--subDescription">
-                City
+                {{item?.city}}
               </p>
             </div>
             <div class="profile-section-subItems">
               <h2 class="profile-section--subtitle">Date</h2>
               <p class="profile-section--subDescription">
-                <span>start date </span>
-                <span>end date </span>
+                <span>{{item?.startDate | date : 'MM/dd/YYYY'}}</span> -
+                <span>{{item?.graduationDate | date : 'MM/dd/YYYY'}}</span>
               </p>
             </div>
           </div>
           <div class="flex-item align-self-end">
             <div class="checkboxes-wrapper">
-              <mat-checkbox formControlName="degreeInProgress">
+              <mat-checkbox [checked]="item.degreeInProgress">
                 Degree in progress
               </mat-checkbox>
             </div>
@@ -133,37 +125,37 @@
         </div>
       </div>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="certificates?.length">
       <h2 class="profile-section__title">
         Certificates
         <hr/>
       </h2>
       <div class="nested-info without-side-padding">
         <div class="flex-container flex-container-justify-start grid-gap-152 grid-wrapper">
-          <div class="flex-item">
-            <div class="profile-section-subItems">
+          <div class="flex-item" *ngFor="let item of certificates">
+            <div class="profile-section-subItems" *ngIf="item?.institutionName">
               <h2 class="profile-section--subtitle">Institution name</h2>
               <p class="profile-section--subDescription">
-                institutionName
+                {{item?.institutionName}}
               </p>
             </div>
-            <div class="profile-section-subItems">
+            <div class="profile-section-subItems" *ngIf="item?.qualification">
               <h2 class="profile-section--subtitle">Qualification</h2>
               <p class="profile-section--subDescription">
-                qualification
+                {{item?.qualification}}
               </p>
             </div>
-            <div class="profile-section-subItems">
+            <div class="profile-section-subItems" *ngIf="item?.date">
               <h2 class="profile-section--subtitle">Date</h2>
               <p class="profile-section--subDescription">
-                date
+                {{item?.date | date : 'MM/dd/YYYY'}}
               </p>
             </div>
           </div>
         </div>
       </div>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="availabilities?.availabilities?.length">
       <h2 class="profile-section__title">
         Availability
         <hr/>
@@ -171,16 +163,16 @@
       <div class="profile-tabs-wrapper">
         <table class="profile-tabs-table mb-45">
           <tbody>
-          <tr class="profile-tabs-table--row">
-            <td><p class="profile-tabs-table--row__description">Sunday</p></td>
-            <td><p class="profile-tabs-table--row__description">11:00 AM</p></td>
-            <td><p class="profile-tabs-table--row__description">13:00 AM</p></td>
+          <tr class="profile-tabs-table--row" *ngFor="let item of availabilities?.availabilities">
+            <td><p class="profile-tabs-table--row__description">{{item?.day}}</p></td>
+            <td><p class="profile-tabs-table--row__description">{{item?.startHour}}</p></td>
+            <td><p class="profile-tabs-table--row__description">{{item?.endHour}}</p></td>
           </tr>
           </tbody>
         </table>
       </div>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="subjects?.length">
       <h2 class="profile-section__title">
         Subjects
         <hr/>
@@ -188,18 +180,18 @@
       <div class="profile-tabs-wrapper ">
         <table class="profile-tabs-table table-with-pt mb-45">
           <tbody>
-          <tr class="profile-tabs-table--row">
-            <td>
+          <tr class="profile-tabs-table--row" *ngFor="let item of subjects">
+            <td *ngIf="item?.category">
               <h3 class="profile-tabs-table--row__title">Category</h3>
-              <p class="profile-tabs-table--row__description">category</p>
+              <p class="profile-tabs-table--row__description">{{item.category}}</p>
             </td>
-            <td>
+            <td *ngIf="item?.subject">
               <h3 class="profile-tabs-table--row__title">Subject</h3>
-              <p class="profile-tabs-table--row__description">subject</p>
+              <p class="profile-tabs-table--row__description">{{item.subject}}</p>
             </td>
-            <td>
+            <td *ngIf="item?.level">
               <h3 class="profile-tabs-table--row__title">Level</h3>
-              <p class="profile-tabs-table--row__description">level</p>
+              <p class="profile-tabs-table--row__description">{{item.level}}</p>
             </td>
           </tr>
           </tbody>
@@ -211,37 +203,9 @@
         Ratings
         <hr/>
       </h2>
-      <section class="rating-wrapper mb-45">
-        <div class="progress-container">
-          <div class="flex-container-justify-start progress-container__item">
-            <span class="star-value">5 stars</span>
-            <progress max="100"></progress>
-            <span class="rate-count">5</span>
-          </div>
-          <div class="flex-container-justify-start progress-container__item">
-            <span class="star-value">4 stars</span>
-            <progress max="100"></progress>
-            <span class="rate-count">4</span>
-          </div>
-          <div class="flex-container-justify-start progress-container__item">
-            <span class="star-value">3 stars</span>
-            <progress max="100"></progress>
-            <span class="rate-count">3</span>
-          </div>
-          <div class="flex-container-justify-start progress-container__item">
-            <span class="star-value">2 stars</span>
-            <progress max="100"></progress>
-            <span class="rate-count">2</span>
-          </div>
-          <div class="flex-container-justify-start progress-container__item">
-            <span class="star-value">1 star</span>
-            <progress max="100"></progress>
-            <span class="rate-count">1</span>
-          </div>
-        </div>
-      </section>
+      <app-ratings [showStars]="false" [ratings]="ratings"></app-ratings>
     </section>
-    <section class="profile-section">
+    <section class="profile-section" *ngIf="reviews?.length">
       <h2 class="profile-section__title">
         Reviews
         <hr/>
@@ -252,14 +216,11 @@
             <h3 class="profile-tabs-subtitle">
               Feedbacks
             </h3>
-            <h4 class="review-item-name">authorName</h4>
-            <p class="review-item-desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam culpa eaque
-              expedita facere fugiat inventore iusto laborum maxime molestiae, mollitia placeat quibusdam quo vitae!
-              Atque mollitia perspiciatis quas quos ratione!</p>
+            <ng-container *ngFor="let item of reviews">
+              <h4 class="review-item-name">{{item.authorName}}</h4>
+              <p class="review-item-desc">{{item.review}}</p>
+            </ng-container>
           </div>
-<!--          <div class="no-data">-->
-<!--            <h3 class="no-data-message"> No feedback to date.</h3>-->
-<!--          </div>-->
         </div>
       </section>
     </section>
