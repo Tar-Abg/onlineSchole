@@ -157,14 +157,11 @@
     color: $clr-ntrl-max;
   }
 
-  .tWrap__head {
-    padding-right: 10px;
-  }
-
   .tWrap__body {
     max-height: 305px;
     overflow: auto;
     overflow-x: hidden;
+    overflow: overlay;
     padding: 0;
   }
 

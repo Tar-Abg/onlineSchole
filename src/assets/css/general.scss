@@ -145,7 +145,7 @@ img {
 
 /* OverWrite Material css*/
 .mat-form-field-appearance-fill .mat-form-field-flex {
-  background-color: unset;
+  background-color: unset !important;
   border-bottom: 1px solid #B8B8B8;
 }
 
@@ -325,5 +325,17 @@ img {
   &-message {
     font: $type-light normal $type-medium-size $Segoe-UI-sans;
     color: $danger-color;
+  }
+}
+
+.calendar-wrapper {
+
+  ::ng-deep .mat-form-field-appearance-fill.mat-form-field-disabled .mat-form-field-flex {
+    background-color: transparent;
+  }
+
+  .mat-form-field {
+    background-color: transparent !important;
+    width: 100%;
   }
 }

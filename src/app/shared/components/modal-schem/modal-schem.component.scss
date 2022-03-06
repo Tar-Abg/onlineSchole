@@ -4,11 +4,12 @@
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 99999;
+  z-index: 9;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: rgba(0, 0, 0, .5);
+
   .modal-content {
     width: max-content;
     min-height: 200px;
