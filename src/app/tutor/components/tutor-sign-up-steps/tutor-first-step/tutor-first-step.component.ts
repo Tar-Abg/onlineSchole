@@ -80,7 +80,7 @@ export class TutorFirstStepComponent implements OnInit, OnDestroy {
     this.form = this.fb.group({
       id: [null],
       userId: [this.storageService.getUserId()],
-      hourlyRate: [null, [Validators.required]],
+      hourlyRate: [null, [Validators.required, Validators.min(20), Validators.max(1000)]],
       cancellationId: [1],
       tutorSubjects: this.fb.array([
         this.newTutorSubjects()

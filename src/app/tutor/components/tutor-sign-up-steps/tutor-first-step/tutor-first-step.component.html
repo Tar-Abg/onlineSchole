@@ -77,6 +77,8 @@
               <span class="error-message"
                     *ngIf="form.get('hourlyRate')?.errors?.min && form.get('hourlyRate')?.touched">You cannot enter anything below $20</span>
               <span class="error-message"
+                    *ngIf="form.get('hourlyRate')?.errors?.max && form.get('hourlyRate')?.touched">You cannot enter anything over $1000</span>
+              <span class="error-message"
                     *ngIf="form.get('hourlyRate')?.errors?.required && form.get('hourlyRate')?.touched">This is a required field</span>
             </label>
             <p class="input-notification">Please choose a default hourly rate. Sophist’s platform fee is 18% of this
