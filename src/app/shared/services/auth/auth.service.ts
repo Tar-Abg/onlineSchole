@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {BehaviorSubject, Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {Login, User, UserAuthInfo} from "../../models/auth.model";
-import {map, tap} from "rxjs/operators";
+import {catchError, map, tap} from "rxjs/operators";
 import {StorageService} from "../storage/storage.service";
 import {Router} from "@angular/router";
 import {ResponseModel} from "../../models/responseModel.model";
@@ -97,17 +97,12 @@ export class AuthService {
       refreshToken: JSON.parse(this.storageService.getItem('refresh_token'))
     }
     return this.http.post(`${this.url}/Logout`, body).pipe(
-      tap(() => {
-        this.isLoggedIn$.next(false);
-        this.router.navigate(['/']);
-        localStorage.clear();
+      tap(() => this.clearUserData()),
+      catchError((err: any) => {
+        this.clearUserData();
+        return err;
       })
     )
-  }
-
-  // for test
-  getSecuredData(): Observable<any> {
-    return this.http.get(`${this.url}/GetTutorSecuredData`)
   }
 
   restorePassword(email: string): Observable<any> {
@@ -134,5 +129,11 @@ export class AuthService {
     return this.http.put<ResponseModel<any>>(`${this.url}/ChangePassword`, null,  {params: params}).pipe(
       map(data => data.result)
     );
+  }
+
+  clearUserData(): void {
+    this.isLoggedIn$.next(false);
+    this.router.navigate(['/']);
+    localStorage.clear();
   }
 }

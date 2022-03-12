@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Subscription} from "rxjs";
+import {Subject, Subscription} from "rxjs";
 import {SettingsService} from "../../shared/services/settings/settings.service";
 import {StorageService} from "../../shared/services/storage/storage.service";
 import {MessageService} from "../../shared/services/message/message.service";
@@ -13,6 +13,7 @@ import {AuthService} from "../../shared/services/auth/auth.service";
 })
 export class LandingComponent implements OnInit, OnDestroy {
   private readonly subscription = new Subscription();
+  isLoggedIn$: Subject<boolean>;
   userIdFromUrl: number;
   isOpenLogin: boolean;
   isOpenResetPassword: boolean;
@@ -36,12 +37,13 @@ export class LandingComponent implements OnInit, OnDestroy {
         data.login && this.confirmEmail(data.token, data.userId);
         data.resetPassword && this.confirmResetPassword(data.token, data.userId);
       })
-    )
+    );
+    this.isLoggedIn$ = this.authService.isLoggedIn$;
   }
 
   confirmEmail(token: string, userId: number): void {
     this.subscription.add(
-      this.settingsService.confirmMail(userId, token).subscribe(data => {
+      this.settingsService.confirmMail(userId, token).subscribe(() => {
           this.isOpenLogin = true;
           this.router.navigate([]);
         },
@@ -55,7 +57,7 @@ export class LandingComponent implements OnInit, OnDestroy {
   confirmResetPassword(token: string, userId: number): void {
     this.userIdFromUrl = userId;
     this.subscription.add(
-      this.authService.confirmChangePassword(userId, token).subscribe(data => {
+      this.authService.confirmChangePassword(userId, token).subscribe(() => {
           this.isOpenChangePassword = true;
           this.isOpenResetPassword = false;
           this.router.navigate([]);

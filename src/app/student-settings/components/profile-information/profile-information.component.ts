@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
 import {SettingsService} from "../../../shared/services/settings/settings.service";
@@ -70,14 +70,18 @@ export class ProfileInformationComponent implements OnInit, OnDestroy {
       id: [null],
       userId: [this.storageService.getUserId()],
       photo: [null],
-      wrapUp: [null],
+      wrapUp: [null, [Validators.required, Validators.minLength(50), Validators.maxLength(2000), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
     });
   }
 
   onSubmit(): void {
-    this.subscription.add(
-      this.settingsService.updateProfileInformation({...this.form.value, photo: this.userImage}).subscribe()
-    );
+    if (this.form.valid) {
+      this.subscription.add(
+        this.settingsService.updateProfileInformation({...this.form.value, photo: this.userImage}).subscribe()
+      );
+    } else {
+      this.form.markAllAsTouched();
+    }
   }
 
   ngOnDestroy(): void {
