@@ -72,14 +72,19 @@ export class ProfileComponent implements OnInit, OnDestroy {
       headline: [null, [Validators.required, Validators.minLength(15), Validators.maxLength(75), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       photo: [null],
       bio: [null, [Validators.required, Validators.minLength(100), Validators.maxLength(2000), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
-      wrapUp: [null],
+      wrapUp: [null, [Validators.required, Validators.minLength(50), Validators.maxLength(2000), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
     })
   }
 
   onSubmit(): void {
-    this.subscription.add(
-      this.settingsService.updateProfileInformation({...this.form.value, photo: this.userImage}).subscribe()
-    );
+    if (this.form.valid) {
+      this.subscription.add(
+        this.settingsService.updateProfileInformation({...this.form.value, photo: this.userImage}).subscribe()
+      );
+    } else {
+      this.form.markAllAsTouched();
+    }
+
   }
 
   ngOnDestroy(): void {

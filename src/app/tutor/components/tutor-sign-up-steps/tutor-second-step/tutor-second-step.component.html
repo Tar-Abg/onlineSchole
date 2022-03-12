@@ -34,7 +34,7 @@
               <div class="upload-image-box">
                 <div class="image-upload-wrap" [class.image-uploaded]="userImage">
                   <input class="file-upload-input" type='file' (change)="selectFile($event)"
-                         accept="image/*"/>
+                        accept=".png, .jpg, .jpeg, ․jpe"/>
                   <div class="drag-text" *ngIf="!userImage">
                     <img src="assets/images/photo-camera%201.png" alt="Upload Photo"
                          width="33" height="33">
