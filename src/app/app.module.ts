@@ -20,12 +20,14 @@ import {HttpRequestInterceptor} from "./interceptors/loading.interceptor";
 import {SharedModule} from "./shared/shared.module";
 import {MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
+import { ContactComponent } from './contact/contact.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    LandingComponent
+    LandingComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
