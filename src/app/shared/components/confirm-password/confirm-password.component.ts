@@ -13,6 +13,7 @@ export class ConfirmPasswordComponent implements OnInit, OnDestroy {
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
   @Output() updated: EventEmitter<void> = new EventEmitter<void>();
   @Input() body: any;
+  @Input() actionType: 'updatePersonalInformation' | 'updateCard' = 'updatePersonalInformation';
   private readonly subscription: Subscription = new Subscription();
   form: FormGroup;
   errorMessage: string;
@@ -40,7 +41,11 @@ export class ConfirmPasswordComponent implements OnInit, OnDestroy {
   onConfirm(): void {
     this.errorMessage = '';
     if (this.form.valid) {
-      this.updatePersonalInformation();
+      if (this.actionType === 'updatePersonalInformation') {
+        this.updatePersonalInformation();
+      } else {
+        this.updateCart();
+      }
     } else {
       this.form.markAllAsTouched();
     }
@@ -59,6 +64,19 @@ export class ConfirmPasswordComponent implements OnInit, OnDestroy {
         })
       )
     );
+  }
+
+  updateCart(): void {
+    const body = {
+      ...this.body,
+      cardNumber: this.body.cardNumber.toString()
+    }
+    this.settingService.updatePaymentMethod(body, this.form.value.password).subscribe(() => {
+      this.updated.emit();
+      this.close.emit();
+    }, (error => {
+      this.errorMessage = error.error.title;
+    }))
   }
 
   ngOnDestroy(): void {

@@ -3,7 +3,7 @@ import {environment} from "../../../../environments/environment";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {SaveWrapUpProfile, TutorAvailabilities, TutorSubjects, UpdatePassword} from "../../models/registration.model";
 import {Observable} from "rxjs";
-import {PersonalInformation, RateAndPolitics} from "../../models/settings.model";
+import {PaymentMethod, PersonalInformation, RateAndPolitics} from "../../models/settings.model";
 import {map} from "rxjs/operators";
 import {ResponseModel} from "../../models/responseModel.model";
 
@@ -99,6 +99,21 @@ export class SettingsService {
     return this.http.put<ResponseModel<any>>(`${this.url}/ConfirmEmail`,  null, {params: params}).pipe(
       map(data => data.result)
     );
+  }
+
+
+  getPaymentMethod(userId: number): Observable<PaymentMethod> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    return this.http.get<ResponseModel<PaymentMethod>>(`${this.url}/GetPaymentMethod`, {params: params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  updatePaymentMethod(body: any, password: string): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('password', password);
+    return this.http.post<ResponseModel<any>>(`${this.url}/UpdatePaymentMethod`, body, {params: params});
   }
 
 }

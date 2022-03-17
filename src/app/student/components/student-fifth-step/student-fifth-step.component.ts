@@ -73,16 +73,20 @@ export class StudentFifthStepComponent implements OnInit, OnDestroy {
       userId: [this.storageService.getUserId()],
       cardNumber: [null, Validators.required],
       name: [null, Validators.required],
-      monthId: [1, Validators.required],
-      year: [new Date().getFullYear(), Validators.required],
-      cvv: [null, Validators.required],
+      expMonth: [null, Validators.required],
+      expYear: [null, Validators.required],
+      cvc: [null, Validators.required],
     })
   }
 
   onSubmit(): void {
     if (this.form.valid) {
+      const body = {
+        ...this.form.value,
+        cardNumber: this.form.value.cardNumber.toString()
+      }
       this.subscription.add(
-        this.registrationService.saveCardDetails(this.form.value).subscribe(user => {
+        this.registrationService.saveCardDetails(body).subscribe(user => {
           if (user.token) {
             this.authService.setSessions(user);
             this.storageService.setItem('userType', 2);
