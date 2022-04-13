@@ -4,10 +4,10 @@
     Please be informed that in case of providing a non- US dollar account/card, the amount will be transferred to the
     appropriate account at the exchange rate set by your bank for the respective currency.
   </p>
-  <p class="tutor-settings-page-notification card-number-wrapper">
-    Your current card number is  <span class="card-number"> 1234567812345678 </span>
+  <p class="tutor-settings-page-notification card-number-wrapper" *ngIf="(paymentMethod$ | async) as paymentMethod">
+    Your current card number is  <span class="card-number"> {{ paymentMethod.last4}} </span>
   </p>
-  <form action="" class="tutor-settings-nested-page__form tutor-settings-nested-page__form--fixed--width">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="tutor-settings-nested-page__form tutor-settings-nested-page__form--fixed--width">
     <fieldset>
       <legend class="tutor-settings-page-legend">
         <h3 class="form-legend-title-tab active">CREDIT CARD/DEBIT CARD</h3>
@@ -23,8 +23,8 @@
                    autocomplete="accountHolderName"
                    type="text"
                    placeholder="Account holder’s name"
-                   formControlName="accountHolderName">
-            <span class="error-message">This is a required field.</span>
+                   formControlName="name">
+            <span class="error-message" *ngIf="form.get('name')?.errors?.required && form.get('name')?.touched">This is a required field.</span>
           </label>
         </div>
         <div>
@@ -35,27 +35,26 @@
                    name="card-number"
                    required
                    autocomplete="card-number"
-                   type="text"
+                   type="number"
                    placeholder="Card Number*"
                    formControlName="cardNumber">
-            <span class="error-message">This is a required field.</span>
+            <span class="error-message" *ngIf="form.get('cardNumber')?.errors?.required && form.get('cardNumber')?.touched">This is a required field.</span>
           </label>
         </div>
         <div>
           <h3 class="form-item-label">Card expiration date* </h3>
           <div class="flex-container form-label double-select fixed-width">
             <div class="p-relative min-width-select">
-              <select formControlName="monthId" class="form-input selectpicker">
-                <option>tets</option>
-                <option>tets</option>
-                <option>tets</option>
+              <select formControlName="expMonth">
+                <option [ngValue]="item.id" *ngFor="let item of months$ | async">{{item.numberInString + ' ' + item.name}}</option>
               </select>
-              <span class="error-message">This is a required field.</span>
+              <span class="error-message" *ngIf="form.get('expMonth')?.errors?.required && form.get('expMonth')?.touched">This is a required field.</span>
             </div>
             <div class="p-relative min-width-select">
-              <select formControlName="year" class="form-input selectpicker">
-                <option>jjsdjskd</option>
+              <select formControlName="expYear" class="form-input selectpicker">
+                <option [ngValue]="item.id" *ngFor="let item of yearList">{{item.description}}</option>ZZ
               </select>
+              <span class="error-message" *ngIf="form.get('expYear')?.errors?.required && form.get('expYear')?.touched">This is a required field.</span>
             </div>
           </div>
         </div>
@@ -69,8 +68,8 @@
                    autocomplete="card-cvv"
                    type="number"
                    placeholder="CVC2/CVV2*"
-                   formControlName="cardCvv">
-            <span class="error-message">This is a required field.</span>
+                   formControlName="cvc">
+            <span class="error-message" *ngIf="form.get('cvc')?.errors?.required && form.get('cvc')?.touched">This is a required field.</span>
           </label>
         </div>
       </div>
@@ -100,8 +99,17 @@
 <!--      </div>-->
     </fieldset>
     <div class="flex-container-center grid-gap-for-buttons">
-      <button class="settings-form-button settings-form-button__with-border button-border--blue">Edit</button>
-      <button class="settings-form-button settings-form-button__with-border button-border--green">Save</button>
+      <button type="button" class="settings-form-button settings-form-button__with-border button-border--blue" (click)="form.enable()">Edit</button>
+      <button type="submit" class="settings-form-button settings-form-button__with-border button-border--green">Save</button>
     </div>
   </form>
 </div>
+
+<app-confirm-password
+  [actionType]="'updateCard'"
+  *ngIf="showUpdateCard"
+  (close)="showUpdateCard = false"
+  [body]="form.value"
+  (updated)="form.reset(); form.disable()"
+></app-confirm-password>
+

@@ -7,7 +7,7 @@
           <h3 class="main-question mb-32">ADD credit card/debit card</h3>
           <label for="cardNumber" class="flex-column form-group">
             <span class="card-input-label"> Card Number*</span>
-            <input type="text" id="cardNumber" class="card-field" placeholder="" maxlength="16" formControlName="cardNumber">
+            <input type="number" id="cardNumber" class="card-field" placeholder="" maxlength="16" formControlName="cardNumber">
             <span class="error-message block" *ngIf="form.get('cardNumber')?.errors?.required && form.get('cardNumber')?.touched">This is a required field</span>
           </label>
           <label for="cardName" class="form-group form-label flex-column">
@@ -18,21 +18,21 @@
           <span class="card-input-label">Card expiration date*</span>
           <div class="date-picker-wrapper">
             <div class="form-group select-with-border">
-              <select formControlName="monthId">
+              <select formControlName="expMonth">
                 <option [ngValue]="item.id" *ngFor="let item of months$ | async">{{item.numberInString + ' ' + item.name}}</option>
               </select>
-              <span class="error-message" *ngIf="form.get('monthId')?.errors?.required && form.get('monthId')?.touched">This is a required field</span>
+              <span class="error-message" *ngIf="form.get('expMonth')?.errors?.required && form.get('expMonth')?.touched">This is a required field</span>
             </div>
             <div class="form-group select-year-wrapper select-with-border">
-              <select formControlName="year">
+              <select formControlName="expYear">
                 <option [ngValue]="item.id" *ngFor="let item of yearList">{{item.description}}</option>
               </select>
-              <span class="error-message" *ngIf="form.get('year')?.errors?.required && form.get('year')?.touched">This is a required field</span>
+              <span class="error-message" *ngIf="form.get('expYear')?.errors?.required && form.get('expYear')?.touched">This is a required field</span>
             </div>
             <label for="cvv" class="form-group form-label flex-column cvv-label">
               <span class="card-input-label"> CVC2/CVV2* </span>
-              <input id="cvv" class="card-field cvv" autocomplete="cvv" type="number" placeholder="" maxlength="3" formControlName="cvv">
-              <span class="error-message" *ngIf="form.get('cvv')?.errors?.required && form.get('cvv')?.touched">This is a required field</span>
+              <input id="cvv" class="card-field cvv" autocomplete="cvv" type="number" placeholder="" maxlength="3" formControlName="cvc">
+              <span class="error-message" *ngIf="form.get('cvc')?.errors?.required && form.get('cvc')?.touched">This is a required field</span>
             </label>
           </div>
         </div>

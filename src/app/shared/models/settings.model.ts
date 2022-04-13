@@ -9,8 +9,16 @@ export interface RateAndPolitics {
 
 export interface PersonalInformation {
   userId: number;
-  email: string;
+  email: number;
   mobileCode: number;
   mobile: string;
   userAddress: Address;
+}
+
+export interface PaymentMethod {
+  ardId: number;
+  id: number;
+  isDeleted: boolean;
+  last4: number;
+  userId: number;
 }
