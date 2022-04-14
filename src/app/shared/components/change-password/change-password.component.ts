@@ -33,7 +33,7 @@ export class ChangePasswordComponent implements OnInit {
     this.form = this.fb.group({
       userId: [this.storageService.getUserId()],
       currentPassword: [null, [Validators.required]],
-      password: [null, [Validators.required]],
+      password: [null, [Validators.required, this.validationService.cannotContainSpace, Validators.minLength(8), Validators.pattern(/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/)]],
       rePassword: [null, [Validators.required]],
     }, {validators: this.validationService.checkPasswords})
   }

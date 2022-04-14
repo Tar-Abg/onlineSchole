@@ -39,7 +39,8 @@
           <label for="user-name" class="form-label">
             <input id="user-name" class="form-input" type="text" placeholder="User name*"
                    formControlName="userName">
-            <span class="error-message" *ngIf="form.get('userName')?.errors && form.get('userName')?.touched">This is a required field</span>
+            <span class="error-message" *ngIf="form.get('userName')?.errors && form.get('userName')?.touched && !form.get('userName')?.errors?.cannotContainSpace">This is a required field</span>
+            <span class="error-message" *ngIf="form.get('userName')?.errors?.cannotContainSpace && form.get('userName')?.touched">Username can not contain space</span>
           </label>
           <span class="form-item-notification">Visible on the public profile</span>
         </div>

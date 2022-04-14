@@ -42,7 +42,7 @@ export class PersonalInformationComponent implements OnInit, OnDestroy {
       userId: [this.storageService.getUserId()],
       mobileCode: [null],
       mobile: [null, [Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
-      userName: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
+      userName: [null, [Validators.required, this.validationService.cannotContainSpace]],
       preferredTimeZone: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       userAddress: this.fb.group({
