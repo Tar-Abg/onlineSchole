@@ -21,30 +21,38 @@ import {SharedModule} from "./shared/shared.module";
 import {MatMomentDateModule, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {AuthInterceptor} from "./interceptors/auth.interceptor";
 import { ContactComponent } from './contact/contact.component';
+import { AboutComponent } from './about/about.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { NotFoundModalComponent } from './components/not-found-modal/not-found-modal.component';
+import {NgImageSliderModule} from "ng-image-slider";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LandingComponent,
-    ContactComponent
+    ContactComponent,
+    AboutComponent,
+    NotFoundComponent,
+    NotFoundModalComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    LayoutsModule,
-    NoopAnimationsModule,
-    ReactiveFormsModule,
-    HttpClientModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatRippleModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatRadioModule,
-    NgbModule,
-    SharedModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        LayoutsModule,
+        NoopAnimationsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatRippleModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatRadioModule,
+        NgbModule,
+        SharedModule,
+        NgImageSliderModule
+    ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {

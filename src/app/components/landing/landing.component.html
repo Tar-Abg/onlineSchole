@@ -42,48 +42,14 @@
   <!--================ Section Subjects Slider Start ================-->
   <section class="subjects-slider-wrapper border-bottom">
     <h3 class="subjects-slider-wrapper__title">You can learn</h3>
-    <ul class="subjects-slider-list flex-container">
-      <li class="subjects-slider-list__item">
-        <h4 class="subjects-slider-list__item--title">Math</h4>
-        <img class="subjects-slider-list__item--img" src="assets/images/cubes.png" width="91" height="91" alt="Math"/>
-      </li>
-      <li class="subjects-slider-list__item">
-        <h4 class="subjects-slider-list__item-title">Natural Science</h4>
-        <img class="subjects-slider-list__item-img"
-             src="assets/images/science.png"
-             width="87"
-             height="91"
-             alt="Math"
-        />
-      </li>
-      <li class="subjects-slider-list__item">
-        <h4 class="subjects-slider-list__item-title">English</h4>
-        <img class="subjects-slider-list__item-img"
-             src="assets/images/english.png"
-             width="101"
-             height="76"
-             alt="Math"
-        />
-      </li>
-      <li class="subjects-slider-list__item">
-        <h4 class="subjects-slider-list__item-title">Language</h4>
-        <img class="subjects-slider-list__item-img"
-             src="assets/images/language.png"
-             width="91"
-             height="91"
-             alt="Math"
-        />
-      </li>
-      <li class="subjects-slider-list__item">
-        <h4 class="subjects-slider-list__item-title">Programming</h4>
-        <img class="subjects-slider-list__item-img"
-             src="assets/images/programming.png"
-             width="91"
-             height="91"
-             alt="Math"
-        />
-      </li>
-    </ul>
+    <ng-image-slider
+      #nav
+      [images]="imageObject"
+      [infinite]="false"
+      [autoSlide]="1"
+      [imageSize]="{ height: 'auto' }"
+      slideImage="1"
+    ></ng-image-slider>
   </section>
   <!--================ Section Subjects Slider End ================-->
 
@@ -296,7 +262,6 @@
   <!--================ Section Our Tutors End ================-->
 </main>
 
-
 <div class="login-modal-wrapper modal-wrapper">
   <app-modal-schem *ngIf="isOpenLogin" (close)="isOpenLogin = false" [title]="'Welcome to sophist'">
     <app-login (forgotPassword)="isOpenLogin = false; isOpenResetPassword = true"></app-login>
@@ -319,13 +284,21 @@
     <app-reset-password (openSuccessModal)="isOpenResetPassword = false; isOpenMessageModal = true"></app-reset-password>
   </app-modal-schem>
 </div>
+
 <div class="login-modal-wrapper modal-wrapper">
   <app-modal-schem *ngIf="isOpenChangePassword" (close)="isOpenChangePassword = false">
     <app-change-password-modal [userId]="userIdFromUrl" (close)="isOpenChangePassword = false"></app-change-password-modal>
   </app-modal-schem>
 </div>
+
 <div class="login-modal-wrapper modal-wrapper message-wrapper-modal">
   <app-modal-schem *ngIf="isOpenMessageModal" (close)="isOpenMessageModal = false">
     <app-message-modal></app-message-modal>
   </app-modal-schem>
 </div>
+
+<!--<div class="login-modal-wrapper modal-wrapper message-wrapper-modal">-->
+<!--  <app-modal-schem (close)="isOpenMessageModal = false">-->
+<!--    <app-not-found-modal></app-not-found-modal>-->
+<!--  </app-modal-schem>-->
+<!--</div>-->

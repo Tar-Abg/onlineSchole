@@ -73,6 +73,30 @@ export class LandingComponent implements OnInit, OnDestroy {
     this.router.navigate(['searchTutor']);
   }
 
+  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+
+  imageObject = [{
+    image: '../../../assets/images/cubes.png',
+    thumbImage: '../../../assets/images/cubes.png',
+    title: 'Math'
+  }, {
+    image: '../../../assets/images/science.png',
+    thumbImage: '../../../assets/images/science.png',
+    title: 'Natural Science'
+  }, {
+    image: '../../../assets/images/english.png',
+    thumbImage: '../../../assets/images/english.png',
+    title: 'English'
+  },  {
+    image: '../../../assets/images/language.png',
+    thumbImage: '../../../assets/images/language.png',
+    title: 'Language'
+  }, {
+    image: '../../../assets/images/programming.png',
+    thumbImage: '../../../assets/images/programming.png',
+    title: 'Programming'
+  }, ];
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

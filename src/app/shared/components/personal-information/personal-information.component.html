@@ -36,7 +36,7 @@
       <li class="form-item-with-notification">
         <h3 class="form-item-label">User Name*</h3>
         <div class="d-flex position-relative">
-          <label for="user-name" class="form-label">
+          <label for="user-name" class="form-label flex-column">
             <input id="user-name" class="form-input" type="text" placeholder="User name*"
                    formControlName="userName">
             <span class="error-message" *ngIf="form.get('userName')?.errors && form.get('userName')?.touched && !form.get('userName')?.errors?.cannotContainSpace">This is a required field</span>

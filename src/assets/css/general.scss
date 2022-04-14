@@ -339,3 +339,16 @@ img {
     width: 100%;
   }
 }
+
+.student-form-warning, .user-form-warning {
+  display: inline-block;
+  margin-top: 0;
+  font: $type-light normal $type-small $Segoe-UI-sans;
+  line-height: 21px;
+  color: #ffc107;
+}
+
+.user-form-warning {
+  margin-bottom: 0;
+}
+

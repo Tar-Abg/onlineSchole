@@ -1,0 +1,21 @@
+@import "src/assets/css/variables";
+
+.not-found-wrapper {
+  img {
+    width: 78%;
+    margin: -13px 0 0 190px;
+  }
+
+  picture {
+    display: flex;
+    margin-bottom: -60px;
+  }
+}
+
+.not-found-message {
+  line-height: 50px;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+  font: $type-regular normal 35px $Segoe-UI-sans;
+  color: rgba(255, 0, 0, 1);
+}
