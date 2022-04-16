@@ -7,7 +7,7 @@ import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {DateService} from "../../../shared/services/date/date.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {tap} from "rxjs/operators";
-import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../shared/services/registration/registration.service";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../shared/services/auth/auth.service";
 
@@ -29,7 +29,7 @@ export class StudentFifthStepComponent implements OnInit, OnDestroy {
     private infoService: InfosService,
     private dateService: DateService,
     private storageService: StorageService,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
     private authService: AuthService,
     private router: Router,
   ) {

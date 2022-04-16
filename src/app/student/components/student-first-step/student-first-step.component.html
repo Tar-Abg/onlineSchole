@@ -17,7 +17,7 @@
           <label for="user-name" class="form-label flex-column">
             <input id="user-name" class="form-input" type="text" placeholder="User name*"
                    formControlName="userName">
-            <p class="user-form-warning">The username cannot contain a space.</p>
+<!--            <p class="user-form-warning">The username cannot contain a space.</p>-->
             <span class="error-message" *ngIf="(form.get('userName')?.errors?.required || form.get('userName')?.errors?.pattern) && form.get('userName')?.touched">Please fill in your username</span>
             <span class="error-message" *ngIf="form.get('userName')?.errors?.maxlength && form.get('userName')?.touched">Field length has exceeded the limit of 100 characters</span>
             <span class="error-message" *ngIf="usernameIsExist$ | async">This username is already registered on Sophist</span>

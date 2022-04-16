@@ -1,7 +1,7 @@
 import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../shared/services/storage/storage.service";
-import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../shared/services/registration/registration.service";
 import {Subscription} from "rxjs";
 import {SettingsService} from "../../../shared/services/settings/settings.service";
 import {ValidationService} from "../../../shared/services/validation/validation.service";
@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(
     private storageService: StorageService,
     private fb: FormBuilder,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
     private settingsService: SettingsService,
     private cd: ChangeDetectorRef,
     private validationService: ValidationService

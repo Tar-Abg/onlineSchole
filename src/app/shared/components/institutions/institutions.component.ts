@@ -4,7 +4,7 @@ import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Country} from "../../models/infos.model";
 import {KeyValuePair} from "../../models/keyValuePair.model";
 import {InfosService} from "../../services/infos/infos.service";
-import {RegistrartionService} from "../../services/registration/registrartion.service";
+import {RegistrationService} from "../../services/registration/registration.service";
 import {StorageService} from "../../services/storage/storage.service";
 import {SaveInstitutions} from "../../models/registration.model";
 
@@ -31,7 +31,7 @@ export class InstitutionsComponent implements OnInit, OnDestroy{
   constructor(
     private fb: FormBuilder,
     private infoService: InfosService,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
     private storageService: StorageService,
   ) {
   }

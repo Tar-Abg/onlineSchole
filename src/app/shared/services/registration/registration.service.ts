@@ -18,7 +18,7 @@ import {User} from "../../models/auth.model";
 @Injectable({
   providedIn: 'root'
 })
-export class RegistrartionService {
+export class RegistrationService {
   private url = `${environment.apiUrl}/Registration`;
   emailIsExist$: Subject<boolean> = new Subject<boolean>();
   usernameIsExist$: Subject<boolean> = new Subject<boolean>();

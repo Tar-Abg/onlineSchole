@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Subscription} from "rxjs";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {RegistrartionService} from "../../services/registration/registrartion.service";
+import {RegistrationService} from "../../services/registration/registration.service";
 import {StorageService} from "../../services/storage/storage.service";
 import {SaveCertificates} from "../../models/registration.model";
 
@@ -21,7 +21,7 @@ export class CertificatesComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
     private storageService: StorageService
   ) {
   }

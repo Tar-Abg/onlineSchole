@@ -4,7 +4,7 @@ import {StorageService} from "../../../shared/services/storage/storage.service";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {Observable, Subscription} from "rxjs";
 import {Country} from "../../../shared/models/infos.model";
-import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../shared/services/registration/registration.service";
 import {Router} from "@angular/router";
 
 @Component({
@@ -22,7 +22,7 @@ export class StudentThirdStepComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private storageService: StorageService,
     private infoService: InfosService,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
     private router: Router,
   ) {
   }

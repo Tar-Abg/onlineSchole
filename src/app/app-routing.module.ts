@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'searchTutor',
     loadChildren: () => import('./search-tutor/search-tutor.module').then(m => m.SearchTutorModule)
   },
-  {path: '**', redirectTo: ''}
+  {path: '**', redirectTo: 'notFound'}
 ];
 
 @NgModule({

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../shared/services/registration/registration.service";
 
 @Component({
   selector: 'app-second-step',
@@ -12,7 +12,7 @@ export class SecondStepComponent implements OnInit{
   constructor(
       private router: Router,
       private route: ActivatedRoute,
-      private registrationService: RegistrartionService,
+      private registrationService: RegistrationService,
   ) {
   }
 

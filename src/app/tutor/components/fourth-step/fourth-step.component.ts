@@ -4,7 +4,7 @@ import {InfosService} from "../../../shared/services/infos/infos.service";
 import {Observable, Subscription} from "rxjs";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {Country, DaysOfWeek, HoursOfDay, StudentLevel} from "../../../shared/models/infos.model";
-import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../shared/services/registration/registration.service";
 import {ValidationService} from "../../../shared/services/validation/validation.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {tap} from "rxjs/operators";
@@ -32,7 +32,7 @@ export class FourthStepComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private infoService: InfosService,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
     private validationService: ValidationService,
     private storageService: StorageService,
     private router: Router,

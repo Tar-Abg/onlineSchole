@@ -6,7 +6,7 @@ import {Categories, Observables, StudentAvailableHours} from "../../../shared/mo
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {map, tap} from "rxjs/operators";
-import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../shared/services/registration/registration.service";
 import {StudentWantedLessons} from "../../../shared/models/registration.model";
 import {MatCheckboxChange} from "@angular/material/checkbox";
 import {Router} from "@angular/router";
@@ -35,7 +35,7 @@ export class StudentSecondStepComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private storageService: StorageService,
     private infoService: InfosService,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
     private router: Router,
   ) {
   }

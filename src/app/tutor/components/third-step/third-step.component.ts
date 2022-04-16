@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
-import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../shared/services/registration/registration.service";
 
 @Component({
   selector: 'app-third-step',
@@ -11,7 +11,7 @@ export class ThirdStepComponent implements OnInit{
 
   constructor(
     private router: Router,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
   ) {
   }
 

@@ -5,7 +5,7 @@ import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {Month, TimeZones} from "../../../shared/models/infos.model";
 import {ValidationService} from "../../../shared/services/validation/validation.service";
-import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../shared/services/registration/registration.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {DateService} from "../../../shared/services/date/date.service";
 import {MessageService} from "../../../shared/services/message/message.service";
@@ -30,7 +30,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
     private fb: FormBuilder,
     private infosService: InfosService,
     private validationService: ValidationService,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
     private storageService: StorageService,
     private dateService: DateService,
     private messageService: MessageService,

@@ -5,7 +5,7 @@ import {ValidationService} from "../../../shared/services/validation/validation.
 import {Observable, Subject, Subscription} from "rxjs";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
-import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../shared/services/registration/registration.service";
 import {TimeZones} from "../../../shared/models/infos.model";
 import {MessageService} from "../../../shared/services/message/message.service";
 
@@ -27,7 +27,7 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
     private storageService: StorageService,
     private validationService: ValidationService,
     private infosService: InfosService,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
     private messageService: MessageService,
   ) {
   }
