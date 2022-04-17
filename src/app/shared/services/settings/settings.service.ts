@@ -4,8 +4,9 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {SaveWrapUpProfile, TutorAvailabilities, TutorSubjects, UpdatePassword} from "../../models/registration.model";
 import {Observable} from "rxjs";
 import {PaymentMethod, PersonalInformation, RateAndPolitics} from "../../models/settings.model";
-import {map} from "rxjs/operators";
+import {catchError, map} from "rxjs/operators";
 import {ResponseModel} from "../../models/responseModel.model";
+import {RegistrationService} from "../registration/registration.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class SettingsService {
   private url = `${environment.apiUrl}/Settings`;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private registrationService: RegistrationService,
   ) {
   }
 
@@ -75,7 +77,14 @@ export class SettingsService {
   }
 
   updatePassword(body: UpdatePassword): Observable<any> {
-    return this.http.put<ResponseModel<any>>(`${this.url}/UpdatePassword`, body);
+    return this.http.put<ResponseModel<any>>(`${this.url}/UpdatePassword`, body).pipe(
+      catchError(err => {
+        if (err.error?.type === 'Password requirments') {
+          this.registrationService.passwordValidation$.next(err.error?.title);
+        }
+        throw new Error(err.error?.type);
+      })
+    );
   }
 
   updatePersonalInformation(body: PersonalInformation, password: string): Observable<any> {

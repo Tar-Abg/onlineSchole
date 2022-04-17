@@ -22,6 +22,7 @@ export class RegistrationService {
   private url = `${environment.apiUrl}/Registration`;
   emailIsExist$: Subject<boolean> = new Subject<boolean>();
   usernameIsExist$: Subject<boolean> = new Subject<boolean>();
+  passwordValidation$: Subject<string> = new Subject<string>();
   stepNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(1);
 
   constructor(private http: HttpClient) {
@@ -43,9 +44,10 @@ export class RegistrationService {
       catchError(err => {
         if (err.error?.type === 'Email existence error') {
           this.emailIsExist$.next(true);
-        }
-        if (err.error?.type === 'Username existence error') {
+        } else if (err.error?.type === 'Username existence error') {
           this.usernameIsExist$.next(true);
+        } else if (err.error?.type === 'Password requirments') {
+          this.passwordValidation$.next(err.error?.title);
         }
         throw new Error(err.error?.type);
       })

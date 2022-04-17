@@ -7,6 +7,7 @@ import {catchError, map, tap} from "rxjs/operators";
 import {StorageService} from "../storage/storage.service";
 import {Router} from "@angular/router";
 import {ResponseModel} from "../../models/responseModel.model";
+import {RegistrationService} from "../registration/registration.service";
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class AuthService {
     private http: HttpClient,
     private storageService: StorageService,
     private router: Router,
+    private registrationService: RegistrationService,
   ) {
     this.isAuthenticated() ? this.isLoggedIn$.next(true) : this.isLoggedIn$.next(false);
   }
@@ -108,7 +110,7 @@ export class AuthService {
   restorePassword(email: string): Observable<any> {
     let params = new HttpParams();
     params = params.append('email', email);
-    return this.http.post<ResponseModel<any>>(`${this.url}/ForgotPassword`, null,{params}).pipe(
+    return this.http.post<ResponseModel<any>>(`${this.url}/ForgotPassword`, null, {params}).pipe(
       map(data => data.result)
     )
   }
@@ -117,7 +119,7 @@ export class AuthService {
     let params = new HttpParams();
     params = params.append('userId', userId);
     params = params.append('token', token);
-    return this.http.put<ResponseModel<any>>(`${this.url}/ConfirmChangePassword`, null,  {params: params}).pipe(
+    return this.http.put<ResponseModel<any>>(`${this.url}/ConfirmChangePassword`, null, {params: params}).pipe(
       map(data => data.result)
     );
   }
@@ -126,8 +128,14 @@ export class AuthService {
     let params = new HttpParams();
     params = params.append('userId', userId);
     params = params.append('password', password);
-    return this.http.put<ResponseModel<any>>(`${this.url}/ChangePassword`, null,  {params: params}).pipe(
-      map(data => data.result)
+    return this.http.put<ResponseModel<any>>(`${this.url}/ChangePassword`, null, {params: params}).pipe(
+      map(data => data.result),
+      catchError(err => {
+        if (err.error?.type === 'Password requirments') {
+          this.registrationService.passwordValidation$.next(err.error?.title);
+        }
+        throw new Error(err.error?.type);
+      })
     );
   }
 

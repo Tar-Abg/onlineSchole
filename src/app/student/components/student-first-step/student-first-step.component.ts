@@ -21,6 +21,7 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
   genderList$: Observable<KeyValuePair[]>;
   emailIsExist$: Subject<boolean>;
   usernameIsExist$: Subject<boolean>;
+  passwordValidation$: Subject<string>;
 
   constructor(
     private fb: FormBuilder,
@@ -40,6 +41,8 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
     this.emailIsExist$ = this.registrationService.emailIsExist$;
     this.usernameIsExist$ = this.registrationService.usernameIsExist$;
     this.timeZones$ = this.infosService.getTimeZones();
+    this.passwordValidation$ = this.registrationService.passwordValidation$;
+    this.resetPasswordError();
   }
 
   initializeForm(): void {
@@ -52,7 +55,7 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
       preferredTimeZone: [null, [Validators.required]],
       gender: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
-      password: [null, [Validators.required, this.validationService.cannotContainSpace, Validators.minLength(8), Validators.pattern(/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/)]],
+      password: [null, ],
       rePassword: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
 
     }, {validators: this.validationService.checkPasswords})
@@ -75,6 +78,14 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
         this.messageService.setNewMessage(message);
         this.messageService.setBackToMainPage(true);
       })
+    );
+  }
+
+  resetPasswordError(): void {
+    this.subscription.add(
+      this.form.get('password')?.valueChanges.subscribe(
+        () => this.registrationService.passwordValidation$.next('')
+      )
     );
   }
 

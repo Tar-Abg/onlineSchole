@@ -2,8 +2,9 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ValidationService} from "../../services/validation/validation.service";
 import {AuthService} from "../../services/auth/auth.service";
-import {Subscription} from "rxjs";
+import {Subject, Subscription} from "rxjs";
 import {MessageService} from "../../services/message/message.service";
+import {RegistrationService} from "../../services/registration/registration.service";
 
 @Component({
   selector: 'app-change-password-modal',
@@ -17,15 +18,23 @@ export class ChangePasswordModalComponent implements OnInit, OnDestroy {
   form: FormGroup;
   rePasswordVisible: boolean;
   passwordVisible: boolean;
+  passwordValidation$: Subject<string>;
 
   constructor(
     private fb: FormBuilder,
     private validationService: ValidationService,
     private authService: AuthService,
     private messageService: MessageService,
+    private registrationService: RegistrationService,
   ) { }
 
   ngOnInit(): void {
+    this.initializeForm();
+    this.passwordValidation$ = this.registrationService.passwordValidation$;
+    this.resetPasswordError();
+  }
+
+  initializeForm(): void {
     this.form = this.fb.group({
       password: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       rePassword: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
@@ -50,6 +59,14 @@ export class ChangePasswordModalComponent implements OnInit, OnDestroy {
 
   changeRePasswordVisibility(): void {
     this.rePasswordVisible = !this.rePasswordVisible;
+  }
+
+  resetPasswordError(): void {
+    this.subscription.add(
+      this.form.get('password')?.valueChanges.subscribe(
+        () => this.registrationService.passwordValidation$.next('')
+      )
+    );
   }
 
   ngOnDestroy(): void {

@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {Subscription} from "rxjs";
+import {Subject, Subscription} from "rxjs";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../services/storage/storage.service";
 import {SettingsService} from "../../services/settings/settings.service";
 import {ValidationService} from "../../services/validation/validation.service";
+import {RegistrationService} from "../../services/registration/registration.service";
 
 @Component({
   selector: 'app-change-password',
@@ -12,6 +13,7 @@ import {ValidationService} from "../../services/validation/validation.service";
 })
 export class ChangePasswordComponent implements OnInit {
   private readonly subscription: Subscription = new Subscription();
+  passwordValidation$: Subject<string>;
   form: FormGroup;
   wrongPassword: boolean;
 
@@ -20,12 +22,15 @@ export class ChangePasswordComponent implements OnInit {
     private fb: FormBuilder,
     private settingsService: SettingsService,
     private validationService: ValidationService,
+    private registrationService: RegistrationService,
   ) {
   }
 
   ngOnInit(): void {
     this.initializeForm();
     this.subscribeOnCurrentPasswordChange();
+    this.resetPasswordError();
+    this.passwordValidation$ = this.registrationService.passwordValidation$;
   }
 
 
@@ -33,7 +38,7 @@ export class ChangePasswordComponent implements OnInit {
     this.form = this.fb.group({
       userId: [this.storageService.getUserId()],
       currentPassword: [null, [Validators.required]],
-      password: [null, [Validators.required, this.validationService.cannotContainSpace, Validators.minLength(8), Validators.pattern(/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/)]],
+      password: [null],
       rePassword: [null, [Validators.required]],
     }, {validators: this.validationService.checkPasswords})
   }
@@ -66,6 +71,14 @@ export class ChangePasswordComponent implements OnInit {
   subscribeOnCurrentPasswordChange(): void {
     this.subscription.add(
       this.form.get('currentPassword')?.valueChanges.subscribe(() => this.wrongPassword = false)
+    );
+  }
+
+  resetPasswordError(): void {
+    this.subscription.add(
+      this.form.get('password')?.valueChanges.subscribe(
+        () => this.registrationService.passwordValidation$.next('')
+      )
     );
   }
 

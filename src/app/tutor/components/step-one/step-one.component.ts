@@ -24,6 +24,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
   yearList: KeyValuePair[];
   emailIsExist$: Subject<boolean>;
   usernameIsExist$: Subject<boolean>;
+  passwordValidation$: Subject<string>;
   userId: number;
 
   constructor(
@@ -83,6 +84,16 @@ export class StepOneComponent implements OnInit, OnDestroy {
     this.emailIsExist$ = this.registrationService.emailIsExist$;
     this.usernameIsExist$ = this.registrationService.usernameIsExist$;
     this.timeZones$ = this.infosService.getTimeZones();
+    this.passwordValidation$ = this.registrationService.passwordValidation$;
+    this.resetPasswordError();
+  }
+
+  resetPasswordError(): void {
+    this.subscription.add(
+      this.form.get('password')?.valueChanges.subscribe(
+        () => this.registrationService.passwordValidation$.next('')
+      )
+    );
   }
 
   ngOnDestroy(): void {
