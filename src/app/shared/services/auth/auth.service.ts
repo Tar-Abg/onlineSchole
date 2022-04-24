@@ -48,8 +48,10 @@ export class AuthService {
   checkUserRole(user: User): void {
     if (user.roles.includes("Tutor")) {
       this.storageService.setItem('userRole', 1);
+      this.storageService.setItem('userType', 1);
     } else if (user.roles.includes("Student")) {
       this.storageService.setItem('userRole', 2);
+      this.storageService.setItem('userType', 2);
     }
   }
 

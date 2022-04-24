@@ -1,10 +1,14 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {Subject, Subscription} from "rxjs";
+import {Observable, Subject, Subscription} from "rxjs";
 import {SettingsService} from "../../shared/services/settings/settings.service";
 import {StorageService} from "../../shared/services/storage/storage.service";
 import {MessageService} from "../../shared/services/message/message.service";
 import {AuthService} from "../../shared/services/auth/auth.service";
+import {InfosService} from "../../shared/services/infos/infos.service";
+import {TutorBaseInfo, TutorForHomePage} from "../../tutor-profile/models/tutor.model";
+import {Quotes} from "../../shared/models/infos.model";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-landing',
@@ -14,6 +18,8 @@ import {AuthService} from "../../shared/services/auth/auth.service";
 export class LandingComponent implements OnInit, OnDestroy {
   private readonly subscription = new Subscription();
   isLoggedIn$: Subject<boolean>;
+  tutors$: Observable<TutorForHomePage[]>;
+  quotes$: Observable<Quotes[]>;
   userIdFromUrl: number;
   isOpenLogin: boolean;
   isOpenResetPassword: boolean;
@@ -28,17 +34,32 @@ export class LandingComponent implements OnInit, OnDestroy {
     private storageService: StorageService,
     private messageService: MessageService,
     private authService: AuthService,
+    private infoService: InfosService,
   ) {
   }
 
   ngOnInit(): void {
+    this.subscribeConfirmResetPassword();
+    this.isLoggedIn$ = this.authService.isLoggedIn$;
+    this.getTutors();
+    this.getQuotes();
+  }
+
+  subscribeConfirmResetPassword(): void {
     this.subscription.add(
       this.route.queryParams.subscribe(data => {
         data.login && this.confirmEmail(data.token, data.userId);
         data.resetPassword && this.confirmResetPassword(data.token, data.userId);
       })
     );
-    this.isLoggedIn$ = this.authService.isLoggedIn$;
+  }
+
+  getTutors(): void {
+    this.tutors$ = this.infoService.getTutors();
+  }
+
+  getQuotes(): void {
+    this.quotes$ = this.infoService.getQuotes();
   }
 
   confirmEmail(token: string, userId: number): void {

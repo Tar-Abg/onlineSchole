@@ -15,16 +15,12 @@ export interface DayChat {
 }
 
 export interface Messages {
-  chatId: number;
-  firstName: string;
-  lastName: string;
-  message: string;
-  userId: number;
-  messageDate: string;
-}
-
-export interface NewMessage {
-  senderId: number;
-  chatId: number;
-  message: string;
+  chatId?: number;
+  firstName?: string;
+  lastName?: string;
+  message?: string;
+  userId?: number;
+  messageDate?: string;
+  senderId?: number;
+  receiverId?: number;
 }

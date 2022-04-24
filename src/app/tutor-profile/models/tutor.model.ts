@@ -150,3 +150,11 @@ export interface Lesson {
   subjectName: string;
   price: number;
 }
+
+export interface TutorForHomePage {
+  rate: number;
+  subject: string;
+  photo: string;
+  fullName: string;
+  userId: number;
+}

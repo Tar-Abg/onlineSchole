@@ -13,12 +13,13 @@ import {
   Level,
   LevelForTutor,
   Minutes,
-  Month,
+  Month, Quotes,
   States,
   Subjects,
   SubjectsForTutor,
   TimeZones, TutorsForStudent
 } from "../../models/infos.model";
+import {TutorForHomePage} from "../../../tutor-profile/models/tutor.model";
 
 @Injectable({
   providedIn: 'root'
@@ -220,6 +221,18 @@ export class InfosService {
     let params = new HttpParams();
     params = params.append('userId', userId)
     return this.http.get<ResponseModel<TutorsForStudent[]>>(`${this.url}/GetTutorsForStudent`, {params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getTutors(): Observable<TutorForHomePage[]> {
+    return this.http.get<ResponseModel<TutorForHomePage[]>>(`${this.url}/GetTutorsForHomePage`).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getQuotes(): Observable<Quotes[]> {
+    return this.http.get<ResponseModel<Quotes[]>>(`${this.url}/GetQuotes`).pipe(
       map(data => data.result)
     );
   }

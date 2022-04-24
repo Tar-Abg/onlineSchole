@@ -1,10 +1,10 @@
-import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewChecked, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ChatServiceService} from "../../services/chat-service.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {ChatApiService} from "../../services/chat-api.service";
 import {Observable, Subscription} from "rxjs";
-import {Conversation, DayChat, NewMessage} from "../../models/chat.model";
+import {Conversation, DayChat, Messages} from "../../models/chat.model";
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
 
 @Component({
@@ -12,7 +12,8 @@ import {debounceTime, distinctUntilChanged} from "rxjs/operators";
   templateUrl: './message-dashboard.component.html',
   styleUrls: ['./message-dashboard.component.scss']
 })
-export class MessageDashboardComponent implements OnInit, OnDestroy {
+export class MessageDashboardComponent implements OnInit, OnDestroy, AfterViewChecked {
+  @ViewChild('messageBox') messageBox: ElementRef;
   private readonly subscription: Subscription = new Subscription();
   selectedConversation: Conversation;
   conversations: Conversation[];
@@ -38,11 +39,16 @@ export class MessageDashboardComponent implements OnInit, OnDestroy {
     this.getChats();
   }
 
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
   receiveMessage(): void {
     this.subscription.add(
       this.chatServiceService.messageReceived$.subscribe(message => {
         this.messages[this.messages.length - 1].messages.push(message);
-        this.cd.detectChanges()
+        this.cd.detectChanges();
+        this.scrollToBottom();
       })
     );
   }
@@ -53,19 +59,28 @@ export class MessageDashboardComponent implements OnInit, OnDestroy {
       this.chatApiService.getChats(this.userId).subscribe(conversations => {
         this.originalConversations = JSON.parse(JSON.stringify(conversations));
         this.conversations = conversations;
+        this.chatServiceService.createConnection();
+        this.chatServiceService.registerOnServerEvents();
       })
     );
   }
 
   sendMessage(): void {
     if (this.form.valid) {
-      const message: NewMessage = {
+      const message: Messages = {
         chatId: this.selectedConversation.chatId,
+        userId: this.storageService.getUserId(),
         message: this.form.value.message,
-        senderId: this.storageService.getUserId()
+        senderId: this.storageService.getUserId(),
+        receiverId: this.selectedConversation.userId
       }
-      this.chatServiceService.sendMessage(message);
-      this.form.reset();
+      this.chatServiceService.sendMessage(message).then(() => {
+        this.messages[this.messages.length-1].messages.push({...message, messageDate: new Date().toString(),
+        });
+        this.cd.detectChanges();
+        this.scrollToBottom();
+        this.form.reset();
+      });
     }
   }
 
@@ -103,12 +118,6 @@ export class MessageDashboardComponent implements OnInit, OnDestroy {
     this.markAsRead(conversation);
     this.selectedConversation = conversation;
     this.getMessages(conversation.chatId);
-    const chat = {
-      chatName: conversation.chatId.toString(),
-      firstName: conversation.firstName,
-      lastName: conversation.lastName,
-    }
-    this.chatServiceService.selectConversation(chat)
   }
 
   getMessages(chatId: number): void {
@@ -122,9 +131,16 @@ export class MessageDashboardComponent implements OnInit, OnDestroy {
   markAsRead(conversation: Conversation): void {
     if (conversation.unreadMessagesCount) {
       this.subscription.add(
-        this.chatApiService.markAsRead(conversation.chatId).subscribe()
+        this.chatApiService.markAsRead(conversation.chatId).subscribe(() => this.selectedConversation.unreadMessagesCount = 0)
       );
     }
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.messageBox.nativeElement.scrollTop = this.messageBox.nativeElement.scrollHeight;
+      this.cd.detectChanges()
+    } catch(err) { }
   }
 
   ngOnDestroy(): void {
