@@ -1,11 +1,12 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {TutorViewService} from "../../services/tutor-view.service";
 import {Certificates, Institutions, ProfileInfo, Subjects, TutorAvailabilities} from "../../models/tutor-view.model";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {switchMap} from "rxjs/operators";
-import {TutorBaseInfo, TutorRatings, TutorReviews} from "../../../tutor-profile/models/tutor.model";
+import {TutorRatings, TutorReviews} from "../../../tutor-profile/models/tutor.model";
+import {UserRole} from "../../../shared/models/auth.model";
 
 @Component({
   selector: 'app-tutor-view',
@@ -34,14 +35,15 @@ export class TutorViewComponent implements OnInit, OnDestroy {
 
 
   constructor(
-    private router: ActivatedRoute,
+    private route: ActivatedRoute,
+    private router: Router,
     private tutorViewService: TutorViewService,
     private storageService: StorageService,
   ) { }
 
   ngOnInit(): void {
     this.subscription.add(
-      this.router.params.pipe(
+      this.route.params.pipe(
         switchMap(data => {
           const userId = this.storageService.getUserId();
           this.getInstitutions(userId, data.id);
@@ -158,6 +160,11 @@ export class TutorViewComponent implements OnInit, OnDestroy {
         this.ratings = data;
       })
     )
+  }
+
+  openConversation(): void {
+    const userRole = UserRole[this.storageService.getItem('userRole')];
+    this.router.navigate([`${userRole.toLowerCase()}/profile`], {queryParams: {userId: this.tutorInfo.userId}})
   }
 
   ngOnDestroy(): void {

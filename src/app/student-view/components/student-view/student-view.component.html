@@ -25,7 +25,7 @@
       </div>
     </section>
     <section class="profile-buttons justify-content-start">
-      <button class="profile-buttons--item flex-container-center">
+      <button class="profile-buttons--item flex-container-center" (click)="openConversation()">
         <img src="assets/images/message.png" alt="Messages" width="51" height="50">
         Message
       </button>
@@ -38,7 +38,7 @@
       </h2>
       <div class="nested-info">
         <p class="profile-section__description">{{wrapUp}}</p>
-        <button class="read-more"(click)="toggleContent()"
+        <button class="read-more" (click)="toggleContent()"
                 *ngIf="wrapUp && wrapUp.length > limit">{{isWrapUpContentToggled ? 'read more' : 'read less'}}</button>
       </div>
     </section>

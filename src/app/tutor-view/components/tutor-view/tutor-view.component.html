@@ -15,7 +15,7 @@
             <img alt="Upload Photo" *ngIf="tutorInfo?.photo" [src]="tutorInfo?.photo">
           </div>
         </div>
-        <button class="profile-buttons--item flex-container-center">
+        <button class="profile-buttons--item flex-container-center" (click)="openConversation()">
           <img src="assets/images/message.png" alt="Messages" width="51" height="50">
           Message
         </button>
@@ -27,7 +27,7 @@
         </div>
         <div class="profile-cards__details--rating">
           <fieldset class="star-rates">
-            <star-rating [value]="ratings.average" [totalstars]="5" checkedcolor="#FFC107" uncheckedcolor="#c2c2c2"
+            <star-rating *ngIf="ratings?.average" [value]="ratings.average" [totalstars]="5" checkedcolor="#FFC107" uncheckedcolor="#c2c2c2"
                          size="35px" [readonly]="true"></star-rating>
           </fieldset>
           <!--          <span>1</span>-->

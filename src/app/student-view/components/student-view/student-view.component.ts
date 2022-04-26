@@ -2,11 +2,12 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {StudentViewService} from "../../services/student-view.service";
 import {switchMap} from "rxjs/operators";
 import {Subscription} from "rxjs";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {TutorViewService} from "../../../tutor-view/services/tutor-view.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {Student} from "../../../student-profile/models/student-profile.model";
 import {Subjects} from "../../../tutor-view/models/tutor-view.model";
+import {UserRole} from "../../../shared/models/auth.model";
 
 @Component({
   selector: 'app-student-view',
@@ -25,14 +26,15 @@ export class StudentViewComponent implements OnInit, OnDestroy {
 
   constructor(
     private studentViewService: StudentViewService,
-    private router: ActivatedRoute,
+    private route: ActivatedRoute,
+    private router: Router,
     private tutorViewService: TutorViewService,
     private storageService: StorageService,
   ) { }
 
   ngOnInit(): void {
     this.subscription.add(
-      this.router.params.pipe(
+      this.route.params.pipe(
         switchMap(data => {
           const userId = this.storageService.getUserId();
           this.getSubjects(userId, data.id);
@@ -76,6 +78,11 @@ export class StudentViewComponent implements OnInit, OnDestroy {
 
   toggleContent(): void {
       this.wrapUp = this.formatWrapUpContent(this.wrapUp, this.originalWrapUpContent);
+  }
+
+  openConversation(): void {
+    const userRole = UserRole[this.storageService.getItem('userRole')];
+    this.router.navigate([`${userRole.toLowerCase()}/profile`], {queryParams: {userId: this.studentInfo.userId}})
   }
 
   ngOnDestroy(): void {

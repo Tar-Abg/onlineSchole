@@ -8,6 +8,7 @@ import {Messages} from "../models/chat.model";
 })
 export class ChatServiceService {
   messageReceived$ = new EventEmitter<any>();
+  connectionCreated: boolean;
 
   private _hubConnection: HubConnection;
 
@@ -16,7 +17,6 @@ export class ChatServiceService {
   ) {
 
   }
-
 
   createConnection() {
     const token = JSON.parse(this.storageService.getItem('auth_token'));
@@ -31,25 +31,17 @@ export class ChatServiceService {
   startConnection(): void {
     this._hubConnection.start().then(() => {
       console.log('Hub connection started');
+      this.connectionCreated = true;
     }).catch(err => {
-      console.log(err)
-      // setTimeout(() => this.startConnection(), 5000);
+      this.connectionCreated = false;
+      setTimeout(() => this.startConnection(), 5000);
     });
   }
-
-  // selectConversation(message: any): void {
-  //   this._hubConnection.invoke("JoinChat", { ...message});
-  //
-  // }
 
   registerOnServerEvents(): void {
     this._hubConnection.on('Send', (message) => {
       this.messageReceived$.emit(message);
     });
-
-    // this._hubConnection.on("UsersInRoom", (users) => {
-    //   console.log(users);
-    // });
   }
 
   sendMessage(message: Messages): Promise<any> {

@@ -10,7 +10,7 @@ export interface Conversation {
 }
 
 export interface DayChat {
-  date: number;
+  date: string;
   messages: Messages[];
 }
 

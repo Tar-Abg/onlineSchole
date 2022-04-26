@@ -3,6 +3,7 @@ import {TutorService} from "../../services/tutor-service.service";
 import {Observable, Subscription} from "rxjs";
 import {TutorBaseInfo, TutorRatings} from "../../models/tutor.model";
 import {StorageService} from "../../../shared/services/storage/storage.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-tutor-profile',
@@ -20,12 +21,14 @@ export class TutorProfileComponent implements OnInit, OnDestroy {
   constructor(
     private tutorService: TutorService,
     private storageService: StorageService,
+    private route: ActivatedRoute,
   ) {
   }
 
   ngOnInit(): void {
     this.userId = this.storageService.getUserId();
     this.initializeSubscriptions();
+    this.subscribeRouterEvents();
   }
 
   initializeSubscriptions(): void {
@@ -33,6 +36,15 @@ export class TutorProfileComponent implements OnInit, OnDestroy {
     this.ratings$ = this.tutorService.getRatings(this.userId);
   }
 
+  subscribeRouterEvents(): void {
+    this.subscription.add(
+      this.route.queryParams.subscribe((data) => {
+        if(data.userId) {
+          this.activeTab = 'MESSAGES';
+        }
+      })
+    );
+  }
   getBaseInfo(): void {
     this.subscription.add(
       this.tutorService.getTutorBaseInfo(this.userId).subscribe((tutorBaseInfo: TutorBaseInfo) => {

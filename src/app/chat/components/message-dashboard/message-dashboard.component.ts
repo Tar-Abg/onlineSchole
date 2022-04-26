@@ -3,9 +3,11 @@ import {ChatServiceService} from "../../services/chat-service.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {ChatApiService} from "../../services/chat-api.service";
-import {Observable, Subscription} from "rxjs";
+import {Subscription} from "rxjs";
 import {Conversation, DayChat, Messages} from "../../models/chat.model";
 import {debounceTime, distinctUntilChanged} from "rxjs/operators";
+import {ActivatedRoute} from "@angular/router";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-message-dashboard',
@@ -29,6 +31,8 @@ export class MessageDashboardComponent implements OnInit, OnDestroy, AfterViewCh
     private fb: FormBuilder,
     private storageService: StorageService,
     private cd: ChangeDetectorRef,
+    private route: ActivatedRoute,
+    private location: Location,
   ) {
   }
 
@@ -36,52 +40,108 @@ export class MessageDashboardComponent implements OnInit, OnDestroy, AfterViewCh
     this.initializeForms();
     this.searchSubscription();
     this.receiveMessage();
-    this.getChats();
+    this.subscribeRouterEvents();
   }
 
   ngAfterViewChecked() {
     this.scrollToBottom();
   }
 
-  receiveMessage(): void {
+  subscribeRouterEvents(): void {
     this.subscription.add(
-      this.chatServiceService.messageReceived$.subscribe(message => {
-        this.messages[this.messages.length - 1].messages.push(message);
-        this.cd.detectChanges();
-        this.scrollToBottom();
+      this.route.queryParams.subscribe((data) => {
+        if (data.userId) {
+          this.openChat(+data.userId);
+        } else {
+          this.getChats();
+        }
+        this.location.replaceState(this.location.path().split('?')[0], '');
       })
     );
   }
 
-  getChats(): void {
-    this.userId = this.storageService.getUserId();
+  receiveMessage(): void {
     this.subscription.add(
-      this.chatApiService.getChats(this.userId).subscribe(conversations => {
-        this.originalConversations = JSON.parse(JSON.stringify(conversations));
-        this.conversations = conversations;
-        this.chatServiceService.createConnection();
-        this.chatServiceService.registerOnServerEvents();
+      this.chatServiceService.messageReceived$.subscribe(message => {
+        this.checkAndUpdateChat(message);
       })
     );
+  }
+
+  checkAndUpdateChat(message: Messages): void {
+    if (this.selectedConversation && (this.selectedConversation?.chatId === message.chatId)) {
+      this.messages[this.messages.length - 1].messages.push(message);
+      this.cd.detectChanges();
+      this.scrollToBottom();
+    } else {
+      this.getChats(true);
+    }
+  }
+
+
+  getChats(update: boolean = false): void {
+    this.userId = this.storageService.getUserId();
+    this.subscription.add(
+      this.chatApiService.getChats(this.userId, update).subscribe(conversations => this.selectAndConnectConversation(conversations))
+    );
+  }
+
+  openChat(userId: number): void {
+    this.subscription.add(
+      this.chatApiService.openChat(userId).subscribe(conversations => {
+        this.selectAndConnectConversation(conversations);
+        this.selectedConversation = this.conversations[0];
+      })
+    );
+  }
+
+  selectAndConnectConversation(conversations: Conversation[]): void {
+    this.originalConversations = JSON.parse(JSON.stringify(conversations));
+    this.conversations = conversations;
+    if (!this.chatServiceService.connectionCreated) {
+      this.chatServiceService.createConnection();
+      this.chatServiceService.registerOnServerEvents();
+    }
   }
 
   sendMessage(): void {
     if (this.form.valid) {
-      const message: Messages = {
-        chatId: this.selectedConversation.chatId,
-        userId: this.storageService.getUserId(),
-        message: this.form.value.message,
-        senderId: this.storageService.getUserId(),
-        receiverId: this.selectedConversation.userId
-      }
+      const message = this.createNewMessage();
       this.chatServiceService.sendMessage(message).then(() => {
-        this.messages[this.messages.length-1].messages.push({...message, messageDate: new Date().toString(),
-        });
-        this.cd.detectChanges();
-        this.scrollToBottom();
-        this.form.reset();
+        this.updateDashboard(message)
       });
     }
+  }
+
+  createNewMessage(): Messages {
+    return {
+      chatId: this.selectedConversation.chatId,
+      userId: this.storageService.getUserId(),
+      message: this.form.value.message,
+      senderId: this.storageService.getUserId(),
+      receiverId: this.selectedConversation.userId
+    }
+  }
+
+  updateDashboard(message: Messages): void {
+    if (this.messages?.length) {
+      this.messages[this.messages.length - 1].messages.push({
+        ...message, messageDate: new Date().toString(),
+      });
+    } else {
+      this.messages = [];
+      const newMessage: DayChat  = {
+        date: new Date().toString(),
+        messages: [{
+          ...message, messageDate: new Date().toString(),
+        }]
+      }
+      this.messages.push(newMessage);
+    }
+
+    this.cd.detectChanges();
+    this.scrollToBottom();
+    this.form.reset();
   }
 
   initializeForms(): void {
@@ -140,10 +200,12 @@ export class MessageDashboardComponent implements OnInit, OnDestroy, AfterViewCh
     try {
       this.messageBox.nativeElement.scrollTop = this.messageBox.nativeElement.scrollHeight;
       this.cd.detectChanges()
-    } catch(err) { }
+    } catch (err) {
+    }
   }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.chatServiceService.connectionCreated = false;
   }
 }

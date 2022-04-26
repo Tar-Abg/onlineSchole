@@ -8,6 +8,11 @@ import {Conversation} from "../../models/chat.model";
 })
 export class MessageUsersListComponent implements OnInit {
   @Output() selectConversation: EventEmitter<Conversation> = new EventEmitter<Conversation>();
+  @Input() set conversation(selectedConversation: Conversation) {
+    if (selectedConversation) {
+      this.selectedConversation = selectedConversation;
+    }
+  };
   @Input() conversations: Conversation[];
   selectedConversation: Conversation;
 
