@@ -71,6 +71,7 @@ export class MessageDashboardComponent implements OnInit, OnDestroy, AfterViewCh
   checkAndUpdateChat(message: Messages): void {
     if (this.selectedConversation && (this.selectedConversation?.chatId === message.chatId)) {
       this.messages[this.messages.length - 1].messages.push(message);
+      this.selectedConversation.lastMessage = message.message as string;
       this.cd.detectChanges();
       this.scrollToBottom();
     } else {
@@ -138,7 +139,7 @@ export class MessageDashboardComponent implements OnInit, OnDestroy, AfterViewCh
       }
       this.messages.push(newMessage);
     }
-
+    this.selectedConversation.lastMessage = message.message as string;
     this.cd.detectChanges();
     this.scrollToBottom();
     this.form.reset();

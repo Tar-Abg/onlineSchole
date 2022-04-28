@@ -7,8 +7,8 @@ import {NotFoundComponent} from "./not-found/not-found.component";
 
 const routes: Routes = [
   {path: '', component: LandingComponent},
-  {path: 'contact', component: ContactComponent},
-  {path: 'about', component: AboutComponent},
+  {path: 'contactUs', component: ContactComponent},
+  {path: 'aboutUs', component: AboutComponent},
   {path: 'notFound', component: NotFoundComponent},
   {path: 'student', loadChildren: () => import('./student/student.module').then(m => m.StudentModule)},
   {path: 'tutor', loadChildren: () => import('./tutor/tutor.module').then(m => m.TutorModule)},

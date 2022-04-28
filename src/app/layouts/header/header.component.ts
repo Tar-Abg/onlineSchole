@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {AuthService} from "../../shared/services/auth/auth.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserAuthInfo, UserRole} from "../../shared/models/auth.model";
 import {StorageService} from "../../shared/services/storage/storage.service";
 import {StudentProfileService} from "../../student-profile/services/student-profile.service";
@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private route: ActivatedRoute,
     private storageService: StorageService,
     private studentService: StudentProfileService,
     private tutorService: TutorService,
@@ -87,7 +88,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   navigate(routName: string): void {
-    this.router.navigate([`./${routName}`], )
+    this.router.navigate([`/${routName}`], {relativeTo: this.route} )
   }
 
   openLoginPage(): void {

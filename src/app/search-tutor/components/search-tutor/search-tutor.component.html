@@ -9,5 +9,8 @@
     <p class="text-center text-danger">Sorry, there are no tutor matching the search criteria</p>
   </div>
 </ng-container>
-<app-pagination [currentPage]="currentPage$ | async" [pageCount]="pagesCount"
-                (onChangePage)="changePage($event)"></app-pagination>
+<app-pagination [currentPage]="currentPage$ | async"
+                [pageCount]="pagesCount"
+                (onChangePage)="changePage($event)"
+                *ngIf="pagesCount > 1"
+></app-pagination>
