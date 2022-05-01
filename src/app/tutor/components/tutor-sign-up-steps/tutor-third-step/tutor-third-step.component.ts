@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../../shared/services/storage/storage.service";
-import {RegistrartionService} from "../../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../../shared/services/registration/registration.service";
 import {Subscription} from "rxjs";
 import {Router} from "@angular/router";
 import {AuthService} from "../../../../shared/services/auth/auth.service";
@@ -18,7 +18,7 @@ export class TutorThirdStepComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private storageService: StorageService,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
     private authService: AuthService,
     private router: Router,
   ) { }

@@ -97,3 +97,9 @@ export  interface TutorsForStudent {
   id: number;
   fullname: string;
 }
+
+export interface Quotes {
+  id: number;
+  quoteText: string;
+  author: string;
+}

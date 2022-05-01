@@ -3,7 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {BehaviorSubject, of, Subscription} from "rxjs";
 import {switchMap} from "rxjs/operators";
 import {StorageService} from "../../../shared/services/storage/storage.service";
-import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../shared/services/registration/registration.service";
 import {MessageService} from "../../../shared/services/message/message.service";
 import {Location} from '@angular/common';
 
@@ -20,7 +20,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private router: Router,
     private storageService: StorageService,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
     private messageService: MessageService,
     private location: Location,
   ) {

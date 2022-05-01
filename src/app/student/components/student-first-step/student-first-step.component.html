@@ -17,10 +17,11 @@
           <label for="user-name" class="form-label flex-column">
             <input id="user-name" class="form-input" type="text" placeholder="User name*"
                    formControlName="userName">
-            <p class="user-form-warning">The username cannot contain a space.</p>
+<!--            <p class="user-form-warning">The username cannot contain a space.</p>-->
             <span class="error-message" *ngIf="(form.get('userName')?.errors?.required || form.get('userName')?.errors?.pattern) && form.get('userName')?.touched">Please fill in your username</span>
             <span class="error-message" *ngIf="form.get('userName')?.errors?.maxlength && form.get('userName')?.touched">Field length has exceeded the limit of 100 characters</span>
             <span class="error-message" *ngIf="usernameIsExist$ | async">This username is already registered on Sophist</span>
+            <span class="error-message" *ngIf="form.get('userName')?.errors?.cannotContainSpace && form.get('userName')?.touched">Username can not contain space</span>
           </label>
           <div class="gender fixed-width form-label">
             <app-select [label]="'gender*'" [list]="genderList$ | async" formControlName="gender"></app-select>
@@ -51,7 +52,11 @@
           <label for="password" class="form-label">
             <input id="password" class="form-input" autocomplete="new-password" type="password"
                    placeholder="password*" formControlName="password">
-            <span class="error-message" *ngIf="form.get('password')?.errors && form.get('password')?.touched">Please create your password</span>
+            <span class="error-message" *ngIf="form.get('password')?.errors?.required && form.get('password')?.touched">Please create your password</span>
+            <span class="error-message" *ngIf="form.get('password')?.errors?.minlength && !form.get('password')?.errors?.cannotContainSpace && form.get('password')?.touched">Password should be at least 8 characters</span>
+            <span class="error-message" *ngIf="form.get('password')?.errors?.cannotContainSpace && form.get('password')?.touched">Password can not contain space</span>
+            <span class="error-message" *ngIf="form.get('password')?.errors?.pattern && !form.get('password')?.errors?.cannotContainSpace && form.get('password')?.touched && !form.get('password')?.errors?.minlength">Password should contain at least 1 digit and 1 symbol</span>
+            <span class="error-message" *ngIf="(passwordValidation$ | async) as passwordValidation">{{passwordValidation}}</span>
           </label>
           <label for="re-enter-password" class="form-label">
             <input id="re-enter-password" class="form-input" autocomplete="new-password"

@@ -7,14 +7,14 @@
       <div *ngIf="((isLoggedIn$ | async) && user); then loggedUser else notLoggedUser ; else notLoggedUser"></div>
       <ng-template #notLoggedUser>
         <ul class="header-list flex-container-center">
-          <li class="header-list__item flex-container-center header-list__item--active"><a href="">About us</a></li>
-          <li class="header-list__item flex-container-center" (click)="openLogin.emit()"><a>Log in</a></li>
+          <li class="header-list__item flex-container-center header-list__item--active"><a (click)="navigate('aboutUs')">About us</a></li>
+          <li class="header-list__item flex-container-center" (click)="openLoginPage()"><a>Log in</a></li>
           <li class="header-list__item header-list__item--border flex-container-center" (click)="openRegister.emit()"><a>Register now</a></li>
         </ul>
       </ng-template>
       <ng-template #loggedUser>
         <ul class="header-list flex-container-center">
-          <li class="header-list__item flex-container-center header-list__item--active"><a href="">About us</a></li>
+          <li class="header-list__item flex-container-center header-list__item--active"><a (click)="navigate('aboutUs')">About us</a></li>
           <li class="header-list__item flex-container-center" appClickOutside
               (clickOutside)="isOpenNestedDropdown = false">
             <div class="flex-container-center" *ngIf="user">

@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {Subscription} from "rxjs";
-import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../shared/services/registration/registration.service";
 import {Router} from "@angular/router";
 import {ValidationService} from "../../../shared/services/validation/validation.service";
 
@@ -21,7 +21,7 @@ export class StudentFourthStepComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private storageService: StorageService,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
     private validationService: ValidationService,
     private cd: ChangeDetectorRef,
     private router: Router,

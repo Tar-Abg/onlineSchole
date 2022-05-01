@@ -9,7 +9,11 @@
         </span>
       </form>
       <div class="message-users-list-wrapper">
-        <app-message-users-list (selectConversation)="selectConversation($event)" [conversations]="conversations"></app-message-users-list>
+        <app-message-users-list
+          (selectConversation)="selectConversation($event)"
+          [conversations]="conversations"
+          [conversation]="selectedConversation"
+        ></app-message-users-list>
       </div>
     </div>
     <div class="flex-item chat">
@@ -23,8 +27,8 @@
       </div>
       <div class="chat-history">
         <div class="online-chat-wrapper">
-          <div class="chat-wrapper">
-            <div class="message-content" *ngFor="let item of messages">
+          <div class="chat-wrapper" #messageBox>
+            <div  class="message-content" *ngFor="let item of messages">
               <h4 class="chatting-time">{{item.date | date : 'shortDate'}}</h4>
               <div class="received-message" *ngFor="let message of item.messages" [ngClass]="userId != message.userId ? 'received-message flex-container-justify-start' : 'sending-message flex-container-justify-end'">
                 <h2 class="received-message-text">
@@ -35,8 +39,8 @@
                   </span>
               </div>
             </div>
-            <form class="send-message-wrapper" [formGroup]="form">
-              <input type="text" placeholder="Write a message..." formControlName="message">
+            <form class="send-message-wrapper" [formGroup]="form" *ngIf="selectedConversation">
+              <input (keyup.enter)="sendMessage()" type="text" placeholder="Write a message..." formControlName="message">
               <img src="assets/images/sendMessage.png" (click)="sendMessage()"
                    alt="Send Message Icon"
                    width="34"

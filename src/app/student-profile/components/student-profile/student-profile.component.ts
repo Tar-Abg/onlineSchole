@@ -3,6 +3,7 @@ import {StudentProfileService} from "../../services/student-profile.service";
 import {Student} from "../../models/student-profile.model";
 import {Subscription} from "rxjs";
 import {StorageService} from "../../../shared/services/storage/storage.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-student-profile',
@@ -17,11 +18,23 @@ export class StudentProfileComponent implements OnInit, OnDestroy {
   constructor(
     private studentProfileService: StudentProfileService,
     private storageService: StorageService,
+    private route: ActivatedRoute,
   ) {
   }
 
   ngOnInit(): void {
     this.getProfileInfo();
+    this.subscribeRouterEvents();
+  }
+
+  subscribeRouterEvents(): void {
+    this.subscription.add(
+      this.route.queryParams.subscribe((data) => {
+        if(data.userId) {
+          this.activeTab = 'MESSAGES';
+        }
+      })
+    );
   }
 
   getProfileInfo(): void {

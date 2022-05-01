@@ -13,6 +13,10 @@
     grid-gap: 32px;
     padding: 10px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.22);
+    &.isActive {
+      background-color: #ababab;
+      //Elida
+    }
 
     .user-image-wrapper {
       width: 84px;

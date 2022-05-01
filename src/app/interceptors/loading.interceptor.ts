@@ -13,7 +13,9 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    this._loading.setLoading(true, req.url);
+    if (req.params.get('update') !== 'true') {
+      this._loading.setLoading(true, req.url);
+    }
     return next.handle(req).pipe(
       finalize(() => this._loading.setLoading(false, req.url))
     );

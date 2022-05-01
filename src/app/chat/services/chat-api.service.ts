@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {Conversation, DayChat} from "../models/chat.model";
 import {ResponseModel} from "../../shared/models/responseModel.model";
 import {map} from "rxjs/operators";
+import {StorageService} from "../../shared/services/storage/storage.service";
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,25 @@ export class ChatApiService {
   private readonly url = `${environment.apiUrl}/Chat`;
 
   constructor(
-    private http: HttpClient
+    private http: HttpClient,
+    private storageService: StorageService,
   ) { }
 
-  getChats(userId: number): Observable<Conversation[]> {
+  getChats(userId: number, update: boolean): Observable<Conversation[]> {
     let params = new HttpParams();
     params = params.append('userId', userId);
+    params = params.append('update', update);
     return this.http.get<ResponseModel<Conversation[]>>(`${this.url}/GetChats`, {params}).pipe(
+      map(data => data.result)
+    )
+  }
+
+  openChat(userId: number): Observable<Conversation[]> {
+    const body = {
+      receiverId: userId,
+      senderId: this.storageService.getUserId()
+    }
+    return this.http.post<ResponseModel<Conversation[]>>(`${this.url}/OpenChat`, body).pipe(
       map(data => data.result)
     )
   }

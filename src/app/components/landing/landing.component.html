@@ -249,74 +249,30 @@
   <section class="tutor">
     <h2 class="tutor__title">Our Tutors</h2>
     <ul class="tutor-cards-list">
-      <li class="tutor-cards-list__item">
+      <li class="tutor-cards-list__item" *ngFor="let tutor of (tutors$ | async)">
         <figure>
           <div class="tutor-cards-list__item--image">
-            <img src="assets/images/tutor.png"
+            <a [routerLink]="['../tutorView', tutor.userId]" class="search-cards-item-for-image">
+
+            <img [src]="tutor.photo" *ngIf="tutor.photo"
                  alt="Tutor"
                  width="166"
                  height="167"
             >
-          </div>
-          <figcaption>
-            <h2 class="tutor-cards-list__item--name">Danielle M.</h2>
-            <h3 class="tutor-cards-list__item--subject">Chemistry</h3>
-            <div class="tutor-cards-list__item--rate">
-              rate
-            </div>
-          </figcaption>
-        </figure>
-      </li>
-      <li class="tutor-cards-list__item">
-        <figure>
-          <div class="tutor-cards-list__item--image">
-            <img src="assets/images/tutor.png"
+              <img *ngIf="!tutor.photo" src=""
                  alt="Tutor"
                  width="166"
                  height="167"
             >
+            </a>
+
           </div>
           <figcaption>
-            <h2 class="tutor-cards-list__item--name">Danielle M.</h2>
-            <h3 class="tutor-cards-list__item--subject">Chemistry</h3>
+            <h2 class="tutor-cards-list__item--name">{{tutor.fullName}}</h2>
+            <h3 class="tutor-cards-list__item--subject">{{tutor.subject}}</h3>
             <div class="tutor-cards-list__item--rate">
-              rate
-            </div>
-          </figcaption>
-        </figure>
-      </li>
-      <li class="tutor-cards-list__item">
-        <figure>
-          <div class="tutor-cards-list__item--image">
-            <img src="assets/images/tutor.png"
-                 alt="Tutor"
-                 width="166"
-                 height="167"
-            >
-          </div>
-          <figcaption>
-            <h2 class="tutor-cards-list__item--name">Danielle M.</h2>
-            <h3 class="tutor-cards-list__item--subject">Chemistry</h3>
-            <div class="tutor-cards-list__item--rate">
-              rate
-            </div>
-          </figcaption>
-        </figure>
-      </li>
-      <li class="tutor-cards-list__item">
-        <figure>
-          <div class="tutor-cards-list__item--image">
-            <img src="assets/images/tutor.png"
-                 alt="Tutor"
-                 width="166"
-                 height="167"
-            >
-          </div>
-          <figcaption>
-            <h2 class="tutor-cards-list__item--name">Danielle M.</h2>
-            <h3 class="tutor-cards-list__item--subject">Chemistry</h3>
-            <div class="tutor-cards-list__item--rate">
-              rate
+              <star-rating [value]="tutor.rate" [totalstars]="5" checkedcolor="#FFC107" uncheckedcolor="#c2c2c2"
+                           size="35px" [readonly]="true"></star-rating>
             </div>
           </figcaption>
         </figure>

@@ -1,13 +1,13 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
 import {BehaviorSubject, Observable, Subscription} from "rxjs";
 import {AuthService} from "../../shared/services/auth/auth.service";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {UserAuthInfo, UserRole} from "../../shared/models/auth.model";
 import {StorageService} from "../../shared/services/storage/storage.service";
 import {StudentProfileService} from "../../student-profile/services/student-profile.service";
 import {Student} from "../../student-profile/models/student-profile.model";
 import {TutorService} from "../../tutor-profile/services/tutor-service.service";
-import {map, tap} from "rxjs/operators";
+import {tap} from "rxjs/operators";
 import {TutorBaseInfo} from "../../tutor-profile/models/tutor.model";
 
 @Component({
@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(
     private authService: AuthService,
     private router: Router,
+    private route: ActivatedRoute,
     private storageService: StorageService,
     private studentService: StudentProfileService,
     private tutorService: TutorService,
@@ -86,7 +87,23 @@ export class HeaderComponent implements OnInit, OnDestroy {
     return this.storageService.getItem('userRole');
   }
 
+  navigate(routName: string): void {
+    this.router.navigate([`/${routName}`], {relativeTo: this.route} )
+  }
+
+  openLoginPage(): void {
+    if (this.router.routerState.snapshot.url !== '/') {
+      this.router.navigate(['/']);
+      setTimeout(() => {
+        this.openLogin.next();
+      }, 1000)
+    } else {
+      this.openLogin.next();
+    }
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
 }

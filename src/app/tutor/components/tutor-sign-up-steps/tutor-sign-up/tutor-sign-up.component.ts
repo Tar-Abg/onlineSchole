@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {RegistrartionService} from "../../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../../shared/services/registration/registration.service";
 import {BehaviorSubject} from "rxjs";
 
 @Component({
@@ -11,7 +11,7 @@ export class TutorSignUpComponent implements OnInit {
   stepNumber$: BehaviorSubject<number>;
 
   constructor(
-    private registrationService: RegistrartionService
+    private registrationService: RegistrationService
   ) {
   }
 

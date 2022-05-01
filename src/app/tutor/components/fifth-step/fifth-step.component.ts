@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {RegistrartionService} from "../../../shared/services/registration/registrartion.service";
+import {RegistrationService} from "../../../shared/services/registration/registration.service";
 import {Observable, Subscription} from "rxjs";
 import {Country} from "../../../shared/models/infos.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
@@ -21,7 +21,7 @@ export class FifthStepComponent implements OnInit, OnDestroy {
 
   constructor(
     private fb: FormBuilder,
-    private registrationService: RegistrartionService,
+    private registrationService: RegistrationService,
     private infoService: InfosService,
     private storageService: StorageService,
     private router: Router,
