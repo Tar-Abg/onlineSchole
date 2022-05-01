@@ -167,6 +167,67 @@
     }
   }
 
+  .carousel-caption {
+    color: black;
+  }
+
+  /***** Subjects Are ******/
+  .subjects-slider {
+
+    &-wrapper {
+      margin-bottom: rem(110px);
+      padding: 0 rem(40px) rem(50px);
+      overflow: hidden;
+
+      &__title {
+        margin-bottom: rem(42px);
+        font: $type-light normal rem(25px) $Roboto-sans;
+        line-height: 26px;
+        margin-left: rem(58px);
+      }
+    }
+
+    &-list {
+      width: 94%;
+      margin: 0 auto;
+      display: flex;
+      grid-gap: rem(72px);
+      min-height: 246px;
+      text-align: center;
+
+      &__item {
+        min-width: 238px;
+        min-height: inherit;
+        @include flex-container-center;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: rem(50px) 0;
+        border-radius: 4px;
+        border: 1px solid #E9E9E9;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+        background-color: $clr-ntrl-min;
+        cursor: pointer;
+        transition: 500ms;
+
+        &:hover {
+          transform: scale(1.1);
+          box-shadow: 0 4px 4px $secondary-brand-color;
+        }
+
+        &--title {
+          font: $type-regular normal rem(20px) $Roboto-sans;
+          text-transform: uppercase;
+          color: $clr-ntrl-max;
+        }
+
+        img {
+          width: auto;
+          height: auto;
+        }
+      }
+    }
+  }
+
   /***** Online Lesson Are ******/
   .online-lessons {
     &-wrapper {
