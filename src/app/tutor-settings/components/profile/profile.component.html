@@ -5,10 +5,10 @@
       <div class="file-upload-wrapper">
         <div class="upload-image-box">
           <div class="image-upload-wrap" [class.image-uploaded]="userImage">
-<!--            <div class="drag-text" *ngIf="!userImage">-->
-<!--              <img src="assets/images/photo-camera%201.png" alt="Upload Photo"-->
-<!--                   width="33" height="33">-->
-<!--            </div>-->
+            <!--            <div class="drag-text" *ngIf="!userImage">-->
+            <!--              <img src="assets/images/photo-camera%201.png" alt="Upload Photo"-->
+            <!--                   width="33" height="33">-->
+            <!--            </div>-->
             <img [src]="userImage" alt="Upload Photo" *ngIf="userImage?.length">
           </div>
           <button class="upload-photo-btn">
@@ -25,7 +25,7 @@
     </li>
     <li class="user-sign-up-list__item">
       <h3 class="form-item-label">Profile Headline</h3>
-      <label for="profile-headline" class="form-label form-label--flex-container">
+      <label for="profile-headline" class="form-label form-label--flex-container profile-field-wrapper">
         <textarea id="profile-headline"
                   class="form-textarea"
                   type="text"
@@ -34,12 +34,15 @@
                   formControlName="headline">A short headline about yourself*
         </textarea>
         <span class="error-message" *ngIf="form.get('headline')?.errors?.required && form.get('headline')?.touched">This is a required field</span>
-        <span class="form-item-notification" [class.text-danger]="form.get('headline')?.errors?.minlength || form.get('headline')?.errors?.maxlength">Your profile headline must be between 15 and 75 characters.</span>
       </label>
+      <p class="form-item-notification"
+         [class.text-danger]="form.get('headline')?.errors?.minlength || form.get('headline')?.errors?.maxlength">
+        Your profile headline must be between 15 and 75 characters.
+      </p>
     </li>
     <li class="user-sign-up-list__item large-size">
       <h3 class="form-item-label">Bio</h3>
-      <label for="bio" class="form-label form-label--flex-container">
+      <label for="bio" class="form-label form-label--flex-container profile-field-wrapper">
       <textarea id="bio" class="form-textarea" type="text"
                 rows="10" cols="10"
                 placeholder="A short headline about yourself*"
@@ -49,9 +52,11 @@
         <span class="error-message"
               *ngIf="form.get('bio')?.errors?.required && form.get('bio')?.touched">This is a required field</span>
       </label>
-      <p class="form-item-notification" [class.text-danger]="form.get('bio')?.errors?.minlength || form.get('bio')?.errors?.maxlength">Your free response must be between 100 and 2000 characters.</p>
+      <p class="form-item-notification"
+         [class.text-danger]="form.get('bio')?.errors?.minlength || form.get('bio')?.errors?.maxlength">Your free
+        response must be between 100 and 2000 characters.</p>
     </li>
-    <li class="user-sign-up-list__item large-size">
+    <li class="user-sign-up-list__item large-size wrap-up-info">
       <h3 class="form-item-label">Wrap up your profile</h3>
       <label for="wrapUp" class="form-label form-label--flex-container">
         <textarea id="wrapUp" class="form-textarea" type="text"
@@ -60,11 +65,14 @@
                   formControlName="wrapUp"
         > A short headline about yourself*
                 </textarea>
+        <span class="error-message" style="position: static"
+              *ngIf="form.get('wrapUp')?.errors?.required && form.get('wrapUp')?.touched">This is a required field</span>
       </label>
-      <span class="error-message" style="position: static" *ngIf="form.get('wrapUp')?.errors?.required && form.get('wrapUp')?.touched">This is a required field</span>
       <p class="form-item-notification">Encourage students to contact you
         to learn more and schedule lessons.</p>
-      <p class="form-item-notification" [class.text-danger]="(form.get('wrapUp')?.errors?.minlength || form.get('wrapUp')?.errors?.maxlength) && form.get('wrapUp')?.touched">Your free response must be between 50 and 2000 characters. </p>
+      <p class="form-item-notification"
+         [class.text-danger]="(form.get('wrapUp')?.errors?.minlength || form.get('wrapUp')?.errors?.maxlength) && form.get('wrapUp')?.touched">
+        Your free response must be between 50 and 2000 characters. </p>
     </li>
   </ul>
   <div class="flex-container-center">

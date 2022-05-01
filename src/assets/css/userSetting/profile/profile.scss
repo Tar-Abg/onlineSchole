@@ -15,8 +15,20 @@
     }
   }
 
+  .wrap-up-info{
+    .error-message {
+      bottom: -76px;
+    }
+  }
+
   .settings-form-button {
     margin: 0 auto;
+  }
+
+  .profile-field-wrapper {
+    .error-message {
+      bottom: -50px;
+    }
   }
 }
 

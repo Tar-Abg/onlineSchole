@@ -24,11 +24,13 @@
     "@angular/router": "~12.2.0",
     "@aspnet/signalr": "^1.0.27",
     "@ng-bootstrap/ng-bootstrap": "^10.0.0",
+    "angular-responsive-carousel": "^2.1.2",
     "bootstrap": "^4.5.0",
     "moment": "^2.29.1",
     "ng-image-slider": "^2.8.0",
     "ng-starrating": "^1.0.20",
     "ngx-mask": "^12.0.0",
+    "ngx-owl-carousel-o": "^7.0.2",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

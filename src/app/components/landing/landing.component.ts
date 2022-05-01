@@ -94,9 +94,72 @@ export class LandingComponent implements OnInit, OnDestroy {
     this.router.navigate(['searchTutor']);
   }
 
-  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  imagesForSlider = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
+  sliderItem = [
+    {
+      path: '../../assets/images/armenia.png',
+      name: 'Benjamin Franklin ',
+      description: 'Tell me and I forget. Teach me and I remember. Involve me and I learn.'
+    },
+    {
+      path: '../../assets/images/armenia.png',
+      name: 'Elida ',
+      description: 'Teach me and I remember. Involve me and I learn.'
+    },
+    {
+      path: '../../assets/images/armenia.png',
+      name: 'Taron ',
+      description: 'Involve me and I learn.'
+    },
+    {
+      path: '../../assets/images/armenia.png',
+      name: 'Avetiq ',
+      description: 'Tell me and I forget. Teach me and I remember. Involve me and I learn.'
+    },
+    {
+      path: '../../assets/images/armenia.png',
+      name: 'Raz ',
+      description: 'Tell me and I forget. Teach me and I remember. Involve me and I learn.'
+    },
+  ]
+
+  subjects = [
+    {
+      path: '../../assets/images/cubes.png',
+      name: 'Math ',
+    },
+    {
+      path: '../../assets/images/science.png',
+      name: 'Natural Science ',
+    },
+    {
+      path: '../../assets/images/english.png',
+      name: 'English ',
+    },
+    {
+      path: '../../assets/images/language.png',
+      name: 'Language ',
+    },
+    {
+      path: '../../assets/images/programming.png',
+      name: 'Programming ',
+    },
+    {
+      path: '../../assets/images/programming.png',
+      name: 'Programming ',
+    },
+    {
+      path: '../../assets/images/programming.png',
+      name: 'Programming ',
+    },
+    {
+      path: '../../assets/images/programming.png',
+      name: 'Programming ',
+    }
+  ]
 }

@@ -1,0 +1,15 @@
+.alert-message-wrapper {
+  position: fixed;
+  left: 50%;
+  top: 60px;
+  padding: 8px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  transition: opacity 0.5s ease-in;
+  z-index: 99999;
+  transform: translate(-50%, -10px);
+
+  p {
+    margin: 0;
+  }
+}

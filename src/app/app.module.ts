@@ -26,6 +26,9 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {NotFoundModalComponent} from './components/not-found-modal/not-found-modal.component';
 import {NgImageSliderModule} from "ng-image-slider";
 import {RatingModule} from "ng-starrating";
+import { AlertBoxComponent } from './alert-box/alert-box.component';
+import {CarouselModule} from "ngx-owl-carousel-o";
+import {IvyCarouselModule} from "angular-responsive-carousel";
 
 
 @NgModule({
@@ -35,26 +38,29 @@ import {RatingModule} from "ng-starrating";
     ContactComponent,
     AboutComponent,
     NotFoundComponent,
-    NotFoundModalComponent
+    NotFoundModalComponent,
+    AlertBoxComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        LayoutsModule,
-        NoopAnimationsModule,
-        ReactiveFormsModule,
-        HttpClientModule,
-        MatDatepickerModule,
-        MatNativeDateModule,
-        MatRippleModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatRadioModule,
-        NgbModule,
-        SharedModule,
-        NgImageSliderModule,
-        RatingModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LayoutsModule,
+    NoopAnimationsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatRippleModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRadioModule,
+    NgbModule,
+    SharedModule,
+    NgImageSliderModule,
+    RatingModule,
+    CarouselModule,
+    IvyCarouselModule
+  ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
     {

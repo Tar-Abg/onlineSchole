@@ -39,80 +39,61 @@
   </section>
   <!--================ Section Hero End ================-->
 
-  <ngb-carousel *ngIf="images">
-    <ng-template ngbSlide>
-      <div class="picsum-img-wrapper">
-        <img [src]="images[0]" alt="Random first slide">
-      </div>
-      <div class="carousel-caption">
-        <h3>First slide label</h3>
-        <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <div class="picsum-img-wrapper">
-        <img [src]="images[1]" alt="Random second slide">
-      </div>
-      <div class="carousel-caption">
-        <h3>Second slide label</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <div class="picsum-img-wrapper">
-        <img [src]="images[2]" alt="Random third slide">
-      </div>
-      <div class="carousel-caption">
-        <h3>Third slide label</h3>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
-      </div>
-    </ng-template>
-  </ngb-carousel>
-
   <!--================ Section Subjects Slider Start ================-->
   <section class="subjects-slider-wrapper border-bottom">
     <h3 class="subjects-slider-wrapper__title">You can learn</h3>
     <ul class="subjects-slider-list flex-container">
-      <li class="subjects-slider-list__item">
-        <h4 class="subjects-slider-list__item--title">Math</h4>
-        <img class="subjects-slider-list__item--img" src="assets/images/cubes.png" width="91" height="91" alt="Math"/>
-      </li>
-      <li class="subjects-slider-list__item">
-        <h4 class="subjects-slider-list__item-title">Natural Science</h4>
-        <img class="subjects-slider-list__item-img"
-             src="assets/images/science.png"
-             width="87"
-             height="91"
-             alt="Math"
-        />
-      </li>
-      <li class="subjects-slider-list__item">
-        <h4 class="subjects-slider-list__item-title">English</h4>
-        <img class="subjects-slider-list__item-img"
-             src="assets/images/english.png"
-             width="101"
-             height="76"
-             alt="Math"
-        />
-      </li>
-      <li class="subjects-slider-list__item">
-        <h4 class="subjects-slider-list__item-title">Language</h4>
-        <img class="subjects-slider-list__item-img"
-             src="assets/images/language.png"
-             width="91"
-             height="91"
-             alt="Math"
-        />
-      </li>
-      <li class="subjects-slider-list__item">
-        <h4 class="subjects-slider-list__item-title">Programming</h4>
-        <img class="subjects-slider-list__item-img"
-             src="assets/images/programming.png"
-             width="91"
-             height="91"
-             alt="Math"
-        />
-      </li>
+      <carousel
+        [height]="246"
+        [cellsToShow]="5"
+        [overflowCellsLimit]="1"
+        [loop]="true">
+        <li class="subjects-slider-list__item" *ngFor="let subject of subjects; let i = index">
+          <h4 class="subjects-slider-list__item--title">{{subject.name}}</h4>
+          <img class="subjects-slider-list__item--img" src="{{subject.path}}" width="91" height="91" alt="Math"/>
+        </li>
+      </carousel>
+
+<!--      <li class="subjects-slider-list__item">-->
+<!--        <h4 class="subjects-slider-list__item&#45;&#45;title">Math</h4>-->
+<!--        <img class="subjects-slider-list__item&#45;&#45;img" src="assets/images/cubes.png" width="91" height="91" alt="Math"/>-->
+<!--      </li>-->
+<!--      <li class="subjects-slider-list__item">-->
+<!--        <h4 class="subjects-slider-list__item-title">Natural Science</h4>-->
+<!--        <img class="subjects-slider-list__item-img"-->
+<!--             src="assets/images/science.png"-->
+<!--             width="87"-->
+<!--             height="91"-->
+<!--             alt="Math"-->
+<!--        />-->
+<!--      </li>-->
+<!--      <li class="subjects-slider-list__item">-->
+<!--        <h4 class="subjects-slider-list__item-title">English</h4>-->
+<!--        <img class="subjects-slider-list__item-img"-->
+<!--             src="assets/images/english.png"-->
+<!--             width="101"-->
+<!--             height="76"-->
+<!--             alt="Math"-->
+<!--        />-->
+<!--      </li>-->
+<!--      <li class="subjects-slider-list__item">-->
+<!--        <h4 class="subjects-slider-list__item-title">Language</h4>-->
+<!--        <img class="subjects-slider-list__item-img"-->
+<!--             src="assets/images/language.png"-->
+<!--             width="91"-->
+<!--             height="91"-->
+<!--             alt="Math"-->
+<!--        />-->
+<!--      </li>-->
+<!--      <li class="subjects-slider-list__item">-->
+<!--        <h4 class="subjects-slider-list__item-title">Programming</h4>-->
+<!--        <img class="subjects-slider-list__item-img"-->
+<!--             src="assets/images/programming.png"-->
+<!--             width="91"-->
+<!--             height="91"-->
+<!--             alt="Math"-->
+<!--        />-->
+<!--      </li>-->
     </ul>
   </section>
   <!--================ Section Subjects Slider End ================-->
@@ -198,29 +179,25 @@
         <div class="quotes left-quotes">
           <img src="assets/images/quotes.png" alt="Quotes" width="145" height="127">
         </div>
-        <div class="testimonials-list__item--review">
-          <p class="testimonials-list__item__desc">
-            Tell me and I forget. Teach me and I remember. Involve me and I learn.</p>
-          <h3 class="testimonials-list__item__person">Benjamin Franklin </h3>
-        </div>
+        <carousel
+          [cellsToShow]="1"
+          [overflowCellsLimit]="1"
+          [dots]="true"
+          [loop]="true">
+          <div *ngFor="let item of sliderItem; let i = index">
+            <div class="testimonials-list__item--review">
+              <p class="testimonials-list__item__desc">
+                {{item.description}}
+              </p>
+              <h3 class="testimonials-list__item__person">{{item.name}}</h3>
+            </div>
+          </div>
+        </carousel>
         <div class="quotes right-quotes">
           <img src="assets/images/quotes.png" alt="Quotes" width="145" height="127">
         </div>
       </li>
     </ul>
-    <div class="dots-wrapper">
-      <span class="dots__item dots__item--active"></span>
-      <span class="dots__item"></span>
-      <span class="dots__item"></span>
-    </div>
-    <div class="arrow">
-      <button class="arrow-btn arrow__left">
-        <img src="assets/images/vector.png" alt="back arrow">
-      </button>
-      <button class="arrow-btn arrow__right">
-        <img src="assets/images/vector.png" alt="next arrow">
-      </button>
-    </div>
   </section>
   <!--================ Section Testimonials End ================-->
 
@@ -254,16 +231,16 @@
           <div class="tutor-cards-list__item--image">
             <a [routerLink]="['../tutorView', tutor.userId]" class="search-cards-item-for-image">
 
-            <img [src]="tutor.photo" *ngIf="tutor.photo"
-                 alt="Tutor"
-                 width="166"
-                 height="167"
-            >
+              <img [src]="tutor.photo" *ngIf="tutor.photo"
+                   alt="Tutor"
+                   width="166"
+                   height="167"
+              >
               <img *ngIf="!tutor.photo" src=""
-                 alt="Tutor"
-                 width="166"
-                 height="167"
-            >
+                   alt="Tutor"
+                   width="166"
+                   height="167"
+              >
             </a>
 
           </div>
@@ -282,6 +259,7 @@
   <!--================ Section Our Tutors End ================-->
 </main>
 
+<app-alert-box></app-alert-box>
 <div class="login-modal-wrapper modal-wrapper">
   <app-modal-schem *ngIf="isOpenLogin" (close)="isOpenLogin = false" [title]="'Welcome to sophist'">
     <app-login (forgotPassword)="isOpenLogin = false; isOpenResetPassword = true"></app-login>

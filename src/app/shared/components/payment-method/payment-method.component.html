@@ -45,7 +45,7 @@
           <h3 class="form-item-label">Card expiration date* </h3>
           <div class="flex-container form-label double-select fixed-width">
             <div class="p-relative min-width-select">
-              <select formControlName="expMonth">
+              <select formControlName="expMonth" class="form-input selectpicker">
                 <option [ngValue]="item.id" *ngFor="let item of months$ | async">{{item.numberInString + ' ' + item.name}}</option>
               </select>
               <span class="error-message" *ngIf="form.get('expMonth')?.errors?.required && form.get('expMonth')?.touched">This is a required field.</span>

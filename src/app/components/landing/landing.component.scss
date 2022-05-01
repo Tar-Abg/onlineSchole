@@ -157,7 +157,7 @@
               }
             }
 
-            .main{
+            .main {
               height: auto !important;
               padding: 20px 0;
             }
@@ -169,6 +169,17 @@
 
   .carousel-caption {
     color: black;
+  }
+
+  ::ng-deep .carousel-arrows {
+    .carousel-arrow {
+      position: absolute;
+      @include flex-container-center;
+      @include square(73px, $radius: 50%);
+      background-color: $secondary-brand-color;
+      color: $clr-ntrl-min;
+      border: 0;
+    }
   }
 
   /***** Subjects Are ******/
@@ -208,6 +219,7 @@
         background-color: $clr-ntrl-min;
         cursor: pointer;
         transition: 500ms;
+        transform: translateX(20px) !important;
 
         &:hover {
           transform: scale(1.1);
@@ -223,6 +235,23 @@
         img {
           width: auto;
           height: auto;
+        }
+      }
+
+      ::ng-deep {
+        .carousel-cells {
+          display: flex;
+          grid-gap: 72px;
+        }
+
+        .carousel-arrow {
+          &-prev {
+            left: -90px;
+          }
+
+          &-next {
+            right: -90px;
+          }
         }
       }
     }
@@ -335,10 +364,6 @@
         &__desc {
           margin: 0 auto rem(38px);
           font: $type-light normal rem(30px) $Segoe-UI-sans;
-
-          font-family: Segoe UI;
-          font-size: 30px;
-          font-weight: 300;
           line-height: 54px;
           letter-spacing: 0.05em;
           text-align: center;
@@ -372,48 +397,45 @@
       }
     }
 
-    .arrow {
-      &-btn {
-        position: absolute;
-        top: 30%;
-        @include flex-container-center;
-        @include square(73px, $radius: 50%);
-        background-color: $secondary-brand-color;
-        color: $clr-ntrl-min;
-        border: 0;
-        transform: translate(0, -50%);
+    ::ng-deep {
+      .carousel-cells {
+        display: flex;
 
-        img {
-          width: 40%;
-          height: 40%;
+        & > div {
+          transform: translateX(20px) !important;
         }
       }
 
-      &__left {
-        left: 9%;
-      }
+      .carousel-dots {
+        display: flex;
+        justify-content: center;
+        grid-gap: 8px;
 
-      &__right {
-        right: 9%;
+        .carousel-dot {
+          @include square(12px, 50%);
+          background: #F4F4F4;
+          border: 0;
+          margin: 0;
 
-        img {
-          transform: rotate(180deg);
+          &-active {
+            @include square(15px, 50%);
+            background-color: #8FB5FC;
+          }
         }
       }
-    }
 
-    .dots-wrapper {
-      display: flex;
-      justify-content: center;
-      grid-gap: 8px;
+      .carousel-arrows {
+        .carousel-arrow {
+          top: 30%;
+          transform: translate(0, -50%);
 
-      .dots__item {
-        @include square(12px, 50%);
-        background: #F4F4F4;
+          &-prev {
+            left: -238px;
+          }
 
-        &--active {
-          @include square(15px, 50%);
-          background-color: #8FB5FC;
+          &-next {
+            right: -238px;
+          }
         }
       }
     }

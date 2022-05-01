@@ -13,9 +13,11 @@
     grid-gap: 32px;
     padding: 10px 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.22);
+
     &.isActive {
-      background-color: #ababab;
-      //Elida
+      box-shadow: 0 2px rgba(0, 0, 0, 0.25);
+      border-radius: 4px;
+      background-color: #cfd5ff;
     }
 
     .user-image-wrapper {
@@ -39,6 +41,11 @@
     }
 
     .user-message {
+      max-width: 300px;
+      min-width: 300px;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
       font: $type-light normal $type-smaller $Segoe-UI-sans;
       line-height: 19px;
       letter-spacing: 0.05em;
@@ -59,6 +66,10 @@
         font: $type-bold normal $type-medium-size $Segoe-UI-sans;
         color: $clr-ntrl-min;
       }
+    }
+
+    &:hover {
+      cursor: pointer;
     }
   }
 }
