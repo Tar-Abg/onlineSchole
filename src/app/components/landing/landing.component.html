@@ -184,14 +184,7 @@
           [overflowCellsLimit]="1"
           [dots]="true"
           [loop]="true">
-          <div *ngFor="let item of sliderItem; let i = index">
-            <div class="testimonials-list__item--review">
-              <p class="testimonials-list__item__desc">
-                {{item.description}}
-              </p>
-              <h3 class="testimonials-list__item__person">{{item.name}}</h3>
-            </div>
-          </div>
+
         </carousel>
         <div class="quotes right-quotes">
           <img src="assets/images/quotes.png" alt="Quotes" width="145" height="127">
@@ -236,7 +229,7 @@
                    width="166"
                    height="167"
               >
-              <img *ngIf="!tutor.photo" src=""
+              <img *ngIf="!tutor.photo" src="assets/images/profile1.jpg"
                    alt="Tutor"
                    width="166"
                    height="167"
@@ -259,7 +252,7 @@
   <!--================ Section Our Tutors End ================-->
 </main>
 
-<app-alert-box></app-alert-box>
+<!--<app-alert-box></app-alert-box>-->
 <div class="login-modal-wrapper modal-wrapper">
   <app-modal-schem *ngIf="isOpenLogin" (close)="isOpenLogin = false" [title]="'Welcome to sophist'">
     <app-login (forgotPassword)="isOpenLogin = false; isOpenResetPassword = true"></app-login>
