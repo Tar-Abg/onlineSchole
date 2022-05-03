@@ -45,11 +45,13 @@ export class ChatApiService {
     )
   }
 
-  markAsRead(chatId: number): Observable<any> {
+  markAsRead(chatId: number, update = false): Observable<any> {
     const body = {
       chatId
     }
-    return this.http.put<ResponseModel<any>>(`${this.url}/MarkAsRead`, body)
+    let params = new HttpParams();
+    params = params.append('update', update);
+    return this.http.put<ResponseModel<any>>(`${this.url}/MarkAsRead`, body, {params})
   }
 
 }
