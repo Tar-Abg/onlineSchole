@@ -1,5 +1,5 @@
 import {AfterViewChecked, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {ChatServiceService} from "../../services/chat-service.service";
+import {ChatService} from "../../services/chat.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {ChatApiService} from "../../services/chat-api.service";
@@ -26,7 +26,7 @@ export class MessageDashboardComponent implements OnInit, OnDestroy, AfterViewCh
   userId: number;
 
   constructor(
-    private chatServiceService: ChatServiceService,
+    private chatService: ChatService,
     private chatApiService: ChatApiService,
     private fb: FormBuilder,
     private storageService: StorageService,
@@ -62,7 +62,7 @@ export class MessageDashboardComponent implements OnInit, OnDestroy, AfterViewCh
 
   receiveMessage(): void {
     this.subscription.add(
-      this.chatServiceService.messageReceived$.subscribe(message => {
+      this.chatService.messageReceived$.subscribe(message => {
         this.checkAndUpdateChat(message);
       })
     );
@@ -72,6 +72,7 @@ export class MessageDashboardComponent implements OnInit, OnDestroy, AfterViewCh
     if (this.selectedConversation && (this.selectedConversation?.chatId === message.chatId)) {
       this.messages[this.messages.length - 1].messages.push(message);
       this.selectedConversation.lastMessage = message.message as string;
+      this.markAsRead(null, message.chatId);
       this.cd.detectChanges();
       this.scrollToBottom();
     } else {
@@ -99,16 +100,16 @@ export class MessageDashboardComponent implements OnInit, OnDestroy, AfterViewCh
   selectAndConnectConversation(conversations: Conversation[]): void {
     this.originalConversations = JSON.parse(JSON.stringify(conversations));
     this.conversations = conversations;
-    if (!this.chatServiceService.connectionCreated) {
-      this.chatServiceService.createConnection();
-      this.chatServiceService.registerOnServerEvents();
+    if (!this.chatService.connectionCreated) {
+      this.chatService.createConnection();
+      this.chatService.registerOnServerEvents();
     }
   }
 
   sendMessage(): void {
     if (this.form.valid) {
       const message = this.createNewMessage();
-      this.chatServiceService.sendMessage(message).then(() => {
+      this.chatService.sendMessage(message).then(() => {
         this.updateDashboard(message)
       });
     }
@@ -189,11 +190,13 @@ export class MessageDashboardComponent implements OnInit, OnDestroy, AfterViewCh
     );
   }
 
-  markAsRead(conversation: Conversation): void {
-    if (conversation.unreadMessagesCount) {
+  markAsRead(conversation?: Conversation | null, chatId?: number): void {
+    if (conversation?.unreadMessagesCount) {
       this.subscription.add(
         this.chatApiService.markAsRead(conversation.chatId).subscribe(() => this.selectedConversation.unreadMessagesCount = 0)
       );
+    } else {
+      this.chatApiService.markAsRead(chatId as number, true).subscribe()
     }
   }
 
@@ -207,6 +210,7 @@ export class MessageDashboardComponent implements OnInit, OnDestroy, AfterViewCh
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
-    this.chatServiceService.connectionCreated = false;
+    this.chatService.connectionCreated = false;
+    this.chatService.disconnect();
   }
 }

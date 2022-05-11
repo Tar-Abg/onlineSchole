@@ -6,9 +6,8 @@ import {StorageService} from "../../shared/services/storage/storage.service";
 import {MessageService} from "../../shared/services/message/message.service";
 import {AuthService} from "../../shared/services/auth/auth.service";
 import {InfosService} from "../../shared/services/infos/infos.service";
-import {TutorBaseInfo, TutorForHomePage} from "../../tutor-profile/models/tutor.model";
+import {TutorForHomePage} from "../../tutor-profile/models/tutor.model";
 import {Quotes} from "../../shared/models/infos.model";
-import {tap} from "rxjs/operators";
 
 @Component({
   selector: 'app-landing',
@@ -99,34 +98,6 @@ export class LandingComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
-  sliderItem = [
-    {
-      path: '../../assets/images/armenia.png',
-      name: 'Benjamin Franklin ',
-      description: 'Tell me and I forget. Teach me and I remember. Involve me and I learn.'
-    },
-    {
-      path: '../../assets/images/armenia.png',
-      name: 'Elida ',
-      description: 'Teach me and I remember. Involve me and I learn.'
-    },
-    {
-      path: '../../assets/images/armenia.png',
-      name: 'Taron ',
-      description: 'Involve me and I learn.'
-    },
-    {
-      path: '../../assets/images/armenia.png',
-      name: 'Avetiq ',
-      description: 'Tell me and I forget. Teach me and I remember. Involve me and I learn.'
-    },
-    {
-      path: '../../assets/images/armenia.png',
-      name: 'Raz ',
-      description: 'Tell me and I forget. Teach me and I remember. Involve me and I learn.'
-    },
-  ]
 
   subjects = [
     {

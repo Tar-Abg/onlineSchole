@@ -6,7 +6,7 @@ import {Messages} from "../models/chat.model";
 @Injectable({
   providedIn: 'root'
 })
-export class ChatServiceService {
+export class ChatService {
   messageReceived$ = new EventEmitter<any>();
   connectionCreated: boolean;
 
@@ -48,6 +48,11 @@ export class ChatServiceService {
     return this._hubConnection.invoke("SendMessage", message);
   }
 
+  disconnect(): void {
+    this._hubConnection.stop().then(() => {
+      console.log('connection closed')
+    });
+  }
 }
 
 

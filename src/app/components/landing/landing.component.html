@@ -201,7 +201,7 @@
                    width="166"
                    height="167"
               >
-              <img *ngIf="!tutor.photo" src=""
+              <img *ngIf="!tutor.photo" src="assets/images/profile1.jpg"
                    alt="Tutor"
                    width="166"
                    height="167"
@@ -224,7 +224,7 @@
   <!--================ Section Our Tutors End ================-->
 </main>
 
-<app-alert-box></app-alert-box>
+<!--<app-alert-box></app-alert-box>-->
 <div class="login-modal-wrapper modal-wrapper">
   <app-modal-schem *ngIf="isOpenLogin" (close)="isOpenLogin = false" [title]="'Welcome to sophist'">
     <app-login (forgotPassword)="isOpenLogin = false; isOpenResetPassword = true"></app-login>
