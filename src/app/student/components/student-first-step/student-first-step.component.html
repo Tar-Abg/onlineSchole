@@ -6,41 +6,72 @@
           <legend class="form-legend">Enter your information</legend>
           <label for="first-name" class="form-label">
             <input id="first-name" class="form-input" type="text" placeholder="First name*" formControlName="firstName">
-            <span class="error-message" *ngIf="(form.get('firstName')?.errors?.required || form.get('firstName')?.errors?.pattern)  && form.get('firstName')?.touched">Please fill in your first name</span>
-            <span class="error-message" *ngIf="form.get('firstName')?.errors?.maxlength && form.get('firstName')?.touched">Field length has exceeded the limit of 100 characters</span>
+            <span class="error-message"
+                  *ngIf="(form.get('firstName')?.errors?.required || form.get('firstName')?.errors?.pattern)  && form.get('firstName')?.touched">Please fill in your first name</span>
+            <span class="error-message"
+                  *ngIf="form.get('firstName')?.errors?.maxlength && form.get('firstName')?.touched">Field length has exceeded the limit of 100 characters</span>
           </label>
           <label for="last-name" class="form-label">
             <input id="last-name" class="form-input" type="text" placeholder="Last name*" formControlName="lastName">
-            <span class="error-message" *ngIf="(form.get('lastName')?.errors?.required || form.get('lastName')?.errors?.pattern)  && form.get('lastName')?.touched">Please fill in your last name</span>
-            <span class="error-message" *ngIf="form.get('lastName')?.errors?.maxlength && form.get('lastName')?.touched">Field length has exceeded the limit of 100 characters</span>
+            <span class="error-message"
+                  *ngIf="(form.get('lastName')?.errors?.required || form.get('lastName')?.errors?.pattern)  && form.get('lastName')?.touched">Please fill in your last name</span>
+            <span class="error-message"
+                  *ngIf="form.get('lastName')?.errors?.maxlength && form.get('lastName')?.touched">Field length has exceeded the limit of 100 characters</span>
           </label>
           <label for="user-name" class="form-label flex-column">
             <input id="user-name" class="form-input" type="text" placeholder="User name*"
                    formControlName="userName">
-<!--            <p class="user-form-warning">The username cannot contain a space.</p>-->
-            <span class="error-message" *ngIf="(form.get('userName')?.errors?.required || form.get('userName')?.errors?.pattern) && form.get('userName')?.touched">Please fill in your username</span>
-            <span class="error-message" *ngIf="form.get('userName')?.errors?.maxlength && form.get('userName')?.touched">Field length has exceeded the limit of 100 characters</span>
-            <span class="error-message" *ngIf="usernameIsExist$ | async">This username is already registered on Sophist</span>
-            <span class="error-message" *ngIf="form.get('userName')?.errors?.cannotContainSpace && form.get('userName')?.touched">Username can not contain space</span>
+            <!--            <p class="user-form-warning">The username cannot contain a space.</p>-->
+            <span class="error-message"
+                  *ngIf="(form.get('userName')?.errors?.required || form.get('userName')?.errors?.pattern) && form.get('userName')?.touched">Please fill in your username</span>
+            <span class="error-message"
+                  *ngIf="form.get('userName')?.errors?.maxlength && form.get('userName')?.touched">Field length has exceeded the limit of 100 characters</span>
+            <span class="error-message"
+                  *ngIf="usernameIsExist$ | async">This username is already registered on Sophist</span>
+            <span class="error-message"
+                  *ngIf="form.get('userName')?.errors?.cannotContainSpace && form.get('userName')?.touched">Username can not contain space</span>
           </label>
           <div class="gender fixed-width form-label">
             <app-select [label]="'gender*'" [list]="genderList$ | async" formControlName="gender"></app-select>
             <span class="error-message" *ngIf="form.get('gender')?.errors && form.get('gender')?.touched">Please specify your gender</span>
           </div>
-          <div class="flex-container form-label double-select fixed-width">
-            <div class="p-relative min-width-select">
-              <app-select [label]="'month of birth*'" [keyName]="'name'"
-                          formControlName="monthOfBirth"></app-select>
-              <span class="error-message" *ngIf="form.get('monthOfBirth')?.errors && form.get('monthOfBirth')?.touched">Please specify month of your  birth</span>
-            </div>
-            <div class="p-relative min-width-select">
-              <app-select [label]="'year of birth*'" formControlName="yearOfBirth"></app-select>
-              <span class="error-message" *ngIf="form.get('yearOfBirth')?.errors && form.get('yearOfBirth')?.touched">Please specify year of your birth</span>
-            </div>
+          <!--          <div class="flex-container form-label double-select fixed-width">-->
+          <!--            <div class="p-relative min-width-select">-->
+          <!--              <app-select [label]="'month of birth*'" [keyName]="'name'"-->
+          <!--                          formControlName="monthOfBirth"></app-select>-->
+          <!--              <span class="error-message" *ngIf="form.get('monthOfBirth')?.errors && form.get('monthOfBirth')?.touched">Please specify month of your  birth</span>-->
+          <!--            </div>-->
+          <!--            <div class="p-relative min-width-select">-->
+          <!--              <app-select [label]="'year of birth*'" formControlName="yearOfBirth"></app-select>-->
+          <!--              <span class="error-message" *ngIf="form.get('yearOfBirth')?.errors && form.get('yearOfBirth')?.touched">Please specify year of your birth</span>-->
+          <!--            </div>-->
+          <!--          </div>-->
+
+          <div class="p-relative form-label date-picker-wrapper dateOfBirth">
+            <h2 class="date-picker-label">Date of birth </h2>
+            <mat-form-field appearance="fill" class="date-range-wrapper
+                custom-date-range-wrapper">
+              <mat-datepicker-toggle matSuffix [for]="picker">
+                <mat-icon matDatepickerToggleIcon>
+                  <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+                </mat-icon>
+              </mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <input matInput
+                     [matDatepicker]="picker"
+                     (click)="picker.open()"
+                     formControlName="startDate"
+                     placeholder="MM/dd/yyyy*"
+              >
+            </mat-form-field>
+            <span class="error-message">This is a required field</span>
           </div>
+
           <div class="p-relative form-label">
-            <app-select [label]="'time zone*'" formControlName="preferredTimeZone" [list]="timeZones$ | async" [keyName]="'displayName'"></app-select>
-            <span class="error-message" *ngIf="form.get('preferredTimeZone')?.errors && form.get('preferredTimeZone')?.touched">This is a required field</span>
+            <app-select [label]="'time zone*'" formControlName="preferredTimeZone" [list]="timeZones$ | async"
+                        [keyName]="'displayName'"></app-select>
+            <span class="error-message"
+                  *ngIf="form.get('preferredTimeZone')?.errors && form.get('preferredTimeZone')?.touched">This is a required field</span>
           </div>
           <label for="email" class="form-label">
             <input id="email" class="form-input" autocomplete="username" type="email"
@@ -53,17 +84,23 @@
             <input id="password" class="form-input" autocomplete="new-password" type="password"
                    placeholder="password*" formControlName="password">
             <span class="error-message" *ngIf="form.get('password')?.errors?.required && form.get('password')?.touched">Please create your password</span>
-            <span class="error-message" *ngIf="form.get('password')?.errors?.minlength && !form.get('password')?.errors?.cannotContainSpace && form.get('password')?.touched">Password should be at least 8 characters</span>
-            <span class="error-message" *ngIf="form.get('password')?.errors?.cannotContainSpace && form.get('password')?.touched">Password can not contain space</span>
-            <span class="error-message" *ngIf="form.get('password')?.errors?.pattern && !form.get('password')?.errors?.cannotContainSpace && form.get('password')?.touched && !form.get('password')?.errors?.minlength">Password should contain at least 1 digit and 1 symbol</span>
-            <span class="error-message" *ngIf="(passwordValidation$ | async) as passwordValidation">{{passwordValidation}}</span>
+            <span class="error-message"
+                  *ngIf="form.get('password')?.errors?.minlength && !form.get('password')?.errors?.cannotContainSpace && form.get('password')?.touched">Password should be at least 8 characters</span>
+            <span class="error-message"
+                  *ngIf="form.get('password')?.errors?.cannotContainSpace && form.get('password')?.touched">Password can not contain space</span>
+            <span class="error-message"
+                  *ngIf="form.get('password')?.errors?.pattern && !form.get('password')?.errors?.cannotContainSpace && form.get('password')?.touched && !form.get('password')?.errors?.minlength">Password should contain at least 1 digit and 1 symbol</span>
+            <span class="error-message"
+                  *ngIf="(passwordValidation$ | async) as passwordValidation">{{passwordValidation}}</span>
           </label>
           <label for="re-enter-password" class="form-label">
             <input id="re-enter-password" class="form-input" autocomplete="new-password"
                    type="password"
                    placeholder="re-enter password*" formControlName="rePassword">
-            <span class="error-message" *ngIf="form.get('rePassword')?.errors?.required && form.get('rePassword')?.touched">Please create your password</span>
-            <span class="error-message" *ngIf="form?.errors?.notSame  && form.get('rePassword')?.touched && !form.get('rePassword')?.errors?.required">Passwords are not the same</span>
+            <span class="error-message"
+                  *ngIf="form.get('rePassword')?.errors?.required && form.get('rePassword')?.touched">Please create your password</span>
+            <span class="error-message"
+                  *ngIf="form?.errors?.notSame  && form.get('rePassword')?.touched && !form.get('rePassword')?.errors?.required">Passwords are not the same</span>
           </label>
           <span class="student-form-warning">Be informed that only your initials will be visible to tutors</span>
         </fieldset>

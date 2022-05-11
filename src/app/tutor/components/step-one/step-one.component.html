@@ -28,17 +28,38 @@
           <app-select [label]="'gender*'" [list]="genderList$ | async" formControlName="gender"></app-select>
           <span class="error-message" *ngIf="form.get('gender')?.errors && form.get('gender')?.touched">Please specify your gender</span>
         </div>
-        <div class="flex-container form-label double-select fixed-width">
-          <div class="p-relative min-width-select">
-            <app-select [label]="'month of birth*'" [list]="months$ | async" [keyName]="'name'"
-                        formControlName="monthOfBirth"></app-select>
-            <span class="error-message" *ngIf="form.get('monthOfBirth')?.errors && form.get('monthOfBirth')?.touched">Please specify month of your  birth</span>
-          </div>
-          <div class="p-relative min-width-select">
-            <app-select [label]="'year of birth*'" [list]="yearList" formControlName="yearOfBirth"></app-select>
-            <span class="error-message" *ngIf="form.get('yearOfBirth')?.errors && form.get('yearOfBirth')?.touched">Please specify year of your birth</span>
-          </div>
+<!--        <div class="flex-container form-label double-select fixed-width">-->
+<!--          <div class="p-relative min-width-select">-->
+<!--            <app-select [label]="'month of birth*'" [list]="months$ | async" [keyName]="'name'"-->
+<!--                        formControlName="monthOfBirth"></app-select>-->
+<!--            <span class="error-message" *ngIf="form.get('monthOfBirth')?.errors && form.get('monthOfBirth')?.touched">Please specify month of your  birth</span>-->
+<!--          </div>-->
+<!--          <div class="p-relative min-width-select">-->
+<!--            <app-select [label]="'year of birth*'" [list]="yearList" formControlName="yearOfBirth"></app-select>-->
+<!--            <span class="error-message" *ngIf="form.get('yearOfBirth')?.errors && form.get('yearOfBirth')?.touched">Please specify year of your birth</span>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <div class="p-relative form-label date-picker-wrapper dateOfBirth">
+          <h2 class="date-picker-label">Date of birth </h2>
+          <mat-form-field appearance="fill" class="date-range-wrapper
+                custom-date-range-wrapper">
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>
+                <img src="assets/images/calendar.svg" alt="Calendar" width="26" height="28">
+              </mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <input matInput
+                   [matDatepicker]="picker"
+                   (click)="picker.open()"
+                   formControlName="startDate"
+                   placeholder="MM/dd/yyyy*"
+            >
+          </mat-form-field>
+          <span class="error-message">This is a required field</span>
         </div>
+
         <div class="p-relative form-label">
           <app-select [label]="'time zone*'" formControlName="preferredTimeZone"  [list]="timeZones$ | async" [keyName]="'displayName'"></app-select>
           <span class="error-message" *ngIf="form.get('preferredTimeZone')?.errors && form.get('preferredTimeZone')?.touched">This is a required field</span>
