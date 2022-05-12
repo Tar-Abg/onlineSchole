@@ -54,6 +54,7 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
       userName: [null, [Validators.required, Validators.maxLength(100), this.validationService.cannotContainSpace]],
       preferredTimeZone: [null, [Validators.required]],
       gender: [null, [Validators.required]],
+      startDate: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       password: [null, ],
       rePassword: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],

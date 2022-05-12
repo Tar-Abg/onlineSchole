@@ -56,6 +56,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
       gender: [null, [Validators.required]],
       monthOfBirth: [null, [Validators.required]],
       yearOfBirth: [null, [Validators.required]],
+      startDate: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern)]],
       password: [null, [Validators.required, this.validationService.cannotContainSpace, Validators.minLength(8), Validators.pattern(/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/)]],
       rePassword: [null, [Validators.required]],

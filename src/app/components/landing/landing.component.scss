@@ -354,13 +354,10 @@
     margin-bottom: rem(20px);
 
     &-list {
-      margin-bottom: rem(75px);
+      width: 47%;
+      margin: 0 auto rem(75px);
 
       &__item {
-        position: relative;
-        width: 47%;
-        margin: 0 auto;
-
         &__desc {
           margin: 0 auto rem(38px);
           font: $type-light normal rem(30px) $Segoe-UI-sans;
@@ -375,31 +372,35 @@
           letter-spacing: 0.05em;
           text-align: right;
         }
-
-        .quotes {
-          position: absolute;
-
-          img {
-            width: 48%;
-          }
-        }
-
-        .left-quotes {
-          left: -4%;
-          top: -16%;
-        }
-
-        .right-quotes {
-          right: -50px;
-          bottom: -38px;
-          transform: rotate(180deg);
-        }
       }
+    }
+
+    .quotes {
+      position: absolute;
+
+      img {
+        width: 48%;
+      }
+    }
+
+    .left-quotes {
+      left: 27%;
+      top: -13%;
+    }
+
+    .right-quotes {
+      right: 24%;
+      bottom: 23%;
+      transform: rotate(180deg);
     }
 
     ::ng-deep {
       .carousel-cells {
         display: flex;
+
+        .carousel-cell {
+          height: auto;
+        }
 
         & > div {
           transform: translateX(20px) !important;

@@ -53,47 +53,6 @@
           <img class="subjects-slider-list__item--img" src="{{subject.path}}" width="91" height="91" alt="Math"/>
         </li>
       </carousel>
-
-<!--      <li class="subjects-slider-list__item">-->
-<!--        <h4 class="subjects-slider-list__item&#45;&#45;title">Math</h4>-->
-<!--        <img class="subjects-slider-list__item&#45;&#45;img" src="assets/images/cubes.png" width="91" height="91" alt="Math"/>-->
-<!--      </li>-->
-<!--      <li class="subjects-slider-list__item">-->
-<!--        <h4 class="subjects-slider-list__item-title">Natural Science</h4>-->
-<!--        <img class="subjects-slider-list__item-img"-->
-<!--             src="assets/images/science.png"-->
-<!--             width="87"-->
-<!--             height="91"-->
-<!--             alt="Math"-->
-<!--        />-->
-<!--      </li>-->
-<!--      <li class="subjects-slider-list__item">-->
-<!--        <h4 class="subjects-slider-list__item-title">English</h4>-->
-<!--        <img class="subjects-slider-list__item-img"-->
-<!--             src="assets/images/english.png"-->
-<!--             width="101"-->
-<!--             height="76"-->
-<!--             alt="Math"-->
-<!--        />-->
-<!--      </li>-->
-<!--      <li class="subjects-slider-list__item">-->
-<!--        <h4 class="subjects-slider-list__item-title">Language</h4>-->
-<!--        <img class="subjects-slider-list__item-img"-->
-<!--             src="assets/images/language.png"-->
-<!--             width="91"-->
-<!--             height="91"-->
-<!--             alt="Math"-->
-<!--        />-->
-<!--      </li>-->
-<!--      <li class="subjects-slider-list__item">-->
-<!--        <h4 class="subjects-slider-list__item-title">Programming</h4>-->
-<!--        <img class="subjects-slider-list__item-img"-->
-<!--             src="assets/images/programming.png"-->
-<!--             width="91"-->
-<!--             height="91"-->
-<!--             alt="Math"-->
-<!--        />-->
-<!--      </li>-->
     </ul>
   </section>
   <!--================ Section Subjects Slider End ================-->
@@ -113,7 +72,9 @@
     <div class="flex-container-center result-list-wrapper  flex-wrap-content">
       <div class="online-lesson-gif">
         <img src="assets/images/education-blue.gif"
-             alt="lying-businessmen-concept" width="640" height="640"
+             alt="lying-businessmen-concept"
+             width="640"
+             height="640"
         >
       </div>
       <ul class="result-list">
@@ -139,7 +100,6 @@
           </div>
           <p class="result-list__item--text">
             Save time and easily fit lessons into your schedule
-
           </p>
         </li>
         <li class="result-list__item flex-container">
@@ -174,23 +134,29 @@
 
   <!--================ Section Testimonials Start ================-->
   <section class="testimonials border-bottom">
+    <div class="quotes left-quotes">
+      <img src="assets/images/quotes.png" alt="Quotes" width="145" height="127">
+    </div>
     <ul class="testimonials-list">
-      <li class="testimonials-list__item flex-container-center">
-        <div class="quotes left-quotes">
-          <img src="assets/images/quotes.png" alt="Quotes" width="145" height="127">
-        </div>
-        <carousel
-          [cellsToShow]="1"
-          [overflowCellsLimit]="1"
-          [dots]="true"
-          [loop]="true">
-
-        </carousel>
-        <div class="quotes right-quotes">
-          <img src="assets/images/quotes.png" alt="Quotes" width="145" height="127">
-        </div>
-      </li>
+      <carousel
+        [dots]="true"
+        [loop]="true"
+        [cellsToShow]="1"
+        [overflowCellsLimit]="1"
+        class="carousel-html-content"
+      >
+        <li class="carousel-cell flex-container-center testimonials-list__item"
+            *ngFor="let item of quotes$ | async; let i = index">
+          <div class="testimonials-list__item--review">
+            <p class="testimonials-list__item__desc">{{item.quoteText}}</p>
+            <h3 class="testimonials-list__item__person">{{item.author}}</h3>
+          </div>
+        </li>
+      </carousel>
     </ul>
+    <div class="quotes right-quotes">
+      <img src="assets/images/quotes.png" alt="Quotes" width="145" height="127">
+    </div>
   </section>
   <!--================ Section Testimonials End ================-->
 
@@ -205,12 +171,18 @@
       </div>
       <button class="btn find-tutor__btn flex-container-center" (click)="navigateToSearchTutor()">
         Find a tutor in any subject
-        <img class="link-image" src="assets/images/liner.png" alt="Liner" width="142" height="140">
+        <img class="link-image" src="assets/images/liner.png"
+             alt="Liner"
+             width="142"
+             height="140"
+        >
       </button>
     </div>
     <div class="find-tutor__image">
       <img src="assets/images/lying-businessmen-concept.gif"
-           alt="lying-businessmen-concept" width="640" height="640">
+           alt="lying-businessmen-concept"
+           width="640"
+           height="640">
     </div>
   </section>
   <!--================ Section Help End ================-->
