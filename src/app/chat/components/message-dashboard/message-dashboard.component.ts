@@ -100,6 +100,7 @@ export class MessageDashboardComponent implements OnInit, OnDestroy, AfterViewCh
   selectAndConnectConversation(conversations: Conversation[]): void {
     this.originalConversations = JSON.parse(JSON.stringify(conversations));
     this.conversations = conversations;
+    this.getMessages(conversations[0].chatId);
     if (!this.chatService.connectionCreated) {
       this.chatService.createConnection();
       this.chatService.registerOnServerEvents();

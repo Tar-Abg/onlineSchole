@@ -15,7 +15,7 @@
             <span class="error-message" *ngIf="form.get('userName')?.errors?.required && form.get('userName')?.touched">This is a required field</span>
           </label>
         </li>
-        <li class="add-lesson-list--item date-wrapper">
+        <li class="add-lesson-list--item date-wrapper mt-2">
           <h3 class="form-item-label label-with-minus-margin">Date</h3>
           <mat-form-field
             appearance="fill"
@@ -137,6 +137,22 @@
             >
             <span class="error-message"
                   *ngIf="form.get('lessonPlan')?.errors?.required && form.get('lessonPlan')?.touched">This is a required field</span>
+          </label>
+          <span class="form-item-notification">Your lesson plan must be between 15 and 100 characters.</span>
+        </li>
+        <li class="add-lesson-list--item add-lesson-list--item__fixed-width">
+          <h3 class="form-item-label">Meeting link</h3>
+          <label for="meetingLink" class="form-label">
+            <input id="meetingLink"
+                   class="form-input"
+                   autocomplete="meetingLink"
+                   type="text"
+                   placeholder="Write a Meeting link*"
+                   formControlName="meetingLink"
+            >
+            <span class="error-message"
+                  *ngIf="form.get('meetingLink')?.errors && form.get('meetingLink')?.touched">This is a required field</span>
+            <span class="error-message" *ngIf="linkErrorMessage">{{linkErrorMessage}}</span>
           </label>
           <span class="form-item-notification">Your lesson plan must be between 15 and 100 characters.</span>
         </li>

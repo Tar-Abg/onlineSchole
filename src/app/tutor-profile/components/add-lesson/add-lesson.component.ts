@@ -21,6 +21,7 @@ export class AddLessonComponent implements OnInit, OnDestroy {
   minutes$: Observable<Minutes[]>;
   form: FormGroup;
   minDate = new Date();
+  linkErrorMessage: string;
 
   constructor(
     private fb: FormBuilder,
@@ -37,6 +38,7 @@ export class AddLessonComponent implements OnInit, OnDestroy {
     this.minutes$ = this.infoService.getMinutes();
     this.getSubjects();
     this.getLevels();
+    this.clearLinkError();
   }
 
   getSubjects(): void {
@@ -65,6 +67,7 @@ export class AddLessonComponent implements OnInit, OnDestroy {
       duration: [null, [Validators.required]],
       categoryId: [null, [Validators.required]],
       subjectId: [null, [Validators.required]],
+      meetingLink: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       levelId: [null],
       lessonPlan: [null, [Validators.required, Validators.maxLength(100), Validators.minLength(15), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       hourlyRate: [null],
@@ -82,10 +85,23 @@ export class AddLessonComponent implements OnInit, OnDestroy {
 
   addLesson(): void {
     this.subscription.add(
-      this.tutorService.addLesson(this.form.value).subscribe(() => {
-        this.onClose.emit();
-      })
+      this.tutorService.addLesson(this.form.value).subscribe(
+        () => this.onClose.emit(),
+        (error) => {
+          error.error.type === 'Invalid meeting link error' ?
+            this.linkErrorMessage = error.error.title
+            : this.linkErrorMessage = ''
+        }
+      ),
     );
+  }
+
+  clearLinkError(): void {
+    this.subscription.add(
+      this.form.get('meetingLink')?.valueChanges.subscribe(() => {
+        this.linkErrorMessage = '';
+      })
+    )
   }
 
   ngOnDestroy(): void {

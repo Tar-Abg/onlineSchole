@@ -46,7 +46,9 @@
         Show
       </button>
     </form>
-    <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true" *ngIf="userType === 'tutor'">Add Lesson</button>
+    <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true" *ngIf="userType === 'tutor'">Add
+      Lesson
+    </button>
   </div>
   <div class="calendar-content">
     <div class="tWrap">
@@ -111,84 +113,90 @@
       <div class="tWrap__body">
         <table>
           <tbody>
-          <tr *ngFor="let lesson of (lessonSchedule$ | async)">
-            <td>
-              <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.student}}">
-                {{userType === 'tutor' ? lesson.student : lesson.tutor }}
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                ${{lesson.hourlyRate}}
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                <img
-                  src="assets/images/calendar.png"
-                  alt="Calendar"
-                  width="26"
-                  height="28"
-                >
-                {{lesson.lessonDate | date : 'shortDate'}}
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                {{lesson.lessonInterval}}
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                {{lesson.duration}}
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.subject}}">
-                {{lesson.subject}}
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.lessonPlan}}">
-                {{lesson.lessonPlan}}
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text" data-placement="top" title="${{lesson.status}}">
-                {{lesson.status}}
-              </p>
-            </td>
-            <td>
-              <p class="tbody-text">
-                {{lesson.actualDuration}}
-              </p>
-            </td>
-            <td>
-              <div class="lessons-table-btn-wrapper">
-                <button class="lesson-status-btn  lesson-status-btn__start flex-container-center"
-                        *ngIf="lesson.start">
-                  {{userType === 'tutor' ? 'Start' : 'Join' }}
-                </button>
-                <button class="lesson-status-btn lesson-status-btn__end flex-container-center"
-                        (click)="isOpenEndLesson = true" *ngIf="lesson.end">
-                  End
-                </button>
-                <button class="lesson-status-btn lesson-status-btn__cancel flex-container-center"
-                        (click)="openCancelLessonModal(lesson.id)"
-                        *ngIf="lesson.cancel">
-                  Cancel
-                </button>
-              </div>
-            </td>
-          </tr>
+          <ng-container [ngTemplateOutlet]="lessonSchedule?.length ? lessons : empty">
+
+          </ng-container>
+          <ng-template #lessons>
+            <tr *ngFor="let lesson of lessonSchedule">
+              <td>
+                <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.student}}">
+                  {{userType === 'tutor' ? lesson.student : lesson.tutor }}
+                </p>
+              </td>
+              <td>
+                <p class="tbody-text">
+                  ${{lesson.hourlyRate}}
+                </p>
+              </td>
+              <td>
+                <p class="tbody-text">
+                  <img
+                    src="assets/images/calendar.png"
+                    alt="Calendar"
+                    width="26"
+                    height="28"
+                  >
+                  {{lesson.lessonDate | date : 'shortDate'}}
+                </p>
+              </td>
+              <td>
+                <p class="tbody-text">
+                  {{lesson.lessonInterval}}
+                </p>
+              </td>
+              <td>
+                <p class="tbody-text">
+                  {{lesson.duration}}
+                </p>
+              </td>
+              <td>
+                <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.subject}}">
+                  {{lesson.subject}}
+                </p>
+              </td>
+              <td>
+                <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.lessonPlan}}">
+                  {{lesson.lessonPlan}}
+                </p>
+              </td>
+              <td>
+                <p class="tbody-text" data-placement="top" title="${{lesson.status}}">
+                  {{lesson.status}}
+                </p>
+              </td>
+              <td>
+                <p class="tbody-text">
+                  {{lesson.actualDuration}}
+                </p>
+              </td>
+              <td>
+                <div class="lessons-table-btn-wrapper">
+                  <a *ngIf="lesson.start" [href]="lesson.meetingLink" target="_blank" class="lesson-status-btn  lesson-status-btn__start flex-container-center">
+                    {{userType === 'tutor' ? 'Start' : 'Join' }}
+                  </a>
+                  <button class="lesson-status-btn lesson-status-btn__end flex-container-center"
+                          (click)="isOpenEndLesson = true" *ngIf="lesson.end">
+                    End
+                  </button>
+                  <button class="lesson-status-btn lesson-status-btn__cancel flex-container-center"
+                          (click)="openCancelLessonModal(lesson.id)"
+                          *ngIf="lesson.cancel">
+                    Cancel
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
           <!-- In case the data is missing-->
-          <tr class="without-data" *ngIf="!(lessonSchedule$ | async)?.length && formSubmitted">
-            <td>
-              <h3 class="no-data-message">
-                Sorry, there are no lessons matching the search criteria
-              </h3>
-            </td>
-          </tr>
+          <ng-template #empty>
+            <tr class="without-data" *ngIf="formSubmitted">
+              <td>
+                <h3 class="no-data-message">
+                  Sorry, there are no lessons matching the search criteria
+                </h3>
+              </td>
+            </tr>
+          </ng-template>
           </tbody>
         </table>
       </div>

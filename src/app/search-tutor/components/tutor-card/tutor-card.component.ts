@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SearchResultForTutor} from "../../models/search.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tutor-card',
@@ -23,7 +24,9 @@ export class TutorCardComponent implements OnInit {
     return this._tutor;
   }
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
@@ -44,6 +47,10 @@ export class TutorCardComponent implements OnInit {
       this.isContentToggled = false;
       return this.originalContent;
     }
+  }
+
+  navigate(id: number): void{
+    this.router.navigate([`tutorView`, id]);
   }
 
 }

@@ -1,9 +1,9 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from "@angular/forms";
 import {TutorService} from "../../services/tutor-service.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {LessonSchedule} from "../../models/tutor.model";
-import {Observable} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {StudentProfileService} from "../../../student-profile/services/student-profile.service";
@@ -13,10 +13,11 @@ import {StudentProfileService} from "../../../student-profile/services/student-p
   templateUrl: './start-lesson.component.html',
   styleUrls: ['./start-lesson.component.scss']
 })
-export class StartLessonComponent implements OnInit {
+export class StartLessonComponent implements OnInit, OnDestroy {
+  private readonly subscription: Subscription = new Subscription();
   @Input() title: string = 'Entered lesson';
   @Input() userType: 'tutor' | 'student' = 'tutor';
-  lessonSchedule$: Observable<LessonSchedule[]>;
+  lessonSchedule: LessonSchedule[];
   lessonStatuses$: Observable<KeyValuePair[]>;
   isOpenEndLesson: boolean;
   isOpenCancelLesson: boolean;
@@ -32,7 +33,8 @@ export class StartLessonComponent implements OnInit {
     private studentProfileService: StudentProfileService,
     private storageService: StorageService,
     private infoService: InfosService,
-  ) { }
+  ) {
+  }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -40,7 +42,7 @@ export class StartLessonComponent implements OnInit {
     this.lessonStatuses$ = this.infoService.getLessonStatuses();
   }
 
-  initializeForm(): void{
+  initializeForm(): void {
     this.form = this.fb.group({
       statusId: [null],
       from: [null],
@@ -50,9 +52,13 @@ export class StartLessonComponent implements OnInit {
 
   onSubmit(): void {
     if (this.userType === "tutor") {
-      this.lessonSchedule$ = this.tutorService.getLessons(this.userId, this.form.value);
+      this.subscription.add(
+        this.tutorService.getLessons(this.userId, this.form.value).subscribe((data) => this.lessonSchedule = data)
+      );
     } else {
-      this.lessonSchedule$ = this.studentProfileService.getLessons(this.userId, this.form.value);
+      this.subscription.add(
+        this.studentProfileService.getLessons(this.userId, this.form.value).subscribe((data) => this.lessonSchedule = data)
+      );
     }
     this.formSubmitted = true;
   }
@@ -60,5 +66,9 @@ export class StartLessonComponent implements OnInit {
   openCancelLessonModal(lessonId: number): void {
     this.isOpenCancelLesson = true;
     this.selectedLessonId = lessonId;
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }
