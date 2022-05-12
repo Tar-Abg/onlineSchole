@@ -1,0 +1,91 @@
+@media screen and (max-width: 1800px) {
+  .page-wrapper {
+    max-width: 90%;
+  }
+}
+
+@media screen and (max-width: 1600px) {
+  .page-wrapper {
+    .subjects-slider {
+      &-list {
+        width: 100%;
+      }
+    }
+
+    .content__title {
+      font-size: rem(40px);
+    }
+
+    .hero-content-link-wrapper {
+      flex-wrap: wrap;
+      grid-gap: 0 30px;
+      justify-content: center;
+
+      .register-btn {
+        width: auto;
+        padding: 0 10px;
+      }
+    }
+
+    .online-lessons-wrapper {
+      .result-list-wrapper {
+        grid-gap: 60px;
+      }
+
+      .online-lesson-gif {
+        width: 48%;
+        margin: 0;
+      }
+    }
+
+
+    .find-tutor {
+      &__btn {
+        height: 55px;
+        font-size: rem(20px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1300px) {
+  .page-wrapper {
+    .flex-wrap-content {
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-content {
+      grid-gap: rem(30px);
+
+      &-text {
+        max-width: 100%;
+      }
+
+      &-link-wrapper {
+        justify-content: center;
+      }
+
+      &-img {
+        margin: 0 auto;
+      }
+    }
+
+    .find-tutor {
+      img {
+        width: 60%;
+      }
+    }
+
+    .testimonials {
+      margin-bottom: rem(60px);
+    }
+
+    .online-lessons-wrapper {
+      .result-list-wrapper {
+        grid-gap: rem(30px);
+      }
+    }
+  }
+}

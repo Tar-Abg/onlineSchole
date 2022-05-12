@@ -1,0 +1,165 @@
+.page-wrapper {
+  /*** General components style *****/
+  .content {
+    &__title {
+      width: 96%;
+      margin: 0 auto;
+      font: $type-regular normal rem(55px) $Roboto-sans;
+      letter-spacing: 5px;
+      text-shadow: -4px -1px rgba(0, 0, 0, 0.25);
+      color: $title-color;
+    }
+
+    &__desc {
+      width: 80%;
+      margin: rem(38px) auto;
+
+      h3 {
+        margin: 0;
+        font: $type-light normal rem(18px) $Roboto-sans;
+        line-height: 26px;
+        color: #595959;
+      }
+    }
+  }
+
+  /***** Hero Are ******/
+  .hero {
+    margin: rem(24px) 0 rem(41px);
+    padding-bottom: rem(12px);
+
+    &-content {
+      display: flex;
+      align-items: center;
+      grid-gap: 110px;
+
+      &-link-wrapper {
+        grid-gap: rem(45px);
+        margin: 0 rem(10px);
+
+        .hero-content__link {
+          position: relative;
+          min-width: rem(248px);
+          white-space: nowrap;
+          background-color: unset;
+          transition: all .5s;
+          overflow: hidden;
+          cursor: pointer;
+
+          &:before {
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            content: '';
+            margin: auto;
+            background: $secondary-brand-color;
+            transition: all .5s;
+            z-index: -1;
+          }
+
+          &:hover {
+            color: $clr-ntrl-min;
+            border: 1px solid $secondary-brand-color;
+
+            &:before {
+              top: 0;
+              left: 0;
+            }
+          }
+        }
+      }
+
+      &-img {
+        flex: 1 1 37%;
+        max-width: 37%;
+        border-radius: 50%;
+        margin-left: auto;
+        overflow: hidden;
+      }
+
+      &-text {
+        flex: 1 1 60%;
+        max-width: 60%;
+      }
+    }
+  }
+
+  /***** Subjects Are ******/
+  .subjects-slider {
+
+    &-wrapper {
+      margin-bottom: rem(110px);
+      padding: 0 rem(40px) rem(50px);
+      overflow: hidden;
+
+      &__title {
+        margin-bottom: rem(42px);
+        font: $type-light normal rem(25px) $Roboto-sans;
+        line-height: 26px;
+        margin-left: rem(58px);
+      }
+
+      /***** Slider Area **************/
+
+      ::ng-deep {
+        .ng-image-slider {
+          height: 300px !important;
+
+          .ng-image-slider-container {
+
+            .main .main-inner {
+              width: 94%;
+              margin: 0 auto;
+              margin-left: unset;
+              display: flex;
+              grid-gap: rem(72px);
+              min-height: 246px;
+              text-align: center;
+
+              .img-div {
+                min-width: 238px;
+                min-height: inherit;
+                @include flex-container-center;
+                justify-content: space-between;
+                flex-direction: column;
+                border-radius: 4px;
+                border: 1px solid #E9E9E9;
+                box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+                background-color: $clr-ntrl-min;
+                cursor: pointer;
+                transition: 500ms;
+
+                &:hover {
+                  transform: scale(1.1);
+                  box-shadow: 0 4px 4px $secondary-brand-color;
+                }
+
+                img, video {
+                  width: auto;
+                  height: auto;
+                  top: 106px;
+                }
+
+                .caption {
+                  background: unset;
+                  top: 51px;
+                  padding: 0;
+                  font: $type-regular normal rem(20px) $Roboto-sans;
+                  text-transform: uppercase;
+                  color: $clr-ntrl-max;
+                }
+              }
+            }
+
+            .main {
+              height: auto !important;
+              padding: 20px 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
