@@ -54,9 +54,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
       userName: [null, [Validators.required, Validators.maxLength(100), this.validationService.cannotContainSpace]],
       preferredTimeZone: [null, [Validators.required]],
       gender: [null, [Validators.required]],
-      monthOfBirth: [null, [Validators.required]],
-      yearOfBirth: [null, [Validators.required]],
-      startDate: [null, [Validators.required]],
+      birthDate: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern)]],
       password: [null, [Validators.required, this.validationService.cannotContainSpace, Validators.minLength(8), Validators.pattern(/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/)]],
       rePassword: [null, [Validators.required]],
@@ -72,8 +70,8 @@ export class StepOneComponent implements OnInit, OnDestroy {
   }
 
   saveInformation(): void {
-    this.registrationService.saveInformation({...this.form.value, userType: 1}).subscribe((message: string) => {
-      this.messageService.setNewMessage(message);
+    this.registrationService.saveInformation({...this.form.value, userType: 1}).subscribe((message: string | undefined) => {
+      this.messageService.setNewMessage(message as string);
       this.messageService.setBackToMainPage(true);
     });
   }

@@ -54,9 +54,9 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
       userName: [null, [Validators.required, Validators.maxLength(100), this.validationService.cannotContainSpace]],
       preferredTimeZone: [null, [Validators.required]],
       gender: [null, [Validators.required]],
-      startDate: [null, [Validators.required]],
+      birthDate: [null, [Validators.required]],
       email: [null, [Validators.required, Validators.pattern(this.validationService.emailPattern), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
-      password: [null, ],
+      password: [null,],
       rePassword: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
 
     }, {validators: this.validationService.checkPasswords})
@@ -64,7 +64,7 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     if (this.form.valid) {
-        this.saveInformation();
+      this.saveInformation();
     } else {
       this.form.markAllAsTouched();
     }
@@ -75,10 +75,11 @@ export class StudentFirstStepComponent implements OnInit, OnDestroy {
       this.registrationService.saveInformation({
         ...this.form.value,
         userType: this.storageService.getUserType()
-      }).subscribe((message: string) => {
-        this.messageService.setNewMessage(message);
-        this.messageService.setBackToMainPage(true);
-      })
+      }).subscribe((message: string | undefined) => {
+          this.messageService.setNewMessage(message as string);
+          this.messageService.setBackToMainPage(true);
+        }
+      )
     );
   }
 

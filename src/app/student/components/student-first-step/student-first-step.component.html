@@ -60,11 +60,11 @@
               <input matInput
                      [matDatepicker]="picker"
                      (click)="picker.open()"
-                     formControlName="startDate"
+                     formControlName="birthDate"
                      placeholder="MM/dd/yyyy*"
               >
             </mat-form-field>
-            <span class="error-message">This is a required field</span>
+            <span class="error-message" *ngIf="form.get('birthDate')?.errors && form.get('birthDate')?.touched">Please specify your date of birth</span>
           </div>
 
           <div class="p-relative form-label">

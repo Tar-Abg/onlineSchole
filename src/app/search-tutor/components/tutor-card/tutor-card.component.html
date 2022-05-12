@@ -1,5 +1,5 @@
 <figure class="search-cards-item" [class.large_width]="isStudentPage">
-  <a [routerLink]="['../tutorView', tutor.tutorId]" class="search-cards-item-for-image">
+  <a (click)="navigate(tutor.tutorId)" class="search-cards-item-for-image">
     <img [src]="tutor.photo" alt="Tutor Image" width="166" height="167">
   </a>
   <figcaption class="profile-cards__Info">

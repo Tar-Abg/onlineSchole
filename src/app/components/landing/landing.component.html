@@ -188,38 +188,40 @@
   <!--================ Section Help End ================-->
 
   <!--================ Section Our Tutors Start ================-->
-  <section class="tutor">
-    <h2 class="tutor__title">Our Tutors</h2>
-    <ul class="tutor-cards-list">
-      <li class="tutor-cards-list__item" *ngFor="let tutor of (tutors$ | async)">
-        <figure>
-          <div class="tutor-cards-list__item--image">
-            <a [routerLink]="['../tutorView', tutor.userId]" class="search-cards-item-for-image">
+  <section class="tutor" *ngIf="(tutors$ | async) as tutors">
+    <ng-container *ngIf="tutors.length > 3">
+      <h2 class="tutor__title">Our Tutors</h2>
+      <ul class="tutor-cards-list">
+        <li class="tutor-cards-list__item" *ngFor="let tutor of tutors">
+          <figure>
+            <div class="tutor-cards-list__item--image">
+              <a [routerLink]="['../tutorView', tutor.userId]" class="search-cards-item-for-image">
 
-              <img [src]="tutor.photo" *ngIf="tutor.photo"
-                   alt="Tutor"
-                   width="166"
-                   height="167"
-              >
-              <img *ngIf="!tutor.photo" src="assets/images/profile1.jpg"
-                   alt="Tutor"
-                   width="166"
-                   height="167"
-              >
-            </a>
+                <img [src]="tutor.photo" *ngIf="tutor.photo"
+                     alt="Tutor"
+                     width="166"
+                     height="167"
+                >
+                <img *ngIf="!tutor.photo" src="assets/images/profile1.jpg"
+                     alt="Tutor"
+                     width="166"
+                     height="167"
+                >
+              </a>
 
-          </div>
-          <figcaption>
-            <h2 class="tutor-cards-list__item--name">{{tutor.fullName}}</h2>
-            <h3 class="tutor-cards-list__item--subject">{{tutor.subject}}</h3>
-            <div class="tutor-cards-list__item--rate">
-              <star-rating [value]="tutor.rate" [totalstars]="5" checkedcolor="#FFC107" uncheckedcolor="#c2c2c2"
-                           size="35px" [readonly]="true"></star-rating>
             </div>
-          </figcaption>
-        </figure>
-      </li>
-    </ul>
+            <figcaption>
+              <h2 class="tutor-cards-list__item--name">{{tutor.fullName}}</h2>
+              <h3 class="tutor-cards-list__item--subject">{{tutor.subject}}</h3>
+              <div class="tutor-cards-list__item--rate">
+                <star-rating [value]="tutor.rate" [totalstars]="5" checkedcolor="#FFC107" uncheckedcolor="#c2c2c2"
+                             size="35px" [readonly]="true"></star-rating>
+              </div>
+            </figcaption>
+          </figure>
+        </li>
+      </ul>
+    </ng-container>
   </section>
   <!--================ Section Our Tutors End ================-->
 </main>

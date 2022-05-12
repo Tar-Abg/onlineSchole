@@ -14,6 +14,7 @@ import {catchError, map} from "rxjs/operators";
 import {ResponseModel} from "../../models/responseModel.model";
 import {BasicInformation} from "../../../tutor/models/tutor.model";
 import {User} from "../../models/auth.model";
+import {MessageService} from "../message/message.service";
 
 @Injectable({
   providedIn: 'root'
@@ -25,11 +26,14 @@ export class RegistrationService {
   passwordValidation$: Subject<string> = new Subject<string>();
   stepNumber$: BehaviorSubject<number> = new BehaviorSubject<number>(1);
 
-  constructor(private http: HttpClient) {
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService,
+  ) {
   }
 
   // information
-  saveInformation(form: SaveInformation): Observable<string> {
+  saveInformation(form: SaveInformation): Observable<string | undefined> {
     delete form.rePassword;
     const body = {
       ...form,
@@ -48,8 +52,10 @@ export class RegistrationService {
           this.usernameIsExist$.next(true);
         } else if (err.error?.type === 'Password requirments') {
           this.passwordValidation$.next(err.error?.title);
+        } else if(err.status === 451) {
+          this.messageService.setNewError(err.error.title);
         }
-        throw new Error(err.error?.type);
+        throw new Error(err);
       })
     );
   }
