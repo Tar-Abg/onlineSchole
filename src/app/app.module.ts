@@ -26,9 +26,10 @@ import {NotFoundComponent} from './not-found/not-found.component';
 import {NotFoundModalComponent} from './components/not-found-modal/not-found-modal.component';
 import {NgImageSliderModule} from "ng-image-slider";
 import {RatingModule} from "ng-starrating";
-import { AlertBoxComponent } from './alert-box/alert-box.component';
+import {AlertBoxComponent} from './alert-box/alert-box.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {IvyCarouselModule} from "angular-responsive-carousel";
+import {NgxLinkifyjsModule} from 'ngx-linkifyjs';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import {IvyCarouselModule} from "angular-responsive-carousel";
     NgImageSliderModule,
     RatingModule,
     CarouselModule,
-    IvyCarouselModule
+    IvyCarouselModule,
+    NgxLinkifyjsModule.forRoot()
   ],
   providers: [
     {provide: LocationStrategy, useClass: HashLocationStrategy},
