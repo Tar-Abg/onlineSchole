@@ -1,108 +1,115 @@
-<div class="tutor-settings-nested-page">
+<!-- remove class tutor-settings-nested-page-->
+<div class="">
   <h3 class="tutor-settings-page-title">Add Payment Method</h3>
   <p class="tutor-settings-page-notification form-item-notification">
     Please be informed that in case of providing a non- US dollar account/card, the amount will be transferred to the
     appropriate account at the exchange rate set by your bank for the respective currency.
   </p>
   <p class="tutor-settings-page-notification card-number-wrapper" *ngIf="(paymentMethod$ | async) as paymentMethod">
-    Your current card number is  <span class="card-number"> {{ paymentMethod.last4}} </span>
+    Your current card number is <span class="card-number"> {{ paymentMethod.last4}} </span>
   </p>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="tutor-settings-nested-page__form tutor-settings-nested-page__form--fixed--width">
-    <fieldset>
-      <legend class="tutor-settings-page-legend">
-        <h3 class="form-legend-title-tab active">CREDIT CARD/DEBIT CARD</h3>
-      </legend>
-      <div class="setting-form-input-wrapper">
-        <div>
-          <h3 class="form-item-label">Insert your name as it appears on the card*</h3>
-          <label for="account-holder-name" class="form-label">
-            <input id="account-holder-name"
-                   class="form-input"
-                   name="account-holder-name"
-                   required
-                   autocomplete="accountHolderName"
-                   type="text"
-                   placeholder="Account holder’s name"
-                   formControlName="name">
-            <span class="error-message" *ngIf="form.get('name')?.errors?.required && form.get('name')?.touched">This is a required field.</span>
-          </label>
-        </div>
-        <div>
-          <h3 class="form-item-label">Card number* </h3>
-          <label for="card-number" class="form-label">
-            <input id="card-number"
-                   class="form-input"
-                   name="card-number"
-                   required
-                   autocomplete="card-number"
-                   type="number"
-                   placeholder="Card Number*"
-                   formControlName="cardNumber">
-            <span class="error-message" *ngIf="form.get('cardNumber')?.errors?.required && form.get('cardNumber')?.touched">This is a required field.</span>
-          </label>
-        </div>
-        <div>
-          <h3 class="form-item-label">Card expiration date* </h3>
-          <div class="flex-container form-label double-select fixed-width">
-            <div class="p-relative min-width-select">
-              <select formControlName="expMonth" class="form-input selectpicker">
-                <option [ngValue]="item.id" *ngFor="let item of months$ | async">{{item.numberInString + ' ' + item.name}}</option>
-              </select>
-              <span class="error-message" *ngIf="form.get('expMonth')?.errors?.required && form.get('expMonth')?.touched">This is a required field.</span>
-            </div>
-            <div class="p-relative min-width-select">
-              <select formControlName="expYear" class="form-input selectpicker">
-                <option [ngValue]="item.id" *ngFor="let item of yearList">{{item.description}}</option>ZZ
-              </select>
-              <span class="error-message" *ngIf="form.get('expYear')?.errors?.required && form.get('expYear')?.touched">This is a required field.</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3 class="form-item-label">CVC2/CVV2* </h3>
-          <label for="cvv" class="form-label">
-            <input id="cvv"
-                   class="form-input cvv"
-                   name="cvv"
-                   required
-                   autocomplete="card-cvv"
-                   type="number"
-                   placeholder="CVC2/CVV2*"
-                   formControlName="cvc">
-            <span class="error-message" *ngIf="form.get('cvc')?.errors?.required && form.get('cvc')?.touched">This is a required field.</span>
-          </label>
-        </div>
-      </div>
-<!--      <div class="billing-address-container" formGroupName="billingAddress">-->
-<!--        <h3 class="tutor-settings-page-title size-mid">Billing Address</h3>-->
-<!--        <label for="address" class="form-label">-->
-<!--          <input id="address" class="form-input" autocomplete="address" type="text"-->
-<!--                 placeholder="Address*" formControlName="address">-->
-<!--          <span class="error-message block">This is a required field</span>-->
-<!--        </label>-->
-<!--        <label for="city" class="form-label">-->
-<!--          <input id="city" class="form-input" autocomplete="city" type="text"-->
-<!--                 placeholder="City*" formControlName="city">-->
-<!--          <span class="error-message block">This is a required field</span>-->
-<!--        </label>-->
-<!--        <label class="form-label">-->
-<!--          <app-select [keyName]="'name'" [label]="'State*'"-->
-<!--                      aria-placeholder="State*"-->
-<!--                      formControlName="stateId"></app-select>-->
-<!--          <span class="error-message block">This is a required field</span>-->
-<!--        </label>-->
-<!--        <label for="zipCode" class="form-label">-->
-<!--          <input id="zipCode" class="form-input" autocomplete="zipCode"-->
-<!--                 placeholder="Zip Code*" formControlName="zipCode">-->
-<!--          <span class="error-message block">This is a required field</span>-->
-<!--        </label>-->
-<!--      </div>-->
-    </fieldset>
-    <div class="flex-container-center grid-gap-for-buttons">
-      <button type="button" class="settings-form-button settings-form-button__with-border button-border--blue" (click)="form.enable()">Edit</button>
-      <button type="submit" class="settings-form-button settings-form-button__with-border button-border--green">Save</button>
-    </div>
-  </form>
+
+  <!--  <button class="settings-form-button">Add</button>-->
+  <button class="settings-form-button">Confirm</button>
+
+
+
+  <!--  <form [formGroup]="form" (ngSubmit)="onSubmit()" class="tutor-settings-nested-page__form tutor-settings-nested-page__form&#45;&#45;fixed&#45;&#45;width">-->
+  <!--    <fieldset>-->
+  <!--      <legend class="tutor-settings-page-legend">-->
+  <!--        <h3 class="form-legend-title-tab active">CREDIT CARD/DEBIT CARD</h3>-->
+  <!--      </legend>-->
+  <!--      <div class="setting-form-input-wrapper">-->
+  <!--        <div>-->
+  <!--          <h3 class="form-item-label">Insert your name as it appears on the card*</h3>-->
+  <!--          <label for="account-holder-name" class="form-label">-->
+  <!--            <input id="account-holder-name"-->
+  <!--                   class="form-input"-->
+  <!--                   name="account-holder-name"-->
+  <!--                   required-->
+  <!--                   autocomplete="accountHolderName"-->
+  <!--                   type="text"-->
+  <!--                   placeholder="Account holder’s name"-->
+  <!--                   formControlName="name">-->
+  <!--            <span class="error-message" *ngIf="form.get('name')?.errors?.required && form.get('name')?.touched">This is a required field.</span>-->
+  <!--          </label>-->
+  <!--        </div>-->
+  <!--        <div>-->
+  <!--          <h3 class="form-item-label">Card number* </h3>-->
+  <!--          <label for="card-number" class="form-label">-->
+  <!--            <input id="card-number"-->
+  <!--                   class="form-input"-->
+  <!--                   name="card-number"-->
+  <!--                   required-->
+  <!--                   autocomplete="card-number"-->
+  <!--                   type="number"-->
+  <!--                   placeholder="Card Number*"-->
+  <!--                   formControlName="cardNumber">-->
+  <!--            <span class="error-message" *ngIf="form.get('cardNumber')?.errors?.required && form.get('cardNumber')?.touched">This is a required field.</span>-->
+  <!--          </label>-->
+  <!--        </div>-->
+  <!--        <div>-->
+  <!--          <h3 class="form-item-label">Card expiration date* </h3>-->
+  <!--          <div class="flex-container form-label double-select fixed-width">-->
+  <!--            <div class="p-relative min-width-select">-->
+  <!--              <select formControlName="expMonth" class="form-input selectpicker">-->
+  <!--                <option [ngValue]="item.id" *ngFor="let item of months$ | async">{{item.numberInString + ' ' + item.name}}</option>-->
+  <!--              </select>-->
+  <!--              <span class="error-message" *ngIf="form.get('expMonth')?.errors?.required && form.get('expMonth')?.touched">This is a required field.</span>-->
+  <!--            </div>-->
+  <!--            <div class="p-relative min-width-select">-->
+  <!--              <select formControlName="expYear" class="form-input selectpicker">-->
+  <!--                <option [ngValue]="item.id" *ngFor="let item of yearList">{{item.description}}</option>ZZ-->
+  <!--              </select>-->
+  <!--              <span class="error-message" *ngIf="form.get('expYear')?.errors?.required && form.get('expYear')?.touched">This is a required field.</span>-->
+  <!--            </div>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--        <div>-->
+  <!--          <h3 class="form-item-label">CVC2/CVV2* </h3>-->
+  <!--          <label for="cvv" class="form-label">-->
+  <!--            <input id="cvv"-->
+  <!--                   class="form-input cvv"-->
+  <!--                   name="cvv"-->
+  <!--                   required-->
+  <!--                   autocomplete="card-cvv"-->
+  <!--                   type="number"-->
+  <!--                   placeholder="CVC2/CVV2*"-->
+  <!--                   formControlName="cvc">-->
+  <!--            <span class="error-message" *ngIf="form.get('cvc')?.errors?.required && form.get('cvc')?.touched">This is a required field.</span>-->
+  <!--          </label>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--&lt;!&ndash;      <div class="billing-address-container" formGroupName="billingAddress">&ndash;&gt;-->
+  <!--&lt;!&ndash;        <h3 class="tutor-settings-page-title size-mid">Billing Address</h3>&ndash;&gt;-->
+  <!--&lt;!&ndash;        <label for="address" class="form-label">&ndash;&gt;-->
+  <!--&lt;!&ndash;          <input id="address" class="form-input" autocomplete="address" type="text"&ndash;&gt;-->
+  <!--&lt;!&ndash;                 placeholder="Address*" formControlName="address">&ndash;&gt;-->
+  <!--&lt;!&ndash;          <span class="error-message block">This is a required field</span>&ndash;&gt;-->
+  <!--&lt;!&ndash;        </label>&ndash;&gt;-->
+  <!--&lt;!&ndash;        <label for="city" class="form-label">&ndash;&gt;-->
+  <!--&lt;!&ndash;          <input id="city" class="form-input" autocomplete="city" type="text"&ndash;&gt;-->
+  <!--&lt;!&ndash;                 placeholder="City*" formControlName="city">&ndash;&gt;-->
+  <!--&lt;!&ndash;          <span class="error-message block">This is a required field</span>&ndash;&gt;-->
+  <!--&lt;!&ndash;        </label>&ndash;&gt;-->
+  <!--&lt;!&ndash;        <label class="form-label">&ndash;&gt;-->
+  <!--&lt;!&ndash;          <app-select [keyName]="'name'" [label]="'State*'"&ndash;&gt;-->
+  <!--&lt;!&ndash;                      aria-placeholder="State*"&ndash;&gt;-->
+  <!--&lt;!&ndash;                      formControlName="stateId"></app-select>&ndash;&gt;-->
+  <!--&lt;!&ndash;          <span class="error-message block">This is a required field</span>&ndash;&gt;-->
+  <!--&lt;!&ndash;        </label>&ndash;&gt;-->
+  <!--&lt;!&ndash;        <label for="zipCode" class="form-label">&ndash;&gt;-->
+  <!--&lt;!&ndash;          <input id="zipCode" class="form-input" autocomplete="zipCode"&ndash;&gt;-->
+  <!--&lt;!&ndash;                 placeholder="Zip Code*" formControlName="zipCode">&ndash;&gt;-->
+  <!--&lt;!&ndash;          <span class="error-message block">This is a required field</span>&ndash;&gt;-->
+  <!--&lt;!&ndash;        </label>&ndash;&gt;-->
+  <!--&lt;!&ndash;      </div>&ndash;&gt;-->
+  <!--    </fieldset>-->
+  <!--    <div class="flex-container-center grid-gap-for-buttons">-->
+  <!--      <button type="button" class="settings-form-button settings-form-button__with-border button-border&#45;&#45;blue" (click)="form.enable()">Edit</button>-->
+  <!--      <button type="submit" class="settings-form-button settings-form-button__with-border button-border&#45;&#45;green">Save</button>-->
+  <!--    </div>-->
+  <!--  </form>-->
 </div>
 
 <app-confirm-password
