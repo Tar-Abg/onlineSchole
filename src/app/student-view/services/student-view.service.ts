@@ -19,10 +19,10 @@ export class StudentViewService {
   ) {
   }
 
-  getStudentProfileInfo(userId: number, tutorId: number): Observable<Student> {
+  getStudentProfileInfo(userId: number, studentId: number): Observable<Student> {
     let params = new HttpParams();
     params = params.append('userId', userId);
-    params = params.append('studentId', tutorId);
+    params = params.append('studentId', studentId);
     return this.http.get<ResponseModel<StudentProfileInfoResponse>>(`${this.url}/GetStudentProfileInfo`, {params}).pipe(
       map(data => data.result.profileInfo),
       catchError(() => of( {} as Student))

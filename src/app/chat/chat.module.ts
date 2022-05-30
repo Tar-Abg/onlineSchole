@@ -3,7 +3,8 @@ import {CommonModule} from '@angular/common';
 import {ChatRoutingModule} from "./chat-routing.module";
 import {MessageDashboardComponent} from "./components/message-dashboard/message-dashboard.component";
 import {MessageUsersListComponent} from "./components/message-users-list/message-users-list.component";
-import {ReactiveFormsModule} from "@angular/forms";
+import {ReactiveFormsModule} from "@angular/forms"
+import {NgxLinkifyjsModule} from 'ngx-linkifyjs';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import {ReactiveFormsModule} from "@angular/forms";
         CommonModule,
         ChatRoutingModule,
         ReactiveFormsModule,
+        NgxLinkifyjsModule
     ]
 })
 export class StudentSettingsModule {

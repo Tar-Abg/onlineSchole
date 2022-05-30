@@ -46,7 +46,7 @@
         Show
       </button>
     </form>
-    <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true" *ngIf="userType === 'tutor'">Add
+    <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true" *ngIf="(userType === 'tutor' && (tutorPaymentExistence$ | async))">Add
       Lesson
     </button>
   </div>

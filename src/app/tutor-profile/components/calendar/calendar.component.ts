@@ -3,7 +3,7 @@ import {TutorService} from "../../services/tutor-service.service";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {FormBuilder, FormGroup} from "@angular/forms";
-import {filter, switchMap, tap} from "rxjs/operators";
+import {filter, tap} from "rxjs/operators";
 import {combineLatest, Observable} from "rxjs";
 import {DaysOfWeek, HoursOfDay} from "../../../shared/models/infos.model";
 import {SelectedDay} from "../../models/tutor.model";
@@ -14,6 +14,7 @@ import {SelectedDay} from "../../models/tutor.model";
   styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
+  tutorPaymentExistence$: Observable<boolean>;
   @Output() onAddLesson: EventEmitter<void> = new EventEmitter<void>();
   private userId: number;
   form: FormGroup;
@@ -34,6 +35,7 @@ export class CalendarComponent implements OnInit {
     this.initializeForm();
     this.userId = this.storageService.getUserId();
     this.getSchedule();
+    this.tutorPaymentExistence$ = this.infoService.tutorPaymentExistence(this.userId);
   }
 
   initializeForm(): void {
