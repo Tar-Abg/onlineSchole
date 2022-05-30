@@ -1,13 +1,15 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {StudentViewService} from "../../services/student-view.service";
 import {switchMap} from "rxjs/operators";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {ActivatedRoute, Router} from "@angular/router";
 import {TutorViewService} from "../../../tutor-view/services/tutor-view.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
 import {Student} from "../../../student-profile/models/student-profile.model";
 import {Subjects} from "../../../tutor-view/models/tutor-view.model";
 import {UserRole} from "../../../shared/models/auth.model";
+import {InfosService} from "../../../shared/services/infos/infos.service";
+import {AuthService} from "../../../shared/services/auth/auth.service";
 
 @Component({
   selector: 'app-student-view',
@@ -16,6 +18,8 @@ import {UserRole} from "../../../shared/models/auth.model";
 })
 export class StudentViewComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
+  tutorPaymentExistence$: Observable<boolean>;
+  isLoggedIn$: Observable<boolean>;
   studentInfo: Student;
   subjects: Subjects[]
 
@@ -30,9 +34,22 @@ export class StudentViewComponent implements OnInit, OnDestroy {
     private router: Router,
     private tutorViewService: TutorViewService,
     private storageService: StorageService,
+    private infoService: InfosService,
+    private authService: AuthService,
   ) { }
 
   ngOnInit(): void {
+    this.getStudentInfo();
+    this.getTutorPaymentExistence();
+    this.isLoggedIn$ = this.authService.isLoggedIn$;
+  }
+
+  getTutorPaymentExistence(): void {
+    const tutorId = this.storageService.getUserId();
+    this.tutorPaymentExistence$ = this.infoService.tutorPaymentExistence(tutorId);
+  }
+
+  getStudentInfo(): void {
     this.subscription.add(
       this.route.params.pipe(
         switchMap(data => {
@@ -46,6 +63,7 @@ export class StudentViewComponent implements OnInit, OnDestroy {
       })
     )
   }
+
 
   setStudentBaseInfo(studentInfo: Student): void {
     if (studentInfo) {

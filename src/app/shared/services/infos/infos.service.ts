@@ -48,6 +48,12 @@ export class InfosService {
     );
   }
 
+  getCountriesForTutor(): Observable<Country[]> {
+    return this.http.get<ResponseModel<Country[]>>(`${this.url}/GetCountriesForTutor`).pipe(
+      map(data => data.result)
+    );
+  }
+
   getInstitutionalLevels(): Observable<KeyValuePair[]> {
     return this.http.get<ResponseModel<KeyValuePair[]>>(`${this.url}/GetInstitutionalLevels`).pipe(
       map(data => data.result)
@@ -233,6 +239,14 @@ export class InfosService {
 
   getQuotes(): Observable<Quotes[]> {
     return this.http.get<ResponseModel<Quotes[]>>(`${this.url}/GetQuotes`).pipe(
+      map(data => data.result)
+    );
+  }
+
+  tutorPaymentExistence(tutorId: number): Observable<boolean> {
+    let params = new HttpParams();
+    params = params.append('userId', tutorId)
+    return this.http.get<ResponseModel<boolean>>(`${this.url}/TutorPaymentExistence`, {params}).pipe(
       map(data => data.result)
     );
   }

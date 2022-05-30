@@ -45,7 +45,7 @@ export class FifthStepComponent implements OnInit, OnDestroy {
   }
 
   initializeSubscriptions(): void {
-    this.phoneCods$ = this.infoService.getCountries();
+    this.phoneCods$ = this.infoService.getCountriesForTutor();
     this.getContactsPage();
     this.socialMediaExistenceChange();
   }

@@ -1,7 +1,7 @@
 <section class="calendar-wrapper min-width-certificates-wrapper">
   <div class="flex-container add-calendar-wrapper">
     <p class="calendar-warning">You can manage your lessons.</p>
-    <button class="btn-add-less flex-container-center" (click)="onAddLesson.emit()">Add Lesson</button>
+    <button class="btn-add-less flex-container-center" *ngIf="tutorPaymentExistence$ | async" (click)="onAddLesson.emit()">Add Lesson</button>
   </div>
 
   <form [formGroup]="form" (ngSubmit)="getSchedule()" class="flex-container-justify-start calendar-datepicker-wrappers">

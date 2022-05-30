@@ -108,7 +108,7 @@ export class TutorFirstStepComponent implements OnInit, OnDestroy {
   initializeListeners(): void {
     this.categories$ = this.infoService.getCategories();
     this.cancelationHours$ = this.infoService.getCancelationHours();
-    this.countries$ = this.infoService.getCountries();
+    this.countries$ = this.infoService.getCountriesForTutor();
     this.getBasicInformation();
     this.listenCountryChanges();
   }

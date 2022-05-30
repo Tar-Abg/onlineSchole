@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StorageService} from "../../services/storage/storage.service";
 import {InfosService} from "../../services/infos/infos.service";
@@ -15,6 +15,7 @@ import {SettingsService} from "../../services/settings/settings.service";
 })
 export class PersonalInformationComponent implements OnInit, OnDestroy {
   private readonly subscription = new Subscription();
+  @Input() userRole: 'tutor' | 'student';
   countries$: Observable<Country[]>;
   form: FormGroup;
   isOpenPasswordModal: boolean;
@@ -31,7 +32,7 @@ export class PersonalInformationComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.formInitialization();
-    this.countries$ = this.infoService.getCountries();
+    this.countries$ = this.userRole === 'student' ? this.infoService.getCountries() : this.infoService.getCountriesForTutor();
     this.timeZones$ = this.infoService.getTimeZones();
     this.getPersonalInformation();
   }

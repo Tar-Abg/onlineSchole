@@ -15,6 +15,7 @@ import {StudentProfileService} from "../../../student-profile/services/student-p
 })
 export class StartLessonComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
+  tutorPaymentExistence$: Observable<boolean>;
   @Input() title: string = 'Entered lesson';
   @Input() userType: 'tutor' | 'student' = 'tutor';
   lessonSchedule: LessonSchedule[];
@@ -40,6 +41,7 @@ export class StartLessonComponent implements OnInit, OnDestroy {
     this.initializeForm();
     this.userId = this.storageService.getUserId();
     this.lessonStatuses$ = this.infoService.getLessonStatuses();
+    this.tutorPaymentExistence$ = this.infoService.tutorPaymentExistence(this.userId);
   }
 
   initializeForm(): void {

@@ -24,7 +24,7 @@
         </h2>
       </div>
     </section>
-    <section class="profile-buttons justify-content-start">
+    <section class="profile-buttons justify-content-start" *ngIf="(tutorPaymentExistence$ | async) && (isLoggedIn$ | async)">
       <button class="profile-buttons--item flex-container-center" (click)="openConversation()">
         <img src="assets/images/message.png" alt="Messages" width="51" height="50">
         Message
