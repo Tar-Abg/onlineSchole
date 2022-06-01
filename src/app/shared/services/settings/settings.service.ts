@@ -125,4 +125,26 @@ export class SettingsService {
     return this.http.post<ResponseModel<any>>(`${this.url}/UpdatePaymentMethod`, body, {params: params});
   }
 
+  createTutorPayment(userId: number): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    return this.http.post<ResponseModel<string>>(`${this.url}/CreateTutorPayment`, null, {params: params}).pipe(
+      map(data => data.result))
+  }
+
+  updateTutorPayment(userId: number, password: string): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    params = params.append('password', password);
+    return this.http.post<ResponseModel<string>>(`${this.url}/UpdateTutorPayment`, null, {params: params}).pipe(
+      map(data => data.result))
+  }
+
+  successfulAccount(userId: number): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    return this.http.post<ResponseModel<string>>(`${this.url}/SuccessfulAccount`, null, {params: params}).pipe(
+      map(data => data.result))
+  }
+
 }

@@ -9,7 +9,7 @@ import {ChangePasswordComponent} from "../shared/components/change-password/chan
 import {TutorInstitutionsComponent} from "./components/tutor-institutions/tutor-institutions.component";
 import {TutorCertificatesComponent} from "./components/tutor-certificates/tutor-certificates.component";
 import {TutorPersonalInformationComponent} from "./components/tutor-personal-information/tutor-personal-information.component";
-import {PaymentMethodComponent} from "../shared/components/payment-method/payment-method.component";
+import {PaymentComponent} from "./components/payment/payment.component";
 
 
 const routes: Routes = [
@@ -22,7 +22,7 @@ const routes: Routes = [
       {path: 'availability', component: AvailabilityComponent},
       {path: 'subjects', component: SubjectsComponent},
       {path: 'personal-information', component: TutorPersonalInformationComponent},
-      {path: 'payment-methode', component: PaymentMethodComponent},
+      {path: 'payment-method', component: PaymentComponent},
       {path: 'change-password', component: ChangePasswordComponent},
       {path: 'institutions', component: TutorInstitutionsComponent},
       {path: 'certificates', component: TutorCertificatesComponent},

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output, SimpleChanges} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SettingsService} from "../../services/settings/settings.service";
 import {Subscription} from "rxjs";
@@ -12,8 +12,9 @@ import {MessageService} from "../../services/message/message.service";
 export class ConfirmPasswordComponent implements OnInit, OnDestroy {
   @Output() close: EventEmitter<void> = new EventEmitter<void>();
   @Output() updated: EventEmitter<void> = new EventEmitter<void>();
+  @Output() confirm: EventEmitter<string> = new EventEmitter<string>();
   @Input() body: any;
-  @Input() actionType: 'updatePersonalInformation' | 'updateCard' = 'updatePersonalInformation';
+  @Input() actionType: 'updatePersonalInformation' | 'updateCard' | 'updateTutorPayment' = 'updatePersonalInformation';
   private readonly subscription: Subscription = new Subscription();
   form: FormGroup;
   errorMessage: string;
@@ -43,6 +44,8 @@ export class ConfirmPasswordComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       if (this.actionType === 'updatePersonalInformation') {
         this.updatePersonalInformation();
+      } else if (this.actionType === 'updateTutorPayment') {
+        this.confirm.emit(this.form.value.password);
       } else {
         this.updateCart();
       }
