@@ -6,7 +6,7 @@
   </p>
 
   <button class="settings-form-button"
-          *ngIf="!(tutorPaymentExistence$ | async); else addPaymentButton"
+          *ngIf="(tutorPaymentExistence$ | async); else addPaymentButton"
           (click)="showUConfirmPassword = true"
   >Update Payment Method </button>
   <ng-template  #addPaymentButton>
