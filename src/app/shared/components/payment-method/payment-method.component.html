@@ -5,7 +5,7 @@
     appropriate account at the exchange rate set by your bank for the respective currency.
   </p>
   <p class="tutor-settings-page-notification card-number-wrapper" *ngIf="(paymentMethod$ | async) as paymentMethod">
-    Your current card number is  <span class="card-number"> {{ paymentMethod.last4}} </span>
+    Your current card number is <span class="card-number"> {{ paymentMethod.last4}} </span>
   </p>
   <form [formGroup]="form" (ngSubmit)="onSubmit()" class="tutor-settings-nested-page__form tutor-settings-nested-page__form--fixed--width">
     <fieldset>
