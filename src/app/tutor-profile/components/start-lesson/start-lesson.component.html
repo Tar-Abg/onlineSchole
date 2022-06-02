@@ -175,7 +175,7 @@
                     {{userType === 'tutor' ? 'Start' : 'Join' }}
                   </a>
                   <button class="lesson-status-btn lesson-status-btn__end flex-container-center"
-                          (click)="isOpenEndLesson = true" *ngIf="lesson.end">
+                          (click)="isOpenEndLesson = true; selectedLessonId = lesson.id" *ngIf="lesson.end">
                     End
                   </button>
                   <button class="lesson-status-btn lesson-status-btn__cancel flex-container-center"
@@ -204,10 +204,10 @@
   </div>
 </section>
 
-<!-- Start Lessons Modal For Tutor-->
+<!-- Start Lessons Modal For  Tutor-->
 <div class="lessons-modal-container modal--large-width modal-wrapper">
-  <app-modal-schem *ngIf="isOpenEndLesson" (close)="isOpenEndLesson = false" [title]="'End Lesson'">
-    <app-end-lesson-modal (onCloe)="isOpenEndLesson = false"></app-end-lesson-modal>
+  <app-modal-schem *ngIf="isOpenEndLesson" (close)="isOpenEndLesson = false" [title]="'End Lesson'" >
+    <app-end-lesson-modal (onCloe)="isOpenEndLesson = false" [lessonId]="selectedLessonId"></app-end-lesson-modal>
   </app-modal-schem>
 </div>
 
@@ -219,7 +219,7 @@
 <!--  </app-modal-schem>-->
 <!--</div>-->
 
-<!--&lt;!&ndash; Cancel Lessons Modal&ndash;&gt;-->
+<!-- Cancel Lessons Modal-->
 <!--<div class="lessons-modal-container modal&#45;&#45;large-width modal-wrapper">-->
 <!--  <app-modal-schem *ngIf="isOpenEndLesson" (close)="isOpenEndLesson = false" [title]="'End Lesson'">-->
 <!--    <app-cancel-lesson-modal (onCloe)="isOpenEndLesson = false"></app-cancel-lesson-modal>-->
