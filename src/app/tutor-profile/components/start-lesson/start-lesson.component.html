@@ -204,12 +204,29 @@
   </div>
 </section>
 
-<!-- Start Lessons Wrapper -->
+<!-- Start Lessons Modal For  Tutor-->
 <div class="lessons-modal-container modal--large-width modal-wrapper">
   <app-modal-schem *ngIf="isOpenEndLesson" (close)="isOpenEndLesson = false" [title]="'End Lesson'">
     <app-end-lesson-modal (onCloe)="isOpenEndLesson = false"></app-end-lesson-modal>
   </app-modal-schem>
 </div>
+
+
+<!-- Start Lessons Modal For Student-->
+<div class="lessons-modal-container modal--large-width modal-wrapper">
+  <app-modal-schem *ngIf="isOpenEndLesson" (close)="isOpenEndLesson = false" [title]="'End Lesson'">
+    <app-end-lesson-for-tutor (onCloe)="isOpenEndLesson = false"></app-end-lesson-for-tutor>
+  </app-modal-schem>
+</div>
+
+<!-- Cancel Lessons Modal-->
+<div class="lessons-modal-container modal--large-width modal-wrapper">
+  <app-modal-schem *ngIf="isOpenEndLesson" (close)="isOpenEndLesson = false" [title]="'End Lesson'">
+    <app-cancel-lesson-modal (onCloe)="isOpenEndLesson = false"></app-cancel-lesson-modal>
+  </app-modal-schem>
+</div>
+
+
 <div class="lessons-modal-container modal--middle-width modal-wrapper ">
   <app-modal-schem *ngIf="isOpenCancelLesson" (close)="isOpenCancelLesson = false">
     <app-cancel-lesson-modal (onCloe)="isOpenCancelLesson = false"
