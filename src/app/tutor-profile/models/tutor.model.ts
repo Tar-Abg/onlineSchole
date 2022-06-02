@@ -159,3 +159,31 @@ export interface TutorForHomePage {
   fullName: string;
   userId: number;
 }
+
+
+export interface TotalPayment {
+  amountOwed: number;
+  amountPaid: number;
+  payPercent: number;
+  totalEarnings: number;
+}
+
+export interface LastPayment {
+  amount: number;
+  chargeDate: string;
+  duration: string;
+  sessionsCount: number;
+}
+
+export interface PaymentHistoryResponse {
+  totalAmount: number;
+  totalPayments: number;
+  payments: PaymentHistory[];
+}
+
+export interface PaymentHistory {
+  amount: number;
+  date: string;
+  paymentId: number;
+  type: string;
+}

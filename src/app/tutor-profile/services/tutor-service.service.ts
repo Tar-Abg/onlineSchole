@@ -1,11 +1,12 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {
+  LastPayment,
   LessonCancelRequest,
   LessonHistory,
   LessonRequest,
-  LessonSchedule, SearchTutor,
-  SelectedDay,
+  LessonSchedule, PaymentHistoryResponse, SearchTutor,
+  SelectedDay, TotalPayment,
   TutorAvailabilities,
   TutorBaseInfo,
   TutorCertificates,
@@ -135,5 +136,31 @@ export class TutorService {
     return this.http.post<ResponseModel<LessonHistory>>(`${this.url}/GetTutorLessonHistory`, body).pipe(
       map(data => data.result)
     )
+  }
+
+  getTotalPayments(tutorId: number): Observable<TotalPayment> {
+    let params = new HttpParams();
+    params = params.append('userId', tutorId)
+    return this.http.post<ResponseModel<TotalPayment>>(`${this.url}/GetTotalPayments`, null,{params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getLastPayments(tutorId: number): Observable<LastPayment[]> {
+    let params = new HttpParams();
+    params = params.append('userId', tutorId)
+    return this.http.post<ResponseModel<LastPayment[]>>(`${this.url}/GetLastPayments`, null,{params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getPaymentHistory(tutorId: number, from: string, to: string): Observable<PaymentHistoryResponse> {
+    let params = new HttpParams();
+    params = params.append('userId', tutorId);
+    params = params.append('from', from);
+    params = params.append('to', to);
+    return this.http.post<ResponseModel<PaymentHistoryResponse>>(`${this.url}/GetPaymentHistory`, null,{params}).pipe(
+      map(data => data.result)
+    );
   }
 }

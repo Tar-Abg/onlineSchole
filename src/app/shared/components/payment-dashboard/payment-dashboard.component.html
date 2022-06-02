@@ -1,27 +1,27 @@
 <section class="blue-bg">
-  <ul class="count-wrapper flex-container-center">
+  <ul class="count-wrapper flex-container-center" *ngIf="userRole === 'tutor' && (total$ | async) as total">
     <li class="count-wrapper__item">
       <h2 class="count-wrapper__item--label">Total earnings</h2>
-      <h6 class="count-wrapper__item--info">$0,00</h6>
+      <h6 class="count-wrapper__item--info">{{total.totalEarnings | currency}}</h6>
     </li>
     <li class="count-wrapper__item">
       <h2 class="count-wrapper__item--label">Amount paid</h2>
-      <h6 class="count-wrapper__item--info">$0,00</h6>
+      <h6 class="count-wrapper__item--info">{{total.amountPaid | currency}}</h6>
     </li>
     <li class="count-wrapper__item">
       <h2 class="count-wrapper__item--label">Amount owed</h2>
-      <h6 class="count-wrapper__item--info">$0,00</h6>
+      <h6 class="count-wrapper__item--info">{{total.amountOwed | currency}}</h6>
     </li>
     <li class="count-wrapper__item">
       <h2 class="count-wrapper__item--label">Pay percent</h2>
-      <h6 class="count-wrapper__item--info">$0,00</h6>
+      <h6 class="count-wrapper__item--info">{{total.payPercent | currency}}</h6>
     </li>
   </ul>
-  <button class="settings-form-button">Payment history</button>
+  <button class="settings-form-button" (click)="getLastPayment()">Payment history</button>
   <div class="profile-table-wrapper">
-    <div>
-      <h2 class="section-subtitle">Recent payment.</h2>
-      <div class="profile-table-container min-width-table">
+    <div *ngIf="(lastPayments$ | async) as lastPayment">
+      <h2 class="section-subtitle" *ngIf="lastPayment?.length">Recent payment.</h2>
+      <div class="profile-table-container min-width-table" *ngIf="lastPayment?.length">
         <table>
           <thead>
           <tr>
@@ -37,67 +37,16 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
+          <tr *ngFor="let payment of lastPayment">
             <td>
-              <h4 class="tbody-info flex-container-center">Apr 24</h4>
+              <h4 class="tbody-info flex-container-center">{{payment.chargeDate | date : 'MMM d, y'}}</h4>
             </td>
             <td>
-              <h4 class="tbody-info flex-container-center">30.00</h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                1
-              </h4>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                Apr 24
-              </h4>
+              <h4 class="tbody-info flex-container-center">{{payment.amount | currency}}</h4>
             </td>
             <td>
               <h4 class="tbody-info flex-container-center">
-                30.00
-              </h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                1
-              </h4>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                Apr 24
-              </h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                30.00
-              </h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                1
-              </h4>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                Apr 24
-              </h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                30.00
-              </h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                1
+                {{payment.sessionsCount}}
               </h4>
             </td>
           </tr>
@@ -109,7 +58,7 @@
       <h2 class="section-subtitle">Recent history.</h2>
       <div class="profile-table-filter-container calendar-wrapper">
         <div class="flex-container payment-filter">
-          <form class="flex-container-justify-start calendar-datepicker-wrappers">
+          <form class="flex-container-justify-start calendar-datepicker-wrappers" [formGroup]="form" (ngSubmit)="onSubmit()">
             <div class="date-picker-wrapper-for-calendar">
               <h2 class="date-picker-label">From</h2>
               <mat-form-field appearance="fill"
@@ -146,24 +95,24 @@
             </div>
             <button class="btn-add-less flex-container-center">Filter</button>
           </form>
-          <div class="flex-container-center">
+          <div class="flex-container-center" *ngIf="false">
             <img src="assets/images/printer.png" alt="Printer" width="35" height="35">
             <button class="settings-form-button print-btn">Print Selected</button>
           </div>
         </div>
-        <ul class="total-info">
+        <ul class="total-info" *ngIf="(paymentHistory$ | async) as paymentHistory">
           <li class="flex-container-justify-start">
             <h2 class="total-info__label"> Total Payments </h2>
-            <span class="total-info__info">85 </span>
+            <span class="total-info__info">{{paymentHistory.totalPayments}}</span>
           </li>
           <li class="flex-container-justify-start">
             <h2 class="total-info__label"> Total Paid </h2>
-            <span class="total-info__info">8,645.40 $ </span>
+            <span class="total-info__info">{{paymentHistory.totalAmount}}</span>
           </li>
         </ul>
       </div>
-      <div class="profile-table-container">
-        <table>
+      <div class="profile-table-container" *ngIf="(paymentHistory$ | async) as paymentHistory">
+        <table *ngIf="paymentHistory?.payments?.length">
           <thead>
           <tr>
             <th>
@@ -181,106 +130,20 @@
           </tr>
           </thead>
           <tbody>
-          <tr>
+          <tr *ngFor="let item of paymentHistory.payments">
             <td>
               <h4 class="tbody-info flex-container-center">
-                <button type="button" class="link">4516235</button>
+                <button type="button" class="link">{{item.paymentId}}</button>
               </h4>
             </td>
             <td>
-              <h4 class="tbody-info flex-container-center">01.01.2020</h4>
+              <h4 class="tbody-info flex-container-center">{{item.date | date : 'shortDate'}}</h4>
             </td>
             <td>
-              <h4 class="tbody-info flex-container-center">
-                Direct deposit to Tatevik Hovhannisyan via Wells fargo</h4>
+              <h4 class="tbody-info flex-container-center">{{item.type}}</h4>
             </td>
             <td>
-              <h4 class="tbody-info flex-container-center">$30,00</h4>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                <button type="button" class="link">4516235</button>
-              </h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">01.01.2020</h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                Direct deposit to Tatevik Hovhannisyan via Wells fargo</h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">$30,00</h4>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                <button type="button" class="link">4516235</button>
-              </h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">01.01.2020</h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                Direct deposit to Tatevik Hovhannisyan via Wells fargo</h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">$30,00</h4>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                <button type="button" class="link">4516235</button>
-              </h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">01.01.2020</h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                Direct deposit to Tatevik Hovhannisyan via Wells fargo</h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">$30,00</h4>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                <button type="button" class="link">4516235</button>
-              </h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">01.01.2020</h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                Direct deposit to Tatevik Hovhannisyan via Wells fargo</h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">$30,00</h4>
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                <button type="button" class="link">4516235</button>
-              </h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">01.01.2020</h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">
-                Direct deposit to Tatevik Hovhannisyan via Wells fargo</h4>
-            </td>
-            <td>
-              <h4 class="tbody-info flex-container-center">$30,00</h4>
+              <h4 class="tbody-info flex-container-center">{{item.amount | currency}}</h4>
             </td>
           </tr>
           </tbody>
