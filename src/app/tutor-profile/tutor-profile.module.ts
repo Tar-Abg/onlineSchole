@@ -25,6 +25,7 @@ import {CancelLessonModalComponent} from './components/cancel-lesson-modal/cance
 import {ProfileInfoComponent} from './components/profile-info/profile-info.component';
 import {StudentSettingsModule} from "../chat/chat.module";
 import {LessonHistoryComponent} from './components/lesson-history/lesson-history.component';
+import {EndLessonForTutorComponent} from "./components/end-lesson-for-tutor/end-lesson-for-tutor.component";
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {LessonHistoryComponent} from './components/lesson-history/lesson-history
     EndLessonModalComponent,
     CancelLessonModalComponent,
     ProfileInfoComponent,
-    LessonHistoryComponent
+    LessonHistoryComponent,
+    EndLessonForTutorComponent
   ],
     exports: [
         StartLessonComponent,
