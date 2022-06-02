@@ -5,7 +5,12 @@ import {ResponseModel} from "../../shared/models/responseModel.model";
 import {map} from "rxjs/operators";
 import {Student, StudentSubject, StudentTutors} from "../models/student-profile.model";
 import {environment} from "../../../environments/environment";
-import {Lesson, LessonHistory, LessonRequest, LessonSchedule} from "../../tutor-profile/models/tutor.model";
+import {
+  LastPayment,
+  Lesson,
+  LessonRequest,
+  LessonSchedule, PaymentHistoryResponse
+} from "../../tutor-profile/models/tutor.model";
 
 @Injectable({
   providedIn: 'root'
@@ -57,5 +62,23 @@ export class StudentProfileService {
     return this.http.post<ResponseModel<Lesson[]>>(`${this.url}/GetStudentLessonHistory`, body).pipe(
       map(data => data.result)
     )
+  }
+
+  getLastPayments(tutorId: number): Observable<LastPayment[]> {
+    let params = new HttpParams();
+    params = params.append('userId', tutorId)
+    return this.http.post<ResponseModel<LastPayment[]>>(`${this.url}/GetLastPayments`, null,{params}).pipe(
+      map(data => data.result)
+    );
+  }
+
+  getPaymentHistory(tutorId: number, from: string, to: string): Observable<PaymentHistoryResponse> {
+    let params = new HttpParams();
+    params = params.append('userId', tutorId);
+    params = params.append('from', from);
+    params = params.append('to', to);
+    return this.http.post<ResponseModel<PaymentHistoryResponse>>(`${this.url}/GetPaymentHistory`, null,{params}).pipe(
+      map(data => data.result)
+    );
   }
 }
