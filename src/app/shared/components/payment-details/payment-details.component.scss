@@ -1,0 +1,43 @@
+@import "src/assets/css/variables";
+
+.payment-details-wrapper__title {
+  margin: -25px 0 24px;
+  font: $type-semi-bold normal $type-base $Segoe-UI-sans;
+  line-height: 27px;
+  color: $clr-ntrl-max;
+  letter-spacing: 0;
+  text-align: left;
+}
+
+.payment-details-wrapper-table {
+  width: 96%;
+  margin-bottom: 24px;
+
+  td {
+    height: 48px;
+    border-bottom: 1px solid rgba(220, 220, 220, 1);
+    vertical-align: middle;
+  }
+
+  h3 {
+    font: $type-regular normal $type-medium-size $Segoe-UI-sans;
+    line-height: 24px;
+    color: $clr-ntrl-max;
+    letter-spacing: 0;
+    text-align: left;
+
+    &:first-child {
+      min-width: 200px;
+    }
+  }
+}
+
+.payment-details-wrapper-btns {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  img {
+    width: auto;
+  }
+}

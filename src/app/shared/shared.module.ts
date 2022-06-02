@@ -29,6 +29,7 @@ import {LessonHistoryDashboardComponent} from './components/lesson-history-dashb
 import {ClickOutsideDirective} from './directivs/click-outside.directive';
 import {RegisterComponent} from './components/register/register.component';
 import {PaymentMethodComponent} from "./components/payment-method/payment-method.component";
+import {PaymentDetailsComponent} from "./components/payment-details/payment-details.component";
 
 
 @NgModule({
@@ -54,18 +55,19 @@ import {PaymentMethodComponent} from "./components/payment-method/payment-method
     LessonHistoryDashboardComponent,
     ClickOutsideDirective,
     RegisterComponent,
-    PaymentMethodComponent
+    PaymentMethodComponent,
+    PaymentDetailsComponent
   ],
-  imports: [
-    CommonModule,
-    MatSelectModule,
-    ReactiveFormsModule,
-    MatDatepickerModule,
-    MatInputModule,
-    MatIconModule,
-    MatCheckboxModule,
-    RouterModule,
-  ],
+    imports: [
+        CommonModule,
+        MatSelectModule,
+        ReactiveFormsModule,
+        MatDatepickerModule,
+        MatInputModule,
+        MatIconModule,
+        MatCheckboxModule,
+        RouterModule,
+    ],
     exports: [
         RegisterHeaderComponent,
         StepsComponent,
@@ -85,7 +87,8 @@ import {PaymentMethodComponent} from "./components/payment-method/payment-method
         LessonHistoryDashboardComponent,
         ClickOutsideDirective,
         RegisterComponent,
-        ConfirmPasswordComponent
+        ConfirmPasswordComponent,
+        PaymentDetailsComponent
     ]
 })
 export class SharedModule {

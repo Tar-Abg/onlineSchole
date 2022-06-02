@@ -19,6 +19,7 @@ export class PaymentDashboardComponent implements OnInit {
   form: FormGroup;
   userId: number;
   userRole: string;
+  isOpenPaymentDetails: boolean;
 
   constructor(
     private tutorService: TutorService,

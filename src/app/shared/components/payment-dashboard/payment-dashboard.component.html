@@ -58,7 +58,8 @@
       <h2 class="section-subtitle">Recent history.</h2>
       <div class="profile-table-filter-container calendar-wrapper">
         <div class="flex-container payment-filter">
-          <form class="flex-container-justify-start calendar-datepicker-wrappers" [formGroup]="form" (ngSubmit)="onSubmit()">
+          <form class="flex-container-justify-start calendar-datepicker-wrappers" [formGroup]="form"
+                (ngSubmit)="onSubmit()">
             <div class="date-picker-wrapper-for-calendar">
               <h2 class="date-picker-label">From</h2>
               <mat-form-field appearance="fill"
@@ -116,7 +117,9 @@
           <thead>
           <tr>
             <th>
-              <h3 class="thead-title">ID</h3>
+              <h3 class="thead-title">
+                ID
+              </h3>
             </th>
             <th>
               <h3 class="thead-title">Date </h3>
@@ -133,7 +136,8 @@
           <tr *ngFor="let item of paymentHistory.payments">
             <td>
               <h4 class="tbody-info flex-container-center">
-                <button type="button" class="link">{{item.paymentId}}</button>
+                <button type="button" class="link" (click)="isOpenPaymentDetails=true"
+                >{{item.paymentId}}</button>
               </h4>
             </td>
             <td>
@@ -152,3 +156,11 @@
     </div>
   </div>
 </section>
+
+
+<!-- Start Lessons Modal For  Tutor-->
+<div class="lessons-modal-container modal--large-width modal-wrapper">
+  <app-modal-schem *ngIf="isOpenPaymentDetails" (close)="isOpenPaymentDetails = false">
+    <app-payment-details (onCloe)="isOpenPaymentDetails = false"></app-payment-details>
+  </app-modal-schem>
+</div>
