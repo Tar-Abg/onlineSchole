@@ -9,14 +9,16 @@
       </td>
       <td>
         <form [formGroup]="form">
-          <label for="lesson-duration" class="form-label">
+          <label for="lesson-duration" class="form-label readOnlyInput">
             <input id="actual-start-date"
                    class="form-input"
                    name="lesson-duration"
                    required
                    autocomplete="lessonDuration"
                    type="number"
-                   placeholder="date time"
+                   readonly
+                   value="10"
+                   placeholder="10"
                    formControlName="durationInMinutes">
           </label>
         </form>
