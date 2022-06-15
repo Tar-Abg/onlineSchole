@@ -4,6 +4,27 @@
     <tr>
       <td>
         <h2 class="end-lesson-table-row-label">
+          Actual Start Date*
+        </h2>
+      </td>
+      <td>
+        <form [formGroup]="form">
+          <label for="lesson-duration" class="form-label">
+            <input id="actual-start-date"
+                   class="form-input"
+                   name="lesson-duration"
+                   required
+                   autocomplete="lessonDuration"
+                   type="number"
+                   placeholder="date time"
+                   formControlName="durationInMinutes">
+          </label>
+        </form>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h2 class="end-lesson-table-row-label">
           Lesson duration*
         </h2>
       </td>

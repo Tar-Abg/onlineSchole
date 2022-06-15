@@ -5,7 +5,31 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 1000px;
-  margin-bottom: 110px;
+  margin: 98px 0 0;
+
+  .container {
+    width: calc(100% - 280px);
+    padding: 0;
+  }
+}
+
+.about_us__title {
+  font: $type-medium normal $type-large $Roboto-sans;
+  line-height: 30px;
+  text-transform: capitalize;
+  letter-spacing: 0.03em;
+  text-align: left;
+  color: $clr-ntrl-max;
+  margin-bottom: 40px;
+}
+
+.about_us_description {
+  font: $type-light normal $type-base $Roboto-sans;
+  line-height: 33px;
+  letter-spacing: 0.03em;
+  text-align: left;
+  color: $clr-ntrl-max;
+  text-transform: capitalize;
 }
 
 .team-cards-list {
@@ -39,7 +63,34 @@
   color: $clr-ntrl-max;
 }
 
+.service-bg {
+  background-image: url("../../assets/images/vectorAboutt.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .service-list {
-  width: 80%;
-  margin: 195px auto;
+  width: 65%;
+  margin: 195px auto 0;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    grid-gap: 40px;
+
+    &-title {
+      font: $type-bold normal $type-large $Roboto-sans;
+      line-height: 30px;
+      letter-spacing: 0.03em;
+      text-align: center;
+      text-transform: uppercase;
+      color: rgba(22, 79, 150, 1);
+    }
+  }
+}
+
+.about-us-team{
+  margin-top: 260px;
 }

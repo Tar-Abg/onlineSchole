@@ -31,6 +31,17 @@
           <mat-checkbox formControlName="socialMediaExistance" class="checkbox-label--gray-color">
             I do not have a social media profile
           </mat-checkbox>
+
+          <div class="checkbox-divider-line"></div>
+          <label class="container-for-checkbox confirm notification-warning">
+<!--            <mat-checkbox #accept></mat-checkbox>-->
+            <span>
+             Please check your email for the Docusign link to sign important documents.
+              These documents are needed to complete your registration process. Please sign and return as soon as possible.
+          <a href="#" class="terms-conditions-link"> Terms and Conditions.</a>
+        </span>
+          </label>
+
           <div class="checkbox-divider-line"></div>
           <label class="container-for-checkbox confirm">
             <mat-checkbox #accept></mat-checkbox>
@@ -58,7 +69,7 @@
 </div>
 
 
-<div class="modal-wrapper confirmation-dialog" *ngIf="showConfirmRegister" >
+<div class="modal-wrapper confirmation-dialog" *ngIf="showConfirmRegister">
   <app-modal-schem (close)="showConfirmRegister = false">
     <app-confirm-register (submit)="register()"></app-confirm-register>
   </app-modal-schem>

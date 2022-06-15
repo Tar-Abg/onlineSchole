@@ -1,5 +1,16 @@
 <section class="calendar-wrapper start-lesson-wrapper">
   <h3 class="section-subtitle">{{title}}</h3>
+
+  <!--  Depend on user type (first student, second Tutor)-->
+  <p class="notification-warning">
+    Please note that if you do not start the lesson in 15
+    or more minutes, your class will be automatically canceled.
+  </p>
+  <p class="notification-warning">
+    Please note that if the tutor has not started the lesson in
+    15 and more minutes, the lesson will be automatically
+    canceled.
+  </p>
   <div class="flex-container">
     <form class="flex-container-justify-start calendar-datepicker-wrappers" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="date-picker-wrapper-for-calendar">
@@ -46,7 +57,8 @@
         Show
       </button>
     </form>
-    <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true" *ngIf="(userType === 'tutor' && (tutorPaymentExistence$ | async))">Add
+    <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true"
+            *ngIf="(userType === 'tutor' && (tutorPaymentExistence$ | async))">Add
       Lesson
     </button>
   </div>
@@ -171,7 +183,8 @@
               </td>
               <td>
                 <div class="lessons-table-btn-wrapper">
-                  <a *ngIf="lesson.start" [href]="lesson.meetingLink" target="_blank" class="lesson-status-btn  lesson-status-btn__start flex-container-center">
+                  <a *ngIf="lesson.start" [href]="lesson.meetingLink" target="_blank"
+                     class="lesson-status-btn  lesson-status-btn__start flex-container-center">
                     {{userType === 'tutor' ? 'Start' : 'Join' }}
                   </a>
                   <button class="lesson-status-btn lesson-status-btn__end flex-container-center"
@@ -206,7 +219,7 @@
 
 <!-- Start Lessons Modal For  Tutor-->
 <div class="lessons-modal-container modal--large-width modal-wrapper">
-  <app-modal-schem *ngIf="isOpenEndLesson" (close)="isOpenEndLesson = false" [title]="'End Lesson'" >
+  <app-modal-schem *ngIf="isOpenEndLesson" (close)="isOpenEndLesson = false" [title]="'End Lesson'">
     <app-end-lesson-modal (onCloe)="isOpenEndLesson = false" [lessonId]="selectedLessonId"></app-end-lesson-modal>
   </app-modal-schem>
 </div>
