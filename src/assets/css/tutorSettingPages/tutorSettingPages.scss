@@ -98,7 +98,7 @@
   table {
     width: 100%;
     border-collapse: collapse;
-    table-layout: fixed;
+    //table-layout: fixed;
     background: $clr-ntrl-min;
   }
 
@@ -106,15 +106,16 @@
     border: 1px solid #C0C0C0;
     vertical-align: middle;
     text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    padding: 0 15px;
+    //white-space: nowrap;
+    //text-overflow: ellipsis;
 
     &:first-child {
-      width: 68px;
+      //width: 68px;
       font: $type-light normal $type-small $Segoe-UI-sans;
       line-height: 25px;
       letter-spacing: 0.02em;
-      text-transform: uppercase;
+      //text-transform: uppercase;
       color: $clr-ntrl-max;
       background: rgba(192, 192, 192, 0.13);
     }
@@ -157,14 +158,6 @@
     color: $clr-ntrl-max;
   }
 
-  .tWrap__body {
-    max-height: 305px;
-    overflow: auto;
-    overflow-x: hidden;
-    overflow: overlay;
-    padding: 0;
-  }
-
   .tooltip {
     position: relative;
     display: inline-block;
@@ -201,4 +194,12 @@
       visibility: visible;
     }
   }
+}
+
+.tWrap__body {
+  max-height: 305px;
+  overflow: auto;
+  overflow-x: hidden;
+  overflow: overlay;
+  padding: 0;
 }

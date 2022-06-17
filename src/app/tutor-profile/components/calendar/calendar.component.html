@@ -49,8 +49,13 @@
   </form>
 
   <div class="calendar-content">
-    <div class="tWrap">
-      <div class="tWrap__head">
+<!--    <div class="tWrap">-->
+<!--      <div class="tWrap__head">-->
+<!--        <table>-->
+
+<!--        </table>-->
+<!--      </div>-->
+      <div class="tWrap__body">
         <table>
           <thead>
           <tr>
@@ -58,10 +63,6 @@
             <th *ngFor="let day of daysOfWeek$ | async"><h3 class="calendar-table-thead">{{day.shortName}}</h3></th>
           </tr>
           </thead>
-        </table>
-      </div>
-      <div class="tWrap__body">
-        <table>
           <tbody>
           <tr *ngFor="let item of schedule">
             <td>{{item.hour?.time}}</td>
@@ -76,5 +77,5 @@
         </table>
       </div>
     </div>
-  </div>
+<!--  </div>-->
 </section>

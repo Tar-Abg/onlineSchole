@@ -13,9 +13,13 @@
   }
 
   .calendar-content {
+    overflow: auto;
+    max-height: 305px;
+
     th {
       background-color: #F6F9FF;
       height: 73px;
+      white-space: nowrap;
 
       &:first-child {
         width: rem(150px);
@@ -24,10 +28,11 @@
       &:last-child {
         background-color: unset;
         border: 0;
+        min-width: 150px;
       }
 
       .calendar-table-thead {
-        white-space: pre-wrap;
+        //white-space: pre-wrap;
       }
     }
 
