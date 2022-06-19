@@ -81,4 +81,11 @@ export class StudentProfileService {
       map(data => data.result)
     );
   }
+
+
+  joinLesson(lessonId: number): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('lessonId', lessonId)
+    return this.http.put<ResponseModel<any>>(`${this.url}/JoinLesson`, null,{params})
+  }
 }

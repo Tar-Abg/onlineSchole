@@ -107,6 +107,8 @@ export interface LessonSchedule {
   tutor: string;
   subject: string;
   tutorId: number;
+  actualStartTime: Date;
+  join: boolean;
 }
 
 export interface LessonRequest {

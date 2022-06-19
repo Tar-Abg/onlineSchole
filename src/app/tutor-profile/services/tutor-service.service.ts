@@ -163,4 +163,25 @@ export class TutorService {
       map(data => data.result)
     );
   }
+
+  isChargeSafety(tutorId: number): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('tutorId', tutorId)
+    return this.http.post<any>(`${this.url}/IsChargeSafety`, null,{params})
+  }
+
+  startLesson(lessonId: number): Observable<any> {
+    let params = new HttpParams();
+    params = params.append('lessonId', lessonId);
+    return this.http.put<any>(`${this.url}/StartLesson`, null,{params})
+  }
+
+  checkCancelFeeExistence(lessonId: number): Observable<boolean> {
+    let params = new HttpParams();
+    params = params.append('lessonId', lessonId);
+    return this.http.put<ResponseModel<boolean>>(`${this.url}/CheckCancelFeeExistence`, null,{params}).pipe(
+      map(data => data.result)
+    );
+  }
+
 }

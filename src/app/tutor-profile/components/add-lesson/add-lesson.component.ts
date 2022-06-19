@@ -22,6 +22,7 @@ export class AddLessonComponent implements OnInit, OnDestroy {
   form: FormGroup;
   minDate = new Date();
   linkErrorMessage: string;
+  errorMessage: string;
 
   constructor(
     private fb: FormBuilder,
@@ -88,9 +89,11 @@ export class AddLessonComponent implements OnInit, OnDestroy {
       this.tutorService.addLesson(this.form.value).subscribe(
         () => this.onClose.emit(),
         (error) => {
-          error.error.type === 'Invalid meeting link error' ?
-            this.linkErrorMessage = error.error.title
-            : this.linkErrorMessage = ''
+          if (error.error.title) {
+            error.error.type === 'Invalid meeting link error' ?
+              this.linkErrorMessage = error.error.title
+              : this.errorMessage = error.error.title;
+          }
         }
       ),
     );

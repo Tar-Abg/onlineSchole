@@ -24,4 +24,10 @@ export class LessonService {
     );
   }
 
+  studentEndLesson(body: any): Observable<any> {
+    return this.http.post<ResponseModel<any>>(`${this.url}/StudentEndLesson`, body).pipe(
+      map(data => data.result)
+    );
+  }
+
 }

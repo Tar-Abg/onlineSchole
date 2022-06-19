@@ -1,6 +1,7 @@
 <div class="add-lesson-modal-wrapper">
   <div class="add-lesson-modal-body">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <span class="mat-error">{{errorMessage}}</span>
       <ul class="flex-item-for-info address-form">
         <li class="add-lesson-list--item add-lesson-list--item__fixed-width">
           <h3 class="form-item-label">Student’s username</h3>
@@ -47,7 +48,7 @@
                   [label]="'Time*'"
                   formControlName="hourId"
                   [list]="hoursOfDay$ | async"
-                  [keyName]="'time'"
+                  [keyName]="'timeForLessons'"
                 ></app-select>
                 <span class="error-message" *ngIf="form.get('hourId')?.errors?.required && form.get('hourId')?.touched">This is a required field</span>
               </div>

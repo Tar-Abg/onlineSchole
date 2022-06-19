@@ -7,6 +7,7 @@ import {Observable, Subscription} from "rxjs";
 import {InfosService} from "../../../shared/services/infos/infos.service";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {StudentProfileService} from "../../../student-profile/services/student-profile.service";
+import {MessageService} from "../../../shared/services/message/message.service";
 
 @Component({
   selector: 'app-start-lesson',
@@ -20,13 +21,14 @@ export class StartLessonComponent implements OnInit, OnDestroy {
   @Input() userType: 'tutor' | 'student' = 'tutor';
   lessonSchedule: LessonSchedule[];
   lessonStatuses$: Observable<KeyValuePair[]>;
-  isOpenEndLesson: boolean;
+  isOpenEndLessonForTutor: boolean;
+  isOpenEndLessonForStudent: boolean;
   isOpenCancelLesson: boolean;
   isOpenAddLesson: boolean;
   formSubmitted: boolean;
   form: FormGroup;
   userId: number;
-  selectedLessonId: number;
+  selectedLesson: LessonSchedule;
 
   constructor(
     private fb: FormBuilder,
@@ -34,6 +36,7 @@ export class StartLessonComponent implements OnInit, OnDestroy {
     private studentProfileService: StudentProfileService,
     private storageService: StorageService,
     private infoService: InfosService,
+    private messageService: MessageService,
   ) {
   }
 
@@ -42,6 +45,7 @@ export class StartLessonComponent implements OnInit, OnDestroy {
     this.userId = this.storageService.getUserId();
     this.lessonStatuses$ = this.infoService.getLessonStatuses();
     this.tutorPaymentExistence$ = this.infoService.tutorPaymentExistence(this.userId);
+    this.checkIsChargeSafety();
   }
 
   initializeForm(): void {
@@ -65,9 +69,62 @@ export class StartLessonComponent implements OnInit, OnDestroy {
     this.formSubmitted = true;
   }
 
-  openCancelLessonModal(lessonId: number): void {
+  openCancelLessonModal(lesson: LessonSchedule): void {
     this.isOpenCancelLesson = true;
-    this.selectedLessonId = lessonId;
+    this.selectedLesson = lesson;
+  }
+
+  checkIsChargeSafety(): void {
+    if (this.userType === 'tutor') {
+      this.subscription.add(
+        this.tutorService.isChargeSafety(this.userId).subscribe(
+          () => {},
+          (error) => this.messageService.setNewError(error.error.title)
+        )
+      )
+    }
+  }
+
+  startLesson(lesson: LessonSchedule): void {
+    if (this.userType === 'tutor' ) {
+      this.startLessonForTutor(lesson.id);
+    } else if (this.userType === 'student') {
+      this.joinLesson(lesson);
+    }
+  }
+
+  startLessonForTutor(lessonId: number): void {
+    this.subscription.add(
+      this.tutorService.startLesson(lessonId).subscribe(
+        (lesson: LessonSchedule) => {
+          lesson.start = false;
+          lesson.cancel = false;
+          window.open(lesson.meetingLink, '_blank');
+        },
+        (error) => this.messageService.setNewError(error.error.title)
+      )
+    )
+  }
+
+  joinLesson(lesson: LessonSchedule): void {
+    this.subscription.add(
+      this.studentProfileService.joinLesson(lesson.id).subscribe(() => {
+          lesson.join = false;
+          lesson.end = true;
+          window.open(lesson.meetingLink, '_blank')
+        },
+        (err) => this.messageService.setNewError(err.error.title)
+      ),
+    )
+  }
+
+  endLesson(lesson: LessonSchedule): void {
+    if (this.userType === 'tutor') {
+      this.isOpenEndLessonForTutor = true;
+    } else {
+      this.isOpenEndLessonForStudent = true;
+    }
+    this.selectedLesson = lesson;
   }
 
   ngOnDestroy(): void {

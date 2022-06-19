@@ -1,4 +1,4 @@
-<div class="end-lesson-wrapper">
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="end-lesson-wrapper">
   <table class="end-lesson-table">
     <tbody>
     <!-- Student End Lesson fields-->
@@ -17,7 +17,7 @@
                           placeholder="start typing..."
                           formControlName="review">
                 </textarea>
-            <!--            <span class="error-message">This is a required field</span>-->
+            <span class="error-message" *ngIf="form.get('review')?.errors && form.get('review')?.touched">This is a required field</span>
           </label>
         </div>
       </td>
@@ -39,11 +39,11 @@
     </tbody>
   </table>
   <div class="flex-container-center">
-    <button class="end-lesson-btn">
+    <button class="end-lesson-btn" type="submit">
       Ok
     </button>
   </div>
   <div class="modal-vector-image">
     <img src="assets/images/endLessonPic.png" alt="End Lesson" width="266" height="175">
   </div>
-</div>
+</form>

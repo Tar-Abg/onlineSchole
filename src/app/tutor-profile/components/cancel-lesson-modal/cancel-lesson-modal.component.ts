@@ -11,8 +11,11 @@ import {Subscription} from "rxjs";
 export class CancelLessonModalComponent implements OnInit, OnDestroy {
   private readonly subscription: Subscription = new Subscription();
   @Output() onCloe: EventEmitter<void> = new EventEmitter<void>();
+  @Output() canceled: EventEmitter<void> = new EventEmitter<void>();
   @Input() lessonId: number;
   form: FormGroup;
+  showFeeField: boolean;
+  errorText: string;
 
   constructor(
     private fb: FormBuilder,
@@ -21,6 +24,7 @@ export class CancelLessonModalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.initializeForm();
+    this.checkCancelFeeExistence();
   }
 
   initializeForm(): void {
@@ -29,6 +33,18 @@ export class CancelLessonModalComponent implements OnInit, OnDestroy {
       cancelationDescription: [null, [Validators.required]],
       cancelationFee: [null, [Validators.required]],
     })
+  }
+
+  checkCancelFeeExistence(): void {
+    this.subscription.add(
+      this.tutorService.checkCancelFeeExistence(this.lessonId).subscribe((data) => {
+        this.showFeeField = data;
+        if (!data) {
+          this.form.get('cancelationFee')?.clearValidators();
+          this.form.get('cancelationFee')?.updateValueAndValidity();
+        }
+      })
+    )
   }
 
   onSubmit(): void {
@@ -41,7 +57,11 @@ export class CancelLessonModalComponent implements OnInit, OnDestroy {
 
   cancelLesson(): void {
     this.subscription.add(
-      this.tutorService.cancelLesson(this.form.value).subscribe(() => this.onCloe.emit())
+      this.tutorService.cancelLesson(this.form.value).subscribe(() => {
+        this.canceled.emit();
+          this.onCloe.emit();
+        },
+        (err) => this.errorText =  err.error.title)
     );
   }
 

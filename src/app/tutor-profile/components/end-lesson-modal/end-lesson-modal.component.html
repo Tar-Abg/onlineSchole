@@ -13,13 +13,11 @@
             <input id="actual-start-date"
                    class="form-input"
                    name="lesson-duration"
-                   required
                    autocomplete="lessonDuration"
-                   type="number"
+                   type="text"
                    readonly
-                   value="10"
-                   placeholder="10"
-                   formControlName="durationInMinutes">
+                   [value]="lesson.actualStartTime | date : 'MMM d, y, h:mm'"
+            >
           </label>
         </form>
       </td>

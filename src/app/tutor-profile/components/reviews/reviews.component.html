@@ -1,14 +1,20 @@
 <section class="profile-tabs-wrapper">
   <div class="review-wrapper">
-    <div class="review-item" *ngFor="let item of reviews$ | async">
-      <h3 class="profile-tabs-subtitle">
-        Feedbacks
-      </h3>
-      <h4 class="review-item-name">{{item?.authorName}}</h4>
-      <p class="review-item-desc">{{item?.review}}</p>
-    </div>
-    <div class="no-data">
-      <h3 class="no-data-message">You have no feedback to date.</h3>
-    </div>
+    <ng-container *ngIf="(reviews$ | async) as reviews; else emptyBlock">
+      <div class="review-item" *ngFor="let item of reviews">
+        <h3 class="profile-tabs-subtitle">
+          Feedbacks
+        </h3>
+        <h4 class="review-item-name">{{item?.authorName}}</h4>
+        <p class="review-item-desc">{{item?.review}}</p>
+      </div>
+    </ng-container>
+
+    <ng-template #emptyBlock>
+      <div class="no-data" >
+        <h3 class="no-data-message">You have no feedback to date.</h3>
+      </div>
+    </ng-template>
+
   </div>
 </section>
