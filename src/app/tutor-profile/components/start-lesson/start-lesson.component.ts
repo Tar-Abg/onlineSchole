@@ -87,18 +87,17 @@ export class StartLessonComponent implements OnInit, OnDestroy {
 
   startLesson(lesson: LessonSchedule): void {
     if (this.userType === 'tutor' ) {
-      this.startLessonForTutor(lesson.id);
+      this.startLessonForTutor(lesson);
     } else if (this.userType === 'student') {
       this.joinLesson(lesson);
     }
   }
 
-  startLessonForTutor(lessonId: number): void {
+  startLessonForTutor(lesson: LessonSchedule): void {
     this.subscription.add(
-      this.tutorService.startLesson(lessonId).subscribe(
-        (lesson: LessonSchedule) => {
-          lesson.start = false;
-          lesson.cancel = false;
+      this.tutorService.startLesson(lesson.id).subscribe(
+        (updatedLesson: LessonSchedule) => {
+          lesson = updatedLesson;
           window.open(lesson.meetingLink, '_blank');
         },
         (error) => this.messageService.setNewError(error.error.title)

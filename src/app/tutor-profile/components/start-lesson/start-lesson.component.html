@@ -183,8 +183,7 @@
               </td>
               <td>
                 <div class="lessons-table-btn-wrapper">
-                  <a *ngIf="lesson.start" [href]="lesson.meetingLink" target="_blank"
-                     class="lesson-status-btn  lesson-status-btn__start flex-container-center">
+                  <a *ngIf="lesson.start || lesson.join" (click)="startLesson(lesson)" class="lesson-status-btn  lesson-status-btn__start flex-container-center">
                     {{userType === 'tutor' ? 'Start' : 'Join' }}
                   </a>
                   <button class="lesson-status-btn lesson-status-btn__end flex-container-center"

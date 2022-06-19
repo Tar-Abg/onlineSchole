@@ -4,7 +4,7 @@ import {LessonService} from "../../../shared/services/lesson.service";
 import {LessonSchedule} from "../../models/tutor.model";
 
 @Component({
-    selector: 'app-end-lesson-modal',
+  selector: 'app-end-lesson-modal',
   templateUrl: './end-lesson-modal.component.html',
   styleUrls: ['./end-lesson-modal.component.scss']
 })
