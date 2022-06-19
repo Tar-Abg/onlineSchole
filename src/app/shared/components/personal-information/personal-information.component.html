@@ -68,7 +68,7 @@
               formControlName="countryId"
               [disable]="form.disabled">
             </app-select>
-            <span class="form-item-notification">Visible on the public profile</span>
+            <span class="form-item-notification">Visible in a public profile</span>
             <span class="error-message block"
                   *ngIf="userAddress.get('countryId')?.errors?.required && userAddress.get('countryId')?.touched">This is a required field </span>
           </label>
@@ -78,7 +78,7 @@
           <label for="city" class="form-label">
             <input id="city" class="form-input" type="text" placeholder="City*"
                    formControlName="city">
-            <span class="form-item-notification">Visible on the public profile</span>
+            <span class="form-item-notification">Visible in a public profile</span>
             <span class="error-message"
                   *ngIf="userAddress.get('city')?.errors?.required && userAddress.get('city')?.touched">This is a required field</span>
           </label>
