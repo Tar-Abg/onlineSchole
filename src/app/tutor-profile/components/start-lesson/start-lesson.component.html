@@ -188,11 +188,11 @@
                     {{userType === 'tutor' ? 'Start' : 'Join' }}
                   </a>
                   <button class="lesson-status-btn lesson-status-btn__end flex-container-center"
-                          (click)="isOpenEndLesson = true; selectedLessonId = lesson.id" *ngIf="lesson.end">
+                          (click)="endLesson(lesson)" *ngIf="lesson.end">
                     End
                   </button>
                   <button class="lesson-status-btn lesson-status-btn__cancel flex-container-center"
-                          (click)="openCancelLessonModal(lesson.id)"
+                          (click)="openCancelLessonModal(lesson)"
                           *ngIf="lesson.cancel">
                     Cancel
                   </button>
