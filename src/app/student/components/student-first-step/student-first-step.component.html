@@ -66,13 +66,22 @@
             </mat-form-field>
             <span class="error-message" *ngIf="form.get('birthDate')?.errors && form.get('birthDate')?.touched">Please specify your date of birth</span>
           </div>
-
           <div class="p-relative form-label">
             <app-select [label]="'time zone*'" formControlName="preferredTimeZone" [list]="timeZones$ | async"
                         [keyName]="'displayName'"></app-select>
             <span class="error-message"
                   *ngIf="form.get('preferredTimeZone')?.errors && form.get('preferredTimeZone')?.touched">This is a required field</span>
           </div>
+
+          <label for="organization" class="form-label" title="Organization(school, university, college, etc.)">
+            <input
+              id="organization"
+              class="form-input"
+              autocomplete="organization" type="text"
+              placeholder="Organization(school, university, college, etc.)"
+              formControlName="organization"
+            >
+          </label>
           <label for="email" class="form-label">
             <input id="email" class="form-input" autocomplete="username" type="email"
                    placeholder="email address*" formControlName="email">
