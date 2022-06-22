@@ -41,7 +41,7 @@ export class TutorSecondStepComponent implements OnInit, OnDestroy {
       headline: [null, [Validators.required, Validators.minLength(15), Validators.maxLength(100), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       photo: [null],
       bio: [null, [Validators.required, Validators.minLength(100), Validators.maxLength(2000), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
-      wrapUp: [null],
+      wrapUp: [null, [Validators.required, Validators.minLength(100), Validators.maxLength(2000), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
     })
   }
 

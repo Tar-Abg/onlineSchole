@@ -17,7 +17,7 @@
                             formControlName="countryId"
                 ></app-select>
                 <span class="form-item-notification">Visible in a public profile</span>
-                <span class="error-message block" *ngIf="form.get('countryId')?.errors?.required && form.get('countryId')?.touched">This is a required field</span>
+                <span class="error-message block" *ngIf="(form.get('countryId')?.errors?.required || form.get('countryId')?.errors?.pattern)  && form.get('countryId')?.touched">This is a required field</span>
               </div>
             </li>
             <li class="address-form__item">
@@ -25,7 +25,7 @@
                 <input id="city" class="form-input" autocomplete="city" type="text"
                        placeholder="City*" formControlName="city">
                 <span class="form-item-notification">Visible in a public profile</span>
-                <span class="error-message block" *ngIf="form.get('city')?.errors?.required && form.get('city')?.touched">This is a required field</span>
+                <span class="error-message block" *ngIf="(form.get('city')?.errors?.required || form.get('city')?.errors?.pattern) && form.get('city')?.touched">This is a required field</span>
               </label>
             </li>
             <li class="address-form__item">
@@ -33,7 +33,7 @@
                 <input id="streetNumber" class="form-input" autocomplete="streetNumber" type="text"
                        placeholder="Street Number*" formControlName="streetNumber">
                 <span class="form-item-notification">Not visible on the public profile.</span>
-                <span class="error-message block" *ngIf="form.get('streetNumber')?.errors?.required && form.get('streetNumber')?.touched">This is a required field</span>
+                <span class="error-message block" *ngIf="(form.get('streetNumber')?.errors?.required || form.get('streetNumber')?.errors?.pattern) && form.get('streetNumber')?.touched">This is a required field</span>
               </label>
             </li>
             <li class="address-form__item">
@@ -41,7 +41,7 @@
                 <input id="streetName" class="form-input" autocomplete="streetName" type="text"
                        placeholder="Street Name*" formControlName="streetName">
                 <span class="form-item-notification">Not visible on the public profile.</span>
-                <span class="error-message block" *ngIf="form.get('streetName')?.errors?.required && form.get('streetName')?.touched">This is a required field</span>
+                <span class="error-message block" *ngIf="(form.get('streetName')?.errors?.required || form.get('streetName')?.errors?.pattern) && form.get('streetName')?.touched">This is a required field</span>
               </label>
             </li>
             <li class="address-form__item">

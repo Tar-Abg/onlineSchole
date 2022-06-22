@@ -126,7 +126,7 @@ export class TutorService {
     )
   }
 
-  cancelLesson(data: LessonCancelRequest): Observable<any> {
+  cancelLesson(data: LessonCancelRequest): Observable<LessonSchedule> {
     return this.http.put<ResponseModel<any>>(`${this.url}/CancelLesson`, data).pipe(
       map(data => data.result)
     )

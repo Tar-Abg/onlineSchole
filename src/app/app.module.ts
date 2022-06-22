@@ -30,6 +30,7 @@ import {AlertBoxComponent} from './alert-box/alert-box.component';
 import {CarouselModule} from "ngx-owl-carousel-o";
 import {IvyCarouselModule} from "angular-responsive-carousel";
 import {NgxLinkifyjsModule} from 'ngx-linkifyjs';
+import {ErrorInterceptor} from "./interceptors/error.interceptor";
 
 
 @NgModule({
@@ -70,6 +71,9 @@ import {NgxLinkifyjsModule} from 'ngx-linkifyjs';
     },
     {
       provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true
     },
     {provide: MAT_MOMENT_DATE_ADAPTER_OPTIONS, useValue: {useUtc: true}}
 

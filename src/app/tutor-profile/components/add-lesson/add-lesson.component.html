@@ -114,19 +114,6 @@
           </div>
         </li>
         <li class="add-lesson-list--item add-lesson-list--item__fixed-width">
-          <h3 class="form-item-label">Hourly rate</h3>
-          <label for="hourlyRate" class="form-label">
-            <input id="hourlyRate"
-                   class="form-input"
-                   type="number"
-                   min="0"
-                   formControlName="hourlyRate"
-                   placeholder="The minimum hourly rate is $20 *"
-            >
-            <!--            <span class="error-message">You cannot enter anything below $20</span>-->
-          </label>
-        </li>
-        <li class="add-lesson-list--item add-lesson-list--item__fixed-width">
           <h3 class="form-item-label">Lesson plan</h3>
           <label for="lessonPlan" class="form-label">
             <input id="lessonPlan"
@@ -155,7 +142,6 @@
                   *ngIf="form.get('meetingLink')?.errors && form.get('meetingLink')?.touched">This is a required field</span>
             <span class="error-message" *ngIf="linkErrorMessage">{{linkErrorMessage}}</span>
           </label>
-          <span class="form-item-notification">Your lesson plan must be between 15 and 100 characters.</span>
         </li>
       </ul>
       <div class="flex-container-center">

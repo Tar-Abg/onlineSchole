@@ -2,6 +2,8 @@ import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angula
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TutorService} from "../../services/tutor-service.service";
 import {Subscription} from "rxjs";
+import {LessonSchedule} from "../../models/tutor.model";
+import {MessageService} from "../../../shared/services/message/message.service";
 
 @Component({
   selector: 'app-cancel-lesson-modal',
@@ -20,6 +22,7 @@ export class CancelLessonModalComponent implements OnInit, OnDestroy {
   constructor(
     private fb: FormBuilder,
     private tutorService: TutorService,
+    private messageService: MessageService,
   ) { }
 
   ngOnInit(): void {
@@ -57,9 +60,10 @@ export class CancelLessonModalComponent implements OnInit, OnDestroy {
 
   cancelLesson(): void {
     this.subscription.add(
-      this.tutorService.cancelLesson(this.form.value).subscribe(() => {
-        this.canceled.emit();
+      this.tutorService.cancelLesson(this.form.value).subscribe((lesson: LessonSchedule) => {
+          this.canceled.emit();
           this.onCloe.emit();
+          this.messageService.setNewMessage(lesson.message);
         },
         (err) => this.errorText =  err.error.title)
     );

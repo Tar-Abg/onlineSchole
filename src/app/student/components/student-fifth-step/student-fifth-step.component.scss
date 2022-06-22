@@ -60,6 +60,12 @@
   border-bottom: 1px solid $secondary-brand-color;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .main-question {
   flex: 0 0 100%;
   font-size: $type-base;

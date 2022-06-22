@@ -71,7 +71,6 @@ export class AddLessonComponent implements OnInit, OnDestroy {
       meetingLink: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       levelId: [null],
       lessonPlan: [null, [Validators.required, Validators.maxLength(100), Validators.minLength(15), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
-      hourlyRate: [null],
       hourId: [null, [Validators.required]],
     })
   }

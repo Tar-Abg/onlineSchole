@@ -79,7 +79,10 @@
                           placeholder="Enter the text"
                           formControlName="wrapUp"> Enter the text
                 </textarea>
-              <span class="error-message" *ngIf="form.get('wrapUp')?.errors && form.get('wrapUp')?.touched">This is a required field</span>
+              <span class="error-message" *ngIf="(form.get('wrapUp')?.errors?.required || form.get('wrapUp')?.errors?.pattern) && form.get('wrapUp')?.touched">This is a required field</span>
+              <span class="error-message"
+                 *ngIf="(form.get('wrapUp')?.errors?.minlength || form.get('wrapUp')?.errors?.maxlength) && form.get('wrapUp')?.touched">
+                Your free response must be between 100 and 2000 characters. </span>
             </label>
             <p class="form-item-notification">Encourage students to contact you to learn more and
               schedule lessons.</p>
