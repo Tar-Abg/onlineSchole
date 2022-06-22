@@ -35,21 +35,21 @@
           <div style="margin-bottom: 20px">
             <h3 class="main-question">Country of residence</h3>
             <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
-              <mat-radio-group name="everTutored" class="everTutored" formControlName="everTutored">
+              <mat-radio-group name="everTutored" class="everTutored" formControlName="usResidence">
                 <mat-radio-button [value]="true">US</mat-radio-button>
                 <mat-radio-button [value]="false">Other</mat-radio-button>
               </mat-radio-group>
-              <span class="error-message">This is a required field</span>
+              <span class="error-message" *ngIf="form.get('usResidence')?.errors && form.get('usResidence')?.touched">This is a required field</span>
             </div>
           </div>
           <div style="margin-bottom: 20px">
             <h3 class="main-question">Are you legally authorized to work in the US?</h3>
             <div class="checkboxes-wrapper-flex checkboxes-wrapper-flex-with-min-width">
-              <mat-radio-group name="everTutored" class="everTutored" formControlName="everTutored">
+              <mat-radio-group name="everTutored" class="everTutored" formControlName="legallyAuthorized">
                 <mat-radio-button [value]="true">Yes</mat-radio-button>
                 <mat-radio-button [value]="false">No</mat-radio-button>
               </mat-radio-group>
-              <span class="error-message">This is a required field</span>
+              <span class="error-message" *ngIf="form.get('legallyAuthorized')?.errors && form.get('legallyAuthorized')?.touched">This is a required field</span>
             </div>
           </div>
           <div class="checkbox-divider-line"></div>
