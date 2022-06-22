@@ -3,6 +3,7 @@ import {LessonSchedule} from "../../models/tutor.model";
 import {LessonService} from "../../../shared/services/lesson.service";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Subscription} from "rxjs";
+import {StarRatingComponent} from "ng-starrating";
 
 @Component({
   selector: 'app-end-lesson-for-student',
@@ -14,6 +15,7 @@ export class EndLessonForStudentComponent implements OnInit {
   @Input() lesson: LessonSchedule;
   private readonly subscription: Subscription = new Subscription();
   form: FormGroup;
+  submited: boolean;
 
   constructor(
     private lessonService: LessonService,
@@ -35,7 +37,7 @@ export class EndLessonForStudentComponent implements OnInit {
   private initializeForm(): void {
     this.form = this.fb.group({
       lessonId: [this.lesson.id],
-      rate: [5, [Validators.required]],
+      rate: [null, [Validators.required]],
       review: [null, [Validators.required]],
     })
   }
@@ -45,7 +47,11 @@ export class EndLessonForStudentComponent implements OnInit {
       this.endLesson();
     } else {
       this.form.markAllAsTouched();
+      this.submited = true;
     }
   }
 
+  rate(event: { oldValue: number; newValue: number; starRating: StarRatingComponent }) {
+    this.form.get('rate')?.setValue(event.newValue);
+  }
 }

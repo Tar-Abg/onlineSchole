@@ -31,7 +31,9 @@
       <td>
         <div>
           <fieldset class="star-rates">
-            <star-rating checkedcolor="#FFC107" uncheckedcolor="#c2c2c2" size="24px"></star-rating>
+            <star-rating [value]="0" [totalstars]="5" checkedcolor="#FFC107" uncheckedcolor="#c2c2c2"
+                         size="35px" (rate) = "rate($event)"></star-rating>
+            <span class="error-message" *ngIf="form.get('rate')?.errors && submited">This is a required field</span>
           </fieldset>
         </div>
       </td>
