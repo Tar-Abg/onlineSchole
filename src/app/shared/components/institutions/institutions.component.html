@@ -42,15 +42,16 @@
                   </div>
                   <input type="file" accept="application/pdf" name="chooseFile" class="chooseFile"
                          (change)="fileUploaded($event.target, item)">
+                  <span class="error-message"
+                        *ngIf="formArray.controls[i]?.get('pdfFromInstitution')?.errors && formArray.controls[i]?.get('pdfFromInstitution')?.touched">This is a required field</span>
+
                   <p>{{formArray.controls[i]?.get('pdfName')?.value}}</p>
                 </div>
                 <h3 class="upload-message">Please upload an unofficial transcript (the
                   file must be in .pdf
                   format)</h3>
               </div>
-              <span class="error-message"
-                    *ngIf="formArray.controls[i]?.get('pdfFromInstitution')?.errors && formArray.controls[i]?.get('pdfFromInstitution')?.touched">This is a required field</span>
-            </div>
+                          </div>
           </div>
           <div class="flex-item">
             <div class="form-label fixed-width">
