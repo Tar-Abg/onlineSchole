@@ -135,6 +135,10 @@
         letter-spacing: 0.03em;
         text-transform: capitalize;
         color: $clr-ntrl-max;
+
+        &__without-uppercase{
+          text-transform: unset;
+        }
       }
 
       &--position {

@@ -12,7 +12,7 @@
           </label>
           <label for="cardName" class="form-group form-label flex-column">
             <span class="card-input-label"> Insert your name as it appears on the card* </span>
-            <input id="cardName" class="card-field" autocomplete="cardName" type="text" placeholder="name on  card" formControlName="name">
+            <input id="cardName" class="card-field" autocomplete="cardName" type="text" placeholder="Name on  card" formControlName="name">
             <span class="error-message" *ngIf="form.get('name')?.errors?.required && form.get('name')?.touched">This is a required field</span>
           </label>
           <span class="card-input-label">Card expiration date*</span>
@@ -29,12 +29,12 @@
               </select>
               <span class="error-message" *ngIf="form.get('expYear')?.errors?.required && form.get('expYear')?.touched">This is a required field</span>
             </div>
-            <label for="cvv" class="form-group form-label flex-column cvv-label">
-              <span class="card-input-label"> CVC2/CVV2* </span>
-              <input id="cvv" class="card-field cvv" autocomplete="cvv" type="number" placeholder="" maxlength="3" formControlName="cvc">
-              <span class="error-message" *ngIf="form.get('cvc')?.errors?.required && form.get('cvc')?.touched">This is a required field</span>
-            </label>
           </div>
+          <label for="cvv" class="form-group form-label flex-column cvv-label">
+            <span class="card-input-label"> CVC2/CVV2* </span>
+            <input id="cvv" class="card-field cvv" autocomplete="cvv" type="number" placeholder="" maxlength="3" formControlName="cvc">
+            <span class="error-message" *ngIf="form.get('cvc')?.errors?.required && form.get('cvc')?.touched">This is a required field</span>
+          </label>
         </div>
         <div class="card__image">
           <img src="assets/images/card.png" alt="Card" width="693" height="420">

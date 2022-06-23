@@ -1,5 +1,5 @@
 .register-form {
-    width: 418px;
+    //width: 418px;
 
   &-steps-wrapper {
     margin-bottom: rem(48px);
@@ -197,4 +197,8 @@
 
 .notification-warning{
   color: $secondary-icon-brand-color;
+}
+
+.register-form-without-fixed-width{
+  width: auto !important;
 }

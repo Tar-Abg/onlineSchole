@@ -39,7 +39,7 @@
               </div>
             </div>
             <form class="send-message-wrapper" [formGroup]="form" *ngIf="selectedConversation">
-              <input (keyup.enter)="sendMessage()" type="text" placeholder="Write a message..." formControlName="message">
+              <textarea (keyup.enter)="sendMessage()" type="text" placeholder="Write a message..." formControlName="message"></textarea>
               <img src="assets/images/sendMessage.png" (click)="sendMessage()"
                    alt="Send Message Icon"
                    width="34"
