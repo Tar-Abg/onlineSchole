@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
 import {Observable, Subscription} from "rxjs";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Country} from "../../models/infos.model";
@@ -33,6 +33,7 @@ export class InstitutionsComponent implements OnInit, OnDestroy{
     private infoService: InfosService,
     private registrationService: RegistrationService,
     private storageService: StorageService,
+    private cd: ChangeDetectorRef
   ) {
   }
 
@@ -162,7 +163,9 @@ export class InstitutionsComponent implements OnInit, OnDestroy{
       formGroup.get('pdfName')?.setValue(file.name);
       reader.onload = () => {
         formGroup.get('pdfFromInstitution')?.setValue(reader.result);
+        formGroup.get('pdfFromInstitution')?.updateValueAndValidity(reader.result);
         this.formArray.updateValueAndValidity();
+        this.cd.detectChanges();
       }
     }
   }

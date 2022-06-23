@@ -32,7 +32,7 @@
           </div>
           <div class="flex-container grid-gap-for-icons">
             <div class="recycle-bin-wrapper" *ngIf="i > 0">
-              <img src="./assets/images/recycleBin.png" (click)="removeForm(item)" alt="Recycle Byn">
+              <img src="./assets/images/recycleBin.png" (click)="removeForm(item, i)" alt="Recycle Byn">
             </div>
             <i class="fas fa-plus" (click)="addNewForm()" *ngIf="i === formArray.controls.length - 1 "></i>
           </div>

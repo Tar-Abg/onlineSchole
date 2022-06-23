@@ -41,6 +41,8 @@ export class FifthStepComponent implements OnInit, OnDestroy {
       mobile: [null, [Validators.required, Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]],
       linkToSocialMedia: [null, [Validators.required]],
       socialMediaExistance: [false, [Validators.required]],
+      usResidence: [false, [Validators.required]],
+      legallyAuthorized: [false, [Validators.required]],
     })
   }
 

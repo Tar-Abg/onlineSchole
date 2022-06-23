@@ -46,6 +46,8 @@ export class AddLessonComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.form.get('categoryId')?.valueChanges.subscribe(categoryId => {
         this.subjects$ = this.infoService.getSubjectsByCategoryIdForTutor(this.storageService.getUserId(), categoryId);
+        this.form.get('subjectId')?.setValue(null);
+        this.form.get('levelId')?.setValue(null);
       })
     );
   }
@@ -54,6 +56,7 @@ export class AddLessonComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.form.get('subjectId')?.valueChanges.subscribe(subjectId => {
         this.levels$ = this.infoService.getLevelsBySubjectIdForTutor(this.storageService.getUserId(), subjectId);
+        this.form.get('levelId')?.setValue(null);
       })
     );
   }

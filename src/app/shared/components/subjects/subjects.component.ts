@@ -65,8 +65,9 @@ export class SubjectsComponent implements OnInit {
     this.formArray.updateValueAndValidity();
   }
 
-  removeForm(form: any): void {
-    this.formArray.controls = this.formArray.controls.filter(item => item !== form);
+  removeForm(form: any, index: number): void {
+    this.formArray.controls = this.formArray.controls.filter((item) => item !== form);
+    this.observables.splice(index, 1);
     this.formArray.updateValueAndValidity();
   }
 
