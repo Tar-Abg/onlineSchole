@@ -4,6 +4,10 @@
 
 .page-wrapper {
 
+  .carousel{
+    z-index: 1;
+  }
+
   .carousel-caption {
     color: black;
   }

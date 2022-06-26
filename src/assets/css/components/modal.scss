@@ -260,3 +260,17 @@
     width: 100%;
   }
 }
+
+@media screen and (max-height: 820px) {
+  .modal-scheme .modal-content {
+    max-height: 520px;
+    overflow: auto;
+  }
+}
+
+@media screen and (max-width: 890px) {
+  .modal-scheme .modal-content {
+    max-height: 520px;
+    overflow: auto;
+  }
+}

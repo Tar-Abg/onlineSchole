@@ -316,3 +316,10 @@
     }
   }
 }
+
+
+@media screen and (max-width: 1100px) {
+  .profile-tab-buttons {
+    flex-wrap: wrap;
+  }
+}

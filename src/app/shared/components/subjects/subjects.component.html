@@ -30,7 +30,7 @@
               formControlName="levelId"
             ></app-select>
           </div>
-          <div class="flex-container grid-gap-for-icons">
+          <div class="flex-container grid-gap-for-icons" *ngIf="i > 0">
             <div class="recycle-bin-wrapper" *ngIf="i > 0">
               <img src="./assets/images/recycleBin.png" (click)="removeForm(item, i)" alt="Recycle Byn">
             </div>

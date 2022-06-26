@@ -12,7 +12,7 @@
     </p>
   </ng-template>
 
-  <div class="flex-container">
+  <div class="flex-container flex-wrap-container">
     <form class="flex-container-justify-start calendar-datepicker-wrappers" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="date-picker-wrapper-for-calendar">
         <h2 class="date-picker-label">From</h2>
@@ -63,8 +63,8 @@
     </button>
   </div>
   <div class="calendar-content">
-    <div class="tWrap">
-      <div class="tWrap__head">
+<!--    <div class="tWrap">-->
+<!--      <div class="tWrap__head">-->
         <table>
           <thead>
           <tr>
@@ -121,9 +121,7 @@
           </tr>
           </thead>
           <tbody>
-          <ng-container [ngTemplateOutlet]="lessonSchedule?.length ? lessons : empty">
-
-          </ng-container>
+          <ng-container [ngTemplateOutlet]="lessonSchedule?.length ? lessons : empty"></ng-container>
           <ng-template #lessons>
             <tr *ngFor="let lesson of lessonSchedule">
               <td>
@@ -195,20 +193,20 @@
               </td>
             </tr>
           </ng-template>
-          <!-- In case the data is missing-->
-          <ng-template #empty>
-            <tr class="without-data" *ngIf="formSubmitted">
-              <td>
-                <h3 class="no-data-message">
-                  Sorry, there are no lessons matching the search criteria
-                </h3>
-              </td>
-            </tr>
-          </ng-template>
           </tbody>
         </table>
-      </div>
-    </div>
+        <!-- In case the data is missing-->
+        <ng-template #empty>
+          <div class="without-data">
+            <div *ngIf="formSubmitted">
+              <h3 class="no-data-message">
+                Sorry, there are no lessons matching the search criteria
+              </h3>
+            </div>
+          </div>
+        </ng-template>
+<!--      </div>-->
+<!--    </div>-->
   </div>
 </section>
 
