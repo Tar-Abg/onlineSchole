@@ -32,9 +32,9 @@
                   formControlName="wrapUp"
         > A short headline about yourself *
                 </textarea>
+        <span class="error-message" *ngIf="form.get('wrapUp')?.errors?.required && form.get('wrapUp')?.touched">This is a required field</span>
       </label>
-      <span class="error-message" *ngIf="form.get('wrapUp')?.errors?.required && form.get('wrapUp')?.touched">This is a required field</span>
-      <p class="form-item-notification">Briefly describe what you need help with</p>
+      <p class="form-item-notification mt-4">Briefly describe what you need help with</p>
       <p class="form-item-notification" [class.text-danger]="(form.get('wrapUp')?.errors?.minlength || form.get('wrapUp')?.errors?.maxlength) && form.get('wrapUp')?.touched">Your free response must be between 50 and 2000 characters. </p>
     </li>
   </ul>

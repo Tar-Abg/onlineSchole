@@ -9,6 +9,7 @@ export interface TutorBaseInfo {
   cancellation: string;
   fullName: string;
   userName: string;
+  tutoredHours: string;
 }
 
 export interface TutorAvailabilities {
