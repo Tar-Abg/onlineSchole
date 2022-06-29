@@ -131,7 +131,7 @@
               <div *ngIf="userAddress.get('countryId')?.value === 226">
                 <h3 class="label-text">Social Security Number*</h3>
                 <label class="form-label label-for-security-number">
-                  <input mask="000-00-0000" name="securityNumber" class="form-input" type="text"
+                  <input mask="999-99-9999" name="securityNumber" class="form-input" type="text"
                          formControlName="socialSecurityNumber" [innerHTML]="'123456789' | slice:0:3">
                   <span class="form-item-notification">Not visible on the public profile</span>
                   <span class="error-message block"
