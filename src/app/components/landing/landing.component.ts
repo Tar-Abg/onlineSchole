@@ -119,18 +119,6 @@ export class LandingComponent implements OnInit, OnDestroy {
     {
       path: '../../assets/images/programming.png',
       name: 'Programming ',
-    },
-    {
-      path: '../../assets/images/programming.png',
-      name: 'Programming ',
-    },
-    {
-      path: '../../assets/images/programming.png',
-      name: 'Programming ',
-    },
-    {
-      path: '../../assets/images/programming.png',
-      name: 'Programming ',
     }
   ]
 }
