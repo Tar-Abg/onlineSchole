@@ -53,9 +53,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   getLoggedUser(): void {
     if (this.authService.isLoggedIn$) {
+      const userType = this.storageService.getItem('userType');
       const userRole = this.storageService.getItem('userRole');
       const userId = this.storageService.getItem('userId');
-      if (userRole == UserRole.student) {
+      if (userRole == UserRole.student || userType == UserRole.student) {
        this.getStudent(userId);
       } else {
        this.getTutor(userId);

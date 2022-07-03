@@ -125,8 +125,9 @@ export class TutorFirstStepComponent implements OnInit, OnDestroy {
     this.tutorSubjects.push(this.newTutorSubjects());
   }
 
-  removeTutorSubjects(item: AbstractControl): void {
+  removeTutorSubjects(item: AbstractControl, i: number): void {
     this.tutorSubjects.controls = this.tutorSubjects.controls.filter(control => control != item);
+    this.observables.splice(i, 1);
     this.tutorSubjects.updateValueAndValidity();
   }
 
