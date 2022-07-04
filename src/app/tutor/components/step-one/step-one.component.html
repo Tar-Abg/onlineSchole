@@ -1,5 +1,8 @@
 <div class="flex-item flex-item-step-min-length">
   <div class="margin-left-space">
+    <p>
+      At the moment, tutors from <span> these </span> countries can register.
+    </p>
     <form [formGroup]="form" (submit)="onSubmit()" class="register-form">
       <fieldset>
         <legend class="form-legend">Enter your information</legend>
@@ -39,7 +42,6 @@
 <!--            <span class="error-message" *ngIf="form.get('yearOfBirth')?.errors && form.get('yearOfBirth')?.touched">Please specify year of your birth</span>-->
 <!--          </div>-->
 <!--        </div>-->
-
         <div class="p-relative form-label date-picker-wrapper dateOfBirth">
           <h2 class="date-picker-label">Date of birth </h2>
           <mat-form-field appearance="fill" class="date-range-wrapper

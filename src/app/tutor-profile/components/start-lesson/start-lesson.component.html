@@ -58,161 +58,157 @@
         Show
       </button>
     </form>
-    <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true" *ngIf="(userType === 'tutor' && (tutorPaymentExistence$ | async))">Add
+    <button class="btn-add-less flex-container-center" (click)="isOpenAddLesson = true"
+            *ngIf="(userType === 'tutor' && (tutorPaymentExistence$ | async))">Add
       Lesson
     </button>
   </div>
   <div class="calendar-content">
-<!--    <div class="tWrap">-->
-<!--      <div class="tWrap__head">-->
-        <table>
-          <thead>
-          <tr>
-            <th>
-              <h3 class="calendar-table-thead">
-                {{userType === 'tutor' ? 'Student' : 'Tutor' }}
-              </h3>
-            </th>
-            <th>
-              <h3 class="calendar-table-thead">
-                Hourly rate
-              </h3>
-            </th>
-            <th>
-              <h3 class="calendar-table-thead">
-                Date
-              </h3>
-            </th>
-            <th>
-              <h3 class="calendar-table-thead">
-                Lesson
-                start time
-              </h3>
-            </th>
-            <th>
-              <h3 class="calendar-table-thead">
-                Projected
-                lesson duration
-              </h3>
-            </th>
-            <th>
-              <h3 class="calendar-table-thead">
-                Subject
-              </h3>
-            </th>
-            <th>
-              <h3 class="calendar-table-thead">
-                Lesson plan
-              </h3>
-            </th>
-            <th>
-              <h3 class="calendar-table-thead">
-                Status
-              </h3>
-            </th>
-            <th>
-              <h3 class="calendar-table-thead">
-                Actual
-                lesson duration
-              </h3>
-            </th>
-            <th>
-            </th>
-          </tr>
-          </thead>
-          <tbody>
-          <ng-container [ngTemplateOutlet]="lessonSchedule?.length ? lessons : empty"></ng-container>
-          <ng-template #lessons>
-            <tr *ngFor="let lesson of lessonSchedule">
-              <td>
-                <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.student}}">
-                  {{userType === 'tutor' ? lesson.student : lesson.tutor }}
-                </p>
-              </td>
-              <td>
-                <p class="tbody-text">
-                  ${{lesson.hourlyRate}}
-                </p>
-              </td>
-              <td>
-                <p class="tbody-text">
-                  <img
-                    src="assets/images/calendar.png"
-                    alt="Calendar"
-                    width="26"
-                    height="28"
-                  >
-                  {{lesson.lessonDate | date : 'shortDate'}}
-                </p>
-              </td>
-              <td>
-                <p class="tbody-text">
-                  {{lesson.lessonInterval}}
-                </p>
-              </td>
-              <td>
-                <p class="tbody-text">
-                  {{lesson.duration}}
-                </p>
-              </td>
-              <td>
-                <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.subject}}">
-                  {{lesson.subject}}
-                </p>
-              </td>
-              <td>
-                <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.lessonPlan}}">
-                  {{lesson.lessonPlan}}
-                </p>
-              </td>
-              <td>
-                <p class="tbody-text" data-placement="top" title="${{lesson.status}}">
-                  {{lesson.status}}
-                </p>
-              </td>
-              <td>
-                <p class="tbody-text">
-                  {{lesson.actualDuration}}
-                </p>
-              </td>
-              <td>
-                <div class="lessons-table-btn-wrapper">
-                  <a *ngIf="lesson.start || lesson.join" (click)="startLesson(lesson)" class="lesson-status-btn  lesson-status-btn__start flex-container-center">
-                    {{userType === 'tutor' ? 'Start' : 'Join' }}
-                  </a>
-                  <button class="lesson-status-btn lesson-status-btn__end flex-container-center"
-                          (click)="endLesson(lesson)" *ngIf="lesson.end">
-                    End
-                  </button>
-                  <button class="lesson-status-btn lesson-status-btn__cancel flex-container-center"
-                          (click)="openCancelLessonModal(lesson)"
-                          *ngIf="lesson.cancel">
-                    Cancel
-                  </button>
-                </div>
-              </td>
-            </tr>
-          </ng-template>
-          </tbody>
-        </table>
-        <!-- In case the data is missing-->
-        <ng-template #empty>
-          <div class="without-data">
-            <div *ngIf="formSubmitted">
-              <h3 class="no-data-message">
-                Sorry, there are no lessons matching the search criteria
-              </h3>
+
+    <table>
+      <thead>
+      <tr>
+        <th>
+          <h3 class="calendar-table-thead">
+            {{userType === 'tutor' ? 'Student' : 'Tutor' }}
+          </h3>
+        </th>
+        <th>
+          <h3 class="calendar-table-thead">
+            Hourly rate
+          </h3>
+        </th>
+        <th>
+          <h3 class="calendar-table-thead">
+            Date
+          </h3>
+        </th>
+        <th>
+          <h3 class="calendar-table-thead">
+            Lesson
+            start time
+          </h3>
+        </th>
+        <th>
+          <h3 class="calendar-table-thead">
+            Projected
+            lesson duration
+          </h3>
+        </th>
+        <th>
+          <h3 class="calendar-table-thead">
+            Subject
+          </h3>
+        </th>
+        <th>
+          <h3 class="calendar-table-thead">
+            Lesson plan
+          </h3>
+        </th>
+        <th>
+          <h3 class="calendar-table-thead">
+            Status
+          </h3>
+        </th>
+        <th>
+          <h3 class="calendar-table-thead">
+            Actual
+            lesson duration
+          </h3>
+        </th>
+        <th>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <ng-container *ngIf="lessonSchedule?.length">
+        <tr *ngFor="let lesson of lessonSchedule">
+          <td>
+            <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.student}}">
+              {{userType === 'tutor' ? lesson.student : lesson.tutor }}
+            </p>
+          </td>
+          <td>
+            <p class="tbody-text">
+              ${{lesson.hourlyRate}}
+            </p>
+          </td>
+          <td>
+            <p class="tbody-text">
+              <img
+                src="assets/images/calendar.png"
+                alt="Calendar"
+                width="26"
+                height="28"
+              >
+              {{lesson.lessonDate | date : 'shortDate'}}
+            </p>
+          </td>
+          <td>
+            <p class="tbody-text">
+              {{lesson.lessonInterval}}
+            </p>
+          </td>
+          <td>
+            <p class="tbody-text">
+              {{lesson.duration}}
+            </p>
+          </td>
+          <td>
+            <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.subject}}">
+              {{lesson.subject}}
+            </p>
+          </td>
+          <td>
+            <p class="tbody-text" data-toggle="tooltip" data-placement="top" title="${{lesson.lessonPlan}}">
+              {{lesson.lessonPlan}}
+            </p>
+          </td>
+          <td>
+            <p class="tbody-text" data-placement="top" title="${{lesson.status}}">
+              {{lesson.status}}
+            </p>
+          </td>
+          <td>
+            <p class="tbody-text">
+              {{lesson.actualDuration}}
+            </p>
+          </td>
+          <td>
+            <div class="lessons-table-btn-wrapper">
+              <a *ngIf="lesson.start || lesson.join" (click)="startLesson(lesson)"
+                 class="lesson-status-btn  lesson-status-btn__start flex-container-center">
+                {{userType === 'tutor' ? 'Start' : 'Join' }}
+              </a>
+              <button class="lesson-status-btn lesson-status-btn__end flex-container-center"
+                      (click)="endLesson(lesson)" *ngIf="lesson.end">
+                End
+              </button>
+              <button class="lesson-status-btn lesson-status-btn__cancel flex-container-center"
+                      (click)="openCancelLessonModal(lesson)"
+                      *ngIf="lesson.cancel">
+                Cancel
+              </button>
             </div>
-          </div>
-        </ng-template>
-<!--      </div>-->
-<!--    </div>-->
+          </td>
+        </tr>
+      </ng-container>
+      </tbody>
+    </table>
+    <!-- In case the data is missing-->
+    <ng-container *ngIf="!lessonSchedule?.length && formSubmitted">
+      <div class="without-data">
+        <h3 class="no-data-message">
+          Sorry, there are no lessons matching the search criteria
+        </h3>
+      </div>
+    </ng-container>
   </div>
 </section>
 
 <!-- Start Lessons Modal For  Tutor-->
 <div class="lessons-modal-container modal--large-width modal-wrapper">
-  <app-modal-schem *ngIf="isOpenEndLessonForTutor" (close)="isOpenEndLessonForTutor = false" [title]="'End Lesson'" >
+  <app-modal-schem *ngIf="isOpenEndLessonForTutor" (close)="isOpenEndLessonForTutor = false" [title]="'End Lesson'">
     <app-end-lesson-modal (onCloe)="isOpenEndLessonForTutor = false" [lesson]="selectedLesson"></app-end-lesson-modal>
   </app-modal-schem>
 </div>
@@ -221,7 +217,8 @@
 <!-- Start Lessons Modal For Student-->
 <div class="lessons-modal-container modal--large-width modal-wrapper">
   <app-modal-schem *ngIf="isOpenEndLessonForStudent" (close)="isOpenEndLessonForStudent = false" [title]="'End Lesson'">
-    <app-end-lesson-for-student (close)="isOpenEndLessonForStudent = false" [lesson]="selectedLesson"></app-end-lesson-for-student>
+    <app-end-lesson-for-student (close)="isOpenEndLessonForStudent = false"
+                                [lesson]="selectedLesson"></app-end-lesson-for-student>
   </app-modal-schem>
 </div>
 
