@@ -97,7 +97,8 @@
             <span class="error-message"
                   *ngIf="form.get('password')?.errors?.cannotContainSpace && form.get('password')?.touched">Password can not contain space</span>
             <span class="error-message"
-                  *ngIf="form.get('password')?.errors?.pattern && !form.get('password')?.errors?.cannotContainSpace && form.get('password')?.touched && !form.get('password')?.errors?.minlength">Password should contain at least 1 digit and 1 symbol</span>
+                  *ngIf="form.get('password')?.errors?.pattern && !form.get('password')?.errors?.cannotContainSpace && form.get('password')?.touched && !form.get('password')?.errors?.minlength">
+            The password must contain at least 1 uppercase, 1 lowercase and 1 number</span>
             <span class="error-message"
                   *ngIf="(passwordValidation$ | async) as passwordValidation">{{passwordValidation}}</span>
           </label>
