@@ -96,7 +96,7 @@
             </div>
             <button class="btn-add-less flex-container-center">Filter</button>
           </form>
-          <div class="flex-container-center" *ngIf="false">
+          <div class="flex-container-center" (click)="printPayment()">
             <img src="assets/images/printer.png" alt="Printer" width="35" height="35">
             <button class="settings-form-button print-btn">Print Selected</button>
           </div>
@@ -136,7 +136,7 @@
           <tr *ngFor="let item of paymentHistory.payments">
             <td>
               <h4 class="tbody-info flex-container-center">
-                <button type="button" class="link" (click)="isOpenPaymentDetails=true"
+                <button type="button" class="link" (click)="getDetails(item.paymentId)"
                 >{{item.paymentId}}</button>
               </h4>
             </td>
@@ -152,6 +152,7 @@
           </tr>
           </tbody>
         </table>
+        <span class="text-center text-danger" *ngIf="!paymentHistory.payments.length">You have no payments</span>
       </div>
     </div>
   </div>
@@ -161,6 +162,6 @@
 <!-- Start Lessons Modal For  Tutor-->
 <div class="lessons-modal-container modal--large-width modal-wrapper">
   <app-modal-schem *ngIf="isOpenPaymentDetails" (close)="isOpenPaymentDetails = false">
-    <app-payment-details (onCloe)="isOpenPaymentDetails = false"></app-payment-details>
+    <app-payment-details [paymentDetail]="paymentDetail"></app-payment-details>
   </app-modal-schem>
 </div>

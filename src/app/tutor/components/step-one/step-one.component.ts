@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Observable, Subject, Subscription} from "rxjs";
 import {KeyValuePair} from "../../../shared/models/keyValuePair.model";
 import {InfosService} from "../../../shared/services/infos/infos.service";
-import {Month, TimeZones} from "../../../shared/models/infos.model";
+import {Country, Month, TimeZones} from "../../../shared/models/infos.model";
 import {ValidationService} from "../../../shared/services/validation/validation.service";
 import {RegistrationService} from "../../../shared/services/registration/registration.service";
 import {StorageService} from "../../../shared/services/storage/storage.service";
@@ -22,10 +22,12 @@ export class StepOneComponent implements OnInit, OnDestroy {
   months$: Observable<Month[]>;
   timeZones$: Observable<TimeZones[]>;
   yearList: KeyValuePair[];
+  countries$: Observable<Country[]>;
   emailIsExist$: Subject<boolean>;
   usernameIsExist$: Subject<boolean>;
   passwordValidation$: Subject<string>;
   userId: number;
+  isOpenCountries = false;
 
   constructor(
     private fb: FormBuilder,
@@ -79,6 +81,7 @@ export class StepOneComponent implements OnInit, OnDestroy {
   initializeSubscriptions(): void {
     this.genderList$ = this.infosService.getGenders();
     this.months$ = this.infosService.getMonths();
+    this.countries$ = this.infosService.getCountriesForTutor();
     this.yearList = this.dateService.getYears(1930);
     this.emailIsExist$ = this.registrationService.emailIsExist$;
     this.usernameIsExist$ = this.registrationService.usernameIsExist$;

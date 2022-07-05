@@ -191,3 +191,22 @@ export interface PaymentHistory {
   paymentId: number;
   type: string;
 }
+
+export interface PaymentDetail {
+  hourlyRate: number;
+  lessonDate: string;
+  note: string;
+  paymentDate: string;
+  paymentId: number;
+  total: number;
+  type: string;
+}
+
+export interface PaymentFile {
+  contentType: string;
+  enableRangeProcessing: boolean;
+  entityTag: string;
+  fileContents: string;
+  fileDownloadName: string;
+  lastModified: string;
+}

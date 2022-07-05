@@ -1,8 +1,20 @@
 <div class="flex-item flex-item-step-min-length">
   <div class="margin-left-space">
     <p>
-      At the moment, tutors from <span> these </span> countries can register.
+      At the moment, tutors from <span (click)="isOpenCountries = !isOpenCountries" style="cursor: pointer; text-decoration: underline"> these </span> countries can register.
     </p>
+
+    <div class="countries" *ngIf="isOpenCountries">
+      <mat-list>
+        <ng-container *ngFor="let item of (countries$ | async)">
+          <mat-list-item>{{item.nameLowerCase}}</mat-list-item>
+          <mat-divider></mat-divider>
+        </ng-container>
+      </mat-list>
+    </div>
+
+
+
     <form [formGroup]="form" (submit)="onSubmit()" class="register-form">
       <fieldset>
         <legend class="form-legend">Enter your information</legend>
