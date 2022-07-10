@@ -5,7 +5,7 @@ import {
   LessonCancelRequest,
   LessonHistory,
   LessonRequest,
-  LessonSchedule, PaymentHistoryResponse, SearchTutor,
+  LessonSchedule, PaymentDetail, PaymentFile, PaymentHistoryResponse, SearchTutor,
   SelectedDay, TotalPayment,
   TutorAvailabilities,
   TutorBaseInfo,
@@ -182,6 +182,33 @@ export class TutorService {
     return this.http.put<ResponseModel<boolean>>(`${this.url}/CheckCancelFeeExistence`, null,{params}).pipe(
       map(data => data.result)
     );
+  }
+
+  getCertainPayment(paymentId: number): Observable<PaymentDetail> {
+    let params = new HttpParams();
+    params = params.append('paymentId', paymentId)
+    return this.http.post<ResponseModel<PaymentDetail>>(`${this.url}/GetCertainPayment`, null,{params}).pipe(
+      map(data => data.result)
+    )
+  }
+
+  getPaymentHistoryPrintable(userId: number, from: string, to: string ): Observable<PaymentFile> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    params = params.append('from', from),
+    params = params.append('to', to)
+    return this.http.get<ResponseModel<any>>(`${this.url}/getPaymentHistoryPrintable`,{params}).pipe(
+      map(data => data.result)
+    )
+  }
+
+  getCertainPaymentPrintable(userId: number, chargeId: number): Observable<PaymentFile> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    params = params.append('from', chargeId);
+    return this.http.get<ResponseModel<PaymentFile>>(`${this.url}/GetCertainPaymentPrintable`,{params}).pipe(
+      map(data => data.result)
+    )
   }
 
 }

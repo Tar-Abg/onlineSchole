@@ -97,7 +97,10 @@ export class StartLessonComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.tutorService.startLesson(lesson.id).subscribe(
         (updatedLesson: LessonSchedule) => {
-          lesson = updatedLesson;
+          lesson.start = false;
+          lesson.cancel = false;
+          lesson.end = true;
+          lesson.actualStartTime = updatedLesson.actualStartTime;
           window.open(lesson.meetingLink, '_blank');
         },
         (error) => this.messageService.setNewError(error.error.title)

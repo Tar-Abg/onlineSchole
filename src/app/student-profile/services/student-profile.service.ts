@@ -9,7 +9,7 @@ import {
   LastPayment,
   Lesson,
   LessonRequest,
-  LessonSchedule, PaymentHistoryResponse
+  LessonSchedule, PaymentDetail, PaymentFile, PaymentHistoryResponse
 } from "../../tutor-profile/models/tutor.model";
 
 @Injectable({
@@ -87,5 +87,32 @@ export class StudentProfileService {
     let params = new HttpParams();
     params = params.append('lessonId', lessonId)
     return this.http.put<ResponseModel<any>>(`${this.url}/JoinLesson`, null,{params})
+  }
+
+  getCertainPayment(paymentId: number): Observable<PaymentDetail> {
+    let params = new HttpParams();
+    params = params.append('paymentId', paymentId)
+    return this.http.post<ResponseModel<PaymentDetail>>(`${this.url}/GetCertainPayment`, null,{params}).pipe(
+      map(data => data.result)
+    )
+  }
+
+  getPaymentHistoryPrintable(userId: number, from: string, to: string ): Observable<PaymentFile> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    params = params.append('from', from);
+    params = params.append('to', to);
+    return this.http.get<ResponseModel<PaymentFile>>(`${this.url}/getPaymentHistoryPrintable`,{params}).pipe(
+      map(data => data.result)
+    )
+  }
+
+  getCertainPaymentPrintable(userId: number, chargeId: number): Observable<PaymentFile> {
+    let params = new HttpParams();
+    params = params.append('userId', userId);
+    params = params.append('from', chargeId);
+    return this.http.get<ResponseModel<PaymentFile>>(`${this.url}/GetCertainPaymentPrintable`,{params}).pipe(
+      map(data => data.result)
+    )
   }
 }

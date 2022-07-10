@@ -7,7 +7,7 @@
         <h3>Payment ID</h3>
       </td>
       <td>
-        <h3>4654895</h3>
+        <h3>{{paymentDetail?.paymentId}}</h3>
       </td>
     </tr>
     <tr>
@@ -15,7 +15,7 @@
         <h3>Payment date</h3>
       </td>
       <td>
-        <h3>4654895</h3>
+        <h3>{{paymentDetail?.paymentDate | date  : 'MM/dd/YYYY'}}</h3>
       </td>
     </tr>
     <tr>
@@ -23,7 +23,7 @@
         <h3>Payment type</h3>
       </td>
       <td>
-        <h3>Direct deposit to Tatevik Hovhannisyan via Wells fargo</h3>
+        <h3>{{paymentDetail?.type}}</h3>
       </td>
     </tr>
     <tr>
@@ -31,7 +31,7 @@
         <h3>Lesson date</h3>
       </td>
       <td>
-        <h3>03.25.2020</h3>
+        <h3>{{paymentDetail?.lessonDate | date  : 'MM/dd/YYYY'}}</h3>
       </td>
     </tr>
     <tr>
@@ -39,7 +39,7 @@
         <h3>Note</h3>
       </td>
       <td>
-        <h3>Ann Smith</h3>
+        <h3>{{paymentDetail?.note}}</h3>
       </td>
     </tr>
     <tr>
@@ -47,7 +47,7 @@
         <h3>Hourly rate</h3>
       </td>
       <td>
-        <h3>$ 30,00</h3>
+        <h3>{{paymentDetail?.hourlyRate | currency}}</h3>
       </td>
     </tr>
     <tr>
@@ -55,12 +55,12 @@
         <h3>Total</h3>
       </td>
       <td>
-        <h3>$ 30,00</h3>
+        <h3>{{paymentDetail?.total | currency}}</h3>
       </td>
     </tr>
     </tbody>
   </table>
-  <div class="flex-container-justify-end payment-details-wrapper-btns">
+  <div class="flex-container-justify-end payment-details-wrapper-btns" (click)="printPayment()">
     <img src="assets/images/printer.png" alt="Printer" width="35" height="35">
     <button class="settings-form-button print-btn">Print Selected</button>
   </div>

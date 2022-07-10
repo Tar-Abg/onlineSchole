@@ -17,8 +17,12 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         catchError((error: HttpErrorResponse) => {
-          if (error.status !== 451 && error.status !== 422 && error.status !== 401) {
-            this.messageService.setNewError('Something went wrong')
+          if (error.status !== 422 && error.status !== 401 && error.status !== 403) {
+            if (error.error.title) {
+              this.messageService.setNewError(error.error.title);
+            } else {
+              this.messageService.setNewError('Something went wrong')
+            }
           }
           return throwError(error);
         })
