@@ -2,3 +2,8 @@
   width: 418px;
 }
 
+@media screen and (max-width: 560px) {
+  .min-width-certificates-wrapper {
+    width: 100%;
+  }
+}

@@ -218,3 +218,9 @@
   color: rgba(10, 10, 10, 1);
   text-transform: inherit;
 }
+@media screen and (max-width: 500px) {
+  .grid-gap-for-buttons{
+    flex-direction: column;
+    grid-gap: 0;
+  }
+}

@@ -4,7 +4,7 @@
 
 .page-wrapper {
 
-  .carousel{
+  .carousel {
     z-index: 1;
   }
 
@@ -145,7 +145,6 @@
       .online-lesson-gif {
         width: 32%;
         align-self: flex-start;
-        margin: -45px 0 0 36px;
       }
 
       .result-list {
@@ -328,6 +327,55 @@
       top: -32px;
       height: auto;
       width: auto;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) and (min-width: 320px) {
+  .page-wrapper {
+
+    .online-lessons-wrapper {
+      .content__title, .content__title {
+        font-size: 30px;
+      }
+
+      .online-lesson-gif {
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .result-list-wrapper {
+        grid-gap: 40px;
+      }
+
+      .result-list__item {
+        flex-wrap: wrap;
+      }
+
+      .result-list {
+        width: 100%;
+        grid-gap: 16px;
+      }
+    }
+
+    .testimonials-list {
+      width: 100%;
+
+      .testimonials {
+        .right-quotes {
+          right: -2%;
+          bottom: 15%;
+        }
+
+        .left-quotes {
+
+        }
+      }
+    }
+
+    .find-tutor__btn {
+      width: 230px;
+      line-height: normal;
     }
   }
 }

@@ -1,8 +1,10 @@
 .section-filter {
-  grid-gap: 180px;
+  grid-gap: 30px 180px;
+  flex-wrap: wrap;
 
   &-form {
     grid-gap: 35px;
+    flex-wrap: wrap;
   }
 
   .ng-star-inserted {
@@ -63,6 +65,7 @@
 
   &-tab-buttons {
     display: flex;
+    flex-wrap: wrap;
     grid-gap: 32px;
     margin: 40px 0 27px;
 

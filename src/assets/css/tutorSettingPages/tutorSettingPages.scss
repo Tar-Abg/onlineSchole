@@ -69,6 +69,7 @@
   .calendar-datepicker-wrappers {
     grid-gap: 25px;
     margin-bottom: 15px;
+    flex-wrap: wrap;
 
     .date-picker-wrapper-for-calendar {
       position: relative;
@@ -77,6 +78,7 @@
 
   .add-calendar-wrapper {
     margin-bottom: 6px;
+    flex-wrap: wrap;
 
     .calendar-warning {
       font: $type-regular normal $type-small $Segoe-UI-sans;

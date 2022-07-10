@@ -23,3 +23,17 @@
     padding: 8px;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .margin-left-onLogged {
+    margin-left: 0;
+  }
+
+  .min-width-certificates-wrapper {
+    width: 100%;
+  }
+
+  .min-width {
+    width: 100%;
+  }
+}

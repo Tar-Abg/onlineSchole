@@ -105,10 +105,12 @@
 .file-upload-wrapper {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  grid-gap: 50px 28px;
 }
 
 .upload-image-requirement {
-  margin-left: 27px;
+  //margin-left: 27px;
 }
 
 .file-upload-content {
