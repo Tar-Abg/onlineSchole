@@ -222,3 +222,8 @@
   z-index: 999;
   cursor: pointer;
 }
+@media screen and (max-width: 768px) {
+  .file-upload-wrapper{
+    flex-direction: column;
+  }
+}

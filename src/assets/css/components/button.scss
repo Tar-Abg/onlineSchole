@@ -199,7 +199,7 @@
   }
 }
 
-.print-btn{
+.print-btn {
   margin: 0 0 0 4px;
   text-transform: capitalize;
   background-color: #C0CBD6;
@@ -218,9 +218,15 @@
   color: rgba(10, 10, 10, 1);
   text-transform: inherit;
 }
+
 @media screen and (max-width: 500px) {
-  .grid-gap-for-buttons{
+  .grid-gap-for-buttons {
     flex-direction: column;
     grid-gap: 0;
+  }
+
+  .button-wrapper {
+    flex-direction: column;
+    grid-gap: 24px;
   }
 }
