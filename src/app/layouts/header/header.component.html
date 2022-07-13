@@ -16,6 +16,7 @@
       <ng-template #loggedUser>
         <ul class="header-list flex-container-center">
           <li class="header-list__item flex-container-center header-list__item--active"><a (click)="navigate('aboutUs')">About us</a></li>
+          <li class="header-list__item flex-container-center header-list__item--active"><a (click)="navigate('contactUs')">Contact us</a></li>
           <li class="header-list__item flex-container-center" appClickOutside
               (clickOutside)="isOpenNestedDropdown = false">
             <div class="flex-container-center" *ngIf="user">

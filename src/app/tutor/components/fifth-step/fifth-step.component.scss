@@ -13,6 +13,10 @@
   font: $type-regular normal $type-small $Segoe-UI-sans;
 }
 
+::ng-deep .mat-radio-group {
+  grid-gap: 15px;
+}
+
 .checkbox-label--gray-color {
   ::ng-deep .mat-checkbox-label {
     color: #737373;
@@ -22,4 +26,10 @@
 .checkbox-divider-line {
   border: 1px solid #E9E9E9;
   margin: 25px 0;
+}
+
+@media screen and (max-width: 450px) {
+  .w-30 {
+    width: 100%;
+  }
 }

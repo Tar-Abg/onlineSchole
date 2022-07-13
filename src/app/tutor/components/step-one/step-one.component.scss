@@ -1,7 +1,7 @@
 .flex-item-step-min-length {
   width: 80%;
 
-  .margin-left-space{
+  .margin-left-space {
     max-width: 418px;
   }
 }
@@ -15,4 +15,12 @@
   height: 150px;
   overflow-y: auto;
   border: 1px solid #dcdcdc;
+}
+
+@media screen and (max-width: 400px) {
+  .flex-item-step-min-length {
+    .margin-left-space {
+      width: 100%;
+    }
+  }
 }

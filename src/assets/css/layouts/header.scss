@@ -117,3 +117,14 @@
 }
 
 /*!********* Header Are End ***************!*/
+
+@media screen and (max-width: 887px) {
+  .header-wrapper, .header-list{
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .header-wrapper .header-list{
+    grid-gap: 20px;
+  }
+}

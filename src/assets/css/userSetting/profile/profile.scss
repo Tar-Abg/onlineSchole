@@ -10,6 +10,7 @@
   .large-size {
     .form-textarea {
       width: calc(100% - 116px);
+      min-width: 230px;
       height: auto;
       padding: 15px 20px;
     }
@@ -84,6 +85,8 @@
       line-height: 26px;
       letter-spacing: 0.03em;
       color: $clr-ntrl-max;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .read-more {

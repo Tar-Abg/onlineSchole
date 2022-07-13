@@ -1,5 +1,5 @@
 .register-form {
-    //width: 418px;
+  //width: 418px;
 
   &-steps-wrapper {
     margin-bottom: rem(48px);
@@ -65,6 +65,7 @@
 }
 
 .double-calendar {
+  flex-wrap: wrap;
   grid-gap: rem(34px);
 }
 
@@ -195,10 +196,22 @@
   }
 }
 
-.notification-warning{
+.notification-warning {
   color: $secondary-icon-brand-color;
 }
 
-.register-form-without-fixed-width{
+.register-form-without-fixed-width {
   width: auto !important;
+}
+
+@media screen and (max-width: 600px) {
+  .user-sign-up-list__item .mb-15 {
+    overflow: auto;
+    width: 80%;
+    max-width: 320px;
+  }
+
+  .selectRow{
+    flex-direction: column;
+  }
 }

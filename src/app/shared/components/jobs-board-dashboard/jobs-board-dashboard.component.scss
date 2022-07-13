@@ -13,6 +13,7 @@
 
       .search-cards-item {
         align-items: center;
+        flex-wrap: wrap;
         width: 100%;
         padding: 30px 30px 30px 70px;
         border-radius: $border-radius-base;
@@ -34,6 +35,7 @@
 
       .nested-form-wrapper {
         grid-gap: 42px;
+        flex-wrap: wrap;
       }
 
       .collapsed-info {
@@ -64,5 +66,19 @@
         }
       }
     }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .jobs-list__item .search-cards-item {
+    padding: 24px;
+  }
+
+  .blue-bg {
+    padding: 14px;
+  }
+
+  .jobs-list__item .availability-wrapper label {
+    width: 100%;
   }
 }

@@ -160,3 +160,17 @@ mat-checkbox {
 .hoursPerWeekForTutor {
   width: 30%;
 }
+
+@media screen and (max-width: 768px) {
+  .grid-3-template, .grid-3-template .mat-radio-group {
+    grid-template-columns: auto;
+  }
+
+  .grid-gap-10 {
+    margin: 0;
+  }
+
+  .add{
+    margin: 20px;
+  }
+}

@@ -42,4 +42,13 @@
   grid-gap: 16px;
   margin: 66px -120px 0;
   justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media screen and (max-width: 600px) {
+  .register-btn-wrapper {
+    margin: 20px;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
 }

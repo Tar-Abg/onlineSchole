@@ -3,3 +3,14 @@
   text-align: center;
   margin: 60px auto 0;
 }
+
+@media screen and (max-width: 600px) {
+  .tutor-settings-page-notification {
+    max-width: 100%;
+  }
+
+  .settings-form-button{
+    font-size: 14px;
+    margin: 50px auto 0;
+  }
+}

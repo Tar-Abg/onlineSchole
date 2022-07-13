@@ -263,14 +263,26 @@
 
 @media screen and (max-height: 820px) {
   .modal-scheme .modal-content {
-    max-height: 520px;
+    max-height: 555px;
     overflow: auto;
   }
 }
 
 @media screen and (max-width: 890px) {
   .modal-scheme .modal-content {
-    max-height: 520px;
+    max-height: 555px;
     overflow: auto;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .modal-wrapper .modal-content {
+    min-width: max-content;
+    padding: 20px;
+  }
+
+  .modal-wrapper .modal-body {
+    width: 100%;
   }
 }

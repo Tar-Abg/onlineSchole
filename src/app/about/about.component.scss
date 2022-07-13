@@ -4,7 +4,6 @@
   background-image: url("../../assets/images/about.png");
   background-repeat: no-repeat;
   background-size: cover;
-  height: 1000px;
   margin: 98px 0 0;
 
   .container {
@@ -34,7 +33,7 @@
 
 .team-cards-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(405px, 1fr));
 }
 
 .team-cards-list__item {
@@ -70,7 +69,10 @@
 }
 
 .service-list {
-  width: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  grid-gap: 0 100px;
   margin: 195px auto 0;
 
   &__item {
@@ -91,6 +93,29 @@
   }
 }
 
-.about-us-team{
+.about-us-team {
   margin-top: 260px;
+}
+
+@media screen and (max-width: 780px) {
+  .about-us__info {
+    height: auto;
+
+    .container {
+      width: 90%;
+    }
+  }
+
+  .about-us-team {
+    margin-top: 100px;
+  }
+
+  .service-list {
+    flex-direction: column;
+    align-items: center;
+    grid-gap: 40px;
+    margin: 100px auto 0;
+  }
+
+
 }

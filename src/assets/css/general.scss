@@ -352,3 +352,14 @@ img {
   margin-bottom: 0;
 }
 
+@media screen and (max-width: 768px) {
+  .margin-left-space {
+    margin-left: 20px;
+  }
+
+  .register-form-wrapper {
+    .flex-container-start, .flex-container {
+      flex-direction: column-reverse;
+    }
+  }
+}

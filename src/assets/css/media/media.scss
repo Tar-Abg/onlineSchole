@@ -89,3 +89,107 @@
     }
   }
 }
+
+@media screen and (max-width: 700px) and (min-width: 320px) {
+  .page-wrapper {
+    .online-lesson-gif {
+      margin: 0 auto;
+    }
+
+    .result-list,
+    .subjects-slider-wrapper__title,
+    .hero-content-img {
+      width: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      margin-left: 0;
+    }
+  }
+
+  .header-logo {
+    width: 150px;
+  }
+
+  .settings-wrapper {
+    padding: 0 20px;
+
+    .full-height-container {
+      flex-direction: column;
+    }
+  }
+
+  .form-textarea {
+    width: auto;
+  }
+}
+
+@media screen and (max-width: 890px) {
+  .header-wrapper {
+    height: auto;
+    align-items: flex-start;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .profile-tabs-table {
+    width: auto;
+    margin: 0 auto;
+  }
+
+  .profile-tabs-wrapper {
+    overflow: auto;
+    margin: 50px 0;
+  }
+
+  .rating-wrapper {
+    padding: 0;
+  }
+
+  .review-wrapper {
+    margin: 20px auto;
+  }
+
+  .profile-container {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+  .start-lesson-wrapper .calendar-content {
+    margin: 20px auto;
+  }
+
+  .settings-wrapper .user-setting-main-info {
+    padding: 16px;
+  }
+
+  .selectRow {
+    flex-wrap: wrap;
+  }
+
+  .double-calendar .date-picker-wrapper {
+    width: 100%;
+  }
+
+  .container.page-wrapper {
+    margin-top: 150px;
+  }
+
+  .tutor-cards-list, .team-cards-list {
+    grid-gap: 20px;
+  }
+
+  .tutor-cards-list__item--image, .team-cards-list__item--image {
+    width: 130px;
+    height: 130px;
+    border: 0;
+  }
+
+  .subjects-wrapper .grid-gap-space .form-label {
+    max-width: 100%;
+    width: 100%;
+  }
+
+
+}
+
+
