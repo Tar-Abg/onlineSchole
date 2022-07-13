@@ -58,8 +58,8 @@ export class PaymentDashboardComponent implements OnInit, OnDestroy {
 
   onSubmit(): void {
     this.paymentHistory$ = this.userRole === 'tutor' ?
-      this.tutorService.getPaymentHistory(this.userId, this.form.value.from, this.form.value.to) :
-      this.studentService.getPaymentHistory(this.userId, this.form.value.from, this.form.value.to);
+      this.tutorService.getPaymentHistory(this.userId, this.form.value.from?.toISOString(), this.form.value.to?.toISOString()) :
+      this.studentService.getPaymentHistory(this.userId, this.form.value.from?.toISOString(), this.form.value.to?.toISOString());
   }
 
   getDetails(id: number): void {
@@ -90,7 +90,7 @@ export class PaymentDashboardComponent implements OnInit, OnDestroy {
 
   getPaymentHistoryPrintableStudent(): void {
     this.subscription.add(
-      this.studentService.getPaymentHistoryPrintable(this.userId, this.form.value.from, this.form.value.to).subscribe((data) => {
+      this.studentService.getPaymentHistoryPrintable(this.userId, this.form.value.from.toISOString(), this.form.value.to.toISOString()).subscribe((data) => {
         this.fileService.download(data.contentType, data.fileContents, data.fileDownloadName);
       })
     )
@@ -98,7 +98,7 @@ export class PaymentDashboardComponent implements OnInit, OnDestroy {
 
   getPaymentHistoryPrintableTutor(): void {
     this.subscription.add(
-      this.tutorService.getPaymentHistoryPrintable(this.userId, this.form.value.from, this.form.value.to).subscribe((data) => {
+      this.tutorService.getPaymentHistoryPrintable(this.userId, this.form.value.from.toISOString(), this.form.value.to.toISOString()).subscribe((data) => {
         this.fileService.download(data.contentType, data.fileContents, data.fileDownloadName);
       })
     )

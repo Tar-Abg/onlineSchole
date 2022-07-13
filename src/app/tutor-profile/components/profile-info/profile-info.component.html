@@ -74,7 +74,7 @@
       </div>
       <div class="flex-item align-self-end" *ngIf="item.degreeInProgress">
         <div class="checkboxes-wrapper">
-          <mat-checkbox formControlName="degreeInProgress" [checked]="item.degreeInProgress">
+          <mat-checkbox [checked]="item.degreeInProgress" disabled="true">
             Degree in progress
           </mat-checkbox>
         </div>
