@@ -17,7 +17,7 @@
             grid-gap-10 date-picker-container">
               <ng-container *ngFor="let item of tutorSubjects.controls; let i = index">
                 <div formArrayName="tutorSubjects">
-                  <div [formGroupName]="i" class="d-flex selectRow">
+                  <div [formGroupName]="i" class="d-flex selectRow flex-wrap">
 
                     <div class="selectWrapper">
                       <app-select

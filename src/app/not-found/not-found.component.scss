@@ -19,3 +19,18 @@
   font: $type-regular normal 35px $Segoe-UI-sans;
   color: rgba(255, 0, 0, 1);
 }
+
+
+@media screen and (max-width: 560px) {
+  .not-found-wrapper {
+    padding: 50px 0;
+
+    picture {
+      margin: 0;
+    }
+
+    img {
+      margin: 0 auto;
+    }
+  }
+}

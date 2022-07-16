@@ -1,10 +1,14 @@
 .modal-content {
-  min-width: 820px;
+  //min-width: 820px;
+  min-width: 42vw;
+  max-width: 820px;
   height: auto;
-  border: 2px solid rgba(143, 181, 252, 0.31);
-  box-sizing: border-box;
-  border-radius: 15px;
-  padding-bottom: 58px;
+  max-height: 92vh;
+  overflow: auto;
+  //border: 2px solid rgba(143, 181, 252, 0.31);
+  //box-sizing: border-box;
+  //border-radius: 15px;
+  //padding-bottom: 58px;
 }
 
 .modal-body {
@@ -20,10 +24,10 @@
   }
 
   .modal-content {
-    width: min-content !important;
-    min-width: 820px;
+    //width: min-content !important;
+    //min-width: 820px;
     //height: 440px;
-    min-height: auto;
+    //min-height: auto;
     padding-bottom: 48px;
     border: 2px solid rgba(143, 181, 252, 0.31) !important;
     border-radius: 15px !important;
@@ -57,7 +61,7 @@
   }
 
   .modal-body {
-    width: 476px;
+    //width: 476px;
     margin: 0 auto;
     padding: 0;
   }
@@ -190,7 +194,7 @@
 
 .modal-wrapper.modal--middle-width {
   .modal-content {
-    width: 647px !important;
+    //width: 647px !important;
     min-width: auto;
     border-radius: 25px;
   }
@@ -225,8 +229,8 @@
 .modal-wrapper.modal--small-width {
 
   .modal-content {
-    width: 458px;
-    min-width: 458px;
+    min-width: 320px;
+    max-width: 458px;
     height: 340px;
   }
 
@@ -251,7 +255,7 @@
   }
 
   .modal-content {
-    width: 897px !important;
+    //width: 897px !important;
     height: 441px;
     padding: 58px 76px 0;
   }
@@ -261,28 +265,28 @@
   }
 }
 
-@media screen and (max-height: 820px) {
-  .modal-scheme .modal-content {
-    max-height: 555px;
-    overflow: auto;
-  }
-}
+//@media screen and (max-height: 820px) {
+//  .modal-scheme .modal-content {
+//    max-height: 555px;
+//    overflow: auto;
+//  }
+//}
+//
+//@media screen and (max-width: 890px) {
+//  .modal-scheme .modal-content {
+//    max-height: 555px;
+//    overflow: auto;
+//  }
+//}
 
-@media screen and (max-width: 890px) {
-  .modal-scheme .modal-content {
-    max-height: 555px;
-    overflow: auto;
-  }
-}
 
-
-@media screen and (max-width: 600px) {
-  .modal-wrapper .modal-content {
-    min-width: max-content;
-    padding: 20px;
-  }
-
-  .modal-wrapper .modal-body {
-    width: 100%;
-  }
-}
+//@media screen and (max-width: 600px) {
+//  .modal-wrapper .modal-content {
+//    min-width: max-content;
+//    padding: 20px;
+//  }
+//
+//  .modal-wrapper .modal-body {
+//    width: 100%;
+//  }
+//}

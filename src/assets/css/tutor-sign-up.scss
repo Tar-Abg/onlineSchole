@@ -9,9 +9,10 @@
   &-sign-up {
 
     &-wrapper {
-      width: 1221px;
+      width: 64vw;
+      min-width: 300px;
       margin: 76px auto 0;
-      padding: 12px 44px 93px;
+      padding: 12px 4vw 93px;
       background: rgba(197, 217, 255, 0.11);
       border-radius: 28px;
     }
@@ -44,5 +45,15 @@
     font: $type-light normal 1rem / 1.25rem $Roboto-sans;
     color: #ff5c00;
     margin-bottom: 0;
+  }
+}
+
+
+@media screen and (max-width: 560px) {
+  .tutor {
+    &-step-wrapper {
+      position: static;
+      transform: translate(0);
+    }
   }
 }

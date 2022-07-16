@@ -202,3 +202,13 @@
     height: 100%;
   }
 }
+
+@media screen and (max-width: 670px) {
+  .message_history_wrapper {
+    overflow-x: scroll;
+
+    & > .flex-container .flex-item {
+      overflow: visible;
+    }
+  }
+}

@@ -106,10 +106,6 @@
     }
   }
 
-  .header-logo {
-    width: 150px;
-  }
-
   .settings-wrapper {
     padding: 0 20px;
 
@@ -117,16 +113,13 @@
       flex-direction: column;
     }
   }
-
-  .form-textarea {
-    width: auto;
-  }
 }
 
 @media screen and (max-width: 890px) {
   .header-wrapper {
     height: auto;
     align-items: flex-start;
+    margin-bottom: 60px;
   }
 }
 
