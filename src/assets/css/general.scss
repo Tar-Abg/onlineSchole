@@ -352,6 +352,28 @@ img {
   margin-bottom: 0;
 }
 
+.social-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 0 40px 154px;
+  grid-gap: 44px;
+}
+
+.social-links__item {
+  width: 48px;
+
+  img {
+    object-fit: scale-down;
+  }
+}
+
+.footer {
+  .social-links {
+    margin: 24px 0;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .margin-left-space {
     margin-left: 20px;
