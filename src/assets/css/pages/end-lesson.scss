@@ -76,3 +76,23 @@
     background-color: #DA8DF1;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .end-lesson-table tr {
+    display: flex;
+    flex-direction: column;
+  }
+  .end-lesson-wrapper {
+    .form-textarea {
+      width: 100%;
+    }
+
+    .modal-vector-image {
+      margin: 0;
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

@@ -72,3 +72,19 @@
     grid-gap: 30px;
   }
 }
+
+@media screen and (max-width: 670px) {
+  .tutor-sign-up-wrapper {
+    padding: 12px 4vw 50px;
+
+    .tutor-sign-up-image {
+      position: static;
+    }
+  }
+
+  .user-sign-up-list__item {
+    .form-label {
+      width: 100%;
+    }
+  }
+}

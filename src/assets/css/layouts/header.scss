@@ -4,12 +4,14 @@
 .header {
   &-wrapper {
     grid-area: header;
-    height: 181px;
+    align-items: center;
+    height: 100px;
     margin-bottom: 4px;
 
     .header-list {
       display: flex;
       grid-gap: 40px;
+      margin-bottom: 0;
 
       &__item {
         position: relative;

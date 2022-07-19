@@ -1,8 +1,6 @@
 @import "src/assets/css/variables";
 
 .main-convenient {
-  padding-left: 105px;
-
   &-list {
     padding: 30px 0 0 30px;
     width: 60%;
@@ -32,12 +30,11 @@
 }
 
 .credit-card-container {
-  width: 100%;
-  padding: 0 168px 0 178px;
+  width: 71vw;
+  margin: 0 auto;
 }
 
 .flex-item-for-card, .form-legend {
-  margin-left: 105px;
   width: 382px;
 }
 
@@ -93,6 +90,7 @@ input::-webkit-inner-spin-button {
   font: $type-regular normal $type-small $Segoe-UI-sans;
   line-height: 21px;
   color: $clr-ntrl-max;
+  white-space: break-spaces;
 }
 
 .date-picker-wrapper {
@@ -121,4 +119,19 @@ select {
 
 .select-with-border {
   border-bottom: 1px solid $secondary-brand-color;
+}
+
+.card__image {
+  width: 45%;
+}
+
+@media screen and (max-width: 780px) {
+  .main-convenient-list {
+    width: 100%;
+    padding-left: 0;
+  }
+
+  .card__image {
+    width: 100%;
+  }
 }

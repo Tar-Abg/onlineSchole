@@ -16,7 +16,7 @@
     }
   }
 
-  .wrap-up-info{
+  .wrap-up-info {
     .error-message {
       bottom: -76px;
     }
@@ -139,7 +139,7 @@
         text-transform: capitalize;
         color: $clr-ntrl-max;
 
-        &__without-uppercase{
+        &__without-uppercase {
           text-transform: unset;
         }
       }
@@ -268,5 +268,21 @@
 .calendar-datepicker-wrappers {
   .mat-form-field-underline {
     display: none;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile-section {
+    .nested-info {
+      &.without-side-padding {
+        padding: 26px 0;
+      }
+
+      .grid-wrapper {
+        grid-template-columns: repeat(1, 1fr);
+        overflow: auto;
+        width: 100%;
+      }
+    }
   }
 }

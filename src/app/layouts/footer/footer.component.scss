@@ -27,8 +27,12 @@
     letter-spacing: 0.03em;
     text-transform: capitalize;
 
-    a {
+    a, button {
+      background-color: unset;
+      border: 0;
       color: $clr-ntrl-min;
+      font: inherit;
+      font-weight: 300;
     }
   }
 
@@ -41,7 +45,7 @@
   }
 
   .copy-right {
-    padding: 10px 0 4px;
+    padding: 10px 0 10px;
     border-top: 1px solid;
     background: #4e699c;
     text-align: center;

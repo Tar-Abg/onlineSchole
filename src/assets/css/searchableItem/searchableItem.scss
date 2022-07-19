@@ -1,10 +1,11 @@
 .search-cards-item {
   display: flex;
   align-items: flex-start;
-  width: 70%;
+  flex-wrap: wrap;
+  width: 70vw;
   grid-gap: 32px;
-  padding: 30px 70px 30px 42px;
-  margin: 0 auto 20px;
+  padding: 30px 4vw 30px 3vw;
+  margin: 0 auto 2vw;
   border-radius: 25px;
   background: #fafcff;
 
