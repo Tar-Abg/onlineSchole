@@ -28,7 +28,6 @@
   letter-spacing: 0.03em;
   text-align: left;
   color: $clr-ntrl-max;
-  text-transform: capitalize;
 }
 
 .team-cards-list {
@@ -72,8 +71,9 @@
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  grid-gap: 0 100px;
-  margin: 195px auto 0;
+  grid-gap: 10vh 18vw;
+  margin: 7.75em auto 0;
+  font-size: 20px;
 
   &__item {
     display: flex;
@@ -94,13 +94,11 @@
 }
 
 .about-us-team {
-  margin-top: 260px;
+  margin-top: 156px;
 }
 
 @media screen and (max-width: 780px) {
   .about-us__info {
-    height: auto;
-
     .container {
       width: 90%;
     }
@@ -113,9 +111,10 @@
   .service-list {
     flex-direction: column;
     align-items: center;
-    grid-gap: 40px;
-    margin: 100px auto 0;
   }
 
-
+  .team-cards-list__item--image {
+    width: 250px;
+    height: 250px;
+  }
 }

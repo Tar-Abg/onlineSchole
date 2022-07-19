@@ -145,6 +145,36 @@
     padding: 0;
   }
 
+  .page-wrapper {
+
+    .subjects-slider-wrapper {
+      padding: 0 !important;
+    }
+
+    .subjects-slider-list {
+      height: auto;
+      min-height: auto;
+
+      .subjects-slider-list__item {
+        min-width: 100% !important;
+        width: auto !important;
+        margin-right: 40px;
+      }
+
+      .carousel-cells {
+        flex-direction: column;
+        grid-gap: 50px;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+      }
+    }
+
+    .carousel {
+      height: auto !important;
+    }
+  }
+
   .review-wrapper {
     margin: 20px auto;
   }
@@ -176,20 +206,21 @@
 
   .tutor-cards-list, .team-cards-list {
     grid-gap: 20px;
+    flex-direction: column;
+    align-items: center;
   }
 
   .tutor-cards-list__item--image, .team-cards-list__item--image {
-    width: 130px;
-    height: 130px;
+    width: 160px;
+    height: 160px;
     border: 0;
+    margin: 0 auto;
   }
 
   .subjects-wrapper .grid-gap-space .form-label {
     max-width: 100%;
     width: 100%;
   }
-
-
 }
 
 

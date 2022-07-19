@@ -82,12 +82,6 @@
   margin-left: 78px;
 }
 
-.social-links {
-  display: flex;
-  margin: 0 0 40px 154px;
-  grid-gap: 44px;
-}
-
 
 @media screen and (max-width: 1200px) {
   .contact-wrapper {
@@ -97,10 +91,14 @@
 
 @media screen and (max-width: 736px) {
   .contact-info {
-    margin: 20px 30px;
+    margin: 20px 0;
   }
 
   .contact-info-list, .social-links {
     margin-left: 30px;
+  }
+
+  .contact-info-list__item-text{
+    font-size: $type-small;
   }
 }
