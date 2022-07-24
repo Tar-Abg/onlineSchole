@@ -96,11 +96,11 @@ export class StartLessonComponent implements OnInit, OnDestroy {
   startLessonForTutor(lesson: LessonSchedule): void {
     this.subscription.add(
       this.tutorService.startLesson(lesson.id).subscribe(
-        (updatedLesson: LessonSchedule) => {
+        (updatedLesson) => {
           lesson.start = false;
           lesson.cancel = false;
           lesson.end = true;
-          lesson.actualStartTime = updatedLesson.actualStartTime;
+          lesson.actualStartTime = updatedLesson.result.actualStartTime;
           window.open(lesson.meetingLink, '_blank');
         },
         (error) => this.messageService.setNewError(error.error.title)

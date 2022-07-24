@@ -98,8 +98,8 @@ export class TutorService {
   getLessons(tutorId: number, data: LessonRequest): Observable<LessonSchedule[]> {
     const body = {
       userId: tutorId,
-      from: new Date(data.from).toISOString(),
-      to: new Date(data.to).toISOString(),
+      from: data.from ? new Date(data.from).toISOString() : null,
+      to: data.to ? new Date(data.to).toISOString() : null,
       statusId: data.statusId
     }
     return this.http.post<ResponseModel<LessonSchedule[]>>(`${this.url}/GetLessons`, body).pipe(
